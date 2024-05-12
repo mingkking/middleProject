@@ -105,6 +105,7 @@
 	            error : function(err){
 	                alert('error');
 	                console.log(err);
+	                console.log('test');
 	            }
 	        });
 	    });
