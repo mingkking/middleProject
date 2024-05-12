@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QuestionDAO">
+
+	<!-- sql 문의글 insert문 -->
+	<insert id="insertQuestion" parameterType="vo.question.QuestionVO">
+		INSERT INTO QUESTION (qWriter, qTitle, qContent, qPassword, qRegdate, qStatus)
+		VALUES ( "사용자", #{qTitle}, #{qContent}, #{qPassword}, now(), "N")
+	</insert>
+	
+	<!-- sql 문의글 update문 -->
+	<update id="updateQuestion" parameterType="vo.question.QuestionVO">
+		UPDATE QUESTION SET
+		qTitle = #{qTitle},
+		qContent = #{qContent},
+		qPassword = #{qPassword}
+		WHERE qNo = #{qNo}
+	</update>
+	
+	<!-- sql 문의글 delete문 -->
+	<delete id="deleteQuestion" parameterType="vo.question.QuestionVO">
+		DELETE FROM QUESTION
+		WHERE qNo = #{qNo}
+	</delete>
+	
+	<!-- sql 공지글 목록보기 -->
+	<select id="getQuestion" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
+		SELECT *
+		FROM QUESTION
+		WHERE qNo = #{qNo}
+	</select>
+	
+	<!-- sql 문의글 검색 -->
+	<select id="question" parameterType="hashmap" resultType="vo.question.QuestionVO">
+	SELECT *
+	FROM QUESTION
+	<where>
+		<if test="searchCondition !=null">
+			${searchCondition} LIKE '%${searchKeyword}%'
+		</if> 
+	</where>
+	ORDER BY qNo DESC
+	</select>
+</mapper>

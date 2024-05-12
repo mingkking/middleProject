@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberDAO">
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="vo.member.MemberVO">		
+		INSERT INTO member(id, tel, name, gender, birth, password, email, regDate)
+		VALUES(	#{id}, #{tel}, #{name},	#{gender}, #{birth}, #{password}, #{email}, sysdate())
+	</insert>
+	
+	<!-- 중복확인 -->
+	<select id="selectCheckID" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	         id=#{id}
+	    </where>
+	</select>
+	
+	<!-- 중복확인 -->
+	<select id="selectCheckTel" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	         tel=#{tel}
+	    </where>
+	</select>
+	
+	<!-- 중복확인 -->
+	<select id="selectCheckEmail" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	         email=#{email}
+	    </where>
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="loginCheck" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	        id=#{id} AND password=#{password}
+	    </where>
+	</select>
+	
+	
+	<!-- 이메일 인증 -->
+<!-- 	<insert id="createAuthKey">
+	    INSERT INTO mp_member_auth VALUES (#{memberEmail}, #{authKey})
+	</insert>
+	
+	<update id="memberAuth">
+	    <![CDATA[UPDATE member SET memberAuth=1 WHERE (SELECT count(*) FROM mp_member_auth WHERE memberemail=#{memberEmail}) > 0]]>
+	</update> -->
+	
+	
+	
+</mapper>

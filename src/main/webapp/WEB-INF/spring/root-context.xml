@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- DataSource 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> <!-- setDriverClassName() -->
+		<property name="url" value="jdbc:mysql://localhost:3306/thunder"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+
+	<!-- Spring과 Mybatis 연동 설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property> <!-- setDataSource() -->
+		<!-- <property name="configLocation" value="classpath:mybatis-config.xml"></property> --> <!-- mybatis의 설정파일 지정 -->
+		<!-- value 경로 해석 -->
+		<!-- mappers 안에 모든 -->
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+		<!-- <property name="typeAliases">
+			<list>
+				<value>board.vo.BoardVO</value> 자동으로 별칭이 BoardVO 로 지정 됨
+			</list>
+		</property>  -->
+	</bean>
+
+	<!-- SqlSession 객체 생성 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+	
+	
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NoticeDAO">
+
+	<!-- sql 공지글 insert문 -->
+	<insert id='insertNotice' parameterType='vo.notice.NoticeVO'>
+		INSERT INTO NOTICE (nTitle, nContent, nRegdate, nWriter)
+		VALUES( #{nTitle}, #{nContent}, now(), "관리자")
+	</insert>
+	
+	<!-- sql 공지글 update문 -->
+	<update id="updateNotice" parameterType='vo.notice.NoticeVO'>
+		UPDATE NOTICE SET
+		nTitle = #{nTitle},
+		nContent = #{nContent}
+		WHERE nNo = #{nNo}
+	</update>
+	
+	<!-- sql 공지글 delete문 -->
+	<delete id="deleteNotice" parameterType='vo.notice.NoticeVO'>
+		DELETE FROM NOTICE
+		WHERE nNo = #{nNo}
+	</delete>
+	
+	<!-- sql 공지글 목록보기 -->
+	<select id="getNotice" parameterType="vo.notice.NoticeVO" resultType="vo.notice.NoticeVO">
+		SELECT *
+		FROM NOTICE
+		WHERE nNo = #{nNo}
+	</select>
+	
+	<!-- sql 공지글 검색 -->
+	<select id="notice" parameterType='hashmap' resultType='vo.notice.NoticeVO'>
+		
+		SELECT *
+		FROM NOTICE
+		<where>
+			<if test="searchCondition !=null">
+				${searchCondition} LIKE '%${searchKeyword}%'
+			</if>
+		</where>
+		ORDER BY nNo DESC
+	</select>
+</mapper>

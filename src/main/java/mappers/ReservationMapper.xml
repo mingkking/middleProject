@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReservationDAO">
+
+	<!-- 예약등록 -->
+	<insert id="insertReservation" parameterType="vo.reservation.ReservationVO">
+		INSERT INTO reservation(id, pNo, rental, start_time, end_time, totalMoney, rStatus, rRegDate)
+		VALUES(#{id}, #{pNo}, #{rental}, #{start_time}, #{end_time}, #{totalMoney}, 'N', sysdate());
+	</insert>
+	
+	<select id="selectReservationTime" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO">
+		SELECT * FROM reservation
+		WHERE rental = #{rental} AND pNo = #{pNo}
+	</select>
+	
+</mapper>
