@@ -56,5 +56,10 @@ public class MemberServiceImpl implements MemberService{
 	public void deletemember(MemberVO vo) {
 		mDAO.deletemember(vo);
 	}
+
+	@Override
+	public MemberVO selectMypage(MemberVO vo) {
+		return mDAO.selectMypage(vo);
+	}
 	
 }

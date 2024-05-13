@@ -25,7 +25,7 @@
 					<li><a href="${path}/notice">공지사항</a></li>
 					<li><a href="${path}/#">예약확인/취소</a></li>
 					<li><a href="${path}/#">리뷰</a></li>
-					<li><a href="${path}/mypage">마이페이지</a></li>
+					<li><a href="${path}/mypage?id=${sessionScope.logid}">마이페이지</a></li>
 					
 					<!-- 관리자페이지 -->
 					<li class="dropdown">

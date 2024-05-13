@@ -1,16 +1,22 @@
 package controller.login;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.tribes.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import lombok.RequiredArgsConstructor;
 import service.member.MemberService;
 import vo.member.MemberVO;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 	// 서비스 객체 생성
 	@Autowired
@@ -78,7 +84,14 @@ public class LoginController {
 
 	// 마이페이지 화면 이동
 	@RequestMapping("/mypage")
-	public String mypage() {
+	public String mypage(MemberVO vo, Model m) {
+		if(vo.getId() == null || vo.getId().equals("")) {
+			return "login/login";
+		}
+		System.out.println(vo.getId());
+		vo = memberService.selectMypage(vo);
+		m.addAttribute("vo", vo);
+		
 		return "login/mypage";
 	}
 
@@ -106,4 +119,8 @@ public class LoginController {
 		System.out.println("1111111111111111111" + result);
 		return String.valueOf(result);
 	} // checkTel
+	
+	// 마이페이지
 }
+
+
