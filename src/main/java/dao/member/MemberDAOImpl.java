@@ -61,6 +61,11 @@ public class MemberDAOImpl implements MemberDAO{
 	public void deletemember(MemberVO vo) {
 		mybatis.delete("MemberDAO.deletemember",vo);
 	}
+
+	@Override
+	public MemberVO selectMypage(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.selectMypage", vo);
+	}
 	
 	
 }

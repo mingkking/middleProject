@@ -70,7 +70,11 @@
 		WHERE id = '${id}'
 	</delete>	
 	
-	
+	<!-- 마이페이지 -->
+	<select id="selectMypage" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT * FROM member
+	    WHERE id = #{id}
+	</select>
 	
 	
 	<!-- 이메일 인증 -->

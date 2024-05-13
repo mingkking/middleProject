@@ -26,4 +26,6 @@ public interface MemberDAO {
 	public MemberVO getmember(MemberVO vo);
 
 	public void deletemember(MemberVO vo);
+	
+	public MemberVO selectMypage(MemberVO vo);
 }

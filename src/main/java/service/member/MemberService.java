@@ -29,5 +29,7 @@ public interface MemberService {
 		
 	//고객 삭제
 	public void deletemember(MemberVO vo);
+	
+	public MemberVO selectMypage(MemberVO vo);
 }
 
