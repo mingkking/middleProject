@@ -26,4 +26,42 @@
 		SELECT count(*)
 		FROM product
 	</select>
+	
+	<!-- 관리자:상품관리의 상품목록 조회 -->
+	<select id="managerproduct" parameterType="vo.product.ProductVO" resultType="vo.product.ProductVO" >
+		select pNo,pName,pLocation,pPrice,pInfo
+		FROM product
+		ORDER BY pNo
+	</select>
+	
+	<!-- 관리자:해당 상품정보 조회  -->
+	<select id="managerproductmanaging" parameterType="vo.product.ProductVO" resultType="vo.product.ProductVO">
+		select pNo,pName,pLocation,pPrice,pInfo
+		FROM product
+		WHERE pNo = #{pNo}
+	</select>
+	
+	<!-- 관리자 : 상품 등록 -->
+	<insert id="insertProduct" parameterType="vo.product.ProductVO">
+		INSERT INTO product(pName,pLocation,pPrice,pInfo)
+		VALUES  (#{pName},#{pLocation},#{pPrice},#{pInfo})
+	</insert>
+	
+	<!-- 관리자 : 상품 수정 -->
+	<update id="updateProduct" parameterType="vo.product.ProductVO">
+		UPDATE product SET
+		pName = #{pName},
+		pLocation = #{pLocation},
+		pPrice = #{pPrice},
+		pInfo = #{pInfo}
+		WHERE pNo=#{pNo}
+	</update>
+	
+	<!-- 관리자 : 상품 삭제 -->
+	<delete id="deleteProduct" parameterType="vo.product.ProductVO" > 
+	DELETE FROM product
+	WHERE pNo = #{pNo}
+	</delete>	
+	
+	
 </mapper>

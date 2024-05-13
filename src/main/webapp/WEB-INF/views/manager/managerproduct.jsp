@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -81,42 +82,37 @@ tr {
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">상품 등록</h2>
-						<form action="saveProduct" method='post'>
-							<table border="1" cellpadding="0" cellspacing="0">
-								<!-- 2. 각 항목에  name 맞추기 -->
-								<tr>
-									<td bgcolor="#ooad34" width="70">구장 이름</td>
-									<td align="left"><input type="text" name='pName' /></td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34">구장정보</td>
-									<td align="left"><input type="text" name='pInfo' /></td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34">위치</td>
-									<td align="left"><textarea cols="40" name='pLocation'></textarea></td>
-								</tr>
-								<!-- 추가항목 시작 -->
-								<tr>
-									<td bgcolor="#ooad34">가격</td>
-									<td align="left"><input type="text" name='pMoney' /></td>
-								</tr>
+						<h2 data-aos="fade-down">상품 목록</h2>
 
+						<table border="1">
+							<tr>
+								<th bgcolor="#ooad34" width="100">구장번호</th>
+								<th bgcolor="#ooad34" width="200">이름</th>
+								<th bgcolor="#ooad34" width="150">위치</th>
+								<th bgcolor="#ooad34" width="150">가격</th>
+								<th bgcolor="#ooad34" width="100">정보</th>
+
+
+							</tr>
+							<c:forEach items="${mproductList }" var="mproduct">
+								<!-- 프라퍼티이름 변경 -->
 								<tr>
-									<td bgcolor="#ooad34" width="70">파일추가</td>
-									<td align="left"><input type="file" name='file'
-										maxlength="60" size="40"></td>
+									<td>${mproduct.pNo }</td>
+									<td align="left"><a
+										href="managerproductmanaging.do?pNo=${mproduct.pNo}">
+											${mproduct.pName }</a></td>
+									<td>${mproduct.pLocation }</td>
+									<td>${mproduct.pPrice }</td>
+									<td>${mproduct.pInfo }</td>
+
+									<!-- 추가 -->
+
+
 								</tr>
-								<!-- 추가항목 끝 -->
-								<tr>
-									<td colspan="2" align="center"><input type="submit"
-										value=" 등록 " /></td>
-								</tr>
-							</table>
+							</c:forEach>
+						</table>
+						<br> <a href="managerproductInsert.do">상품 등록</a>
 						</form>
-						<hr>
-						<a href="managerproduct">상품 목록</a>
 					</div>
 				</div>
 			</div>

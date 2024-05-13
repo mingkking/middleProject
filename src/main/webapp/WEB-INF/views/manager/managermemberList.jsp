@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -48,7 +49,21 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <style>
+</head>
+
+<body>
+	<!-- 헤더 영역 불러오기 -->
+	<c:import url="managerheader.jsp"></c:import>
+
+	<!-- ======= Hero Section ======= -->
+	<section id="hero" class="hero">
+
+		<div class="info d-flex align-items-center">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-10 text-center">
+						   
+    <style>
         table {
             border-collapse: collapse;
             width: 100%;
@@ -69,48 +84,51 @@
         }
     </style>
 </head>
-
 <body>
-	<!-- 헤더 영역 불러오기 -->
-	<c:import url="managerheader.jsp"></c:import>
 
-	<!-- ======= Hero Section ======= -->
-	<section id="hero" class="hero">
+<h2 data-aos="fade-down">회원 리스트</h2>	
 
-		<div class="info d-flex align-items-center">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">상품 목록</h2>
-						
-			<table border="1">
-			<tr>
-				<th bgcolor="#ooad34" width="100">구장번호</th>
-				<th bgcolor="#ooad34" width="200">이름</th>
-				<th bgcolor="#ooad34" width="150">위치</th>
-				<th bgcolor="#ooad34" width="150">가격</th>
-				<th bgcolor="#ooad34" width="100">정보</th>
+
+		<form method='get' action='managermemberList'>
+			<select name='searchCondition' >
+				<option value='ID'>ID</option>
+				<option value='name'>이름</option>
 				
-				
-			</tr>
-			<c:forEach items="${mproductList }" var="mproduct">
-				<!-- 프라퍼티이름 변경 -->
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색'>
+		</form>
+
+
+
+
+	<table border="1">
+	    <thead>
+	        <tr>
+	            <th>id</th>
+	            <th>이름</th>
+	            <th>전화번호</th>
+	            <th>이메일</th>
+	            <th>성별</th>
+	            <th>가입일</th>
+	        </tr>
+	    </thead>
+	    <c:forEach items="${memberList }" var="mvo">
 				<tr>
-					<td>${mproduct.pNo }</td>
-					<td align="left"><a href="managerproductmanaging.do?pNo=${mproduct.pNo}">
-							${mproduct.pName }</a></td>
-					<td>${mproduct.pLocation }</td>
-					<td>${mproduct.pMoney }</td>
-					<td>${mproduct.pInfo }</td>
-				
-					<!-- 추가 -->
-					 
+					<td>${mvo.id }</td>
+					<td align="left"><a href="managemember?id=${mvo.id }">
+							${ mvo.name}</a></td>
+					<td>${mvo.tel }</td>
+					<td>${mvo.email }</td>
+					<td>${mvo.gender }</td>
+					<td><fmt:formatDate value="${mvo.regDate }" pattern="yyyy-MM-dd"/>${mvo.regDate }</td>
 					
 				</tr>
-			</c:forEach>	
-		</table>
-		<br> <a href="managerproductInsert.do">상품 등록</a>
-						</form>
+			</c:forEach>
+	   		
+	</table>
+
+</body>
 					</div>
 				</div>
 			</div>

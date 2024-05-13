@@ -1,5 +1,6 @@
 package dao.reservation;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,13 +11,13 @@ import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
 
 @Repository("rDAO")
-public class ReservationDAOImpl implements ReservationDAO{
+public class ReservationDAOImpl implements ReservationDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
 	@Override
 	// 예약 등록
-	public void insertReservation(ReservationVO rVO) throws Exception{
+	public void insertReservation(ReservationVO rVO) throws Exception {
 		mybatis.insert("ReservationDAO.insertReservation", rVO);
 	}
 
@@ -24,8 +25,18 @@ public class ReservationDAOImpl implements ReservationDAO{
 	@Override
 	public List<ReservationVO> selectReservationTime(ReservationVO rVO) throws Exception {
 		return mybatis.selectList("ReservationDAO.selectReservationTime", rVO);
-	};
+	}
 
-	
-	
+	// 관리자 예약확인
+	public List<ReservationVO> managerreservation(HashMap map) {
+		List<ReservationVO> list = mybatis.selectList("ReservationDAO.managerreservation", map);
+
+		return list;
+	}
+
+	// 예약갯수
+	public int selectReservationCount() throws Exception {
+		return mybatis.selectOne("ReservationDAO.selectReservationCount");
+	}
+
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -48,6 +49,26 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+tr {
+	background-color: #f2f2f2;
+}
+</style>
 </head>
 
 <body>
@@ -60,74 +81,45 @@
 		<div class="info d-flex align-items-center">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-lg-10 text-center">
-						   
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+					<div class="col-lg-6 text-center">
+						<h2 data-aos="fade-down">상품 관리</h2>
+						<form action="updateProduct" method="get">
+							<table border="1" cellpadding="0" cellspacing="0">
+								<tr>
+									<td bgcolor="#ooad34" width="70">구장번호</td>
+									<td align="left">${mproduct.pNo}</td>
+								</tr>
+								<tr>
+									<td bgcolor="#ooad34" width="70">구장이름</td>
+									<td align="left"><input name='pName' type='text'
+										value="${mproduct.pName}"></input></td>
+								</tr>
+								<tr>
+									<td bgcolor="#ooad34">정보</td>
+									<td align="left"><input name='pInfo' type='text'
+										value="${ mproduct.pInfo}"></input></td>
+								</tr>
+								<tr>
+									<td bgcolor="#ooad34">위치</td>
+									<td align="left"><textarea name='pLocation'>
+									${mproduct.pLocation}</textarea></td>
+								</tr>
+								<tr>
+									<td bgcolor="#ooad34">가격</td>
+									<td align="left"><input name='pMoney' type='text'
+										value="${mproduct.pMoney}"></input></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center">
+										<input type="submit" value="수정" />
+									</td>
+								</tr>
 
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-
-<h2 data-aos="fade-down">회원 리스트</h2>	
-
-
-		<form method='get' action='managermemberList'>
-			<select name='searchCondition' >
-				<option value='ID'>ID</option>
-				<option value='name'>이름</option>
-				
-			</select>
-			<input type='text' name='searchKeyword' id='searchBtn'>
-			<input type='submit' value='검색'>
-		</form>
-
-
-
-
-	<table border="1">
-	    <thead>
-	        <tr>
-	            <th>id</th>
-	            <th>이름</th>
-	            <th>전화번호</th>
-	            <th>이메일</th>
-	            <th>성별</th>
-	            <th>가입일</th>
-	        </tr>
-	    </thead>
-	    <c:forEach items="${memberList }" var="mvo">
-				<tr>
-					<td>${mvo.id }</td>
-					<td align="left"><a href="managemember?id=${mvo.id }">
-							${ mvo.name}</a></td>
-					<td>${mvo.tel }</td>
-					<td>${mvo.email }</td>
-					<td>${mvo.gender }</td>
-					<td><fmt:formatDate value="${mvo.regDate }" pattern="yyyy-MM-dd"/>${mvo.regDate }</td>
-					
-				</tr>
-			</c:forEach>
-	   		
-	</table>
-
-</body>
+							</table>
+						</form>
+						<hr>
+						<a href="deleteProduct.do?pNo=${mproduct.pNo }">상품 삭제</a>&nbsp;&nbsp;&nbsp;
+						<a href="managerproduct">상품 목록</a>
 					</div>
 				</div>
 			</div>

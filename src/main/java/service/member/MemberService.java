@@ -1,5 +1,8 @@
 package service.member;
 
+import java.util.HashMap;
+import java.util.List;
+
 import vo.member.MemberVO;
 
 public interface MemberService {
@@ -17,5 +20,14 @@ public interface MemberService {
 	
 	// 회원가입 email 중복 검사
 	public int selectCheckEmail(MemberVO vo) throws Exception;
+	
+	//멤버 목록 조회
+	public List<MemberVO> getmemberList(HashMap map);
+		
+	//고객 상세 조회
+	public MemberVO getmember(MemberVO vo);
+		
+	//고객 삭제
+	public void deletemember(MemberVO vo);
 }
 
