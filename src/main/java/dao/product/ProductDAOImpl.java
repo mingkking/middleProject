@@ -35,6 +35,28 @@ public class ProductDAOImpl implements ProductDAO{
 	public int selectProductCount() throws Exception {
 		return mybatis.selectOne("ProductDAO.selectProductCount");
 	}
+	
+	public List<ProductVO> managerproduct(ProductVO vo){
+		return mybatis.selectList("ProductDAO.managerproduct",vo);
+	}
+	
+	public ProductVO managerproductmanaging(ProductVO vo) {
+		return mybatis.selectOne("ProductDAO.managerproductmanaging",vo);
+	}
+	
+	public void insertProduct(ProductVO vo) {
+		
+		mybatis.insert("ProductDAO.insertProduct", vo);
+	}
+	
+	public void updateProduct(ProductVO vo) {
+		
+		mybatis.update("ProductDAO.updateProduct", vo);
+	}
+	
+	public void deleteProduct(ProductVO vo) {
+		mybatis.delete("ProductDAO.deleteProduct",vo);
+	}
 
 	
 	

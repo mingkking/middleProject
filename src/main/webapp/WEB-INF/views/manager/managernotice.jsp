@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -64,7 +65,7 @@
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">
 							ThunderArena <span>
-							문의사항</span>
+							공지사항</span>
 						</h2>
 						<p data-aos="fade-up">오늘도 호구들에게 구장을 비싸게 빌려줄까요?ㅎㅎ</p>
 						<a data-aos="fade-up" data-aos-delay="200" href="#get-started"

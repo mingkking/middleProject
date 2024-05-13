@@ -10,7 +10,7 @@
 	<!-- DataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property> <!-- setDriverClassName() -->
-		<property name="url" value="jdbc:mysql://localhost:3306/thunder"></property>
+		<property name="url" value="jdbc:mysql://118.217.203.46:3306/thunder"></property>
 		<property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property>
 	</bean>

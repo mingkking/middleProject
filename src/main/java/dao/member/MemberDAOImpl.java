@@ -1,12 +1,14 @@
 package dao.member;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+
 
 import dao.member.MemberDAO;
 import vo.member.MemberVO;
@@ -43,6 +45,22 @@ public class MemberDAOImpl implements MemberDAO{
 	public int selectCheckEmail(MemberVO vo) throws Exception {
 		return mybatis.selectOne("MemberDAO.selectCheckEmail", vo);
 	}
-
+	
+	public List<MemberVO> getmemberList(HashMap map) {
+		
+		List<MemberVO> list = mybatis.selectList("MemberDAO.getmemberList", map);
+		//[확인] 리턴값 확인
+		return list;
+	}
+	
+	public MemberVO getmember(MemberVO vo) {
+		//System.out.println(vo.toString());
+		return mybatis.selectOne("MemberDAO.getmember", vo);
+	}
+	
+	public void deletemember(MemberVO vo) {
+		mybatis.delete("MemberDAO.deletemember",vo);
+	}
+	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -67,6 +68,8 @@ th {
 tr {
 	background-color: #f2f2f2;
 }
+
+
 </style>
 </head>
 
@@ -81,44 +84,48 @@ tr {
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">상품 관리</h2>
-						<form action="updateProduct" method="get">
-							<table border="1" cellpadding="0" cellspacing="0">
-								<tr>
-									<td bgcolor="#ooad34" width="70">구장번호</td>
-									<td align="left">${mproduct.pNo}</td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34" width="70">구장이름</td>
-									<td align="left"><input name='pName' type='text'
-										value="${mproduct.pName}"></input></td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34">정보</td>
-									<td align="left"><input name='pInfo' type='text'
-										value="${ mproduct.pInfo}"></input></td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34">위치</td>
-									<td align="left"><textarea name='pLocation'>
-									${mproduct.pLocation}</textarea></td>
-								</tr>
-								<tr>
-									<td bgcolor="#ooad34">가격</td>
-									<td align="left"><input name='pMoney' type='text'
-										value="${mproduct.pMoney}"></input></td>
-								</tr>
-								<tr>
-									<td colspan="2" align="center">
-										<input type="submit" value="수정" />
-									</td>
-								</tr>
-
-							</table>
-						</form>
-						<hr>
-						<a href="deleteProduct.do?pNo=${mproduct.pNo }">상품 삭제</a>&nbsp;&nbsp;&nbsp;
-						<a href="managerproduct">상품 목록</a>
+						<h2 data-aos="fade-down">예약현황</h2>
+			
+			<form method='get' action='managerreservation'>
+			<select name='searchCondition' >
+				<option value='id'>예약자</option>
+				<option value='pNo'>구장</option>
+				<option value='rRegDate'>날짜</option>
+				
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색'>
+			</form>
+			
+			
+			<div class="reservation-container">
+			<table border="1" class="reservation">
+			<tr>
+				<th bgcolor="#ooad34" width="100">예약자 ID</th>
+				<th bgcolor="#ooad34" width="200">구장</th>
+				<th bgcolor="#ooad34" width="150">예약날짜</th>
+				<th bgcolor="#ooad34" width="150">시간</th>
+				<th bgcolor="#ooad34" width="100">가격</th>
+				
+				
+			</tr>
+			<c:forEach items="${mCheckReservation }" var="mck">
+				<!-- 프라퍼티이름 변경 -->
+				<tr>
+					<td>${mck.id }</td>
+					<td >${mck.pNo }</td> 
+					<td>${mck.rRegDate }</td>  
+					<td>${mck.start_time }</td>
+					<td>${mck.totalMoney  }</td>
+				
+					<!-- 추가 -->
+					 
+					
+				</tr>
+			</c:forEach>	
+		</table>
+		
+		</div>
 					</div>
 				</div>
 			</div>

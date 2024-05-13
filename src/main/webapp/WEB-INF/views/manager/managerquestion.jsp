@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -64,7 +65,7 @@
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">
 							ThunderArena <span>
-							Manager Page</span>
+							문의사항</span>
 						</h2>
 						<p data-aos="fade-up">오늘도 호구들에게 구장을 비싸게 빌려줄까요?ㅎㅎ</p>
 						<a data-aos="fade-up" data-aos-delay="200" href="#get-started"
@@ -78,15 +79,15 @@
 			data-bs-interval="5000">
 
 			<div class="carousel-item active"
-				style="background-image: url(resources/assets/img/hero-carousel/o5.jpg)"></div>
+				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/o1.jpg)"></div>
+				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/o2.jpg)"></div>
+				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/o3.jpg)"></div>
+				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/o4.jpg)"></div>
+				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
 
 			<a class="carousel-control-prev" href="#hero-carousel" role="button"
 				data-bs-slide="prev"> <span
