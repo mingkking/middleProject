@@ -16,9 +16,9 @@ public class ProductVO {
 	MultipartFile pPicture; // ****** type='file'의 name명과 동일
 	
 	private String pInfo;
-	private String b_fname;		// 파일명
-	private String b_realfname; // 저장된 파일이름
-	private long b_fsize; // 파일크기 
+	private String p_fname;		// 파일명
+	private String p_realfname; // 저장된 파일이름
+	private long p_fsize; // 파일크기 
 	
 	
 	public Integer getpNo() {
@@ -51,23 +51,23 @@ public class ProductVO {
 	public void setpInfo(String pInfo) {
 		this.pInfo = pInfo;
 	}
-	public String getB_fname() {
-		return b_fname;
+	public String getp_fname() {
+		return p_fname;
 	}
-	public void setB_fname(String b_fname) {
-		this.b_fname = b_fname;
+	public void setp_fname(String p_fname) {
+		this.p_fname = p_fname;
 	}
-	public String getB_realfname() {
-		return b_realfname;
+	public String getp_realfname() {
+		return p_realfname;
 	}
-	public void setB_realfname(String b_realfname) {
-		this.b_realfname = b_realfname;
+	public void setp_realfname(String p_realfname) {
+		this.p_realfname = p_realfname;
 	}
-	public long getB_fsize() {
-		return b_fsize;
+	public long getp_fsize() {
+		return p_fsize;
 	}
-	public void setB_fsize(long b_fsize) {
-		this.b_fsize = b_fsize;
+	public void setp_fsize(long p_fsize) {
+		this.p_fsize = p_fsize;
 	}
 	
 	// 파일 게터 세터
@@ -79,16 +79,16 @@ public class ProductVO {
 		
 		// 업로드 파일이 있는 경우
 		if( !pPicture.isEmpty()) {
-			this.b_fname = pPicture.getOriginalFilename();
-			this.b_fsize = pPicture.getSize();
+			this.p_fname = pPicture.getOriginalFilename();
+			this.p_fsize = pPicture.getSize();
 			
 			// 실제 저장된 파일명 만들기
 			UUID uuid = UUID.randomUUID();
-			this.b_realfname = uuid.toString() + "_" + b_fname;
+			this.p_realfname = uuid.toString() + "_" + p_fname;
 			
 			// 실제파일 저장
 			// 추후에 웹서버 경로를 찾아서 수정
-			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + b_realfname);
+			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + p_realfname);
 			
 			try {
 				pPicture.transferTo(f);
@@ -105,7 +105,7 @@ public class ProductVO {
 	@Override
 	public String toString() {
 		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pLocation=" + pLocation + ", pPicture=" + pPicture + ", pPrice=" + pPrice
-				+ ", pInfo=" + pInfo + ", b_fname=" + b_fname + ", b_realfname=" + b_realfname + ", b_fsize=" + b_fsize
+				+ ", pInfo=" + pInfo + ", p_fname=" + p_fname + ", p_realfname=" + p_realfname + ", p_fsize=" + p_fsize
 				+ "]";
 	}
 	
