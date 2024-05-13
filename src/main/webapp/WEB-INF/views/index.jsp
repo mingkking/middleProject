@@ -72,7 +72,7 @@
 						<h2 data-aos="fade-down" id="welcome">
 							Welcome to <br /> <span>THUNDER ARENA</span>
 						</h2>
-						<p data-aos="fade-up">구장 설명</p>
+						<p data-aos="fade-up">구장 설명zz</p>
 					</div>
 				</div>
 			</div>
