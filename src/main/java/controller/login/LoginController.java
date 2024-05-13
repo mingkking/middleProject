@@ -18,7 +18,7 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login() {
-	System.out.println("정규열");
+		System.out.println("정규열222222222222222");
 		return "login/login";
 	}
 
