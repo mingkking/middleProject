@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.member.MemberService;
-import useful.email.MemberMailImpl;
 import vo.member.MemberVO;
 
 @Controller
@@ -19,7 +18,7 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login() {
-		
+	System.out.println("정규열");
 		return "login/login";
 	}
 
