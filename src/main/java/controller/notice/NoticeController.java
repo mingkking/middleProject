@@ -3,12 +3,16 @@ package controller.notice;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import service.notice.NoticeService;
+import useful.popup.PopUp;
 import vo.notice.NoticeVO;
 
 @Controller
@@ -19,9 +23,16 @@ public class NoticeController {
 	
 	// 사용자 공지 검색 및 출력
 	@RequestMapping("notice")
-	public String notice(Model m,
+	public String notice(HttpServletResponse response,
+					   Model m,
 					   String searchCondition,
-					   String searchKeyword) {
+					   String searchKeyword,
+					   String id) {
+		
+		if(id.equals("") || id == null) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
 		
 		HashMap map = new HashMap();
 		map.put("searchCondition", searchCondition);

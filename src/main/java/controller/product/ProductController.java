@@ -3,6 +3,7 @@ package controller.product;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping("/coming")
-	public String coming(HttpServletResponse response, Model model, Integer pNo, Integer pageNum, String id) {
+	public String coming(HttpServletResponse response, String id, Model model, Integer pNo, Integer pageNum) {
 		if(id.equals("") || id == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";

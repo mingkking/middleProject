@@ -26,7 +26,7 @@
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 			
 			<!-- 로고 -->
-			<a href="${path}/index.do" class="logo">
+			<a href="${path}/index" class="logo">
 				<img alt="logo" src="${path}/resources/assets/img/main_img/Logo.png">
 			</a> 
 			<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
