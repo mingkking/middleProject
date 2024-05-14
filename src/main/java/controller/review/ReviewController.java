@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	@RequestMapping("review")
-	public String review(HttpServletResponse response, Integer pageNum, ReviewVO reviewVO, ProductVO productVO, Model model, String id) {
+	public String review(HttpServletResponse response, String id, Integer pageNum, ReviewVO reviewVO, ProductVO productVO, Model model) {
 		if(id.equals("") || id == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
