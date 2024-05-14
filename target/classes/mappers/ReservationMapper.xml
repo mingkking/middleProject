@@ -16,4 +16,24 @@
 		WHERE rental = #{rental} AND pNo = #{pNo}
 	</select>
 	
+	<!-- 관리자 예약확인 -->
+	<select id="managerreservation" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO" >
+		SELECT r.id,r.pNo,r.rRegDate,r.start_time,r.totalMoney
+		FROM reservation r inner join product p
+		on r.pNo = p.pNo
+		<where>
+			<if test='searchCondition != null'>
+				${searchCondition} Like '%${searchKeyword}%'
+			</if>
+		</where>
+		ORDER BY r.rRegDate
+		
+	</select>
+	
+	<!-- 예약 총수 가져오기 -->
+	<select id="selectReservationCount" resultType="int" >
+	SELECT count(*)
+	FROM reservation
+	</select>	
+	
 </mapper>

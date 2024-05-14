@@ -27,16 +27,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -62,124 +68,107 @@
 
 			<div class="row justify-content-center" id='insertMemberForm'>
 				<div class="col-lg-6 text-center" id="blackbackground">
-					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-					<form action="payForm" id='insertFrm' method="post">
+					<h2 data-aos="fade-down" id='insertMemberForm'>상품목록</h2>
 						<div class="row gy-4">
-							<div class="col-md-4">
-								<p>예약자명</p>
-							</div>
-							<div class="col-md-5">
-								<p><!-- 로그인 한 사람 이름 출력 --></p>
+						
+							<form action="payForm" id='insertFrm' method="post">
+								<div class="row gy-4">
+									<c:if test="${productList.size() > 0 }">
+										<c:forEach var="i" begin="0" end="${productList.size()-1 }">
+											<div class="col-md-4">
+												<a
+													href="${path}/review?pNo=${productList.get(i).pNo}">${productList.get(i).pName }<br />
+													<img src="${path}/resources/assets/img/stadium.png" alt=""
+													width="300px" height="" class="img-fluid"></a>
+											</div>
+
+											<c:if test="${ i != 0 && i % 3 == 0 }">
+												<br />
+											</c:if>
+										</c:forEach>
+									</c:if>
+									<div class="col-md-12">
+										<c:forEach var="i" begin="${pVO.startPage }"
+											end="${pVO.endPage }">
+											<a href="${path}/review?pageNum=${i }">${i }</a>
+										</c:forEach>
+									</div>
+								</div>
+							</form>
+
+							<div class="col-md-12">
+								<hr />
 							</div>
 							
-							<div class="col-md-4">
-								<p>전화번호</p>
-							</div>
-							<div class="col-md-5">
-								<p><!-- 로그인 한 사람 전화번호 출력 --></p>
+							<h2 data-aos="fade-down" id='insertMemberForm'>구장</h2>
+							<div class="col-md-8">
+								<table class="table">
+										<tr>
+											<td>구장명</td>
+											<td>${productVO.pName }</td>
+										</tr>
+										<tr>
+											<td>구장위치</td>
+											<td>${productVO.pLocation }</td>
+										</tr>
+										<tr>
+											<td>구장가격</td>
+											<td>${productVO.pPrice }</td>
+										</tr>
+										<tr>
+											<td>구장정보</td>
+											<td>${productVO.pInfo }</td>
+										</tr>
+										<tr>
+											<td>구장사진</td>
+											<td>${productVO.pPicture }</td>
+										</tr>
+										
+								</table>
 							</div>
 							
 							<div class="col-md-12">
-							<hr/>
+								<hr />
 							</div>
-
-							<div class="col-md-4">
-								<p>구장명</p>
-							</div>
-							<div class="col-md-5">
-								<p>${vo.pName }</p>
-							</div>
-
-							<div class="col-md-4">
-								<p>구장위치</p>
-							</div>
-							<div class="col-md-5">
-								<p>${vo.pLocation }</p>
-							</div>
-
-							<div class="col-md-4">
-								<p>날짜</p>
-							</div>
-							<div class="col-md-5">
-								<p>
-									<!-- 날짜값 -->
-								</p>
-							</div>
-
-							<div class="col-md-4">
-								<p>시간대</p>
-							</div>
-							<div class="col-md-5">
-								<p>
-									<!-- 시간대값 -->
-								</p>
-							</div>
-
+							
+							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
 							<div class="col-md-12">
-							<hr/>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>아이디</th>
+											<th>리뷰제목</th>
+											<th>리뷰내용</th>
+											<th>리뷰작성일</th>
+										</tr>
+									</thead>
+									<c:if test="${reviewList.size() > 0 }">
+										<c:forEach var="i" begin="1" end="${reviewList.size()-1 }">
+											<tr>
+												<td>${reviewList.get(i).id }</td>
+												<td>${reviewList.get(i).rTitle }</td>
+												<td>${reviewList.get(i).rContent }</td>
+												<td>${reviewList.get(i).rRegDate }</td>
+											</tr>
+										</c:forEach>
+									</c:if>
+									<tr>
+										<td colspan="4">
+											<input type="button" class="findIdBtn" value="리뷰쓰기">
+										</td>
+									</tr>
+								</table>
 							</div>
 
-							<div class="col-md-12">
-								<p>결제수단</p>
-							</div>
-							
-							<div class="col-md-12">
-							<p></p>
-							</div>
 
-							
-							<div class="row">
-							<!-- <div class="col-md-3 form-check form-check-inline"></div> -->
-							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="카드" checked="checked" required>
-								<p>카드</p>
-							</div>
-							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="카카오페이">
-								<p>카카오페이</p>
-							</div>
-							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="무통장입금">
-								<p>무통장입금</p>
-							</div>
-							</div>
-							<div class="col-md-12">
-							<p></p>
-							</div>
-							
-							<div class="col-md-12">
-								<p>결제상세</p>
-							</div>
-							
-							<div class="col-md-4">
-								<p>결제 금액</p>
-							</div>
-							<div class="col-md-5">
-								<p>
-									<!-- 결제금액값 출력 -->
-								</p>
-							</div>
-							
-							
-							
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4 text-center">
-                           <div class="error-message"></div>
-                           <button type="submit" class="loginBtn">결제</button>
-                        </div>
-                        
-                        <div class="col-md-4"></div>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
 
 
 		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
 
@@ -196,10 +185,12 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->

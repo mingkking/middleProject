@@ -78,7 +78,7 @@
 										</c:if>
 									</c:forEach>
 								</c:if>
-								<div class="col-md-12">
+								<div class="col-md-12" id="pageNum">
 									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
 										<a href="${path}/reservation?pageNum=${i }">${i }</a>
 									</c:forEach>
