@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.product.ProductService;
 import service.reservation.ReservationService;
+import useful.popup.PopUp;
 import vo.paging.PagingVO;
 import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
@@ -26,7 +29,11 @@ public class ReservationController {
 	
 	// 예약 첫 페이지 이동
 	@RequestMapping("/reservation")
-	public String reservation(Model model, Integer pageNum) {
+	public String reservation(HttpServletResponse response, Model model, Integer pageNum, String id) {
+		if(id.equals("") || id == null) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
 		
 		if(pageNum == null) {
 			pageNum = 1;

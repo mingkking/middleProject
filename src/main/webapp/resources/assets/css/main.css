@@ -2717,4 +2717,16 @@ section {
 	margin-top: 800px;
 }
 
+#paddingSection {
+	padding: 300px;	
+}
+
+#pageNum {
+	padding-top: 50px;
+}
+
+#comming_grid {
+	padding-top: 200px;
+}
+
 }

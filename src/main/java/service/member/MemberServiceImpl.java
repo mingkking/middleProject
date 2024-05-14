@@ -56,5 +56,26 @@ public class MemberServiceImpl implements MemberService{
 	public void deletemember(MemberVO vo) {
 		mDAO.deletemember(vo);
 	}
+
+	// 마이페이지 정보 조회
+	public MemberVO selectMypage(MemberVO vo) {
+		return mDAO.selectMypage(vo);
+	}
+
+	// 회원 탈퇴
+	public int deleteMypage(MemberVO vo) {
+		return mDAO.deleteMypage(vo);
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateMypageInfo(MemberVO vo) {
+		mDAO.updateMypageInfo(vo);	
+	}
+	
+	// 회원 정보 수정
+	public void updateMypage(HashMap<String, Object> map) {
+		mDAO.updateMypage(map);		
+	}
 	
 }

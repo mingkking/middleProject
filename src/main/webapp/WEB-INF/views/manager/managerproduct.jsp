@@ -15,8 +15,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="resources/assets/img/favicon.png" rel="icon">
-<link href="resources/assets/img/apple-touch-icon.png"
+<link href="${path}/resources/assets/img/favicon.png" rel="icon">
+<link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
@@ -27,20 +27,20 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/assets/css/main.css" rel="stylesheet">
+<link href="${path}/resources/assets/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: UpConstruction
@@ -73,7 +73,7 @@ tr {
 
 <body>
 	<!-- 헤더 영역 불러오기 -->
-	<c:import url="managerheader.jsp"></c:import>
+	<c:import url="${path}/WEB-INF/views/manager/managerheader.jsp"></c:import>
 
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero">
@@ -111,7 +111,7 @@ tr {
 								</tr>
 							</c:forEach>
 						</table>
-						<br> <a href="managerproductInsert.do">상품 등록</a>
+						<br> <a href="${path}/managerproductInsert.do">상품 등록</a>
 						</form>
 					</div>
 				</div>
@@ -124,13 +124,13 @@ tr {
 			<div class="carousel-item active"
 				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
 
 			<a class="carousel-control-prev" href="#hero-carousel" role="button"
 				data-bs-slide="prev"> <span
@@ -148,9 +148,9 @@ tr {
 	<!-- End Hero Section -->
 
 	<!-- 푸터 영역 불러오기 -->
-	<c:import url="footer.jsp"></c:import>
+	<c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
 
-	<a href="#"
+	<a href="${path}/#"
 		class="scroll-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
@@ -158,18 +158,18 @@ tr {
 
 	<!-- Vendor JS Files -->
 	<script
-		src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/assets/vendor/aos/aos.js"></script>
-	<script src="resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
+	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
-		src="resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
-		src="resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-	<!-- <script src="resources/assets/vendor/php-email-form/validate.js"></script> -->
+		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->
 
 	<!-- Template Main JS File -->
-	<script src="resources/assets/js/main.js"></script>
+	<script src="${path}/resources/assets/js/main.js"></script>
 
 </body>
 

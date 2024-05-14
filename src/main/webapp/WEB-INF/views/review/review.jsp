@@ -7,7 +7,7 @@
 <html lang="ko">
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <title>UpConstruction Bootstrap Template - Index</title>
@@ -58,61 +58,122 @@
 </head>
 
 <body>
-
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>
 
 	<!-- ======= Hero Section ======= -->
-	<section id="hero" class="hero">
+	<section id="insertMemberFormHero" class="hero">
 
-		<div class="info d-flex align-items-center">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down" id="welcome">
-							Welcome to <br /> <span>THUNDER ARENA</span>
-						</h2>
-						<p data-aos="fade-up" id="indexExp">구장 설명</p>
-					</div>
+		<div class="info align-items-center">
+
+			<div class="row justify-content-center" id='insertMemberForm'>
+				<div class="col-lg-6 text-center" id="blackbackground">
+					<h2 data-aos="fade-down" id='insertMemberForm'>상품목록</h2>
+						<div class="row gy-4">
+						
+							<form action="payForm" id='insertFrm' method="post">
+								<div class="row gy-4">
+									<c:if test="${productList.size() > 0 }">
+										<c:forEach var="i" begin="0" end="${productList.size()-1 }">
+											<div class="col-md-4">
+												<a
+													href="${path}/review?pNo=${productList.get(i).pNo}">${productList.get(i).pName }<br />
+													<img src="${path}/resources/assets/img/stadium.png" alt=""
+													width="300px" height="" class="img-fluid"></a>
+											</div>
+
+											<c:if test="${ i != 0 && i % 3 == 0 }">
+												<br />
+											</c:if>
+										</c:forEach>
+									</c:if>
+									<div class="col-md-12">
+										<c:forEach var="i" begin="${pVO.startPage }"
+											end="${pVO.endPage }">
+											<a href="${path}/review?pageNum=${i }">${i }</a>
+										</c:forEach>
+									</div>
+								</div>
+							</form>
+
+							<div class="col-md-12">
+								<hr />
+							</div>
+							
+							<h2 data-aos="fade-down" id='insertMemberForm'>구장</h2>
+							<div class="col-md-8">
+								<table class="table">
+										<tr>
+											<td>구장명</td>
+											<td>${productVO.pName }</td>
+										</tr>
+										<tr>
+											<td>구장위치</td>
+											<td>${productVO.pLocation }</td>
+										</tr>
+										<tr>
+											<td>구장가격</td>
+											<td>${productVO.pPrice }</td>
+										</tr>
+										<tr>
+											<td>구장정보</td>
+											<td>${productVO.pInfo }</td>
+										</tr>
+										<tr>
+											<td>구장사진</td>
+											<td>${productVO.pPicture }</td>
+										</tr>
+										
+								</table>
+							</div>
+							
+							<div class="col-md-12">
+								<hr />
+							</div>
+							
+							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
+							<div class="col-md-12">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>아이디</th>
+											<th>리뷰제목</th>
+											<th>리뷰내용</th>
+											<th>리뷰작성일</th>
+										</tr>
+									</thead>
+									<c:if test="${reviewList.size() > 0 }">
+										<c:forEach var="i" begin="1" end="${reviewList.size()-1 }">
+											<tr>
+												<td>${reviewList.get(i).id }</td>
+												<td>${reviewList.get(i).rTitle }</td>
+												<td>${reviewList.get(i).rContent }</td>
+												<td>${reviewList.get(i).rRegDate }</td>
+											</tr>
+										</c:forEach>
+									</c:if>
+									<tr>
+										<td colspan="4">
+											<input type="button" class="findIdBtn" value="리뷰쓰기">
+										</td>
+									</tr>
+								</table>
+							</div>
+
+
+						</div>
 				</div>
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
 
-			<div class="carousel-item active"
-				style="background-image: url(${path}/resources/assets/img/main_img/main_arena_1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/main_img/main_arena_2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/main_img/main_arena_3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/main_img/main_arena_4.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/main_img/main_arena_5.jpg)"></div>
-
-			<a class="carousel-control-prev" href="#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
-
+		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
 
-	</main>
-	<!-- End #main -->
-
 	<!-- 푸터 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
-
 
 	<a href="${path}/#"
 		class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -132,8 +193,7 @@
 		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script
-		src="${path}/resources/assets/vendor/php-email-form/validate.js"></script>
+	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->
 
 	<!-- Template Main JS File -->
 	<script src="${path}/resources/assets/js/main.js"></script>

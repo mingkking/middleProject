@@ -15,8 +15,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="resources/assets/img/favicon.png" rel="icon">
-<link href="resources/assets/img/apple-touch-icon.png"
+<link href="${path}/resources/assets/img/favicon.png" rel="icon">
+<link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
@@ -27,20 +27,20 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/assets/css/main.css" rel="stylesheet">
+<link href="${path}/resources/assets/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: UpConstruction
@@ -54,7 +54,7 @@
 <body>
 
 	<!-- 헤더 영역 불러오기 -->
-	<c:import url="managerheader.jsp"></c:import>
+	<c:import url="${path}/WEB-INF/views/manager/managerheader.jsp"></c:import>
 
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero">
@@ -81,13 +81,13 @@
 			<div class="carousel-item active"
 				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
 			<div class="carousel-item"
-				style="background-image: url(resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
+				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
 
 			<a class="carousel-control-prev" href="#hero-carousel" role="button"
 				data-bs-slide="prev"> <span
@@ -190,7 +190,7 @@
 							<div class="row">
 								<div class="col-xl-5">
 									<div class="card-bg"
-										style="background-image: url(resources/assets/img/constructions-1.jpg);"></div>
+										style="background-image: url(${path}/resources/assets/img/constructions-1.jpg);"></div>
 								</div>
 								<div class="col-xl-7 d-flex align-items-center">
 									<div class="card-body">
@@ -211,7 +211,7 @@
 							<div class="row">
 								<div class="col-xl-5">
 									<div class="card-bg"
-										style="background-image: url(resources/assets/img/constructions-2.jpg);"></div>
+										style="background-image: url(${path}/resources/assets/img/constructions-2.jpg);"></div>
 								</div>
 								<div class="col-xl-7 d-flex align-items-center">
 									<div class="card-body">
@@ -232,7 +232,7 @@
 							<div class="row">
 								<div class="col-xl-5">
 									<div class="card-bg"
-										style="background-image: url(resources/assets/img/constructions-3.jpg);"></div>
+										style="background-image: url(${path}/resources/assets/img/constructions-3.jpg);"></div>
 								</div>
 								<div class="col-xl-7 d-flex align-items-center">
 									<div class="card-body">
@@ -253,7 +253,7 @@
 							<div class="row">
 								<div class="col-xl-5">
 									<div class="card-bg"
-										style="background-image: url(resources/assets/img/constructions-4.jpg);"></div>
+										style="background-image: url(${path}/resources/assets/img/constructions-4.jpg);"></div>
 								</div>
 								<div class="col-xl-7 d-flex align-items-center">
 									<div class="card-body">
@@ -297,7 +297,7 @@
 							<p>Provident nihil minus qui consequatur non omnis maiores.
 								Eos accusantium minus dolores iure perferendis tempore et
 								consequatur.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -313,7 +313,7 @@
 							<h3>Eosle Commodi</h3>
 							<p>Ut autem aut autem non a. Sint sint sit facilis nam iusto
 								sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -329,7 +329,7 @@
 							<h3>Ledo Markt</h3>
 							<p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur.
 								Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -345,7 +345,7 @@
 							<h3>Asperiores Commodit</h3>
 							<p>Non et temporibus minus omnis sed dolor esse consequatur.
 								Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -361,7 +361,7 @@
 							<h3>Velit Doloremque</h3>
 							<p>Cumque et suscipit saepe. Est maiores autem enim facilis
 								ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -377,7 +377,7 @@
 							<h3>Dolori Architecto</h3>
 							<p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut
 								neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-							<a href="service-details.do" class="readmore stretched-link">Learn
+							<a href="${path}/service-details.do" class="readmore stretched-link">Learn
 								more <i class="bi bi-arrow-right"></i>
 							</a>
 						</div>
@@ -396,7 +396,7 @@
 
 				<div class="row justify-content-around gy-4">
 					<div class="col-lg-6 img-bg"
-						style="background-image: url(resources/assets/img/alt-services.jpg);"
+						style="background-image: url(${path}/resources/assets/img/alt-services.jpg);"
 						data-aos="zoom-in" data-aos-delay="100"></div>
 
 					<div class="col-lg-5 d-flex flex-column justify-content-center">
@@ -410,7 +410,7 @@
 							<i class="bi bi-easel flex-shrink-0"></i>
 							<div>
 								<h4>
-									<a href="" class="stretched-link">Lorem Ipsum</a>
+									<a href="${path}/" class="stretched-link">Lorem Ipsum</a>
 								</h4>
 								<p>Voluptatum deleniti atque corrupti quos dolores et quas
 									molestias excepturi sint occaecati cupiditate non provident</p>
@@ -423,7 +423,7 @@
 							<i class="bi bi-patch-check flex-shrink-0"></i>
 							<div>
 								<h4>
-									<a href="" class="stretched-link">Nemo Enim</a>
+									<a href="${path}/" class="stretched-link">Nemo Enim</a>
 								</h4>
 								<p>At vero eos et accusamus et iusto odio dignissimos
 									ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
@@ -436,7 +436,7 @@
 							<i class="bi bi-brightness-high flex-shrink-0"></i>
 							<div>
 								<h4>
-									<a href="" class="stretched-link">Dine Pad</a>
+									<a href="${path}/" class="stretched-link">Dine Pad</a>
 								</h4>
 								<p>Explicabo est voluptatum asperiores consequatur magnam.
 									Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
@@ -449,7 +449,7 @@
 							<i class="bi bi-brightness-high flex-shrink-0"></i>
 							<div>
 								<h4>
-									<a href="" class="stretched-link">Tride clov</a>
+									<a href="${path}/" class="stretched-link">Tride clov</a>
 								</h4>
 								<p>Est voluptatem labore deleniti quis a delectus et. Saepe
 									dolorem libero sit non aspernatur odit amet. Et eligendi</p>
@@ -519,7 +519,7 @@
 							</div>
 							<div class="col-lg-6 order-1 order-lg-2 text-center"
 								data-aos="fade-up" data-aos-delay="200">
-								<img src="resources/assets/img/features-1.jpg" alt=""
+								<img src="${path}/resources/assets/img/features-1.jpg" alt=""
 									class="img-fluid">
 							</div>
 						</div>
@@ -549,7 +549,7 @@
 								</ul>
 							</div>
 							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="resources/assets/img/features-2.jpg" alt=""
+								<img src="${path}/resources/assets/img/features-2.jpg" alt=""
 									class="img-fluid">
 							</div>
 						</div>
@@ -575,7 +575,7 @@
 									ut labore et dolore magna aliqua.</p>
 							</div>
 							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="resources/assets/img/features-3.jpg" alt=""
+								<img src="${path}/resources/assets/img/features-3.jpg" alt=""
 									class="img-fluid">
 							</div>
 						</div>
@@ -602,7 +602,7 @@
 								</ul>
 							</div>
 							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="resources/assets/img/features-4.jpg" alt=""
+								<img src="${path}/resources/assets/img/features-4.jpg" alt=""
 									class="img-fluid">
 							</div>
 						</div>
@@ -645,16 +645,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/remodeling-1.jpg"
+								<img src="${path}/resources/assets/img/projects/remodeling-1.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Remodeling 1</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/remodeling-1.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/remodeling-1.jpg"
 										title="Remodeling 1"
 										data-gallery="portfolio-gallery-remodeling"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -663,16 +663,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/construction-1.jpg"
+								<img src="${path}/resources/assets/img/projects/construction-1.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Construction 1</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/construction-1.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/construction-1.jpg"
 										title="Construction 1"
 										data-gallery="portfolio-gallery-construction"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -681,15 +681,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/repairs-1.jpg"
+								<img src="${path}/resources/assets/img/projects/repairs-1.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Repairs 1</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/repairs-1.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/repairs-1.jpg"
 										title="Repairs 1" data-gallery="portfolio-gallery-repairs"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -698,15 +698,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/design-1.jpg"
+								<img src="${path}/resources/assets/img/projects/design-1.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Design 1</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/design-1.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/design-1.jpg"
 										title="Repairs 1" data-gallery="portfolio-gallery-book"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -715,16 +715,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/remodeling-2.jpg"
+								<img src="${path}/resources/assets/img/projects/remodeling-2.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Remodeling 2</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/remodeling-2.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/remodeling-2.jpg"
 										title="Remodeling 2"
 										data-gallery="portfolio-gallery-remodeling"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -733,16 +733,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/construction-2.jpg"
+								<img src="${path}/resources/assets/img/projects/construction-2.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Construction 2</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/construction-2.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/construction-2.jpg"
 										title="Construction 2"
 										data-gallery="portfolio-gallery-construction"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -751,15 +751,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/repairs-2.jpg"
+								<img src="${path}/resources/assets/img/projects/repairs-2.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Repairs 2</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/repairs-2.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/repairs-2.jpg"
 										title="Repairs 2" data-gallery="portfolio-gallery-repairs"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -768,15 +768,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/design-2.jpg"
+								<img src="${path}/resources/assets/img/projects/design-2.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Design 2</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/design-2.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/design-2.jpg"
 										title="Repairs 2" data-gallery="portfolio-gallery-book"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -785,16 +785,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/remodeling-3.jpg"
+								<img src="${path}/resources/assets/img/projects/remodeling-3.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Remodeling 3</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/remodeling-3.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/remodeling-3.jpg"
 										title="Remodeling 3"
 										data-gallery="portfolio-gallery-remodeling"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -803,16 +803,16 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/construction-3.jpg"
+								<img src="${path}/resources/assets/img/projects/construction-3.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Construction 3</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/construction-3.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/construction-3.jpg"
 										title="Construction 3"
 										data-gallery="portfolio-gallery-construction"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -821,15 +821,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/repairs-3.jpg"
+								<img src="${path}/resources/assets/img/projects/repairs-3.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Repairs 3</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/repairs-3.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/repairs-3.jpg"
 										title="Repairs 2" data-gallery="portfolio-gallery-repairs"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -838,15 +838,15 @@
 
 						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
 							<div class="portfolio-content h-100">
-								<img src="resources/assets/img/projects/design-3.jpg"
+								<img src="${path}/resources/assets/img/projects/design-3.jpg"
 									class="img-fluid" alt="">
 								<div class="portfolio-info">
 									<h4>Design 3</h4>
 									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="resources/assets/img/projects/design-3.jpg"
+									<a href="${path}/${path}/resources/assets/img/projects/design-3.jpg"
 										title="Repairs 3" data-gallery="portfolio-gallery-book"
 										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="project-details.do" title="More Details"
+									<a href="${path}/project-details.do" title="More Details"
 										class="details-link"><i class="bi bi-link-45deg"></i></a>
 								</div>
 							</div>
@@ -879,7 +879,7 @@
 						<div class="swiper-slide">
 							<div class="testimonial-wrap">
 								<div class="testimonial-item">
-									<img src="resources/assets/img/testimonials/testimonials-1.jpg"
+									<img src="${path}/resources/assets/img/testimonials/testimonials-1.jpg"
 										class="testimonial-img" alt="">
 									<h3>Saul Goodman</h3>
 									<h4>Ceo &amp; Founder</h4>
@@ -903,7 +903,7 @@
 						<div class="swiper-slide">
 							<div class="testimonial-wrap">
 								<div class="testimonial-item">
-									<img src="resources/assets/img/testimonials/testimonials-2.jpg"
+									<img src="${path}/resources/assets/img/testimonials/testimonials-2.jpg"
 										class="testimonial-img" alt="">
 									<h3>Sara Wilsson</h3>
 									<h4>Designer</h4>
@@ -927,7 +927,7 @@
 						<div class="swiper-slide">
 							<div class="testimonial-wrap">
 								<div class="testimonial-item">
-									<img src="resources/assets/img/testimonials/testimonials-3.jpg"
+									<img src="${path}/resources/assets/img/testimonials/testimonials-3.jpg"
 										class="testimonial-img" alt="">
 									<h3>Jena Karlis</h3>
 									<h4>Store Owner</h4>
@@ -951,7 +951,7 @@
 						<div class="swiper-slide">
 							<div class="testimonial-wrap">
 								<div class="testimonial-item">
-									<img src="resources/assets/img/testimonials/testimonials-4.jpg"
+									<img src="${path}/resources/assets/img/testimonials/testimonials-4.jpg"
 										class="testimonial-img" alt="">
 									<h3>Matt Brandon</h3>
 									<h4>Freelancer</h4>
@@ -975,7 +975,7 @@
 						<div class="swiper-slide">
 							<div class="testimonial-wrap">
 								<div class="testimonial-item">
-									<img src="resources/assets/img/testimonials/testimonials-5.jpg"
+									<img src="${path}/resources/assets/img/testimonials/testimonials-5.jpg"
 										class="testimonial-img" alt="">
 									<h3>John Larson</h3>
 									<h4>Entrepreneur</h4>
@@ -1023,7 +1023,7 @@
 						<div class="post-item position-relative h-100">
 
 							<div class="post-img position-relative overflow-hidden">
-								<img src="resources/assets/img/blog/blog-1.jpg"
+								<img src="${path}/resources/assets/img/blog/blog-1.jpg"
 									class="img-fluid" alt=""> <span class="post-date">December
 									12</span>
 							</div>
@@ -1046,7 +1046,7 @@
 
 								<hr>
 
-								<a href="blog-details.do" class="readmore stretched-link"><span>Read
+								<a href="${path}/blog-details.do" class="readmore stretched-link"><span>Read
 										More</span><i class="bi bi-arrow-right"></i></a>
 
 							</div>
@@ -1060,7 +1060,7 @@
 						<div class="post-item position-relative h-100">
 
 							<div class="post-img position-relative overflow-hidden">
-								<img src="resources/assets/img/blog/blog-2.jpg"
+								<img src="${path}/resources/assets/img/blog/blog-2.jpg"
 									class="img-fluid" alt=""> <span class="post-date">July
 									17</span>
 							</div>
@@ -1083,7 +1083,7 @@
 
 								<hr>
 
-								<a href="blog-details.do" class="readmore stretched-link"><span>Read
+								<a href="${path}/blog-details.do" class="readmore stretched-link"><span>Read
 										More</span><i class="bi bi-arrow-right"></i></a>
 
 							</div>
@@ -1097,7 +1097,7 @@
 							data-aos-delay="300">
 
 							<div class="post-img position-relative overflow-hidden">
-								<img src="resources/assets/img/blog/blog-3.jpg"
+								<img src="${path}/resources/assets/img/blog/blog-3.jpg"
 									class="img-fluid" alt=""> <span class="post-date">September
 									05</span>
 							</div>
@@ -1120,7 +1120,7 @@
 
 								<hr>
 
-								<a href="blog-details.do" class="readmore stretched-link"><span>Read
+								<a href="${path}/blog-details.do" class="readmore stretched-link"><span>Read
 										More</span><i class="bi bi-arrow-right"></i></a>
 
 							</div>
@@ -1139,10 +1139,10 @@
 	<!-- End #main -->
 
 	<!-- 푸터 영역 불러오기 -->
-	<c:import url="footer.jsp"></c:import>
+	<c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
 
 
-	<a href="#"
+	<a href="${path}/#"
 		class="scroll-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
@@ -1150,18 +1150,18 @@
 
 	<!-- Vendor JS Files -->
 	<script
-		src="resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/assets/vendor/aos/aos.js"></script>
-	<script src="resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
+	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
-		src="resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
-		src="resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script src="resources/assets/vendor/php-email-form/validate.js"></script>
+		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="resources/assets/js/main.js"></script>
+	<script src="${path}/resources/assets/js/main.js"></script>
 
 </body>
 

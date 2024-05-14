@@ -26,4 +26,16 @@ public interface MemberDAO {
 	public MemberVO getmember(MemberVO vo);
 
 	public void deletemember(MemberVO vo);
+	
+	// 마이페이지 정보 조회
+	public MemberVO selectMypage(MemberVO vo);
+	
+	// 회원 탈퇴
+	public int deleteMypage(MemberVO vo);
+	
+	// 회원 정보 수정
+	public void updateMypageInfo(MemberVO vo);
+		
+	// 회원 정보 수정
+	public void updateMypage(HashMap<String, Object> map);
 }

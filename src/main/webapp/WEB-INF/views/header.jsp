@@ -2,7 +2,24 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<!DOCTYPE html>
+<html lang="ko">
 
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>header</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#navbar > ul > li a').click(function() {
+			/* console.log($(this).text());
+			$('#navbar > ul > li').find('a[class="active"]').removeClass();
+			$(this).addClass('active'); */
+		});
+	});
+</script>
+</head>
 <body>
 	<!-- ======= Header ======= -->
 	<header id="header" class="header d-flex align-items-center">
@@ -19,13 +36,13 @@
 					
 					<!-- <li><a href="${path}/#">관리자</a></li> -->
 					<li><a href="${path}/#" class="active">소개</a></li>
-					<li><a href="${path}/reservation">예약</a></li>
-					<li><a href="${path}/coming">오시는 길</a></li>
-					<li><a href="${path}/question">문의</a></li>
-					<li><a href="${path}/notice">공지사항</a></li>
+					<li><a href="${path}/reservation?id=${sessionScope.logid}">예약</a></li>
+					<li><a href="${path}/coming?id=${sessionScope.logid}">오시는 길</a></li>
+					<li><a href="${path}/question?id=${sessionScope.logid}">문의</a></li>
+					<li><a href="${path}/notice?id=${sessionScope.logid}">공지사항</a></li>
 					<li><a href="${path}/#">예약확인/취소</a></li>
-					<li><a href="${path}/#">리뷰</a></li>
-					<li><a href="${path}/mypage">마이페이지</a></li>
+					<li><a href="${path}/review?id=${sessionScope.logid}">리뷰</a></li>
+					<li><a href="${path}/mypage?id=${sessionScope.logid}">마이페이지</a></li>
 					
 					<!-- 관리자페이지 -->
 					<li class="dropdown">

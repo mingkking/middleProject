@@ -70,7 +70,30 @@
 		WHERE id = '${id}'
 	</delete>	
 	
+	<!-- 마이페이지 -->
+	<select id="selectMypage" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT * FROM member
+	    WHERE id = #{id}
+	</select>
 	
+	<delete id="deleteMypage" parameterType="vo.member.MemberVO">
+	     DELETE FROM member
+	     WHERE id = #{id} AND password = #{password}
+	</delete>
+	
+	<update id="updateMypageInfo" parameterType="vo.member.MemberVO">
+	    UPDATE member
+	    SET name = #{name},
+	        tel  = #{tel},
+	        birth = #{birth}
+	    WHERE id = #{id} AND password = #{password}
+	</update>
+	
+	<update id="updateMypage" parameterType="hashmap">
+	    UPDATE member
+	    SET password = #{password2}
+	    WHERE id = #{id} AND password = #{password}
+	</update>
 	
 	
 	<!-- 이메일 인증 -->
@@ -81,7 +104,5 @@
 	<update id="memberAuth">
 	    <![CDATA[UPDATE member SET memberAuth=1 WHERE (SELECT count(*) FROM mp_member_auth WHERE memberemail=#{memberEmail}) > 0]]>
 	</update> -->
-	
-	
-	
+		
 </mapper>
