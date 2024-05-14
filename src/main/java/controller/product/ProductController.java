@@ -3,16 +3,17 @@ package controller.product;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.product.ProductService;
 import useful.popup.PopUp;
+import vo.member.MemberVO;
 import vo.paging.PagingVO;
 import vo.product.ProductVO;
 
@@ -51,6 +52,7 @@ public class ProductController {
 			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
 			model.addAttribute("productList", list);
 			model.addAttribute("pNo", pNo);
+			model.addAttribute("id", id);
 		} catch (Exception e) {
 			System.out.println("구장 전체 목록: " + e.getMessage()); // 에러났을 때
 		}

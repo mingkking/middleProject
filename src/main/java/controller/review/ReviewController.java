@@ -32,7 +32,7 @@ public class ReviewController {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
-		
+		model.addAttribute("id", id);
 		// 상품
 		if(pageNum == null) {
 			pageNum = 1;
@@ -50,17 +50,15 @@ public class ReviewController {
 		try {
 			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
 			model.addAttribute("productList", list);
+			
 			/* model.addAttribute("pNo", pNo); */
 		} catch (Exception e) {
 			System.out.println("상품 구장 전체 목록: " + e.getMessage()); // 에러났을 때
 		}
 		
-		// 초기 상품 1개 검색 및 해당상품 검색
+		// 1개 검색 및 해당상품 검색
 		try {
-			if(productVO.getpNo() == null || productVO.getpNo() == 0) { // 상품 번호가 없을 경우
-				productVO.setpNo(1); // 초기 화면 상품 번호 1로 세팅
-			}
-			productVO = productService.selectProduct(productVO.getpNo()); // 상품 1개 검색
+			productVO = productService.selectProduct(reviewVO.getpNo()); // 상품 1개 검색
 			model.addAttribute("productVO", productVO); // 상품 1개 담기
 		} catch (Exception e1) {
 			System.out.println("상품 구장 1개: " + e1.getMessage()); // 에러났을 때

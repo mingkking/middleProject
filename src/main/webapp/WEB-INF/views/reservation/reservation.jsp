@@ -80,7 +80,12 @@
 								</c:if>
 								<div class="col-md-12" id="pageNum">
 									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-										<a href="${path}/reservation?pageNum=${i }">${i }</a>
+										<c:if test="${sessionScope.logid == null }">
+											<a href="${path}/reservation?pageNum=${i}&id=${id}">${i }</a>
+										</c:if>
+										<c:if test="${sessionScope.logid != null }">
+											<a href="${path}/reservation?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
+										</c:if>
 									</c:forEach>
 								</div>
 
