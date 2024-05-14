@@ -75,7 +75,7 @@
 									<tr>
 										<th>No.</th>
 										<th>Title</th>
-										<th>Writer</th>
+										<th>Id</th>
 										<th>Status</th>
 									</tr>
 								</thead>
@@ -84,7 +84,7 @@
 										<td>${ question.qNo}</td>
 										<td align="center"><a
 											href="getQuestion?qNo=${question.qNo}"> ${question.qTitle }</a></td>
-										<td>${question.qWriter }</td>
+										<td>${question.id }</td>
 										<td>${question.qStatus }</td>
 									</tr>
 								</c:forEach>

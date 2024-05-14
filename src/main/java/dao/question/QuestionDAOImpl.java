@@ -41,9 +41,4 @@ public class QuestionDAOImpl implements QuestionDAO{
 		
 		return list;
 	}
-	
-//	/*
-//	 * public void questionAnswer(QuestionVO vo) {
-//	 * System.out.println("===> Mybatis questionAnswer() 호출"); }
-//	 */
 }

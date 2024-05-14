@@ -2,13 +2,13 @@ package vo.question;
 
 public class QuestionVO {
 	
-	private Integer qNo;		// 번호
-	private String  qWriter;	// 사용자 이름
-	private String 	qTitle;		// 제목
-	private String 	qContent;	// 내용
-	private String 	qPassword;	// 비밀번호
-	private String 	qRegdate;	// 날짜
-	private String 	qStatus;	// Y/N
+	private Integer qNo;
+	private String id;
+	private String qTitle;
+	private String qContent;
+	private String qPassword;
+	private String qRegdate;
+	private String qStatus;
 	
 	public Integer getqNo() {
 		return qNo;
@@ -16,11 +16,11 @@ public class QuestionVO {
 	public void setqNo(Integer qNo) {
 		this.qNo = qNo;
 	}
-	public String getqWriter() {
-		return qWriter;
+	public String getId() {
+		return id;
 	}
-	public void setqWriter(String qWriter) {
-		this.qWriter = qWriter;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getqTitle() {
 		return qTitle;
@@ -55,11 +55,9 @@ public class QuestionVO {
 	
 	@Override
 	public String toString() {
-		return "QuestionVO [qNo=" + qNo + ", qWriter=" + qWriter + ", qTitle=" + qTitle + ", qContent=" + qContent
+		return "QuestionVO [qNo=" + qNo + ", id=" + id + ", qTitle=" + qTitle + ", qContent=" + qContent
 				+ ", qPassword=" + qPassword + ", qRegdate=" + qRegdate + ", qStatus=" + qStatus + "]";
 	}
-	
-	
 	
 	
 }

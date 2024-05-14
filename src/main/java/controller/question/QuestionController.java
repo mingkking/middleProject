@@ -3,6 +3,9 @@ package controller.question;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,18 +39,18 @@ public class QuestionController {
 	
 	// 문의글 작성 페이지로 넘어가기
 	@RequestMapping("questionWrite")
-	public String questionwrite() {
+	public String insertQuestion() {
 		return "question/questionWrite";
 	}
 	
-	// 문의글 작성 후 저장
-	@RequestMapping("saveQuestion")
-	public String saveQuestion(QuestionVO vo) {
-		System.out.println("insert controller애서 호출" + vo.toString());
-		questionService.insertQuestion(vo);
-		
-		return "redirect:question";
-	}
+//	// 문의글 작성 후 저장
+//	@RequestMapping("saveQuestion")
+//	public String saveQuestion(QuestionVO vo) {
+//		System.out.println("insert controller애서 호출" + vo.toString());
+//		questionService.insertQuestion(vo);
+//		
+//		return "redirect:question";
+//	}
 	
 	// 문의글 목록 보기
 	@RequestMapping("getQuestion")
@@ -72,9 +75,18 @@ public class QuestionController {
 		return "redirect:question";
 	}
 	
-//	@RequestMapping("questionAnswer")
-//	public String questionAnswer(QuestionVO vo) {
-//		questionService.questionAnwer(vo);
-//		return "redirect:question";
-//	}
+	@RequestMapping("saveQuestion")
+	public String saveQuestion(HttpServletRequest request,HttpSession session, QuestionVO vo)throws Exception{
+		
+		//HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("logid");
+		
+		System.out.println("================================");
+		System.out.println("세션에 저장되어있는 아이디" + id);
+		System.out.println("================================");
+		
+		System.out.println("saveQuestion() 호출" + vo.toString());
+		
+		return "question/question";
+	}
 }
