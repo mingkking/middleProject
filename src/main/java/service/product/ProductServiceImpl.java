@@ -9,7 +9,7 @@ import dao.product.ProductDAO;
 import vo.product.ProductVO;
 
 @Service("productService")
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDAO pDAO;
 
@@ -28,6 +28,32 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int selectProductCount() throws Exception {
 		return pDAO.selectProductCount();
+	}
+
+	// 관리자 상품관리 화면 상품 조회
+	public List<ProductVO> managerproduct(ProductVO vo) {
+		return pDAO.managerproduct(vo);
+	}
+
+	// 관리자 해당 상품관리
+	public ProductVO managerproductmanaging(ProductVO vo) {
+		return pDAO.managerproductmanaging(vo);
+	}
+
+	// 관리자 상품 등록
+	public void insertProduct(ProductVO vo) {
+		pDAO.insertProduct(vo);
+	}
+
+	// 관리자 상품 수정
+	public void updateProduct(ProductVO vo) {
+
+		pDAO.updateProduct(vo);
+	}
+
+	// 관리자 상품 삭제
+	public void deleteProduct(ProductVO vo) {
+		pDAO.deleteProduct(vo);
 	}
 
 }

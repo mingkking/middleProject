@@ -1,5 +1,6 @@
 package service.reservation;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
 
 @Service("reservationService")
-public class ReservationServiceImpl implements ReservationService{
+public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationDAO rDAO;
 
@@ -27,5 +28,14 @@ public class ReservationServiceImpl implements ReservationService{
 		return rDAO.selectReservationTime(rVO);
 	}
 
+	// 관리자 예약 확인
+	@Override
+	public List<ReservationVO> managerreservation(HashMap map) {
+		return rDAO.managerreservation(map);
+	}
 
+	// 예약갯수
+	public int selectReservationCount() throws Exception {
+		return rDAO.selectReservationCount();
+	}
 }

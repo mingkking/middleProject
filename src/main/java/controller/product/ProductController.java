@@ -2,6 +2,8 @@ package controller.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.product.ProductService;
+import useful.popup.PopUp;
 import vo.paging.PagingVO;
 import vo.product.ProductVO;
 
@@ -19,7 +22,12 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping("/coming")
-	public String coming(Model model, Integer pNo, Integer pageNum) {
+	public String coming(HttpServletResponse response, Model model, Integer pNo, Integer pageNum, String id) {
+		if(id.equals("") || id == null) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
+		
 		List<ProductVO> list = null;
 		
 		if(pNo == null) {

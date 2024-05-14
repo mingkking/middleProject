@@ -1,5 +1,8 @@
 package service.member;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +41,41 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int selectCheckEmail(MemberVO vo) throws Exception {
 		return mDAO.selectCheckEmail(vo);
+	}
+	
+	@Override
+	public List<MemberVO> getmemberList(HashMap map) {
+		
+		return mDAO.getmemberList(map);
+	}
+
+	public MemberVO getmember(MemberVO vo) {
+		return mDAO.getmember(vo);
+	}
+	
+	public void deletemember(MemberVO vo) {
+		mDAO.deletemember(vo);
+	}
+
+	// 마이페이지 정보 조회
+	public MemberVO selectMypage(MemberVO vo) {
+		return mDAO.selectMypage(vo);
+	}
+
+	// 회원 탈퇴
+	public int deleteMypage(MemberVO vo) {
+		return mDAO.deleteMypage(vo);
+	}
+	
+	// 회원 정보 수정
+	@Override
+	public void updateMypageInfo(MemberVO vo) {
+		mDAO.updateMypageInfo(vo);	
+	}
+	
+	// 회원 정보 수정
+	public void updateMypage(HashMap<String, Object> map) {
+		mDAO.updateMypage(map);		
 	}
 	
 }

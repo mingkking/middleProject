@@ -143,7 +143,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-12" id="pageNum">
 								<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
 									<a href="${path}/coming?pageNum=${i }">${i }</a>
 								</c:forEach>
