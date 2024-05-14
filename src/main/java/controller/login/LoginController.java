@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 import service.member.MemberService;
+import useful.popup.PopUp;
 import vo.member.MemberVO;
 
 @Controller
@@ -44,7 +45,6 @@ public class LoginController {
 		if (result == 0) {
 			return "login/login";
 		} else {
-			System.out.println(vo.getId());
 			session.setAttribute("logid", vo.getId());
 			return "index";
 		}
@@ -80,7 +80,6 @@ public class LoginController {
 	@RequestMapping("/insertMember")
 	public String loginCheck(MemberVO vo, String tel1, String tel2, String tel3) throws Exception {
 		vo.setTel(tel1 + tel2 + tel3);
-		System.out.println(vo.toString());
 		memberService.insertMember(vo);
 
 		return "login/login";
@@ -88,11 +87,13 @@ public class LoginController {
 
 	// 마이페이지 화면 이동
 	@RequestMapping("/mypage")
-	public String mypage(MemberVO vo, Model m) {
-		if(vo.getId() == null || vo.getId().equals("")) {
+	public String mypage(HttpServletResponse response, String id, MemberVO vo, Model m) {
+		if(id == null || id.equals("")) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			
 			return "login/login";
 		}
-//		System.out.println(vo.getId());
+		
 		vo = memberService.selectMypage(vo);
 		m.addAttribute("vo", vo);
 		
@@ -102,34 +103,13 @@ public class LoginController {
 	// 회원 탈퇴
 	@RequestMapping("/deleteMypage")
 	public String deleteMypage(MemberVO vo, Model m, HttpServletResponse response) {
-//		System.out.println("확인용 아이디: " + vo.getId() + " 확인용 비밀번호: " + vo.getPassword());
-		
 		int result = memberService.deleteMypage(vo);
+		
 		if(result == 1) {
-			response.setContentType("text/html; charset=UTF-8");
-	        PrintWriter out = null;
-	        try {
-	           out = response.getWriter();
-	        } catch (IOException e) {
-	           e.printStackTrace();
-	        }
-	        
-	        out.println("<script>alert('탈퇴가 완료되었습니다.');"
-	        		+ "location.href=logout"
-	        		+ "</script>");
-	        out.flush();
-	        
+			PopUp.popUpMove(response, "탈퇴가 완료되었습니다.", "logout");
 	        return "index";
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-	        PrintWriter out = null;
-	        try {
-	           out = response.getWriter();
-	        } catch (IOException e) {
-	           e.printStackTrace();
-	        }
-	        out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.'); </script>");
-	        out.flush();
+	        PopUp.popUp(response, "현재 비밀번호가 일치하지 않습니다.");
 	        m.addAttribute("vo", vo);
 	        return "login/mypage";
 		}

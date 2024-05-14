@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import service.question.QuestionService;
+import useful.popup.PopUp;
 import vo.question.QuestionVO;
 
 @Controller
@@ -22,9 +24,16 @@ public class QuestionController {
 	
 	// 문의글 검색
 	@RequestMapping("question")
-	public String question(Model m,
+	public String question(HttpServletResponse response,
+						 Model m,
 						 String searchCondition,
-						 String searchKeyword) {
+						 String searchKeyword,
+						 String id) {
+		
+		if(id.equals("") || id == null) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
 		
 		HashMap map = new HashMap();
 		map.put("searchCondition", searchCondition);

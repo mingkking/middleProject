@@ -17,4 +17,18 @@ public class PopUp {
 			out.println("<script>alert('" + popUpContent + "'); </script>");
 			out.flush();
 	}
+	
+	public static void popUpMove(HttpServletResponse response, String popUpContent, String viewName) {
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		out.println("<script>alert('" + popUpContent + "'); "
+				+ "location.href='" + viewName + "'"
+				+ "</script>");
+		out.flush();
+	}
 }
