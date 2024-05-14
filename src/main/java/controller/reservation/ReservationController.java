@@ -54,6 +54,7 @@ public class ReservationController {
 		try {
 			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
 			model.addAttribute("productList", list);
+			model.addAttribute("id", id);
 			/* model.addAttribute("pNo", pNo); */
 		} catch (Exception e) {
 			System.out.println("예약 구장 전체 목록: " + e.getMessage()); // 에러났을 때

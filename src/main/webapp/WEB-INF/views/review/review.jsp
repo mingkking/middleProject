@@ -76,10 +76,16 @@
 									<c:if test="${productList.size() > 0 }">
 										<c:forEach var="i" begin="0" end="${productList.size()-1 }">
 											<div class="col-md-4">
-												<a
-													href="${path}/review?pNo=${productList.get(i).pNo}">${productList.get(i).pName }<br />
+												<c:if test="${sessionScope.logid == null }">
+													<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${id}">${productList.get(i).pName }<br />
 													<img src="${path}/resources/assets/img/stadium.png" alt=""
 													width="300px" height="" class="img-fluid"></a>
+												</c:if>
+												<c:if test="${sessionScope.logid != null }">
+													<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${sessionScope.logid}">${productList.get(i).pName }<br />
+													<img src="${path}/resources/assets/img/stadium.png" alt=""
+													width="300px" height="" class="img-fluid"></a>
+												</c:if>
 											</div>
 
 											<c:if test="${ i != 0 && i % 3 == 0 }">
@@ -88,9 +94,13 @@
 										</c:forEach>
 									</c:if>
 									<div class="col-md-12">
-										<c:forEach var="i" begin="${pVO.startPage }"
-											end="${pVO.endPage }">
-											<a href="${path}/review?pageNum=${i }">${i }</a>
+										<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
+											<c:if test="${sessionScope.logid == null }">
+												<a href="${path}/review?pageNum=${i}&id=${id}">${i }</a>
+											</c:if>
+											<c:if test="${sessionScope.logid != null }">
+												<a href="${path}/review?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
+											</c:if>
 										</c:forEach>
 									</div>
 								</div>
@@ -100,66 +110,63 @@
 								<hr />
 							</div>
 							
-							<h2 data-aos="fade-down" id='insertMemberForm'>구장</h2>
-							<div class="col-md-8">
-								<table class="table">
-										<tr>
-											<td>구장명</td>
-											<td>${productVO.pName }</td>
-										</tr>
-										<tr>
-											<td>구장위치</td>
-											<td>${productVO.pLocation }</td>
-										</tr>
-										<tr>
-											<td>구장가격</td>
-											<td>${productVO.pPrice }</td>
-										</tr>
-										<tr>
-											<td>구장정보</td>
-											<td>${productVO.pInfo }</td>
-										</tr>
-										<tr>
-											<td>구장사진</td>
-											<td>${productVO.pPicture }</td>
-										</tr>
-										
-								</table>
-							</div>
-							
-							<div class="col-md-12">
-								<hr />
-							</div>
-							
-							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-							<div class="col-md-12">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>아이디</th>
-											<th>리뷰제목</th>
-											<th>리뷰내용</th>
-											<th>리뷰작성일</th>
-										</tr>
-									</thead>
-									<c:if test="${reviewList.size() > 0 }">
-										<c:forEach var="i" begin="1" end="${reviewList.size()-1 }">
+							<c:if test="${productVO != null }">
+								<h2 data-aos="fade-down" id='insertMemberForm'>구장</h2>
+								<div class="col-md-8">
+									<table class="table">
 											<tr>
-												<td>${reviewList.get(i).id }</td>
-												<td>${reviewList.get(i).rTitle }</td>
-												<td>${reviewList.get(i).rContent }</td>
-												<td>${reviewList.get(i).rRegDate }</td>
+												<td>구장명</td>
+												<td>${productVO.pName }</td>
 											</tr>
-										</c:forEach>
-									</c:if>
-									<tr>
-										<td colspan="4">
-											<input type="button" class="findIdBtn" value="리뷰쓰기">
-										</td>
-									</tr>
-								</table>
-							</div>
-
+											<tr>
+												<td>구장위치</td>
+												<td>${productVO.pLocation }</td>
+											</tr>
+											<tr>
+												<td>구장가격</td>
+												<td>${productVO.pPrice }</td>
+											</tr>
+											<tr>
+												<td>구장정보</td>
+												<td>${productVO.pInfo }</td>
+											</tr>
+											<tr>
+												<td>구장사진</td>
+												<td>${productVO.pPicture }</td>
+											</tr>
+											
+									</table>
+								</div>
+								
+								<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
+								<div class="col-md-12">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>아이디</th>
+												<th>리뷰제목</th>
+												<th>리뷰내용</th>
+												<th>리뷰작성일</th>
+											</tr>
+										</thead>
+										<c:if test="${reviewList.size() > 0 }">
+											<c:forEach var="i" begin="1" end="${reviewList.size()-1 }">
+												<tr>
+													<td>${reviewList.get(i).id }</td>
+													<td>${reviewList.get(i).rTitle }</td>
+													<td>${reviewList.get(i).rContent }</td>
+													<td>${reviewList.get(i).rRegDate }</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+										<tr>
+											<td colspan="4">
+												<input type="button" class="findIdBtn" value="리뷰쓰기">
+											</td>
+										</tr>
+									</table>
+								</div>
+							</c:if>
 
 						</div>
 				</div>
