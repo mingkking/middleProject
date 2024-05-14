@@ -163,9 +163,10 @@ public class ManagerController {
 	 * }
 	 */
 	
-	
-	
-	
+	@RequestMapping("manaegrNotice")
+	public String managerNotice() {
+		return "manager/managerNotice";
+	}
 	
 	
 	

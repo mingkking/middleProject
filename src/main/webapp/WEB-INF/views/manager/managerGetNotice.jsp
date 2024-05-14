@@ -62,7 +62,7 @@
             <div class="row justify-content-center">
                <div class="col-lg-6 text-center">
                   <h2 data-aos="fade-down">공지 상세</h2>
-                  <form method="post">
+                  <form method="post" action='managerUpdateNotice'>
                      <div class="row gy-4">
 
                         <div class="col-md-4">
@@ -76,21 +76,21 @@
                            <p>작성일시</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="date" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
+                          <input type="date" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
                         </div>
                         
                         <div class="col-md-4">
                            <p>제목</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="text" class="form-control" name="nTitle" placeholder="제목을 입력해주세요." value='${notice.nTitle }' required readonly/>
+                           <input type="text" class="form-control" name="nTitle" placeholder="제목을 입력해주세요." value='${notice.nTitle }' required />
                         </div>
                         
                         <div class="col-md-4">
                                 <p>공지 내용</p>
                             </div>
                             <div class="col-md-8">
-                                <textarea name="nContent" class="form-control" rows="5" placeholder="공지내용을 입력해주세요." required readonly>${notice.nContent }</textarea>
+                                <textarea name="nContent" class="form-control" rows="5" placeholder="공지내용을 입력해주세요." required >${notice.nContent }</textarea>
                             </div>
 
                         
@@ -99,7 +99,9 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='notice'><input type='button' value='닫기'></a>
+                               <a href='managerNotice'><input type='button' value='닫기'></a>
+                               <input type='submit' value='수정하기'>
+                               <a href='managerDeleteNotice.do?nNo=${ notice.nNo} '><input type='button' value='삭제하기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>

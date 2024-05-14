@@ -105,7 +105,7 @@
     	</tr>
     </c:forEach>
         	</table>
-        	<a href='insertNotice'><input type='submit' class="findIdBtn" value='공지작성'></a>
+        	
             	</div>
             		</div>
            		 		</div>

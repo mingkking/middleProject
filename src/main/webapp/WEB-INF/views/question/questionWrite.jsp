@@ -70,7 +70,7 @@
 									<p>작성일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" placeholder="이름을 입력해주세요." value='2024-05-08' required />
+									<input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
 								</div>
 								
 								<div class="col-md-4">

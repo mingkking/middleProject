@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>getNotice.jsp</title>
+<title>managerInsertNotice.jsp</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -61,36 +61,29 @@
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-lg-6 text-center">
-                  <h2 data-aos="fade-down">공지 상세</h2>
-                  <form method="post">
+                  <h2 data-aos="fade-down">공지작성</h2>
+                  <form method="get" action='managerSaveNotice'>
                      <div class="row gy-4">
 
-                        <div class="col-md-4">
-                           <p type='hidden'></p>
-                        </div>
-                        <div class="col-md-8">
-                           <input type="hidden" name="nNo" class="form-control" value='${notice.nNo }'>
-                        </div>
-                        
                         <div class="col-md-4">
                            <p>작성일시</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="date" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
+                           <input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
+
                         </div>
                         
                         <div class="col-md-4">
                            <p>제목</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="text" class="form-control" name="nTitle" placeholder="제목을 입력해주세요." value='${notice.nTitle }' required readonly/>
+                           <input type="text" class="form-control" name="nTitle" placeholder="제목을 입력해주세요." required />
                         </div>
-                        
                         <div class="col-md-4">
                                 <p>공지 내용</p>
                             </div>
                             <div class="col-md-8">
-                                <textarea name="nContent" class="form-control" rows="5" placeholder="공지내용을 입력해주세요." required readonly>${notice.nContent }</textarea>
+                                <textarea name="nContent" class="form-control" rows="5" placeholder="공지내용을 입력해주세요." required></textarea>
                             </div>
 
                         
@@ -99,7 +92,8 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='notice'><input type='button' value='닫기'></a>
+                               <a href='managerNotice'><input type='button' value='닫기'></a>
+                                 <input type='submit' value='저장하기'>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
