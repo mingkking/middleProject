@@ -55,8 +55,52 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
 	$(function() {
-		$("#datepicker").datepicker();
+		$('#cancelMember').click(function(){
+			// alert($('#nowPassword').val());
+			if($('#nowPassword').val() == null || $('#nowPassword').val() == "") {
+				alert('현재 비밀번호를 입력해주세요');
+			}else{
+				location.href='deleteMypage?id=' + $('#nowId').val() + '&password=' + $('#nowPassword').val() + '&name=' + $('#nowName').val() + '&tel=' + $('#nowTel').val() + '&email=' + $('#nowEmail').val() + '&birth=' + $('#nowBirth').val();
+			}
+		}); // cancelMember click
+	
+	
+	// pw 유효성검사
+/* 	function pwCheck() {
+		var pw = $('#password1').val();
+		alert($('#password1').val());
+		var pwP = /^[a-z0-9]{7,15}$/; // 비밀번호 유효성 패턴
+
+		if (!pw.match(pwP)) {
+			alert('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
+			return;
+		} else {
+			alert('수정되었습니다.');
+			return;
+		}
+	}; // pwCheck() */
+	
+
+	$('#modifyMember').click(function() {
+			var pw1 = $('#password1').val();
+			var pw2 = $('#password2').val();
+			alert($('#password1').val());
+			var pwP = /^[a-z0-9]{7,15}$/; // 비밀번호 유효성 패턴
+
+			if (!pw1.match(pwP)) {
+				alert('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
+				return;
+			}
+			if (pw1 != pw2) {
+				alert('비밀번호가 일치하지 않습니다');
+				return;
+			} else {
+				alert('수정되었습니다.');
+			}
+
+		});
 	});
+
 </script>
 
 <!-- =======================================================
@@ -81,13 +125,13 @@
 				<div class="row justify-content-center" id='insertMemberForm'>
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down" id='mypage'>마이페이지</h2>
-						<form action="mypage.do" method="post">
+						<form action="updateMypage" method="post">
 							<div class="row gy-4">
 									<div class="col-md-4">
 										<p>아이디</p>
 									</div>
 									<div class="col-md-5">
-										<input type="text" name="id" class="form-control"
+										<input type="text" id="nowId" name="id" class="form-control"
 											value="${vo.id }" readonly="readonly"/>
 									</div>
 
@@ -95,15 +139,14 @@
 										<p>이름</p>
 									</div>
 									<div class="col-md-5">
-										<input type="text" name="name" class="form-control" value="${vo.name }"/>
+										<input type="text" id="nowName" name="name" class="form-control" value="${vo.name }"/>
 									</div>
 
 									<div class="col-md-4">
 										<p>이메일</p>
 									</div>
 									<div class="col-md-5">
-										<input type="email" name="name" class="form-control"
-											placeholder="abc@naver.com" value="${vo.email }" />
+										<input type="email" id="nowEmail" name="email" class="form-control" placeholder="abc@naver.com" value="${vo.email }" readonly/>
 									</div>
 
 									<div class="col-md-4">
@@ -124,44 +167,41 @@
 										<p>휴대폰번호</p>
 									</div>
 									<div class="col-md-6">
-										<input type="text" name="tel1" class="form-control" value="${vo.tel }"required />
+										<input type="text" id="nowTel" name="tel" class="form-control" value="${vo.tel }" readonly />
 									</div>
 
 									<div class="col-md-4">
 										<p>생년월일</p>
 									</div>
 									<div class="col-md-8">
-										<input type="date" name="birth" class="form-control" value="${vo.birth }"/>
+										<input type="date" id="nowBirth" name="birth" class="form-control" value="${vo.birth }"/>
 									</div>
 
 									<div class="col-md-4">
 										<p>현재 비밀번호</p>
 									</div>
 									<div class="col-md-8">
-										<input type="password" class="form-control" name="password"
-											required />
+										<input type="password" class="form-control" name="password" id="nowPassword" required />
 									</div>
 
 									<div class="col-md-4">
 										<p>새 비밀번호</p>
 									</div>
 									<div class="col-md-8">
-										<input type="password" class="form-control" name="password1"
-											placeholder="영문,숫자,특수문자 조합" required />
+										<input type="password" class="form-control" name="password1" id="password1" placeholder="소문자, 숫자, 7~14자리" />
 									</div>
 
 									<div class="col-md-4">
 										<p>새 비밀번호 확인</p>
 									</div>
 									<div class="col-md-8">
-										<input type="password" class="form-control" name="password2"
-											placeholder="영문,숫자,특수문자 조합" required />
+										<input type="password" class="form-control" name="password2" id="password2" placeholder="소문자, 숫자, 7~14자리" />
 									</div>
 
 									<div class="col-md-4" id='modifyunregisterBtn'></div>
 									<div class="col-md-4 text-center">
-										<button type="submit" class='unregisterBtn'>회원탈퇴</button>
-										<button type="submit" class='modifyBtn'>수정하기</button>
+										<input type="button" id="cancelMember" value="회원탈퇴" class="unregisterBtn"/>
+										<button type="submit" id="modifyMember" class='modifyBtn'>수정하기</button>
 									</div>
 
 									<!-- 								<div class="col-md-4"></div>
@@ -177,6 +217,7 @@
 		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
+		
 
 	</section>
 	<!-- End Hero Section -->
