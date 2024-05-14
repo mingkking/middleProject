@@ -1,6 +1,11 @@
 package controller.login;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.tribes.Member;
@@ -24,7 +29,6 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login() {
-		System.out.println("정규열222222222222222");
 		return "login/login";
 	}
 
@@ -88,12 +92,69 @@ public class LoginController {
 		if(vo.getId() == null || vo.getId().equals("")) {
 			return "login/login";
 		}
-		System.out.println(vo.getId());
+//		System.out.println(vo.getId());
 		vo = memberService.selectMypage(vo);
 		m.addAttribute("vo", vo);
 		
 		return "login/mypage";
 	}
+	
+	// 회원 탈퇴
+	@RequestMapping("/deleteMypage")
+	public String deleteMypage(MemberVO vo, Model m, HttpServletResponse response) {
+//		System.out.println("확인용 아이디: " + vo.getId() + " 확인용 비밀번호: " + vo.getPassword());
+		
+		int result = memberService.deleteMypage(vo);
+		if(result == 1) {
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = null;
+	        try {
+	           out = response.getWriter();
+	        } catch (IOException e) {
+	           e.printStackTrace();
+	        }
+	        
+	        out.println("<script>alert('탈퇴가 완료되었습니다.');"
+	        		+ "location.href=logout"
+	        		+ "</script>");
+	        out.flush();
+	        
+	        return "index";
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = null;
+	        try {
+	           out = response.getWriter();
+	        } catch (IOException e) {
+	           e.printStackTrace();
+	        }
+	        out.println("<script>alert('현재 비밀번호가 일치하지 않습니다.'); </script>");
+	        out.flush();
+	        m.addAttribute("vo", vo);
+	        return "login/mypage";
+		}
+		
+        
+		
+	}
+	
+	// 회원 정보 수정
+	@RequestMapping("/updateMypage")
+	public String updateMypage(MemberVO vo, String password2, Model m) {
+		System.out.println("지금비번: " + vo.getPassword() + " 바꿀 비번: " + password2);
+		if(password2 == null || password2.equals("")) {
+			memberService.updateMypageInfo(vo);
+		} else {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("vo", vo);
+			map.put("password2", password2);
+			memberService.updateMypage(map);
+		}
+		
+		m.addAttribute("vo", vo);
+		return "login/mypage";
+	}
+	
 
 	// 중복확인
 	@RequestMapping("/selectCheckID")
@@ -116,11 +177,11 @@ public class LoginController {
 	@ResponseBody
 	public String selectCheckEmail(MemberVO vo) throws Exception {
 		int result = memberService.selectCheckEmail(vo);
-		System.out.println("1111111111111111111" + result);
+//		System.out.println("1111111111111111111" + result);
 		return String.valueOf(result);
 	} // checkTel
 	
-	// 마이페이지
+	
 }
 
 
