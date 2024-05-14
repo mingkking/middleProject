@@ -62,10 +62,31 @@ public class MemberDAOImpl implements MemberDAO{
 		mybatis.delete("MemberDAO.deletemember",vo);
 	}
 
-	@Override
+	// 마이페이지 정보 조회
 	public MemberVO selectMypage(MemberVO vo) {
 		return mybatis.selectOne("MemberDAO.selectMypage", vo);
 	}
+
+	// 회원 탈퇴
+	public int deleteMypage(MemberVO vo) {
+		return mybatis.delete("MemberDAO.deleteMypage", vo);
+		
+	}
+
+	// 회원 정보 수정
+	@Override
+	public void updateMypageInfo(MemberVO vo) {
+		mybatis.update("MemberDAO.updateMypageInfo", vo);
+	}
+		
+	// 회원 정보 수정
+	public void updateMypage(HashMap<String, Object> map) {
+		System.out.println(map.get("password2"));
+		System.out.println(map.get("vo").toString());
+		mybatis.update("MemberDAO.updateMypage", map);
+		
+	}
+
 	
 	
 }
