@@ -115,8 +115,8 @@
 			
 			$.ajax({
 	               type : 'get',
-	               url : '',
-	               data : { 'rental' : $('#emailCheck').val() },
+	               url : 'sendEmail',
+	               data : { 'email' : $('#emailCheck').val() },
 	               dataType : 'json',
 	               success : function(result){
 	            	   console.log(result);

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 import service.member.MemberService;
+import useful.email.MailService;
 import useful.popup.PopUp;
 import vo.member.MemberVO;
 
@@ -27,6 +28,8 @@ public class LoginController {
 	// 서비스 객체 생성
 	@Autowired
 	private MemberService memberService;
+	
+	private MailService mailService;
 
 	@RequestMapping("/login")
 	public String login() {
@@ -160,6 +163,21 @@ public class LoginController {
 //		System.out.println("1111111111111111111" + result);
 		return String.valueOf(result);
 	} // checkTel
+	
+	// 이메일 테스트
+		@RequestMapping("/sendEmail")
+		@ResponseBody
+		public String sendEmail(MemberVO vo) throws Exception {
+			int result = memberService.selectCheckEmail(vo);
+			
+			if(result == 1) {
+				mailService = new MailService();
+				mailService.sendMail(vo.getEmail());
+			}
+			
+			System.out.println("1111111111111111111" + result);
+			return String.valueOf(result);
+		} // checkTel
 	
 	
 }
