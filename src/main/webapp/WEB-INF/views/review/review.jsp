@@ -68,32 +68,27 @@
 
 			<div class="row justify-content-center" id='insertMemberForm'>
 				<div class="col-lg-6 text-center" id="blackbackground">
-					<h2 data-aos="fade-down" id='insertMemberForm'>상품목록</h2>
-						<div class="row gy-4">
-						
-							<form action="payForm" id='insertFrm' method="post">
-								<div class="row gy-4">
+				
+				<div class="row gy-4">
+					
+						<h2 data-aos="fade-down" id='insertMemberForm'>구장목록</h2>
+						<table class="table">
+							<tbody>
+								<tr>
 									<c:if test="${productList.size() > 0 }">
 										<c:forEach var="i" begin="0" end="${productList.size()-1 }">
-											<div class="col-md-4">
-												<c:if test="${sessionScope.logid == null }">
-													<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${id}">${productList.get(i).pName }<br />
+											<div class="col-md-2">
+												<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${id}&pageNum=${pageNum}">${productList.get(i).pName }<br />
 													<img src="${path}/resources/assets/img/stadium.png" alt=""
-													width="300px" height="" class="img-fluid"></a>
-												</c:if>
-												<c:if test="${sessionScope.logid != null }">
-													<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${sessionScope.logid}">${productList.get(i).pName }<br />
-													<img src="${path}/resources/assets/img/stadium.png" alt=""
-													width="300px" height="" class="img-fluid"></a>
-												</c:if>
+													width="200px" height="" class="img-fluid"></a>
 											</div>
-
+				
 											<c:if test="${ i != 0 && i % 3 == 0 }">
 												<br />
 											</c:if>
 										</c:forEach>
 									</c:if>
-									<div class="col-md-12">
+									<div class="col-md-12" id="pageNum">
 										<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
 											<c:if test="${sessionScope.logid == null }">
 												<a href="${path}/review?pageNum=${i}&id=${id}">${i }</a>
@@ -103,72 +98,73 @@
 											</c:if>
 										</c:forEach>
 									</div>
-								</div>
-							</form>
+								</tr>
+							</tbody>
+						</table>
 
-							<div class="col-md-12">
-								<hr />
-							</div>
-							
-							<c:if test="${productVO != null }">
-								<h2 data-aos="fade-down" id='insertMemberForm'>구장</h2>
-								<div class="col-md-8">
-									<table class="table">
-											<tr>
-												<td>구장명</td>
-												<td>${productVO.pName }</td>
-											</tr>
-											<tr>
-												<td>구장위치</td>
-												<td>${productVO.pLocation }</td>
-											</tr>
-											<tr>
-												<td>구장가격</td>
-												<td>${productVO.pPrice }</td>
-											</tr>
-											<tr>
-												<td>구장정보</td>
-												<td>${productVO.pInfo }</td>
-											</tr>
-											<tr>
-												<td>구장사진</td>
-												<td>${productVO.pPicture }</td>
-											</tr>
-											
-									</table>
-								</div>
-								
-								<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-								<div class="col-md-12">
+					</div>
+					<c:if test="${productVO != null }">
+						<div class="row gy-4">
+						
+							<h2 data-aos="fade-down" id='insertMemberForm'>상세정보</h2>
+							<table class="table">
+								<tbody>
+									<tr>
+										<td colspan="6"><img src="${path}/resources/assets/img/stadium.png" alt=""
+														width="300px" height="" class="img-fluid"></td>
+									</tr>
+									<tr>
+										<td>구장명</td>
+										<td>${productVO.pName }</td>
+										<td>구장위치</td>
+										<td>${productVO.pLocation }</td>
+										<td>구장가격</td>
+										<td>${productVO.pPrice }</td>
+									</tr>
+									<tr>
+										<td>구장정보</td>
+										<td colspan="5">${productVO.pInfo }</td>
+									</tr>
+								</tbody>
+							</table>
+						
+						</div>
+						
+						<div class="row gy-4">
+	
+							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
+							<form action="insertReview" method="post" enctype="multipart/form-data">
 									<table class="table">
 										<thead>
 											<tr>
 												<th>아이디</th>
-												<th>리뷰제목</th>
+												<th>제목</th>
 												<th>리뷰내용</th>
-												<th>리뷰작성일</th>
+												<th></th>
+												<th></th>
+												<th>파일</th>
+												<th></th>
 											</tr>
 										</thead>
-										<c:if test="${reviewList.size() > 0 }">
-											<c:forEach var="i" begin="1" end="${reviewList.size()-1 }">
-												<tr>
-													<td>${reviewList.get(i).id }</td>
-													<td>${reviewList.get(i).rTitle }</td>
-													<td>${reviewList.get(i).rContent }</td>
-													<td>${reviewList.get(i).rRegDate }</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-										<tr>
-											<td colspan="4">
-												<input type="button" class="findIdBtn" value="리뷰쓰기">
-											</td>
-										</tr>
+										<tbody>
+											<tr>
+												<td>${id }</td>
+												<td><input type="text" name="rTitle" required="required"></td>
+												<td colspan="3">
+													<input type="text" name="rContent">
+												</td>
+												<td><input type="file" name="file"/></td>
+												<td>
+													<input type="hidden" name="storeNo" value="${storeVO.storeNo }"/>
+													<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
+												</td>
+											</tr>
+										</tbody>
 									</table>
-								</div>
-							</c:if>
-
+								</form>
+	
 						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

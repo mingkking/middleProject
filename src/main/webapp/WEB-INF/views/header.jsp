@@ -12,11 +12,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#navbar > ul > li a').click(function() {
-			/* console.log($(this).text());
-			$('#navbar > ul > li').find('a[class="active"]').removeClass();
-			$(this).addClass('active'); */
-		});
+		
 	});
 </script>
 </head>
@@ -35,7 +31,7 @@
 				<ul>
 					
 					<!-- <li><a href="${path}/#">관리자</a></li> -->
-					<li><a href="${path}/#" class="active">소개</a></li>
+					<li><a href="" class="active">소개</a></li>
 					<li><a href="${path}/reservation?id=${sessionScope.logid}">예약</a></li>
 					<li><a href="${path}/coming?id=${sessionScope.logid}">오시는 길</a></li>
 					<li><a href="${path}/question?id=${sessionScope.logid}">문의</a></li>
