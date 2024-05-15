@@ -90,40 +90,33 @@
 			<div class="row justify-content-center" id='insertMemberForm'>
 				<div class="col-lg-6 text-center" id="blackbackground">
 				
-				<div class="row gy-4">
-					
-						<h2 data-aos="fade-down" id='insertMemberForm'>구장목록</h2>
-						<table class="table">
-							<tbody>
-								<tr>
-									<c:if test="${productList.size() > 0 }">
-										<c:forEach var="i" begin="0" end="${productList.size()-1 }">
-											<div class="col-md-2">
-												<a href="${path}/review?pNo=${productList.get(i).pNo}&id=${id}&pageNum=${pageNum}">${productList.get(i).pName }<br />
-													<img src="${path}/resources/assets/img/stadium.png" alt=""
-													width="200px" height="" class="img-fluid"></a>
-											</div>
-				
-											<c:if test="${ i != 0 && i % 3 == 0 }">
-												<br />
-											</c:if>
-										</c:forEach>
-									</c:if>
-									<div class="col-md-12" id="pageNum">
-										<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-											<c:if test="${sessionScope.logid == null }">
-												<a href="${path}/review?pageNum=${i}&id=${id}">${i }</a>
-											</c:if>
-											<c:if test="${sessionScope.logid != null }">
-												<a href="${path}/review?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
-											</c:if>
-										</c:forEach>
-									</div>
-								</tr>
-							</tbody>
-						</table>
+					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
+					<form action="payForm.do" id='insertFrm' method="post">
+						<div class="row gy-4">
+								<c:if test="${reviewList.size() > 0 }">
+									<c:forEach var="i" begin="0" end="${reviewList.size()-1 }">
+										<c:if test="${ i != 0 && i % 6 == 0 }">
+											<hr/>
+										</c:if>
+										<div class="col-md-2">
+											<img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt="${reviewList.get(i).rNo }" width="200px" height="" class="img-fluid">
+										</div>
+									</c:forEach>
+								</c:if>
+								<div class="col-md-12" id="pageNum">
+									<c:forEach var="i" begin="${pVO2.startPage }" end="${pVO2.endPage }">
+										<c:if test="${sessionScope.logid == null }">
+											<a href="${path}/review?pageNum2=${i}&id=${id}">${i }</a>
+										</c:if>
+										<c:if test="${sessionScope.logid != null }">
+											<a href="${path}/review?pageNum2=${i}&id=${sessionScope.logid}">${i }</a>
+										</c:if>
+									</c:forEach>
+								</div>
 
-					</div>
+							</div>
+						</form>
+					
 					<c:if test="${productVO != null }">
 						<div class="row gy-4">
 						
@@ -151,53 +144,6 @@
 						
 						</div>
 						
-						<div class="row gy-4">
-	
-							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-							<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>아이디</th>
-												<th>제목</th>
-												<th>리뷰내용</th>
-												<th></th>
-												<th></th>
-												<th>파일</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:if test="${reviewList.size() > 0 }">
-												<c:forEach var="i" begin="0" end="${reviewList.size() - 1 }">
-													<tr>
-														<td>${reviewList.get(i).id }</td>
-														<td>${reviewList.get(i).rTitle }</td>
-														<td colspan="3">${reviewList.get(i).rContent }</td>
-														<td><img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt=""
-														width="150px" height="150px" class="img-fluid"></td>
-													</tr>
-												</c:forEach>
-											</c:if>
-											<tr>
-												<td>${id }</td>
-												<td><input type="text" name="rTitle" required="required"></td>
-												<td colspan="3">
-													<input type="text" name="rContent">
-												</td>
-												<td><input type="file" name="rPicture" accept="image/*"/></td>
-												<td>
-													<input type="hidden" name="id" value="${id}"/>
-													<input type="hidden" name="pageNum" value="${pageNum}"/>
-													<input type="hidden" name="pNo" value="${productVO.pNo }"/>
-													<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</form>
-	
-						</div>
 					</c:if>
 				</div>
 			</div>
