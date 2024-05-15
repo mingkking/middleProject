@@ -1,6 +1,7 @@
 package controller.review;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -78,8 +79,7 @@ public class ReviewController {
 		
 		PagingVO pVO2 = null;
 		try {
-			System.out.println("리뷰 개수ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ " + reviewService.selectReviewCount(reviewVO));
-			pVO2 = new PagingVO(pageNum2, reviewService.selectReviewCount(reviewVO));
+			pVO2 = new PagingVO(pageNum2, reviewService.selectReviewCount());
 			
 			model.addAttribute("pVO2", pVO2);
 			model.addAttribute("pageNum2", pageNum2);
@@ -89,7 +89,11 @@ public class ReviewController {
 		
 		// 리뷰
 		try {
-			List<ReviewVO> reviewList = reviewService.selectReviewAll(reviewVO);
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("startBoard", pVO2.getStartBoard()-1);
+			map.put("endBoard", pVO2.getEndBoard());
+			System.out.println("리뷰 페이징2 " + map.get("startBoard") + "리뷰 페이징2 " + map.get("endBoard"));
+			List<ReviewVO> reviewList = reviewService.selectReviewAll(map);
 			model.addAttribute("reviewList", reviewList);
 		} catch (Exception e) {
 			System.out.println("리뷰 전체 목록: " + e.getMessage()); // 에러났을 때

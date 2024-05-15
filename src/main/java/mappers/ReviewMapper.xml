@@ -5,15 +5,16 @@
 
 <mapper namespace="ReviewDAO">
 	<!-- 리뷰 가져오기 -->
-	<select id="selectReviewAll" parameterType="vo.review.ReviewVO" resultType="vo.review.ReviewVO">
+	<select id="selectReviewAll" parameterType="hashmap" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
-		WHERE pNo = #{pNo}
+		<if test="startBoard != null">
+			LIMIT #{startBoard}, 6
+		</if>
 	</select>
 	
 	<!-- 리뷰 가져오기 -->
 	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
 		SELECT count(*) FROM review
-		WHERE pNo = #{pNo}
 	</select>
 	
 	<!-- 리뷰 등록 -->

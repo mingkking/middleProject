@@ -1,5 +1,6 @@
 package service.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDAO reDAO;
 
 	@Override
-	public List<ReviewVO> selectReviewAll(ReviewVO reviewVO) throws Exception {
-		return reDAO.selectReviewAll(reviewVO);
+	public List<ReviewVO> selectReviewAll(HashMap<String, Integer> map) throws Exception {
+		return reDAO.selectReviewAll(map);
 	}
 	
 	// 리뷰 등록
@@ -26,8 +27,8 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	// 구장번호에 해당하는 리뷰 전체 개수
 	@Override
-	public int selectReviewCount(ReviewVO reviewVO) throws Exception {
-		return reDAO.selectReviewCount(reviewVO);
+	public int selectReviewCount() throws Exception {
+		return reDAO.selectReviewCount();
 	}
 	
 }

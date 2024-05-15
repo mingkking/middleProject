@@ -1,5 +1,6 @@
 package dao.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,8 +16,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	// 리뷰 전체 목록
 	@Override
-	public List<ReviewVO> selectReviewAll(ReviewVO reviewVO) throws Exception {
-		return mybatis.selectList("ReviewDAO.selectReviewAll", reviewVO);
+	public List<ReviewVO> selectReviewAll(HashMap<String, Integer> map) throws Exception {
+		System.out.println("111111111111111111111 " + map.get("startBoard"));
+		System.out.println("222222222222222222222 " + map.get("endBoard"));
+		return mybatis.selectList("ReviewDAO.selectReviewAll", map);
 	}
 	
 	// 리뷰 등록
@@ -27,7 +30,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	// 구장번호에 해당하는 리뷰 전체 개수
 	@Override
-	public int selectReviewCount(ReviewVO reviewVO) throws Exception {
-		return mybatis.selectOne("ReviewDAO.selectReviewCount", reviewVO);
+	public int selectReviewCount() throws Exception {
+		return mybatis.selectOne("ReviewDAO.selectReviewCount");
 	}
 }
