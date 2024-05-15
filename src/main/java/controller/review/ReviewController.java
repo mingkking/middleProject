@@ -42,6 +42,7 @@ public class ReviewController {
 		try {
 			pVO = new PagingVO(pageNum, productService.selectProductCount());
 			model.addAttribute("pVO", pVO);
+			model.addAttribute("pageNum", pageNum);
 		} catch (Exception e1) {
 			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때
 		}
