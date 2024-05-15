@@ -4,7 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer d-flex">
+<footer id="footer" class="footer">
 
 	<div class="footer-content position-relative">
 		<div class="container">

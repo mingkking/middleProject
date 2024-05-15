@@ -420,7 +420,7 @@
 								</div>
 								<div class="col-md-4 form-check form-check-inline">
 									<input class="form-check-input" type="radio" name="gender"
-										value="남자" checked="checked">
+										value="남자" checked="checked" >
 									<p>남자</p>
 								</div>
 								<div class="col-md-3 form-check form-check-inline">
@@ -445,7 +445,7 @@
 										placeholder="abc@naver.com" required />
 								</div>
 								<div class="col-md-2">
-									<button id="emailCheck" class="form-control btn btn-primary">중복검사</button>
+									<button id="telCheck" class="form-control btn btn-primary">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
