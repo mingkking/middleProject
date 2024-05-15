@@ -4,8 +4,34 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ReviewDAO">
-	<select id="selectReviewAll">
+	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewAll" parameterType="vo.review.ReviewVO" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
+		WHERE pNo = #{pNo}
 	</select>
+	
+	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
+		SELECT count(*) FROM review
+		WHERE pNo = #{pNo}
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="insertReview" parameterType="vo.review.ReviewVO">
+		INSERT INTO review(id, pNo, rTitle, rContent, rRegDate, r_fname, r_frealname, r_fsize)
+		VALUES(#{id}, #{pNo}, #{rTitle}, #{rContent}, sysdate(), #{r_fname}, #{r_frealname}, #{r_fsize})
+	</insert>
+	
+	<!-- <insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO uploadtemp ( b_name, b_email, b_title , b_content, b_pwd , b_date, b_count
+		<if test="b_fname != null"> 
+			, b_fname, b_fsize, b_realfname 
+		</if>
+		) VALUES ( #{ b_name }, #{ b_email }, #{ b_title} , #{ b_content}, #{ b_pwd} , now(), 0
+		<if test="b_fname != null"> 
+			, #{ b_fname}, #{b_fsize}, #{b_realfname}
+		</if>
+		)
+	</insert> -->
 	
 </mapper>

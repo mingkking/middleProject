@@ -55,6 +55,27 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("input[name=rPicture]").off().on("change", function(){
+
+			if (this.files && this.files[0]) {
+
+				var maxSize = 10 * 1024 * 1024;
+				var fileSize = this.files[0].size;
+
+				if(fileSize > maxSize){
+					alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+					$(this).val('');
+					return false;
+				}
+			}
+		});
+	});
+</script>
+  
 </head>
 
 <body>
@@ -133,7 +154,7 @@
 						<div class="row gy-4">
 	
 							<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-							<form action="insertReview" method="post" enctype="multipart/form-data">
+							<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
 									<table class="table">
 										<thead>
 											<tr>
@@ -147,15 +168,28 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:if test="${reviewList.size() > 0 }">
+												<c:forEach var="i" begin="0" end="${reviewList.size() - 1 }">
+													<tr>
+														<td>${reviewList.get(i).id }</td>
+														<td>${reviewList.get(i).rTitle }</td>
+														<td colspan="3">${reviewList.get(i).rContent }</td>
+														<td><img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt=""
+														width="150px" height="150px" class="img-fluid"></td>
+													</tr>
+												</c:forEach>
+											</c:if>
 											<tr>
 												<td>${id }</td>
 												<td><input type="text" name="rTitle" required="required"></td>
 												<td colspan="3">
 													<input type="text" name="rContent">
 												</td>
-												<td><input type="file" name="file"/></td>
+												<td><input type="file" name="rPicture" accept="image/*"/></td>
 												<td>
-													<input type="hidden" name="storeNo" value="${storeVO.storeNo }"/>
+													<input type="hidden" name="id" value="${id}"/>
+													<input type="hidden" name="pageNum" value="${pageNum}"/>
+													<input type="hidden" name="pNo" value="${productVO.pNo }"/>
 													<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
 												</td>
 											</tr>
