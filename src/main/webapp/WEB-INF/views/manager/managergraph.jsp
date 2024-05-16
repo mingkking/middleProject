@@ -54,46 +54,68 @@
  
    <!-- Google Charts 라이브러리 로드 -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     // Google Charts 라이브러리 로드 완료 후 실행
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawCharts);
+    
+    drawChart();
 
-    function drawCharts() {
+    function prepareChartData(data) {
+        var chartData = [];
+        chartData.push(['월', '구장', '예약 건수']);
 
-
-     // 차트 5 - 영역 차트
-      var data5 = google.visualization.arrayToDataTable([
-        ['연도', '매출', '비용'],
-        ['2019', 1000, 600],
-        ['2020', 1200, 700],
-        ['2021', 1400, 800],
-        ['2022', 1600, 900]
-      ]);
-
-      var options5 = google.visualization.arrayToDataTable([
-        ['과일', '판매량'],
-        ['사과', 30],
-        ['바나나', 50],
-        ['딸기', 20],
-        ['오렌지', 40]
-      ]);
-
-      var chart5 = new google.visualization.AreaChart(document.getElementById('chart_div5'));
-      chart5.draw(data5, options5);
-
-    }
-    function ajaxTest() {
-        $.ajax({
-          url: 'ajaxTest', //controller주소
-          type: 'post',
-        /*   dataType: 'json', */
-          data: {},
-          success: function(res){
-        	alert(res);
-          }
+        // 데이터가 있으면 chartData에 추가
+        data.forEach(function(item) {
+        	var month = parseInt(item.month);// 월 데이터를 숫자를 변환
+        	var pNo = parseInt(item.pNo); // 구장 데이터를 숫자로 변환
+        	var reservationCount = parseInt(item.reservationCount); //예약 건수 데이터를 숫자로 변환
+            chartData.push([month, pNo, reservationCount]);
         });
-     }
+
+        return chartData;
+    }
+
+     
+    function drawChart() {
+    	 
+        $.ajax({
+            url: '${path}/ajaxTest',
+            type: 'POST',
+            dataType: 'json',
+            success: function(response) {
+            	
+            	console.log("서버로부터 받은 결과 : " + response)
+            	
+            	
+                // Google Charts 로드 완료시 실행
+                google.charts.load('current', { packages: ['corechart'] });
+                google.charts.setOnLoadCallback(function() {
+                    var data = google.visualization.arrayToDataTable(prepareChartData(response));
+                    var options = {
+                        title: '월별 구장별 예약 현황',
+                        //chartArea: { width: '50%' },
+                        hAxis: { title: '월' },
+                        vAxis: { title: '예약수' }
+                    };
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    // AJAX 버튼 클릭 이벤트 핸들러
+    $(document).ready(function() {
+        $('#ajaxButton').click(function() {
+        	alert('ok');
+            drawChart();
+        });
+    });
   </script>
   
   
@@ -115,10 +137,10 @@
                <div class="col-lg-6 text-center">
                   <h3 data-aos="fade-down">통계</h3>
               <div class="pull-right">
-               <button type="button" class="btn btn-sm btn-primary" onclick="ajaxTest();">ajax테스트</button>
+               <button type="button" class="btn btn-sm btn-primary" id="ajaxButton">ajax테스트</button>
                </div>
                   <!-- 그래프를 그릴 요소들 -->
-                 <div id="chart_div5"></div>
+                 <div id="chart_div"></div>
                </div>
             </div>
          </div>
@@ -176,8 +198,7 @@
 
    <!-- Template Main JS File -->
    <script src="${path}/resources/assets/js/main.js"></script>
-   <!-- google charts -->
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
 
 
 </body>

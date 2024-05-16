@@ -5,7 +5,7 @@ import java.util.List;
 
 import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
-
+ 
 public interface ReservationDAO {
 	// 예약 등록
 	public void insertReservation(ReservationVO rVO) throws Exception;
@@ -20,7 +20,8 @@ public interface ReservationDAO {
 	public int selectReservationCount() throws Exception;
 	
 	//관리자 통계
-	public List<ReservationVO> getReservationCountByMonth();
+	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO);
 
 	
 }
+

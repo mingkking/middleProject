@@ -40,9 +40,9 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	//관리자 통계
-	public List<ReservationVO> getReservationCountByMonth(){
-		return rDAO.getReservationCountByMonth();
+	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO){
+		return rDAO.getReservationCountByMonth(rVO);
 	}
 	
-	
+	 
 }
