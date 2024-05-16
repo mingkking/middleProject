@@ -39,7 +39,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		return mybatis.selectOne("ReservationDAO.selectReservationCount");
 	}
 
-	//관리자 통계
+	//관리자 통계 
 	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO){
 		return mybatis.selectList("ReservationDAO.getReservationCountByMonth",rVO);
 	}

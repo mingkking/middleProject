@@ -24,7 +24,7 @@ public class ReservationVO {
 	private String reservationCount;
 	
 	
-	
+	 
 	public Integer getrNo() {
 		return rNo;
 	}

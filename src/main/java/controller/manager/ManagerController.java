@@ -148,7 +148,7 @@ public class ManagerController {
 	public String managergraph() {
 		return "manager/managergraph";
 	}
-	
+	 
 	// ajax 호출 테스트
 	@RequestMapping(value = "/ajaxTest", method =  RequestMethod.POST )
 	@ResponseBody 

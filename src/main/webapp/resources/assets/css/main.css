@@ -1877,6 +1877,15 @@ section {
   position: relative;
 }
 
+.hero .info h3 {
+  color: #000000;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  position: relative;
+}
+
 .hero .info h2:after {
   content: "";
   position: absolute;

@@ -79,7 +79,7 @@
 
      
     function drawChart() {
-    	
+    	 
         $.ajax({
             url: '${path}/ajaxTest',
             type: 'POST',

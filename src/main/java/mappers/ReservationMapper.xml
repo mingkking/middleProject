@@ -28,7 +28,7 @@
 		</where>
 		ORDER BY r.rRegDate
 		
-	</select>
+	</select> 
 	
 	<!-- 예약 총수 가져오기 -->
 	<select id="selectReservationCount" resultType="int" >
