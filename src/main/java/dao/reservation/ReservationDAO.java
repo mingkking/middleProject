@@ -20,7 +20,8 @@ public interface ReservationDAO {
 	public int selectReservationCount() throws Exception;
 	
 	//관리자 통계
-	public List<ReservationVO> getReservationCountByMonth();
+	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO);
 
 	
 }
+

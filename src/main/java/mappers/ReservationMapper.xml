@@ -36,4 +36,14 @@
 	FROM reservation
 	</select>	
 	
+	<!-- 관리자 통계 -->
+	<select id="getReservationCountByMonth" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO"> 
+	SELECT MONTH(rental) AS month
+						, pNo
+						, COUNT(*) AS reservationCount 
+	FROM reservation 
+	GROUP BY MONTH(rental), pNo 
+	</select>
+	
+	
 </mapper>

@@ -14,7 +14,6 @@ import service.member.MemberService;
 import service.product.ProductService;
 import service.reservation.ReservationService;
 import vo.member.MemberVO;
-import vo.paging.PagingVO;
 import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
 
@@ -145,18 +144,23 @@ public class ManagerController {
 
 
 	
-	@RequestMapping("managergraph")
+	@RequestMapping(value = "/managergraph", method = RequestMethod.GET)
 	public String managergraph() {
 		return "manager/managergraph";
 	}
 	
 	// ajax 호출 테스트
-	@RequestMapping(value = "ajaxTest", method = { RequestMethod.POST })
+	@RequestMapping(value = "/ajaxTest", method =  RequestMethod.POST )
 	@ResponseBody 
-	public String ajaxTest() {
-		List<ReservationVO> list = reservationService.getReservationCountByMonth();
-		System.out.println(list);
-	return "kingjames";     
+	public List<ReservationVO> ajaxTest(ReservationVO rVO) {
+		
+		List<ReservationVO> result =  reservationService.getReservationCountByMonth(rVO);
+		System.out.println("------------------------------");
+		for(ReservationVO resultVO : result) {
+			System.out.println(resultVO.toString());
+		}
+		return result;
+		
 	}
 	
 //	public String managergraph() {
