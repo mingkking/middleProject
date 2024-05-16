@@ -91,73 +91,100 @@
 				<div class="col-lg-6 text-center" id="blackbackground">
 				
 					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-					<form action="${path}/insertReview" method="post"> <!-- enctype="multipart/form-data" -->
+					
 						<div class="row gy-4">
+								<!-- 리뷰 사진들 출력 -->
 								<c:if test="${reviewList.size() > 0 }">
 									<c:forEach var="i" begin="0" end="${reviewList.size()-1 }">
 										<c:if test="${ i != 0 && i % 6 == 0 }">
-											<hr/>
+											<br/>
 										</c:if>
 										<div class="col-md-2">
-											<img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt="${reviewList.get(i).rNo }" width="200px" height="" class="img-fluid">
+											<!-- 이미지 클릭 시 아이디와 상품 번호를 컨트롤러로 보냄 -->
+											<a href="${path}/review?id=${id}&pNo=${reviewList.get(i).pNo}">
+												<img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt="${reviewList.get(i).rNo }" width="200px" height="" class="img-fluid">
+											</a>
 										</div>
 									</c:forEach>
 								</c:if>
+								<!-- 리뷰 사진들 페이징 -->
 								<div class="col-md-12" id="pageNum">
-									<c:forEach var="i" begin="${pVO2.startPage }" end="${pVO2.endPage }">
+									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
 										<c:if test="${sessionScope.logid == null }">
-											<a href="${path}/review?pageNum2=${i}&id=${id}">${i }</a>
+											<a href="${path}/review?pageNum=${i}&id=${id}">${i }</a>
 										</c:if>
 										<c:if test="${sessionScope.logid != null }">
-											<a href="${path}/review?pageNum2=${i}&id=${sessionScope.logid}">${i }</a>
+											<a href="${path}/review?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
 										</c:if>
 									</c:forEach>
 								</div>
-								<h2 data-aos="fade-down" id='insertMemberForm'>리뷰목록</h2>
-								<table class="table">
-										<thead>
-											<tr>
-												<th>아이디</th>
-												<th>제목</th>
-												<th>리뷰내용</th>
-												<th></th>
-												<th></th>
-												<th>파일</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:if test="${reviewList.size() > 0 }">
-												<c:forEach var="i" begin="0" end="${reviewList.size() - 1 }">
-													<tr>
-														<td>${reviewList.get(i).id }</td>
-														<td>${reviewList.get(i).rTitle }</td>
-														<td colspan="3">${reviewList.get(i).rContent }</td>
-														<td><img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt=""
-														width="150px" height="150px" class="img-fluid"></td>
-													</tr>
-												</c:forEach>
-											</c:if>
-											<tr>
-												<td>${id }</td>
-												<td><input type="text" name="rTitle" required="required"></td>
-												<td colspan="3">
-													<input type="text" name="rContent">
-												</td>
-												<!-- <td><input type="file" name="rrr" accept="image/*"/></td> -->
-												<td>
-													<input type="hidden" name="id" value="${id}"/>
-													<input type="hidden" name="pageNum" value="${pageNum}"/>
-													<input type="hidden" name="pNo" value="${productVO.pNo }"/>
-													<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+								
+								
+									<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
+									<table class="table">
+											<thead>
+												<tr>
+													<th>아이디</th>
+													<th>제목</th>
+													<th>리뷰내용</th>
+													<th></th>
+													<th>구장명</th>
+													<th>파일</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+										
+												<!-- 상품번호에 해당하는 전체 리스트 출력 -->
+												<c:if test="${reviewListNoPaging.size() > 0 }">
+													<c:forEach var="i" begin="0" end="${reviewListNoPaging.size() - 1 }">
+													${pNo }, ${reviewListNoPaging.get(i).pNo } , ${reviewListNoPaging.size() }
+														<c:if test="${pNo == reviewListNoPaging.get(i).pNo }">
+															<tr>
+																<td>${reviewListNoPaging.get(i).id }</td>
+																<td>${reviewListNoPaging.get(i).rTitle }</td>
+																<td colspan="2">${reviewListNoPaging.get(i).rContent }</td>
+																<td>${reviewListNoPaging.get(i).rTitle }</td>
+																<td><img src="${path}/resources/reviewUpload/${reviewListNoPaging.get(i).r_frealname}" alt=""
+																width="150px" height="150px" class="img-fluid"></td>
+															</tr>
+														</c:if>
+													</c:forEach>
+												</c:if>
+												
+										
+											<!-- 리뷰 등록하기 -->
+											<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
+												<tr>
+													<td>${id }</td>
+													<td><input type="text" name="rTitle" required="required"></td>
+													<td colspan="2">
+														<input type="text" name="rContent">
+													</td>
+													<td>
+														<select name="pNo">
+															<c:if test="${productList.size()>0 }">
+																<c:forEach var="i" begin="0" end="${productList.size()-1 }">
+																	<option value="${productList.get(i).pNo }">${productList.get(i).pName}</option>															
+																</c:forEach>
+															</c:if>
+														</select>
+													</td>
+													<td><input type="file" name="rPicture" accept="image/*"/></td>
+													<td>
+														<input type="hidden" name="id" value="${id}"/>
+														<input type="hidden" name="pageNum" value="${pageNum}"/>
+														<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
+													</td>
+												</tr>
+											</form>
+											</tbody>
+										</table>
+									
 							</div>
-						</form>
+						
 					
-					<c:if test="${productVO != null }">
+					<c:if test="${pNo != null }">
 						<div class="row gy-4">
 						
 							<h2 data-aos="fade-down" id='insertMemberForm'>상세정보</h2>

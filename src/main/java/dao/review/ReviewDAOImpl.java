@@ -14,10 +14,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	// 리뷰 전체 목록
+	// 리뷰 전체 페이징 목록
 	@Override
 	public List<ReviewVO> selectReviewAll(HashMap<String, Integer> map) throws Exception {
 		return mybatis.selectList("ReviewDAO.selectReviewAll", map);
+	}
+	
+	// 리뷰 전체 목록
+	@Override
+	public List<ReviewVO> selectReviewAllNoPaing() throws Exception {
+		return mybatis.selectList("ReviewDAO.selectReviewAllNoPaing");
 	}
 	
 	// 리뷰 등록
@@ -31,4 +37,5 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int selectReviewCount() throws Exception {
 		return mybatis.selectOne("ReviewDAO.selectReviewCount");
 	}
+	
 }
