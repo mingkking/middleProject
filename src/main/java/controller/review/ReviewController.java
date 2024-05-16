@@ -33,56 +33,25 @@ public class ReviewController {
 	
 	private MailService mailService = null;
 	
-	@RequestMapping("review")
-	public String review(HttpServletResponse response, String id, Integer pageNum, Integer pageNum2, ReviewVO reviewVO, ProductVO productVO, Model model) {
+	@RequestMapping("/review")
+	public String review(HttpServletResponse response, String id, Integer pageNum, ReviewVO reviewVO, ProductVO productVO, Model model) {
 		if(id.equals("") || id == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
 		model.addAttribute("id", id);
-		// 상품 페이징
+		
+		// 리뷰 페이징
 		if(pageNum == null) {
 			pageNum = 1;
 		}
 		
 		PagingVO pVO = null;
 		try {
-			pVO = new PagingVO(pageNum, productService.selectProductCount());
+			pVO = new PagingVO(pageNum, reviewService.selectReviewCount(), 12);
+			
 			model.addAttribute("pVO", pVO);
 			model.addAttribute("pageNum", pageNum);
-		} catch (Exception e1) {
-			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때
-		}
-		
-		List<ProductVO> list = null;
-		try {
-			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
-			model.addAttribute("productList", list);
-			
-			/* model.addAttribute("pNo", pNo); */
-		} catch (Exception e) {
-			System.out.println("상품 구장 전체 목록: " + e.getMessage()); // 에러났을 때
-		}
-		
-		// 1개 검색 및 해당상품 검색
-		try {
-			productVO = productService.selectProduct(reviewVO.getpNo()); // 상품 1개 검색
-			model.addAttribute("productVO", productVO); // 상품 1개 담기
-		} catch (Exception e1) {
-			System.out.println("상품 구장 1개: " + e1.getMessage()); // 에러났을 때
-		}
-		
-		// 리뷰 페이징
-		if(pageNum2 == null) {
-			pageNum2 = 1;
-		}
-		
-		PagingVO pVO2 = null;
-		try {
-			pVO2 = new PagingVO(pageNum2, reviewService.selectReviewCount());
-			
-			model.addAttribute("pVO2", pVO2);
-			model.addAttribute("pageNum2", pageNum2);
 		} catch (Exception e1) {
 			System.out.println("리뷰 페이징: " + e1.getMessage()); // 에러났을 때
 		}
@@ -90,8 +59,8 @@ public class ReviewController {
 		// 리뷰
 		try {
 			HashMap<String, Integer> map = new HashMap<String, Integer>();
-			map.put("startBoard", pVO2.getStartBoard()-1);
-			map.put("endBoard", pVO2.getEndBoard());
+			map.put("startBoard", pVO.getStartBoard()-1);
+			map.put("endBoard", pVO.getEndBoard());
 			System.out.println("리뷰 페이징2 " + map.get("startBoard") + "리뷰 페이징2 " + map.get("endBoard"));
 			List<ReviewVO> reviewList = reviewService.selectReviewAll(map);
 			model.addAttribute("reviewList", reviewList);
@@ -102,8 +71,9 @@ public class ReviewController {
 		return "review/review";
 	}
 	
-	@RequestMapping("insertReview")
+	@RequestMapping("/insertReview")
 	public String insertReview(ReviewVO reviewVO, Integer pageNum, HttpServletResponse response, String emailAddr) {
+		System.out.println("111111111111111111111");
 		try {
 			int result = reviewService.insertReview(reviewVO);
 			if(result == 1) {

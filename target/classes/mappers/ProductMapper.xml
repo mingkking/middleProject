@@ -10,7 +10,7 @@
 		SELECT *
 		FROM product
 		<if test="startBoard != null">
-			LIMIT #{startBoard}, 12
+			LIMIT #{startBoard}, #{endBoard}
 		</if>
 	</select>
 	

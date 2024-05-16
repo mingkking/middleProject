@@ -42,7 +42,7 @@ public class ProductController {
 		
 		PagingVO pVO = null;
 		try {
-			pVO = new PagingVO(pageNum, productService.selectProductCount());
+			pVO = new PagingVO(pageNum, productService.selectProductCount(), 6);
 			model.addAttribute("pVO", pVO);
 		} catch (Exception e1) {
 			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때
@@ -53,6 +53,9 @@ public class ProductController {
 			model.addAttribute("productList", list);
 			model.addAttribute("pNo", pNo);
 			model.addAttribute("id", id);
+			for (int i = 0; i < list.size(); i++) {
+				System.out.println(list.get(i).toString());
+			}
 		} catch (Exception e) {
 			System.out.println("구장 전체 목록: " + e.getMessage()); // 에러났을 때
 		}

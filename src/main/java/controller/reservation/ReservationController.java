@@ -44,7 +44,7 @@ public class ReservationController {
 		
 		PagingVO pVO = null;
 		try {
-			pVO = new PagingVO(pageNum, productService.selectProductCount());
+			pVO = new PagingVO(pageNum, productService.selectProductCount(), 6);
 			model.addAttribute("pVO", pVO);
 		} catch (Exception e1) {
 			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때

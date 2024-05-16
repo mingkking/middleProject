@@ -91,7 +91,7 @@
 				<div class="col-lg-6 text-center" id="blackbackground">
 				
 					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-					<form action="payForm.do" id='insertFrm' method="post">
+					<form action="${path}/insertReview" method="post"> <!-- enctype="multipart/form-data" -->
 						<div class="row gy-4">
 								<c:if test="${reviewList.size() > 0 }">
 									<c:forEach var="i" begin="0" end="${reviewList.size()-1 }">
@@ -113,7 +113,47 @@
 										</c:if>
 									</c:forEach>
 								</div>
-
+								<h2 data-aos="fade-down" id='insertMemberForm'>리뷰목록</h2>
+								<table class="table">
+										<thead>
+											<tr>
+												<th>아이디</th>
+												<th>제목</th>
+												<th>리뷰내용</th>
+												<th></th>
+												<th></th>
+												<th>파일</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:if test="${reviewList.size() > 0 }">
+												<c:forEach var="i" begin="0" end="${reviewList.size() - 1 }">
+													<tr>
+														<td>${reviewList.get(i).id }</td>
+														<td>${reviewList.get(i).rTitle }</td>
+														<td colspan="3">${reviewList.get(i).rContent }</td>
+														<td><img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt=""
+														width="150px" height="150px" class="img-fluid"></td>
+													</tr>
+												</c:forEach>
+											</c:if>
+											<tr>
+												<td>${id }</td>
+												<td><input type="text" name="rTitle" required="required"></td>
+												<td colspan="3">
+													<input type="text" name="rContent">
+												</td>
+												<!-- <td><input type="file" name="rrr" accept="image/*"/></td> -->
+												<td>
+													<input type="hidden" name="id" value="${id}"/>
+													<input type="hidden" name="pageNum" value="${pageNum}"/>
+													<input type="hidden" name="pNo" value="${productVO.pNo }"/>
+													<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
 							</div>
 						</form>
 					

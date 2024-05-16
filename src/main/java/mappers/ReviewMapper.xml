@@ -8,7 +8,7 @@
 	<select id="selectReviewAll" parameterType="hashmap" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
 		<if test="startBoard != null">
-			LIMIT #{startBoard}, 6
+			LIMIT #{startBoard}, #{endBoard}
 		</if>
 	</select>
 	
