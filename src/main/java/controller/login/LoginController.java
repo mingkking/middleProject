@@ -123,15 +123,21 @@ public class LoginController {
 	
 	// 회원 정보 수정
 	@RequestMapping("/updateMypage")
-	public String updateMypage(MemberVO vo, String password2, Model m) {
+	public String updateMypage(MemberVO vo, String password2, Model m, HttpServletResponse response) {
 		System.out.println("지금비번: " + vo.getPassword() + " 바꿀 비번: " + password2);
-		if(password2 == null || password2.equals("")) {
-			memberService.updateMypageInfo(vo);
+		
+		int result = memberService.selectMypagePw(vo);
+		System.out.println("비번일치 결과 값: " + result);
+		if(result == 1) {
+			if( !(password2 == null || password2 == "") ) {
+				vo.setPassword(password2);
+			}
+			
+			int result2 = memberService.updateMypageInfo(vo);
+			System.out.println("업데이트 완료: " + result2);
+			PopUp.popUpMove(response, "수정되었습니다.", "mypage?id=" + vo.getId());
 		} else {
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("vo", vo);
-			map.put("password2", password2);
-			memberService.updateMypage(map);
+			PopUp.popUpMove(response, "비밀번호가 일치하지 않습니다.", "mypage?id=" + vo.getId());
 		}
 		
 		m.addAttribute("vo", vo);

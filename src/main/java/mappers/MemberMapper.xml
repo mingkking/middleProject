@@ -76,6 +76,11 @@
 	    WHERE id = #{id}
 	</select>
 	
+	<select id="selectMypagePw" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    WHERE id = #{id} AND password = #{password}
+	</select>
+	
 	<delete id="deleteMypage" parameterType="vo.member.MemberVO">
 	     DELETE FROM member
 	     WHERE id = #{id} AND password = #{password}
@@ -84,16 +89,17 @@
 	<update id="updateMypageInfo" parameterType="vo.member.MemberVO">
 	    UPDATE member
 	    SET name = #{name},
-	        tel  = #{tel},
-	        birth = #{birth}
-	    WHERE id = #{id} AND password = #{password}
+	        gender = #{gender},
+	        birth = #{birth},
+	        password = #{password}
+	    WHERE id = #{id}
 	</update>
 	
-	<update id="updateMypage" parameterType="hashmap">
+<!-- 	<update id="updateMypage" parameterType="hashmap">
 	    UPDATE member
 	    SET password = #{password2}
 	    WHERE id = #{id} AND password = #{password}
-	</update>
+	</update> -->
 	
 	
 	<!-- 이메일 인증 -->

@@ -37,9 +37,12 @@ public interface MemberService {
 	public int deleteMypage(MemberVO vo);
 	
 	// 회원 정보 수정
-	public void updateMypageInfo(MemberVO vo);
+	public int updateMypageInfo(MemberVO vo);
 		
 	// 회원 정보 수정
 	public void updateMypage(HashMap<String, Object> map);
+	
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo);
 }
 
