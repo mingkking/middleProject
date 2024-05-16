@@ -97,7 +97,7 @@
 							<select name='searchCondition'>
 								<option value='qTitle'>제목</option>
 								<option value='qContent'>내용</option>
-								<option value='qWriter'>작성자</option>
+								<option value='id'>작성자</option>
 							</select> <input type='text' name='searchKeyword'> <input
 								type='submit' class="searchQuestionBtn" value='검색'>
 

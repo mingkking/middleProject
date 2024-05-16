@@ -7,8 +7,8 @@
 
 	<!-- sql 문의글 insert문 -->
 	<insert id="insertQuestion" parameterType="vo.question.QuestionVO">
-		INSERT INTO QUESTION (qWriter, qTitle, qContent, qPassword, qRegdate, qStatus)
-		VALUES ( "사용자", #{qTitle}, #{qContent}, #{qPassword}, now(), "N")
+		INSERT INTO QUESTION (id, qTitle, qContent, qPassword, qRegdate, qStatus)
+		VALUES ( #{id}, #{qTitle}, #{qContent}, #{qPassword}, now(), "N")
 	</insert>
 	
 	<!-- sql 문의글 update문 -->

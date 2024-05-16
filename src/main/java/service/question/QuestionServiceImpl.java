@@ -16,7 +16,6 @@ public class QuestionServiceImpl implements QuestionService{
 	private QuestionDAO questionDAO;
 	
 	public void insertQuestion(QuestionVO vo) {
-		System.out.println("insert Service에서 호출");
 		questionDAO.insertQuestion(vo);
 	}
 	
