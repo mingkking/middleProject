@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>getQuestion.jsp</title>
+<title>managerGetQuestion.jsp</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -63,7 +63,7 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">문의 상세</h2>
-						<form method="post">
+						<form method="post" action="managerSaveQuestion">
 							<div class="row gy-4">
 
 								<div class="col-md-4">
@@ -78,11 +78,10 @@
 								</div>
 								<div class="col-md-8">
 									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
-
 								</div>
 								
 								<div class="col-md-4">
-									<p>아이디</p>
+									<p>사용자</p>
 								</div>
 								<div class="col-md-8">
 									<input type="text" class="form-control" name="qWriter" value='${question.id }' required readonly/>
@@ -103,24 +102,24 @@
                             </div>
                             
                             <div class="col-md-4">
-                           		<p>작성일시</p>
-                        	</div>
-                        		<div class="col-md-8">
-                           			<input type="date" name="nRegdate" class="form-control" value='${question.qRegdate }' readonly>
-                        		</div>
-                        
-                            <div class="col-md-4">
+									<p>답변일시</p>
+								</div>
+								<div class="col-md-8">
+									<input type="date" name="qARegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonly>
+								</div>
+								
+                             <div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="qTitle" class="form-control" placeholder="제목을 입력해주세요." value='${question.qTitle }' readonly>
+									<input type="text" name="qATitle" class="form-control" placeholder="제목을 입력해주세요." value='${question.qTitle }' >
 								</div>
 								
 								<div class="col-md-4">
 									<p>답변 내용</p>
 								</div>
 								<div class="col-md-8">
-									<textarea name="nContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required readonly>${question.qContent }</textarea>
+									<textarea name="qAContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required >${question.qContent }</textarea>
 								</div>
 
 								
@@ -129,10 +128,13 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='question?id=${id} '><input type='button' value='닫기'></a>
-                               <%-- <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a> --%>
+                               <a href='managerQuestion'><input type='button' value='닫기'></a>
+                               <a href='managerDeleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
+                               <a href='managerQuestion'><input type='submit' value='답변하기'></a>
                             </div>
-                            <div class="col-md-4 text-center"></div>
+                            <div class="col-md-4 text-center">
+                            
+                            </div>
                         </div>
                     </form>
                 </div>

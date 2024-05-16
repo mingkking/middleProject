@@ -17,4 +17,5 @@ public interface QuestionDAO {
 	
 	public List<QuestionVO> question(HashMap map);
 	
+	String getPassword(String userId);
 }

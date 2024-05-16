@@ -41,4 +41,10 @@ public class QuestionDAOImpl implements QuestionDAO{
 		
 		return list;
 	}
+	
+	 @Override
+	    public String getPassword(String userId) {
+	        // 여기서는 예시로 하드코딩된 값 사용, 실제로는 DB 등에서 비밀번호를 가져와야 함
+	        return "1234"; // 예시로 사용자의 비밀번호를 반환
+	 }
 }

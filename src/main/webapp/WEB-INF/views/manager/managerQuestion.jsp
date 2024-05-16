@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,7 +11,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>getQuestion.jsp</title>
+<title>managerQuestion.jsp</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -50,7 +51,6 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
 <body>
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>
@@ -61,90 +61,53 @@
 		<div class="info d-flex align-items-center">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">문의 상세</h2>
-						<form method="post">
-							<div class="row gy-4">
+					<div class="col-lg-10 text-center">
+						<h2 data-aos="fade-down">문의 게시판</h2>
+						<div class="row gy-10"></div>
+						
+						<div class="col-md-12">
+							<p></p>
+						</div>
+						
+						<div class="card-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Title</th>
+										<th>Id</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<c:forEach items="${question }" var="question">
+									<tr>
+										<td>${ question.qNo}</td>
+										<td align="question"><a href="${path }/managerGetQuestion?qNo=${question.qNo}">
+											${question.qTitle }</a></td>
+										<td>${question.id }</td>
+										<td>${question.qStatus }</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+						
+							<form method='get' id="searchQuestionFrm">
+							<select name='searchCondition'>
+								<option value='qTitle'>제목</option>
+								<option value='qContent'>내용</option>
+								<option value='id'>작성자</option>
+							</select> <input type='text' name='searchKeyword'> <input
+								type='submit' class="searchQuestionBtn" value='검색'>
 
-								<div class="col-md-4">
-									<p></p>
-								</div>
-								<div class="col-md-8">
-									<input type="hidden" name="qNo" class="form-control" value='${question.qNo }'>
-								</div>
-								
-								<div class="col-md-4">
-									<p>작성일시</p>
-								</div>
-								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
-
-								</div>
-								
-								<div class="col-md-4">
-									<p>아이디</p>
-								</div>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="qWriter" value='${question.id }' required readonly/>
-								</div>
-								
-								<div class="col-md-4">
-									<p>제목</p>
-								</div>
-								<div class="col-md-8">
-									<input type="text" class="form-control" name="qTitle" value='${question.qTitle }' required readonly/>
-								</div>
-								
-								<div class="col-md-4">
-                                <p>문의 내용</p>
-                            </div>
-                            <div class="col-md-8">
-                                <textarea name="qContent" class="form-control" rows="5" required readonly>${question.qContent }</textarea>
-                            </div>
-                            
-                            <div class="col-md-4">
-                           		<p>작성일시</p>
-                        	</div>
-                        		<div class="col-md-8">
-                           			<input type="date" name="nRegdate" class="form-control" value='${question.qRegdate }' readonly>
-                        		</div>
-                        
-                            <div class="col-md-4">
-									<p>제목</p>
-								</div>
-								<div class="col-md-8">
-									<input type="text" name="qTitle" class="form-control" placeholder="제목을 입력해주세요." value='${question.qTitle }' readonly>
-								</div>
-								
-								<div class="col-md-4">
-									<p>답변 내용</p>
-								</div>
-								<div class="col-md-8">
-									<textarea name="nContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required readonly>${question.qContent }</textarea>
-								</div>
-
-								
-								
-								<div class="col-md-4 text-center"></div>
-                            <div class="col-md-4 text-center">
-                                <div class="error-message"></div>
-                                
-                               <a href='question?id=${id} '><input type='button' value='닫기'></a>
-                               <%-- <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a> --%>
-                            </div>
-                            <div class="col-md-4 text-center"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
-
 	</section>
 	<!-- End Hero Section -->
-
 	<!-- 푸터 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
 
@@ -170,5 +133,4 @@
 	<script src="${path}/resources/assets/js/main.js"></script>
 
 </body>
-
 </html>
