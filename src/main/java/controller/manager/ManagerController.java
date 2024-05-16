@@ -152,8 +152,11 @@ public class ManagerController {
 	// ajax 호출 테스트
 	@RequestMapping(value = "/ajaxTest", method =  RequestMethod.POST )
 	@ResponseBody 
-	public List<ReservationVO> ajaxTest(ReservationVO rVO) {
-		
+	public List<ReservationVO> ajaxTest(String year,String month) {
+		ReservationVO rVO = new ReservationVO();
+		System.out.println(year + ',' + month);
+		rVO.setYear(year);
+		rVO.setMonth(month);
 		List<ReservationVO> result =  reservationService.getReservationCountByMonth(rVO);
 		System.out.println("------------------------------");
 		for(ReservationVO resultVO : result) {
