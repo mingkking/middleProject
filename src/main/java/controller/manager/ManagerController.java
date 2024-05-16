@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.member.MemberService;
 import service.product.ProductService;
@@ -127,8 +129,7 @@ public class ManagerController {
 		
 		 HashMap map = new HashMap(); 
 		 map.put("searchCondition",searchCondition );
-		 map.put("searchCondition", searchCondition);
-		 
+		 map.put("searchKeyword", searchKeyword);
 		  
 		 List<ReservationVO> list = reservationService.managerreservation(map);
 		 
@@ -142,10 +143,41 @@ public class ManagerController {
 		return "";
 	}
 
+
+	
 	@RequestMapping("managergraph")
 	public String managergraph() {
 		return "manager/managergraph";
 	}
+	
+	// ajax 호출 테스트
+	@RequestMapping(value = "ajaxTest", method = { RequestMethod.POST })
+	@ResponseBody 
+	public String ajaxTest() {
+		List<ReservationVO> list = reservationService.getReservationCountByMonth();
+		System.out.println(list);
+	return "kingjames";     
+	}
+	
+//	public String managergraph() {
+//		List<ReservationVO> list = reservationService.getReservationCountByMonth(rVO);
+//		HashMap map = new HashMap();
+//		request.setAttribute("list", list);
+//		map.put("list",list);
+//		String json = null;
+//		try {
+//			json = new ObjectMapper().writeValueAsString(map);
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		}
+//					
+//			return json;
+//		
+//		
+//		return "manager/managergraph";
+//	}
+	
+	
 	
 	/*
 	 * @RequestMapping("managermemberList") public ModelAndView

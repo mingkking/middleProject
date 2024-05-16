@@ -38,4 +38,11 @@ public class ReservationServiceImpl implements ReservationService {
 	public int selectReservationCount() throws Exception {
 		return rDAO.selectReservationCount();
 	}
+	
+	//관리자 통계
+	public List<ReservationVO> getReservationCountByMonth(){
+		return rDAO.getReservationCountByMonth();
+	}
+	
+	
 }
