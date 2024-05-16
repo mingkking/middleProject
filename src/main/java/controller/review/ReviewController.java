@@ -34,7 +34,7 @@ public class ReviewController {
 	private MailService mailService = null;
 	
 	@RequestMapping("/review")
-	public String review(HttpServletResponse response, String id, Integer pageNum, ReviewVO reviewVO, ProductVO productVO, Model model) {
+	public String review(HttpServletResponse response, String id, Integer pageNum, Integer pageNum2, ReviewVO reviewVO, ProductVO productVO, Model model) {
 		if(id.equals("") || id == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
@@ -44,10 +44,17 @@ public class ReviewController {
 		PagingVO pVO = null;
 		List<ReviewVO> reviewList = null;
 		List<ReviewVO> reviewListNoPaging = null;
+		List<ReviewVO> reviewListPaging = null;
+		PagingVO pVO2 = null;
 		
 		// 리뷰 페이징 초기 세팅
 		if(pageNum == null) {
 			pageNum = 1;
+		}
+		
+		// 리뷰 페이징 초기 세팅
+		if(pageNum2 == null) {
+			pageNum2 = 1;
 		}
 		
 		// 리뷰
@@ -56,29 +63,55 @@ public class ReviewController {
 			productList = (ArrayList<ProductVO>) productService.selectProductAllReview(); // 모든 상품 가져오기
 			pVO = new PagingVO(pageNum, reviewService.selectReviewCount(), 12); // 페이지 세팅
 			
+			System.out.println();
 			System.out.println("pVO : " + pVO.toString()); // 페이지 확인
+			System.out.println();
 			
 			HashMap<String, Integer> map = new HashMap<String, Integer>(); // 리뷰리스트의 페이지당 게시물을 출력하기 위한 맵 생성
 			map.put("startBoard", pVO.getStartBoard()-1); // 맵에 시작 게시물 저장
 			map.put("endBoard", pVO.getEndBoard());       // 맵에 끝에 게시물 저장
 			
-			System.out.println("리뷰 페이징2 " + map.get("startBoard") + "리뷰 페이징2 " + map.get("endBoard")); // 맵 값 확인
-			
 			reviewList = new ArrayList<ReviewVO>(); // 리뷰 리스트 객체 생성
 			reviewList = reviewService.selectReviewAll(map); // 리뷰 게시물을 해당페이지당 12개씩 가져오기
 			reviewListNoPaging = reviewService.selectReviewAllNoPaing(); // 리뷰 게시물을 페이징 없이 가져오기
 			productVO = productService.selectProduct(reviewVO.getpNo()); // 리뷰 사진 클릭 시 해당 상풍번호에 대한 상품정보 가져오기
+
+			
+			pVO2 = new PagingVO(pageNum2, reviewService.selectReviewAllNoPaingCount(reviewVO), 5); // 페이징 객체 생성
+			
+			HashMap<String, Integer> map2 = new HashMap<String, Integer>(); // 리뷰리스트의 페이지당 게시물을 출력하기 위한 맵 생성
+			map2.put("startBoard2", pVO2.getStartBoard()-1); // 맵에 시작 게시물 저장
+			map2.put("endBoard2", pVO2.getEndBoard());       // 맵에 끝에 게시물 저장
+			map2.put("pNo", reviewVO.getpNo());				 // 맵에 상품번호 저장
+			
+			System.out.println();
+			System.out.println("상품번호 : " + reviewVO.getpNo()); // 상품번호 확인
+			System.out.println("pVO2 : " + pVO2.toString()); // 페이지 확인
+			System.out.println("pVO2 게시물 수 : " + reviewService.selectReviewAllNoPaingCount(reviewVO)); // 페이지 확인
+			System.out.println(map2.get("startBoard2"));
+			System.out.println(map2.get("endBoard2"));
+			System.out.println(map2.get("pNo"));
+			System.out.println();
+			
+			reviewListPaging = new ArrayList<ReviewVO>(); // 리뷰 리스트 페이징할 객체 생성
+			reviewListPaging = reviewService.selectReviewAllPaing(map2); // 해당 상품번호 관련 리뷰리스트 페이징 서비스 실행
 		} catch (Exception e) {
 			System.out.println("리뷰 전체 목록: " + e.getMessage()); // 에러났을 때
 		}
 		model.addAttribute("id", id); // session id 저장
 		model.addAttribute("productList", productList); // 상품 리스트 전체
+		
 		model.addAttribute("pVO", pVO); // 페이징객체 저장
 		model.addAttribute("pageNum", pageNum); // 현재 페이징 번호
 		model.addAttribute("reviewList", reviewList); // 리뷰 리스트 페이징 완료
 		model.addAttribute("reviewListNoPaging", reviewListNoPaging); // 리뷰 리스트
+		
 		model.addAttribute("pNo", reviewVO.getpNo()); // 상품 클릭시 상품번호 저장
 		model.addAttribute("productVO", productVO); // 리뷰 사진 클릭 시 해당 상풍번호에 대한 상품정보 저장
+		
+		model.addAttribute("pVO2", pVO2); // 두번째 페이징객체 저장
+		model.addAttribute("pageNum2", pageNum2); // 두번째 현재 페이징 번호
+		model.addAttribute("reviewListPaging", reviewListPaging); //해당 상품번호 관련 리뷰리스트 페이징 서비스 저장
 		
 		return "review/review";
 	}

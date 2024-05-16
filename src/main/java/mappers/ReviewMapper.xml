@@ -7,19 +7,37 @@
 	<!-- 리뷰 가져오기 -->
 	<select id="selectReviewAll" parameterType="hashmap" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
+		ORDER BY rRegDate DESC
 		<if test="startBoard != null">
-			LIMIT #{startBoard}, #{endBoard}
+			LIMIT #{startBoard}, 12
 		</if>
+	</select>
+	
+	<!-- 리뷰 개수 -->
+	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
+		SELECT count(*) FROM review
 	</select>
 	
 	<!-- 리뷰 가져오기 -->
 	<select id="selectReviewAllNoPaing" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
+		ORDER BY rRegDate DESC
 	</select>
 	
 	<!-- 리뷰 가져오기 -->
-	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
+	<select id="selectReviewAllPaing" parameterType="hashmap" resultType="vo.review.ReviewVO">
+		SELECT * FROM review
+	    WHERE pNo = #{pNo}
+	    ORDER BY rRegDate DESC
+	    <if test="startBoard2 != null">
+	        LIMIT #{startBoard2}, 5
+	    </if>
+	</select>
+	
+	<!-- 리뷰 상품번호 개수 -->
+	<select id="selectReviewAllNoPaingCount" resultType="int">
 		SELECT count(*) FROM review
+		WHERE pNo = #{pNo}
 	</select>
 	
 	<!-- 리뷰 등록 -->

@@ -20,10 +20,22 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return mybatis.selectList("ReviewDAO.selectReviewAll", map);
 	}
 	
-	// 리뷰 전체 목록
+	// 상품 관련 리뷰 전체 목록
 	@Override
 	public List<ReviewVO> selectReviewAllNoPaing() throws Exception {
 		return mybatis.selectList("ReviewDAO.selectReviewAllNoPaing");
+	}
+	
+	// 상품 관련 리뷰 전체 페이징 목록
+	@Override
+	public List<ReviewVO> selectReviewAllPaing(HashMap<String, Integer> map) throws Exception {
+		return mybatis.selectList("ReviewDAO.selectReviewAllPaing", map);
+	}
+	
+	// 해당 상품 리뷰 개수
+	@Override
+	public int selectReviewAllNoPaingCount(ReviewVO reviewVO) throws Exception {
+		return mybatis.selectOne("ReviewDAO.selectReviewAllNoPaingCount", reviewVO);
 	}
 	
 	// 리뷰 등록
@@ -37,5 +49,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int selectReviewCount() throws Exception {
 		return mybatis.selectOne("ReviewDAO.selectReviewCount");
 	}
+
+	
+
+	
 	
 }
