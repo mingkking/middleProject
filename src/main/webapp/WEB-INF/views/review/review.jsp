@@ -59,14 +59,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("input[name=rPicture]").off().on("change", function(){
+		$("input[name=rPicture]").off().on("change", function() {
 
 			if (this.files && this.files[0]) {
 
 				var maxSize = 10 * 1024 * 1024;
 				var fileSize = this.files[0].size;
 
-				if(fileSize > maxSize){
+				if (fileSize > maxSize) {
 					alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
 					$(this).val('');
 					return false;
@@ -75,7 +75,7 @@
 		});
 	});
 </script>
-  
+
 </head>
 
 <body>
@@ -89,129 +89,141 @@
 
 			<div class="row justify-content-center" id='insertMemberForm'>
 				<div class="col-lg-6 text-center" id="blackbackground">
-				
+
 					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
-					
-						<div class="row gy-4">
-								<!-- 리뷰 사진들 출력 -->
-								<c:if test="${reviewList.size() > 0 }">
-									<c:forEach var="i" begin="0" end="${reviewList.size()-1 }">
-										<c:if test="${ i != 0 && i % 6 == 0 }">
-											<br/>
-										</c:if>
-										<div class="col-md-2">
-											<!-- 이미지 클릭 시 아이디와 상품 번호를 컨트롤러로 보냄 -->
-											<a href="${path}/review?id=${id}&pNo=${reviewList.get(i).pNo}">
-												<img src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}" alt="${reviewList.get(i).rNo }" width="200px" height="" class="img-fluid">
-											</a>
-										</div>
-									</c:forEach>
+
+					<div class="row gy-4">
+						<!-- 리뷰 사진들 출력 -->
+						<c:if test="${reviewList.size() > 0 }">
+							<c:forEach var="i" begin="0" end="${reviewList.size()-1 }">
+								<c:if test="${ i != 0 && i % 6 == 0 }">
+									<br />
 								</c:if>
-								<!-- 리뷰 사진들 페이징 -->
-								<div class="col-md-12" id="pageNum">
-									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-										<c:if test="${sessionScope.logid == null }">
-											<a href="${path}/review?pageNum=${i}&id=${id}">${i }</a>
-										</c:if>
-										<c:if test="${sessionScope.logid != null }">
-											<a href="${path}/review?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
-										</c:if>
-									</c:forEach>
+								<div class="col-md-2">
+									<!-- 이미지 클릭 시 아이디와 상품 번호를 컨트롤러로 보냄 -->
+									<a href="${path}/review?id=${id}&pNo=${reviewList.get(i).pNo}&pageNum=${pageNum}">
+										<img
+										src="${path}/resources/reviewUpload/${reviewList.get(i).r_frealname}"
+										alt="${reviewList.get(i).pNo }" width="200px" height=""
+										class="img-fluid">
+									</a>
 								</div>
-								
-								
-									<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
-									<table class="table">
-											<thead>
-												<tr>
-													<th>아이디</th>
-													<th>제목</th>
-													<th>리뷰내용</th>
-													<th></th>
-													<th>구장명</th>
-													<th>파일</th>
-													<th></th>
-												</tr>
-											</thead>
-											<tbody>
-										
-												<!-- 상품번호에 해당하는 전체 리스트 출력 -->
-												<c:if test="${reviewListNoPaging.size() > 0 }">
-													<c:forEach var="i" begin="0" end="${reviewListNoPaging.size() - 1 }">
-													${pNo }, ${reviewListNoPaging.get(i).pNo } , ${reviewListNoPaging.size() }
-														<c:if test="${pNo == reviewListNoPaging.get(i).pNo }">
-															<tr>
-																<td>${reviewListNoPaging.get(i).id }</td>
-																<td>${reviewListNoPaging.get(i).rTitle }</td>
-																<td colspan="2">${reviewListNoPaging.get(i).rContent }</td>
-																<td>${reviewListNoPaging.get(i).rTitle }</td>
-																<td><img src="${path}/resources/reviewUpload/${reviewListNoPaging.get(i).r_frealname}" alt=""
-																width="150px" height="150px" class="img-fluid"></td>
-															</tr>
-														</c:if>
-													</c:forEach>
-												</c:if>
-												
-										
-											<!-- 리뷰 등록하기 -->
-											<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
-												<tr>
-													<td>${id }</td>
-													<td><input type="text" name="rTitle" required="required"></td>
-													<td colspan="2">
-														<input type="text" name="rContent">
-													</td>
-													<td>
-														<select name="pNo">
-															<c:if test="${productList.size()>0 }">
-																<c:forEach var="i" begin="0" end="${productList.size()-1 }">
-																	<option value="${productList.get(i).pNo }">${productList.get(i).pName}</option>															
-																</c:forEach>
-															</c:if>
-														</select>
-													</td>
-													<td><input type="file" name="rPicture" accept="image/*"/></td>
-													<td>
-														<input type="hidden" name="id" value="${id}"/>
-														<input type="hidden" name="pageNum" value="${pageNum}"/>
-														<input type="submit" value="리뷰쓰기" class="findIdBtn"/>
-													</td>
-												</tr>
-											</form>
-											</tbody>
-										</table>
-									
+							</c:forEach>
+						</c:if>
+						<!-- 리뷰 사진들 페이징 -->
+						<div class="col-md-12" id="pageNum">
+							<c:forEach var="i" begin="${pVO.startPage }"
+								end="${pVO.endPage }">
+								<c:if test="${sessionScope.logid == null }">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&id=${id}&pNo=${pNo}">${i }</a>
+								</c:if>
+								<c:if test="${sessionScope.logid != null }">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&id=${sessionScope.logid}&pNo=${pNo}">${i }</a>
+								</c:if>
+							</c:forEach>
+						</div>
+
+						<c:if test="${pNo > 0 }">
+							<div class="row gy-4">
+
+								<hr/>
+								<table class="table">
+									<tbody>
+										<tr>
+											<td colspan="6"><img
+												src="${path}/resources/assets/img/stadium.png" alt=""
+												width="300px" height="" class="img-fluid"></td>
+										</tr>
+										<tr>
+											<td>구장명</td>
+											<td>${productVO.pName }</td>
+											<td>구장위치</td>
+											<td>${productVO.pLocation }</td>
+											<td>구장가격</td>
+											<td>${productVO.pPrice }</td>
+										</tr>
+										<tr>
+											<td>구장정보</td>
+											<td colspan="5">${productVO.pInfo }</td>
+										</tr>
+									</tbody>
+								</table>
+
 							</div>
-						
-					
-					<c:if test="${pNo != null }">
+						</c:if>
 						<div class="row gy-4">
-						
-							<h2 data-aos="fade-down" id='insertMemberForm'>상세정보</h2>
+							<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
 							<table class="table">
+								<thead>
+									<tr>
+										<th>아이디</th>
+										<th>제목</th>
+										<th>리뷰내용</th>
+										<th></th>
+										<th>구장명</th>
+										<th>파일</th>
+										<th></th>
+									</tr>
+								</thead>
 								<tbody>
-									<tr>
-										<td colspan="6"><img src="${path}/resources/assets/img/stadium.png" alt=""
-														width="300px" height="" class="img-fluid"></td>
-									</tr>
-									<tr>
-										<td>구장명</td>
-										<td>${productVO.pName }</td>
-										<td>구장위치</td>
-										<td>${productVO.pLocation }</td>
-										<td>구장가격</td>
-										<td>${productVO.pPrice }</td>
-									</tr>
-									<tr>
-										<td>구장정보</td>
-										<td colspan="5">${productVO.pInfo }</td>
-									</tr>
+	
+									<!-- 상품번호에 해당하는 전체 리스트 출력 -->
+									<c:if test="${reviewListPaging.size() > 0 }">
+										<c:forEach var="i" begin="0"
+											end="${reviewListPaging.size() - 1 }">
+											<c:if test="${pNo == reviewListPaging.get(i).pNo }">
+												<tr>
+													<td>${reviewListPaging.get(i).id }</td>
+													<td>${reviewListPaging.get(i).rTitle }</td>
+													<td colspan="2">${reviewListPaging.get(i).rContent }</td>
+													<td>${reviewListPaging.get(i).rTitle }</td>
+													<td><img
+														src="${path}/resources/reviewUpload/${reviewListPaging.get(i).r_frealname}"
+														alt="" width="150px" height="150px" class="img-fluid"></td>
+												</tr>
+											</c:if>
+										</c:forEach>
+									</c:if>
+									
+									<!-- 리뷰 등록하기 -->
+									<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
+										<tr>
+											<td>${id }</td>
+											<td><input type="text" name="rTitle" required="required"></td>
+											<td colspan="2"><input type="text" name="rContent">
+											</td>
+											<td><select name="pNo">
+													<c:if test="${productList.size()>0 }">
+														<c:forEach var="i" begin="0" end="${productList.size()-1 }">
+															<option value="${productList.get(i).pNo }">${productList.get(i).pName}</option>
+														</c:forEach>
+													</c:if>
+											</select></td>
+											<td><input type="file" name="rPicture" accept="image/*" /></td>
+											<td><input type="hidden" name="id" value="${id}" /> <input
+												type="hidden" name="pageNum" value="${pageNum}" /> <input
+												type="submit" value="리뷰쓰기" class="findIdBtn" /></td>
+										</tr>
+									</form>
 								</tbody>
 							</table>
-						
+							
+							<!-- 리뷰 사진들 페이징 -->
+							<div class="col-md-12" id="pageNum2">
+								<c:forEach var="i" begin="${pVO2.startPage }"
+									end="${pVO2.endPage }">
+									<c:if test="${sessionScope.logid == null }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&id=${id}&pNo=${pNo}">${i }</a>
+									</c:if>
+									<c:if test="${sessionScope.logid != null }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&id=${sessionScope.logid}&pNo=${pNo}">${i }</a>
+									</c:if>
+								</c:forEach>
+							</div>
+							
 						</div>
-						
-					</c:if>
+					</div>
+
 				</div>
 			</div>
 		</div>

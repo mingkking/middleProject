@@ -20,10 +20,22 @@ public class ReviewServiceImpl implements ReviewService{
 		return reDAO.selectReviewAll(map);
 	}
 	
-	// 리뷰 전체 목록
+	// 상품 관련 리뷰 전체  목록
 	@Override
 	public List<ReviewVO> selectReviewAllNoPaing() throws Exception {
 		return reDAO.selectReviewAllNoPaing();
+	}
+	
+	// 상품 관련 리뷰 전체 페이징 목록
+	@Override
+	public List<ReviewVO> selectReviewAllPaing(HashMap<String, Integer> map) throws Exception {
+		return reDAO.selectReviewAllPaing(map);
+	}
+	
+	// 해당 상품 리뷰 개수
+	@Override
+	public int selectReviewAllNoPaingCount(ReviewVO reviewVO) throws Exception {
+		return reDAO.selectReviewAllNoPaingCount(reviewVO);
 	}
 	
 	// 리뷰 등록
@@ -37,5 +49,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public int selectReviewCount() throws Exception {
 		return reDAO.selectReviewCount();
 	}
+
+	
 
 }
