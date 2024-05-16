@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>questionWrite.jsp</title>
+<title>getQuestion.jsp</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -62,43 +62,68 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">문의 글쓰기</h2>
-						<form method="post" action='saveQuestion'>
+						<h2 data-aos="fade-down">문의 상세</h2>
+						<form method="post" action='getQuestion'>
 							<div class="row gy-4">
 
+								<div class="col-md-4">
+									<p></p>
+								</div>
+								<div class="col-md-8">
+									<input type="hidden" name="qNo" class="form-control" value='${question.qNo }'>
+								</div>
+								
 								<div class="col-md-4">
 									<p>작성일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
+									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
+
+								</div>
+								
+								<div class="col-md-4">
+									<p>아이디</p>
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="qWriter" value='${question.id }' required readonly/>
 								</div>
 								
 								<div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="qTitle" class="form-control" placeholder="이름을 입력해주세요." required />
+									<input type="text" class="form-control" name="qTitle" value='${question.qTitle }' required readonly/>
 								</div>
 								
 								<div class="col-md-4">
-                                <p>문의내용</p>
+                                <p>문의 내용</p>
                             </div>
                             <div class="col-md-8">
-                                <textarea name="qContent" class="form-control" rows="5" placeholder="문의내용을 입력해주세요." required></textarea>
+                                <textarea name="qContent" class="form-control" rows="5" required readonly>${question.qContent }</textarea>
                             </div>
-
-								<div class="col-md-4">
-									<p>비밀번호</p>
+                            
+                            <div class="col-md-4">
+									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="password" class="form-control" name="qPassword"	placeholder="비밀번호를 입력해주세요." required />
+									<input type="text" name="qTitle" class="form-control" placeholder="제목을 입력해주세요." readonly>
 								</div>
+								
+								<div class="col-md-4">
+									<p>답변 내용</p>
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" placeholder="답변내용을 입력해주세요." required readonly/>
+								</div>
+
+								
 								
 								<div class="col-md-4 text-center"></div>
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
-                                <a href='question?id=${id}'><input type='button' id='questionWriteExit' class="findIdBtn"  value='닫기'></a>
-                                <input type='submit' id='questionBtn' class="findIdBtn" value='글쓰기'>
+                                
+                               <a href='question?id=${id} '><input type='button' value='닫기'></a>
+                               <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
@@ -107,8 +132,9 @@
             </div>
         </div>
     </div>
-    
-<div id="hero-carousel" class="carousel slide"></div>
+
+		<div id="hero-carousel" class="carousel slide"></div>
+
 	</section>
 	<!-- End Hero Section -->
 

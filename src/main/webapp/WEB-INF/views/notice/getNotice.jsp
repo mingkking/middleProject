@@ -99,7 +99,7 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='notice'><input type='button' value='닫기'></a>
+                               <a href='notice?id=${id}'><input type='button' value='닫기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
