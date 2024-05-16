@@ -17,8 +17,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 	// 리뷰 전체 목록
 	@Override
 	public List<ReviewVO> selectReviewAll(HashMap<String, Integer> map) throws Exception {
-		System.out.println("111111111111111111111 " + map.get("startBoard"));
-		System.out.println("222222222222222222222 " + map.get("endBoard"));
 		return mybatis.selectList("ReviewDAO.selectReviewAll", map);
 	}
 	

@@ -14,14 +14,14 @@ public class PagingVO {
 
 	}
 
-	public PagingVO(int pageNum, int countList) {
+	public PagingVO(int pageNum, int countList, int cnt) {
 		super();
 		
 		if(pageNum < 1) {
 			pageNum = 1;
 		}
 		
-		this.totalPage = (int) Math.ceil((double)countList/cnt);
+		this.totalPage = (countList % cnt == 0) ? countList / cnt : countList / cnt + 1;
 		
 		int index = pageNum % 10 == 0 ? pageNum/10 : pageNum/10 + 1; // 페이지의 번호 확인 후 밑에 보여질 페이지 숫자를 결정
 		int startPage = 1 + ((index-1) * 10); // 페이지 10개씩
@@ -31,6 +31,7 @@ public class PagingVO {
 			endPage = this.totalPage;
 		}
 		
+		this.cnt = cnt;
 		this.pageNum = pageNum;
 		this.startPage = startPage;
 		this.endPage = endPage;

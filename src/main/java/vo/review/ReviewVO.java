@@ -114,8 +114,8 @@ public class ReviewVO {
 
 	        try {
 	            // 파일 저장 경로 설정
-	            //String uploadDir = "C:\\works\\stsWorks\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\middleprojects\\resources\\reviewUpload"; // 실제 저장 경로에 맞게 수정 필요
-	            String uploadDir = "C:\\Users\\peoplecom\\git\\middleProject\\src\\main\\webapp\\resources\\reviewUpload"; // 실제 저장 경로에 맞게 수정 필요
+	            //String uploadDir = "D:/xWork/webSpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/middleprojects/resources/reviewUpload"; // 실제 저장 경로에 맞게 수정 필요
+	            String uploadDir = "C:\\Users\\ict03_029\\git\\middleProject\\src\\main\\webapp\\resources\\reviewUpload"; // 실제 저장 경로에 맞게 수정 필요
 	            Path uploadPath = Paths.get(uploadDir);
 
 	            // 디렉토리가 존재하지 않으면 생성
