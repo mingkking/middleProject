@@ -75,8 +75,8 @@ public class MemberDAOImpl implements MemberDAO{
 
 	// 회원 정보 수정
 	@Override
-	public void updateMypageInfo(MemberVO vo) {
-		mybatis.update("MemberDAO.updateMypageInfo", vo);
+	public int updateMypageInfo(MemberVO vo) {
+		return mybatis.update("MemberDAO.updateMypageInfo", vo);
 	}
 		
 	// 회원 정보 수정
@@ -85,6 +85,11 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println(map.get("vo").toString());
 		mybatis.update("MemberDAO.updateMypage", map);
 		
+	}
+
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.selectMypagePw", vo);
 	}
 
 	

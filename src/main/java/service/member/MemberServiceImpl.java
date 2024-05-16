@@ -69,13 +69,18 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 회원 정보 수정
 	@Override
-	public void updateMypageInfo(MemberVO vo) {
-		mDAO.updateMypageInfo(vo);	
+	public int updateMypageInfo(MemberVO vo) {
+		return mDAO.updateMypageInfo(vo);	
 	}
 	
 	// 회원 정보 수정
 	public void updateMypage(HashMap<String, Object> map) {
 		mDAO.updateMypage(map);		
+	}
+
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo) {
+		return mDAO.selectMypagePw(vo);
 	}
 	
 }
