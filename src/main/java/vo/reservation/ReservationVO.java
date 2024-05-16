@@ -19,7 +19,8 @@ public class ReservationVO {
 	private String rPayMethod;
 	private String rPayRegDate;
 	
-	// 
+	//
+	private String year;
 	private String month;
 	private String reservationCount;
 	
