@@ -13,6 +13,11 @@
 	</select>
 	
 	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewAllNoPaing" resultType="vo.review.ReviewVO">
+		SELECT * FROM review
+	</select>
+	
+	<!-- 리뷰 가져오기 -->
 	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
 		SELECT count(*) FROM review
 	</select>

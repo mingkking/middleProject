@@ -14,6 +14,12 @@
 		</if>
 	</select>
 	
+	<!-- 상품 전체 목록 조회 -->
+	<select id="selectProductAllReview" resultType="vo.product.ProductVO">
+		SELECT *
+		FROM product
+	</select>
+	
 	<!-- 상품 상세 조회 -->
 	<select id="selectProduct" parameterType="int" resultType="vo.product.ProductVO">
 		SELECT *

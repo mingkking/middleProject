@@ -14,7 +14,7 @@ public class ProductDAOImpl implements ProductDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	// 상품 전체 목록 조회
+	// 상품 전체 목록 페이징 조회
 	@Override
 	public List<ProductVO> selectProductAll(int startBoard, int endBoard) throws Exception {
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
@@ -22,6 +22,12 @@ public class ProductDAOImpl implements ProductDAO{
 		map.put("endBoard", endBoard);
 		
 		return mybatis.selectList("ProductDAO.selectProductAll", map);
+	}
+	
+	// 상품 전체 목록
+	@Override
+	public List<ProductVO> selectProductAllReview() throws Exception {
+		return mybatis.selectList("ProductDAO.selectProductAllReview");
 	}
 	
 	// 상품 상세 조회
@@ -57,6 +63,7 @@ public class ProductDAOImpl implements ProductDAO{
 	public void deleteProduct(ProductVO vo) {
 		mybatis.delete("ProductDAO.deleteProduct",vo);
 	}
+	
 
 	
 	

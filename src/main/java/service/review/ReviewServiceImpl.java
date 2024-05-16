@@ -14,9 +14,16 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewDAO reDAO;
 
+	// 리뷰 전체 페이징 목록
 	@Override
 	public List<ReviewVO> selectReviewAll(HashMap<String, Integer> map) throws Exception {
 		return reDAO.selectReviewAll(map);
+	}
+	
+	// 리뷰 전체 목록
+	@Override
+	public List<ReviewVO> selectReviewAllNoPaing() throws Exception {
+		return reDAO.selectReviewAllNoPaing();
 	}
 	
 	// 리뷰 등록
@@ -30,5 +37,5 @@ public class ReviewServiceImpl implements ReviewService{
 	public int selectReviewCount() throws Exception {
 		return reDAO.selectReviewCount();
 	}
-	
+
 }

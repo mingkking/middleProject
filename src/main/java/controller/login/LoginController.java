@@ -178,7 +178,6 @@ public class LoginController {
 			
 			if(result == 1) {
 				mailService = new MailService();
-				mailService.sendMail(vo.getEmail());
 			}
 			
 			System.out.println("1111111111111111111" + result);

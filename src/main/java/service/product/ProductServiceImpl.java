@@ -13,10 +13,16 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDAO pDAO;
 
-	// 상품 전체 목록 조회
+	// 상품 전체 목록 페이징 조회
 	@Override
 	public List<ProductVO> selectProductAll(int startBoard, int endBoard) throws Exception {
 		return pDAO.selectProductAll(startBoard, endBoard);
+	}
+	
+	// 상품 전체 목록
+	@Override
+	public List<ProductVO> selectProductAllReview() throws Exception {
+		return pDAO.selectProductAllReview();
 	}
 
 	// 상품 상세 조회
@@ -55,5 +61,6 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProduct(ProductVO vo) {
 		pDAO.deleteProduct(vo);
 	}
+
 
 }
