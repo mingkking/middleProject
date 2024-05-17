@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService{
 	public void insertMember(MemberVO vo) throws Exception {
 		mDAO.insertMember(vo);
 	}
-
+ 
 	// 로그인
 	@Override
 	public int loginCheck(MemberVO vo) throws Exception {

@@ -18,7 +18,7 @@
 <link href="${path}/resources/assets/img/favicon.png" rel="icon">
 <link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
-
+ 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

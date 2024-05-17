@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
 public class MailService {
 
 	public void sendMail(String emailAddr) {
-
+ 
 		Properties p = System.getProperties();
 		p.put("mail.smtp.starttls.enable", "true");     // gmail,naver은 true 고정
 		p.put("mail.smtp.host", "smtp.naver.com");      // smtp 서버 주소
