@@ -50,7 +50,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+ 
 <body>
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>
