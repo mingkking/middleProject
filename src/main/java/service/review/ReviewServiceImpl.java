@@ -44,11 +44,25 @@ public class ReviewServiceImpl implements ReviewService{
 		return reDAO.insertReview(reviewVO);
 	}
 	
+	// 리뷰 수정
+	@Override
+	public int updateReview(ReviewVO reviewVO) throws Exception {
+		return reDAO.updateReview(reviewVO);
+	}
+	
 	// 구장번호에 해당하는 리뷰 전체 개수
 	@Override
 	public int selectReviewCount() throws Exception {
 		return reDAO.selectReviewCount();
 	}
+
+	// 리뷰 삭제
+	@Override
+	public int deleteReview(ReviewVO reviewVO) throws Exception {
+		return reDAO.deleteReview(reviewVO);
+	}
+
+	
 
 	
 
