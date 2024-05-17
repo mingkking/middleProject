@@ -171,9 +171,9 @@
 							<div class="row gy-4">
 
 								<hr />
-								<table class="table">
+								<table class="table table-default table-hover">
 									<tbody>
-										<tr>
+										<tr class="table-dark">
 											<td colspan="6"><img
 												src="${path}/resources/reviewUpload/${productVO.p_frealname}"
 												alt="" width="300px" height="" class="img-fluid"></td>
@@ -197,9 +197,9 @@
 						</c:if>
 						<div class="row gy-4">
 							<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
-							<table class="table">
+							<table class="table table-default table-hover">
 								<thead>
-									<tr>
+									<tr class="table-dark">
 										<th>아이디</th>
 										<th>제목</th>
 										<th>리뷰내용</th>
@@ -239,11 +239,11 @@
 									<form action="${path}/insertReview" method="post" enctype="multipart/form-data">
 										<tr>
 											<td>${sessionScope.logid }</td>
-											<td><input type="text" name="rTitle" id="rTitle" required="required"></td>
-											<td colspan="2"><input type="text" name="rContent" id="rContent">
+											<td><input type="text" name="rTitle" id="rTitle" class="form-control" required="required"></td>
+											<td colspan="2"><input type="text" name="rContent" id="rContent" class="form-control">
 											</td>
 											<td>
-												<select name="pNo">
+												<select name="pNo" class="form-control">
 													<c:if test="${productList.size()>0 }">
 														<c:forEach var="i" begin="0" end="${productList.size()-1 }">
 															<option value="${productList.get(i).pNo }">${productList.get(i).pName}</option>
@@ -252,7 +252,7 @@
 												</select>
 											</td>
 											<td>
-												<input type="file" name="rPicture" accept="image/*" />
+												<input type="file" name="rPicture" class="form-control" accept="image/*" />
 											</td>
 											<td>
 												<input type="hidden" name="pageNum" id="pageNum" value="${pageNum}" /> 
