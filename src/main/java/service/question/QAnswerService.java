@@ -5,4 +5,4 @@ import vo.question.QAnswerVO;
 public interface QAnswerService {
 	
 	void insertQuestion(QAnswerVO vo);
-}
+} 

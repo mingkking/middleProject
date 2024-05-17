@@ -10,7 +10,7 @@
 		INSERT INTO QUESTION (id, qTitle, qContent, qPassword, qRegdate, qStatus)
 		VALUES ( #{id}, #{qTitle}, #{qContent}, #{qPassword}, now(), "N")
 	</insert>
-	
+	 
 	<!-- sql 문의글 update문 -->
 	<update id="updateQuestion" parameterType="vo.question.QuestionVO">
 		UPDATE QUESTION SET

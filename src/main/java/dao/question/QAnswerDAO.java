@@ -4,5 +4,5 @@ import vo.question.QAnswerVO;
 
 public interface QAnswerDAO {
 
-	public void insertQuestion(QAnswerVO vo);
+	public void insertQuestion(QAnswerVO vo); 
 }

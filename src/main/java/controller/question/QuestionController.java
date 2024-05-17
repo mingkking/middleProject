@@ -25,7 +25,7 @@ public class QuestionController {
 	private QuestionService questionService;
 	
 	// 문의글 검색 및 출력
-	@RequestMapping("question")
+	@RequestMapping("question") 
 	public String question(HttpServletResponse response,
 						 Model m,
 						 String searchCondition,

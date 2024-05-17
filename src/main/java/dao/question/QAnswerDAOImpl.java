@@ -16,4 +16,4 @@ public class QAnswerDAOImpl implements QAnswerDAO{
 		System.out.println("===> Mybatis managerInsertQuestion() 호출");
 		mybatis.insert("QAnswerDAO.managerInsertQuestion", vo);
 	}
-}
+} 
