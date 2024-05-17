@@ -10,5 +10,5 @@
 		INSERT INTO QAnswer (qATitle, qAContent, qARegdate)
 		VALUES ( #{qATitle}, #{qAContent}, sysdate())
 	</insert>
-
+ 
 </mapper>

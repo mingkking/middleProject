@@ -30,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	public QuestionVO getQuestion(QuestionVO vo) {
 		return questionDAO.getQuestion(vo);
-	}
+	} 
 	
 	public List<QuestionVO> question(HashMap map){
 		return questionDAO.question(map);

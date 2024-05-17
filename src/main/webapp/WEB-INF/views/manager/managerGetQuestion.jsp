@@ -63,7 +63,7 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">문의 상세</h2>
-						<form method="post" action="managerSaveQuestion">
+						<form method="post" >
 							<div class="row gy-4">
 
 								<div class="col-md-4">
@@ -105,21 +105,21 @@
 									<p>답변일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="qARegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonly>
+									<input type="date" name="qARegdate" class="form-control" value="${managerQuestion.qARegdate }>" readonly>
 								</div>
 								
                              <div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="qATitle" class="form-control" placeholder="제목을 입력해주세요." value='${question.qTitle }' >
+									<input type="text" name="qATitle" class="form-control" placeholder="제목을 입력해주세요." value='${managerQuestion.qATitle }' >
 								</div>
 								
 								<div class="col-md-4">
 									<p>답변 내용</p>
 								</div>
 								<div class="col-md-8">
-									<textarea name="qAContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required >${question.qContent }</textarea>
+									<textarea name="qAContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required >${managerQuestion.qAContent }</textarea>
 								</div>
 
 								
@@ -130,7 +130,8 @@
                                 
                                <a href='managerQuestion'><input type='button' value='닫기'></a>
                                <a href='managerDeleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
-                               <a href='managerQuestion'><input type='submit' value='답변하기'></a>
+                               <input type="submit" value="답변하기" name="action" onclick="this.form.action='managerSaveQuestion'">
+    						   <input type="submit" value="수정하기" name="action" onclick="this.form.action='managerUpdateQuestion'">
                             </div>
                             <div class="col-md-4 text-center">
                             

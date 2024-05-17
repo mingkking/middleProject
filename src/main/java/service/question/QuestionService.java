@@ -22,4 +22,4 @@ public interface QuestionService {
 	List<QuestionVO> question(HashMap map);
 	
 	boolean checkPassword(String userId, String password);
-}
+} 

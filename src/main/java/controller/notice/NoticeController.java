@@ -22,7 +22,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	// 사용자 공지 검색 및 출력
-	@RequestMapping("notice")
+	@RequestMapping("notice") 
 	public String notice(HttpServletResponse response,
 					   Model m,
 					   String searchCondition,

@@ -15,5 +15,5 @@ public class QAnswerServiceImpl implements QAnswerService{
 	@Override
 	public void insertQuestion(QAnswerVO vo) {
 		qAnswerDAO.insertQuestion(vo);
-	}
+	} 
 }
