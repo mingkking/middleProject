@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(function() {
 		var currentPath = window.location.pathname;
-	    $('#navbar .nav-item').each(function() {
+	    $('#navbar ul .nav-item').each(function() {
 	        var itemPath = $(this).find('a').attr('href');
 	        if (itemPath === currentPath) {
 	        	$('#navbar .nav-item').removeClass('active'); 

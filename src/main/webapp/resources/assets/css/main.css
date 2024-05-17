@@ -2649,6 +2649,12 @@ section {
     border: none;
 }
 
+#emailCheck{
+	background: #00ad34;
+    border-radius: 20px;
+    border: none;
+}
+
 #insertBtn {
 	background: #00ad34;
     border-radius: 20px;
