@@ -14,10 +14,10 @@ public interface ReservationDAO {
 	public List<ReservationVO> selectReservationTime(ReservationVO rVO) throws Exception;
 
 	// 관리자 예약 확인
-	public List<ReservationVO> managerreservation(HashMap map);
+	//public List<ReservationVO> managerreservation(HashMap map);
 
-	// 예약 갯수
-	public int selectReservationCount() throws Exception;
+	int getReservationCount(HashMap<String,Object>map);
+	List<ReservationVO> managerreservation(HashMap<String,Object> map);
 	
 	//관리자 통계
 	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO);

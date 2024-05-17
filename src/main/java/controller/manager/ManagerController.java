@@ -1,5 +1,6 @@
 package controller.manager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,12 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.member.MemberService;
 import service.product.ProductService;
 import service.reservation.ReservationService;
 import vo.member.MemberVO;
+import vo.paging.PagingVO;
 import vo.product.ProductVO;
 import vo.reservation.ReservationVO;
 
@@ -43,7 +46,6 @@ public class ManagerController {
 		map.put("searchKeyword", searchKeyword);
 		
 		List<MemberVO> list = memberService.getmemberList(map);
-		
 		m.addAttribute("memberList",list);
 		
 		return "manager/managermemberList";
@@ -123,29 +125,46 @@ public class ManagerController {
 	public String managerreservation(Model m, Integer pageNum,
 				String searchCondition,
 				String searchKeyword) {
+		if(pageNum == null) {
+			pageNum = 1;
+		}
 		
-		
-		
-		 HashMap map = new HashMap(); 
+		 HashMap<String, Object> map = new HashMap<>(); 
 		 map.put("searchCondition",searchCondition );
 		 map.put("searchKeyword", searchKeyword);
-		  
-		 List<ReservationVO> list = reservationService.managerreservation(map);
+		
+		 int totalRecords = reservationService.getReservationCount(map);
+		 PagingVO paging = new PagingVO(pageNum,totalRecords,10);//한 페이지당 보이는 갯수
+		 map.put("startBoard", paging.getStartBoard());
+		 map.put("cnt", paging.getCnt());
 		 
+		 
+		 List<ReservationVO> list = reservationService.managerreservation(map); 
 		 m.addAttribute("mCheckReservation",list);
-		 
+		 m.addAttribute("paging",paging);
+		 m.addAttribute("searchCondition",searchCondition);
+		 m.addAttribute("searchKeyword",searchKeyword);
+		 		 
 	     return "manager/managerreservation"; 
 	}
 	
 	@RequestMapping("selectReservationCount")
-	public String selectReservationCount() {
+	public String selectReservationCount(){
+		
 		return "";
 	}
 
 
 	
 	@RequestMapping(value = "/managergraph", method = RequestMethod.GET)
-	public String managergraph() {
+	public String managergraph(Model model) {
+		int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+		List<Integer> years = new ArrayList<>();
+		for(int i = currentYear -5; i <= currentYear + 5;i++) {
+			years.add(i);
+		}
+		model.addAttribute("currentYear",currentYear);
+		model.addAttribute("years",years);		
 		return "manager/managergraph";
 	}
 	 
