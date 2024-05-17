@@ -28,15 +28,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	// 관리자 예약확인
-	public List<ReservationVO> managerreservation(HashMap map) {
+	public List<ReservationVO> managerreservation(HashMap<String,Object> map) {
 		List<ReservationVO> list = mybatis.selectList("ReservationDAO.managerreservation", map);
 
 		return list;
 	}
 
-	// 예약갯수
-	public int selectReservationCount() throws Exception {
-		return mybatis.selectOne("ReservationDAO.selectReservationCount");
+	//관리자 예약확인 리스트
+	public int getReservationCount(HashMap<String,Object>map) {
+		return mybatis.selectOne("ReservationDAO.getReservationCount",map);
 	}
 
 	//관리자 통계 

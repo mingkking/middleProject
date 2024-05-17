@@ -2,7 +2,14 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
+
+<%
+	// 오늘날짜
+	// 년도
+	int year = 2024;
+%>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -103,7 +110,7 @@
                     var data = google.visualization.arrayToDataTable(prepareChartData(response));
                     var options = {
                         title: '월 구장별 예약 현황',
-                        //chartArea: { width: '50%' },
+                        chartArea: { width: '50%' },
                         hAxis: { title: '구단' },
                         vAxis: { title: '예약수' }
                     };
@@ -147,22 +154,28 @@
 						<h3 data-aos="fade-down">통계</h3>
 						<div class="pull-right">
 							<button type="button" class="btn btn-sm btn-primary"
-								id="ajaxButton">ajax테스트</button>
+								id="ajaxButton">예약 확인</button>
 						</div>
 						<!-- 그래프를 그릴 요소들 -->
 						<select id="yearSelect">
-							<option value="2024">2024</option>
+							<c:forEach var="year" items="${years}">
+								<option value="${year}" ${year==currentYear? 'selected' : ''}>
+								${year}</option>
+							</c:forEach>
 							
 						</select> <select id="monthSelect">
-							<option value="1">January</option>
-							<option value="2">February</option>
-							<option value="3">March</option>
-							<option value="4">April</option>
-							<option value="5">May</option>
-							<option value="6">June</option>
-							<option value="7">July</option>
-							<option value="8">August</option>
-							<!-- Add more months if needed -->
+							<option value="1">1월</option>
+							<option value="2">2월</option>
+							<option value="3">3월</option>
+							<option value="4">4월</option>
+							<option value="5">5월</option>
+							<option value="6">6월</option>
+							<option value="7">7월</option>
+							<option value="8">8월</option>
+							<option value="9">9월</option>
+							<option value="10">10월</option>
+							<option value="11">11월</option>
+							<option value="12">12월</option>
 						</select>
 
 						
