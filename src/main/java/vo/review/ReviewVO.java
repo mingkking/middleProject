@@ -90,6 +90,7 @@ public class ReviewVO {
 			// 실제파일 저장
 			// 추후에 웹서버 경로를 찾아서 수정
 			File f = new File("C:\\Users\\ict03_029\\git\\middleProject\\src\\main\\webapp\\resources\\reviewUpload\\" + r_frealname);
+			//File f = new File("D:\\xWork\\webSpringWorkSpace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\middleprojects\\resources\\reviewUpload\\" + r_frealname);
 			
 			try {
 				rPicture.transferTo(f);

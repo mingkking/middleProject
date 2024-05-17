@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -34,8 +35,12 @@ public class ReviewController {
 	private MailService mailService = null;
 	
 	@RequestMapping("/review")
-	public String review(HttpServletResponse response, String id, Integer pageNum, Integer pageNum2, ReviewVO reviewVO, ProductVO productVO, Model model) {
-		if(id.equals("") || id == null) {
+	public String review(HttpServletResponse response, HttpSession session, Integer pageNum, Integer pageNum2, ReviewVO reviewVO, ProductVO productVO, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
@@ -98,7 +103,6 @@ public class ReviewController {
 		} catch (Exception e) {
 			System.out.println("리뷰 전체 목록: " + e.getMessage()); // 에러났을 때
 		}
-		model.addAttribute("id", id); // session id 저장
 		model.addAttribute("productList", productList); // 상품 리스트 전체
 		
 		model.addAttribute("pVO", pVO); // 페이징객체 저장
@@ -117,20 +121,74 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/insertReview")
-	public String insertReview(ReviewVO reviewVO, Integer pageNum, HttpServletResponse response, Model model) {
-		System.out.println("111111111111111111111 " + reviewVO.toString());
+	public String insertReview(ReviewVO reviewVO, HttpSession session, Integer pageNum, HttpServletResponse response, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
+			return "login/login";
+		}
+		reviewVO.setId(id);
+		
+		int result = 0;
+		ProductVO productVO = null;
+		
 		try {
-			int result = reviewService.insertReview(reviewVO);
-			if(result == 1) {
-				ProductVO productVO = productService.selectProduct(reviewVO.getpNo());
-				model.addAttribute("productVO", productVO);
-				PopUp.popUpMove(response, "리뷰 등록이 완료되었습니다.", "review?id=" + reviewVO.getId() + "&pNo=" + reviewVO.getpNo() + "&pageNum=" + pageNum);
-			}
-			 
+			result = reviewService.insertReview(reviewVO);
+			productVO = productService.selectProduct(reviewVO.getpNo());
 		} catch (Exception e) {
 			System.out.println("리뷰 등록 : " + e.getMessage()); // 에러났을 때
 		}
 		
-		return "redirect:review";
+		model.addAttribute("productVO", productVO);
+		
+		return "redirect:/review?pNo=" + reviewVO.getpNo() + "&pageNum=" + pageNum;
 	}
+	
+	@RequestMapping("/updateReview")
+	@ResponseBody
+	public ReviewVO updateReview(HttpSession session, ReviewVO reviewVO, Integer rNo, Integer pNo, String rTitle, String rContent) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		reviewVO.setrNo(rNo);
+		reviewVO.setpNo(pNo);
+		reviewVO.setId(id);
+		reviewVO.setrTitle(rTitle);
+		reviewVO.setrContent(rContent);
+		
+		System.out.println(reviewVO.toString());
+		
+		try {
+			reviewService.updateReview(reviewVO);
+		} catch (Exception e) {
+			System.out.println("리뷰 수정 : " + e.getMessage()); // 에러났을 때
+		}
+		
+		return reviewVO;
+	}
+	
+	@RequestMapping("/deleteReview")
+	@ResponseBody
+	public ReviewVO deleteReview(HttpSession session, ReviewVO reviewVO, Integer rNo) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		reviewVO.setrNo(rNo);
+		reviewVO.setId(id);
+		
+		System.out.println(reviewVO.toString());
+		
+		try {
+			reviewService.deleteReview(reviewVO);
+		} catch (Exception e) {
+			System.out.println("리뷰 삭제 : " + e.getMessage()); // 에러났을 때
+		}
+		
+		return reviewVO;
+	}
+	
 }

@@ -43,12 +43,26 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int insertReview(ReviewVO reviewVO) throws Exception {
 		return mybatis.insert("ReviewDAO.insertReview", reviewVO);
 	}
-
+	
+	// 리뷰 수정
+	@Override
+	public int updateReview(ReviewVO reviewVO) throws Exception {
+		return mybatis.update("ReviewDAO.updateReview", reviewVO);
+	}
+	
 	// 구장번호에 해당하는 리뷰 전체 개수
 	@Override
 	public int selectReviewCount() throws Exception {
 		return mybatis.selectOne("ReviewDAO.selectReviewCount");
 	}
+
+	// 리뷰 삭제
+	@Override
+	public int deleteReview(ReviewVO reviewVO) throws Exception {
+		return mybatis.delete("ReviewDAO.deleteReview", reviewVO);
+	}
+
+	
 
 	
 

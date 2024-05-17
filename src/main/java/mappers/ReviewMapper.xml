@@ -46,6 +46,19 @@
 		VALUES(#{id}, #{pNo}, #{rTitle}, #{rContent}, sysdate(), #{r_fname}, #{r_frealname}, #{r_fsize})
 	</insert>
 	
+	<!-- 리뷰 업데이트 -->
+	<update id="updateReview" parameterType="vo.review.ReviewVO">
+		UPDATE review
+		SET rTitle = #{rTitle}, rContent = #{rContent}
+		WHERE rNo = #{rNo} AND pNo = #{pNo}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="vo.review.ReviewVO">
+		DELETE FROM review
+		WHERE rNo = #{rNo} AND id = #{id}
+	</delete>
+	
 	<!-- <insert id="insertBoard" parameterType="BoardVO">
 		INSERT INTO uploadtemp ( b_name, b_email, b_title , b_content, b_pwd , b_date, b_count
 		<if test="b_fname != null"> 

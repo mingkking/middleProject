@@ -21,6 +21,12 @@ public interface ReviewService {
 	// 리뷰 등록
 	public int insertReview(ReviewVO reviewVO) throws Exception;
 	
+	// 리뷰 수정
+	public int updateReview(ReviewVO reviewVO) throws Exception;
+	
 	// 구장번호에 해당하는 리뷰 전체 개수
 	public int selectReviewCount() throws Exception;
+	
+	// 리뷰 삭제
+	public int deleteReview(ReviewVO reviewVO) throws Exception;
 }
