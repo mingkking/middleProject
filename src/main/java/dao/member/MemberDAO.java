@@ -12,19 +12,26 @@ public interface MemberDAO {
 	// 로그인
 	public int loginCheck(MemberVO vo) throws Exception;
 
-	// 회원가입 ID 중복 검사
-	public int selectCheckID(MemberVO vo) throws Exception;
+	// 회원가입 ID 중복 검사 
+	public int selectCheckID(MemberVO vo) throws Exception; 
 
 	// 회원가입 Tel 중복 검사
 	public int selectCheckTel(MemberVO vo) throws Exception;
 
 	// 회원가입 email 중복 검사
 	public int selectCheckEmail(MemberVO vo) throws Exception;
-
-	public List<MemberVO> getmemberList(HashMap map);
-
+	
+	//관리자 멤버 조회
+	//public List<MemberVO> getmemberList(HashMap map);
+	
+	//관리자 멤버 조회 , 페이징화
+	List<MemberVO> getmemberList(HashMap<String,Object>map);
+	int getMemberCount(HashMap<String,Object>map);
+	
+	//관리자 멤버 상세조회
 	public MemberVO getmember(MemberVO vo);
-
+	
+	//관리자 멤버 탈퇴
 	public void deletemember(MemberVO vo);
 	
 	// 마이페이지 정보 조회
@@ -34,8 +41,20 @@ public interface MemberDAO {
 	public int deleteMypage(MemberVO vo);
 	
 	// 회원 정보 수정
-	public void updateMypageInfo(MemberVO vo);
+	public int updateMypageInfo(MemberVO vo);
 		
 	// 회원 정보 수정
 	public void updateMypage(HashMap<String, Object> map);
+	
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo);
+	
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo);
+	
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo);
+	
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo);
 }

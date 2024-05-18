@@ -7,8 +7,8 @@
 
 	<!-- 예약등록 -->
 	<insert id="insertReservation" parameterType="vo.reservation.ReservationVO">
-		INSERT INTO reservation(id, pNo, rental, start_time, end_time, totalMoney, rStatus, rRegDate)
-		VALUES(#{id}, #{pNo}, #{rental}, #{start_time}, #{end_time}, #{totalMoney}, 'N', sysdate());
+		INSERT INTO reservation(id, pNo, rental, start_time, end_time, totalMoney, rStatus, rRegDate, rPayStatus, rPayMethod, rPayRegDate)
+		VALUES(#{id}, #{pNo}, #{rental}, #{start_time}, #{end_time}, #{totalMoney}, #{rStatus}, sysdate(), #{rPayStatus}, #{rPayMethod}, sysdate());
 	</insert>
 	
 	<select id="selectReservationTime" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO">
@@ -17,23 +17,51 @@
 	</select>
 	
 	<!-- 관리자 예약확인 -->
-	<select id="managerreservation" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO" >
-		SELECT r.id,r.pNo,r.rRegDate,r.start_time,r.totalMoney
+	<select id="managerreservation" parameterType="map" resultType="vo.reservation.ReservationVO" >
+		SELECT r.id,r.pNo,r.rRegDate,r.start_time,r.end_time,r.totalMoney
 		FROM reservation r inner join product p
 		on r.pNo = p.pNo
 		<where>
-			<if test='searchCondition != null'>
+			<if test="searchCondition != null and searchKeyword !=null 
+			and searchCondition !='' and searchKeyword !=''">
 				${searchCondition} Like '%${searchKeyword}%'
 			</if>
 		</where>
 		ORDER BY r.rRegDate
-		
-	</select>
+		LIMIT #{startBoard}, #{cnt}
+	</select> 
+	
+<select id="getReservationCount" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM reservation r INNER JOIN product p ON r.pNo = p.pNo
+    <where>
+        <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+</select>
+	
+	
+	
+	
+	
 	
 	<!-- 예약 총수 가져오기 -->
 	<select id="selectReservationCount" resultType="int" >
 	SELECT count(*)
 	FROM reservation
 	</select>	
+	
+	
+	<!-- 관리자 통계 -->
+	<select id="getReservationCountByMonth" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO"> 
+   select p.pNo, (select count(r.rNo) from reservation r where year(r.rental)=${year} and month(r.rental)=${month} and r.pNo = p.pNo ) as reservationCount
+   from product p
+   order by p.pNo ASC;
+   </select>
+   
+
+   
+	
 	
 </mapper>

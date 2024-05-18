@@ -53,7 +53,9 @@
 table {
 	border-collapse: collapse;
 	width: 100%;
+	
 }
+
 
 th, td {
 	border: 1px solid #dddddd;
@@ -67,10 +69,12 @@ th {
 
 tr {
 	background-color: #f2f2f2;
-}
-
+} 
 
 </style>
+
+
+
 </head>
 
 <body>
@@ -89,7 +93,7 @@ tr {
 			<form method='get' action='managerreservation'>
 			<select name='searchCondition' >
 				<option value='id'>예약자</option>
-				<option value='pNo'>구장</option>
+				<option value='r.pNo'>구장</option>
 				<option value='rRegDate'>날짜</option>
 				
 			</select>
@@ -98,13 +102,14 @@ tr {
 			</form>
 			
 			
-			<div class="reservation-container">
-			<table border="1" class="reservation">
+			
+			<table border="1" class="reservationBoard">
 			<tr>
 				<th bgcolor="#ooad34" width="100">예약자 ID</th>
 				<th bgcolor="#ooad34" width="200">구장</th>
 				<th bgcolor="#ooad34" width="150">예약날짜</th>
-				<th bgcolor="#ooad34" width="150">시간</th>
+				<th bgcolor="#ooad34" width="150">시작시간</th>
+				<th bgcolor="#ooad34" width="150">퇴실시간</th>
 				<th bgcolor="#ooad34" width="100">가격</th>
 				
 				
@@ -116,16 +121,32 @@ tr {
 					<td >${mck.pNo }</td> 
 					<td>${mck.rRegDate }</td>  
 					<td>${mck.start_time }</td>
+					<td>${mck.end_time }</td>
 					<td>${mck.totalMoney  }</td>
-				
-					<!-- 추가 -->
-					 
-					
 				</tr>
-			</c:forEach>	
+			</c:forEach>
 		</table>
+	
+		<!-- 페이징 -->
+		<div id="pagination" class="col-md-12">
+    <c:if test="${paging.startPage > 1}">
+        <a href="${path}/managerreservation?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" step="1" varStatus="loop">
+        <c:choose>
+            <c:when test="${loop.index == paging.pageNum}">
+                <span class="current">${loop.index}</span>
+            </c:when>
+            <c:otherwise>
+                <a href="${path}/managerreservation?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    <c:if test="${paging.endPage < paging.totalPage}">
+        <a href="${path}/managerreservation?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+    </c:if>
+</div>
 		
-		</div>
 					</div>
 				</div>
 			</div>

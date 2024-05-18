@@ -17,8 +17,8 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	// 예약 등록
-	public void insertReservation(ReservationVO rVO) throws Exception {
-		mybatis.insert("ReservationDAO.insertReservation", rVO);
+	public int insertReservation(ReservationVO rVO) throws Exception {
+		return mybatis.insert("ReservationDAO.insertReservation", rVO);
 	}
 
 	// 날짜에 따른 시작 시간 가져오기
@@ -28,15 +28,21 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	// 관리자 예약확인
-	public List<ReservationVO> managerreservation(HashMap map) {
+	public List<ReservationVO> managerreservation(HashMap<String,Object> map) {
 		List<ReservationVO> list = mybatis.selectList("ReservationDAO.managerreservation", map);
 
 		return list;
 	}
 
-	// 예약갯수
-	public int selectReservationCount() throws Exception {
-		return mybatis.selectOne("ReservationDAO.selectReservationCount");
+	//관리자 예약확인 리스트
+	public int getReservationCount(HashMap<String,Object>map) {
+		return mybatis.selectOne("ReservationDAO.getReservationCount",map);
 	}
+
+	//관리자 통계 
+	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO){
+		return mybatis.selectList("ReservationDAO.getReservationCountByMonth",rVO);
+	}
+
 
 }

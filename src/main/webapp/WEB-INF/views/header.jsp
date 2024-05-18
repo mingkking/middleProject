@@ -12,11 +12,15 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#navbar > ul > li a').click(function() {
-			/* console.log($(this).text());
-			$('#navbar > ul > li').find('a[class="active"]').removeClass();
-			$(this).addClass('active'); */
-		});
+		var currentPath = window.location.pathname;
+	    $('#navbar ul .nav-item').each(function() {
+	        var itemPath = $(this).find('a').attr('href');
+	        if (itemPath === currentPath) {
+	        	$('#navbar .nav-item').removeClass('active'); 
+	            $(this).addClass('active');
+	        }
+	    
+	    });
 	});
 </script>
 </head>
@@ -35,14 +39,14 @@
 				<ul>
 					
 					<!-- <li><a href="${path}/#">관리자</a></li> -->
-					<li><a href="${path}/#" class="active">소개</a></li>
-					<li><a href="${path}/reservation?id=${sessionScope.logid}">예약</a></li>
-					<li><a href="${path}/coming?id=${sessionScope.logid}">오시는 길</a></li>
-					<li><a href="${path}/question?id=${sessionScope.logid}">문의</a></li>
-					<li><a href="${path}/notice?id=${sessionScope.logid}">공지사항</a></li>
-					<li><a href="${path}/#">예약확인/취소</a></li>
-					<li><a href="${path}/review?id=${sessionScope.logid}">리뷰</a></li>
-					<li><a href="${path}/mypage?id=${sessionScope.logid}">마이페이지</a></li>
+					<li class="nav-item active"><a href="">소개</a></li>
+					<li class="nav-item"><a href="${path}/reservation?id=${sessionScope.logid}">예약</a></li>
+					<li class="nav-item"><a href="${path}/coming?id=${sessionScope.logid}">오시는 길</a></li>
+					<li class="nav-item"><a href="${path}/question?id=${sessionScope.logid}">문의</a></li>
+					<li class="nav-item"><a href="${path}/notice?id=${sessionScope.logid}">공지사항</a></li>
+					<li class="nav-item"><a href="${path}/#">예약확인/취소</a></li>
+					<li class="nav-item"><a href="${path}/review">리뷰</a></li>
+					<li class="nav-item"><a href="${path}/mypage?id=${sessionScope.logid}">마이페이지</a></li>
 					
 					<!-- 관리자페이지 -->
 					<li class="dropdown">
@@ -52,12 +56,12 @@
 										<i class="bi bi-chevron-down dropdown-indicator"></i>
 									</a>
 									<ul>
-										<li><a href="${path}/managermemberList">회원관리</a></li>
-										<li><a href="${path}/managerproduct">상품</a></li>
-										<li><a href="${path}/question">문의사항</a></li>
-										<li><a href="${path}/notice">공지사항</a></li>
-										<li><a href="${path}/managerreservation">예약현황</a></li>
-										<li><a href="${path}/managergraph">통계</a></li>
+										<li class="nav-item"><a href="${path}/managermemberList">회원관리</a></li>
+										<li class="nav-item"><a href="${path}/managerproduct">상품</a></li>
+										<li class="nav-item"><a href="${path}/question">문의사항</a></li>
+										<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
+										<li class="nav-item"><a href="${path}/managerreservation">예약현황</a></li>
+										<li class="nav-item"><a href="${path}/managergraph">통계</a></li>
 									</ul>
 								</li>
 						</c:if>

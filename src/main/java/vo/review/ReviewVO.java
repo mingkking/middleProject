@@ -13,11 +13,10 @@ public class ReviewVO {
 	private String rTitle;
 	private String rContent;
 	private String rRegDate;
-	private MultipartFile rPicture;
 	private String r_fname;
 	private String r_frealname;
 	private long r_fsize;
-	
+	private MultipartFile rPicture;
 	
 	public int getrNo() {
 		return rNo;
@@ -73,7 +72,6 @@ public class ReviewVO {
 	public void setR_fsize(long r_fsize) {
 		this.r_fsize = r_fsize;
 	}
-	
 	public MultipartFile getrPicture() {
 		return rPicture;
 	}
@@ -91,7 +89,8 @@ public class ReviewVO {
 			
 			// 실제파일 저장
 			// 추후에 웹서버 경로를 찾아서 수정
-			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + r_frealname);
+			File f = new File("C:\\Users\\ict03_029\\git\\middleProject\\src\\main\\webapp\\resources\\reviewUpload\\" + r_frealname);
+			//File f = new File("D:\\xWork\\webSpringWorkSpace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\middleprojects\\resources\\reviewUpload\\" + r_frealname);
 			
 			try {
 				rPicture.transferTo(f);
@@ -103,5 +102,13 @@ public class ReviewVO {
 			
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "ReviewVO [rNo=" + rNo + ", id=" + id + ", pNo=" + pNo + ", rTitle=" + rTitle + ", rContent=" + rContent
+				+ ", rRegDate=" + rRegDate + ", r_fname=" + r_fname + ", r_frealname=" + r_frealname + ", r_fsize="
+				+ r_fsize + ", rPicture=" + rPicture + "]";
+	}
+	
 	
 }

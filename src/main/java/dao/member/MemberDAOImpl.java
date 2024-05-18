@@ -46,18 +46,23 @@ public class MemberDAOImpl implements MemberDAO{
 		return mybatis.selectOne("MemberDAO.selectCheckEmail", vo);
 	}
 	
-	public List<MemberVO> getmemberList(HashMap map) {
-		
+	//관리자 고객리스트
+	public List<MemberVO> getmemberList(HashMap<String,Object>map) {	
 		List<MemberVO> list = mybatis.selectList("MemberDAO.getmemberList", map);
-		//[확인] 리턴값 확인
 		return list;
 	}
 	
+	//관리자 고객리스트 페이징처리
+	public int getMemberCount(HashMap<String,Object>map) {
+		return mybatis.selectOne("MemberDAO.getMemberCount",map);
+	}
+	
+	//관리자 고객 상세조회
 	public MemberVO getmember(MemberVO vo) {
-		//System.out.println(vo.toString());
 		return mybatis.selectOne("MemberDAO.getmember", vo);
 	}
 	
+	//관리자 고객 탈퇴
 	public void deletemember(MemberVO vo) {
 		mybatis.delete("MemberDAO.deletemember",vo);
 	}
@@ -75,8 +80,8 @@ public class MemberDAOImpl implements MemberDAO{
 
 	// 회원 정보 수정
 	@Override
-	public void updateMypageInfo(MemberVO vo) {
-		mybatis.update("MemberDAO.updateMypageInfo", vo);
+	public int updateMypageInfo(MemberVO vo) {
+		return mybatis.update("MemberDAO.updateMypageInfo", vo);
 	}
 		
 	// 회원 정보 수정
@@ -85,6 +90,26 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println(map.get("vo").toString());
 		mybatis.update("MemberDAO.updateMypage", map);
 		
+	}
+
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.selectMypagePw", vo);
+	}
+
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.emailCodeId", vo);
+	}
+
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.selectPw", vo);
+	}
+
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo) {
+		return mybatis.update("MemberDAO.updateNewPw", vo);
 	}
 
 	

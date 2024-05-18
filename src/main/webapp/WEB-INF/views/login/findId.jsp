@@ -27,16 +27,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -100,7 +106,8 @@
 				$('#sendEmail').attr('disabled', false); // 아이디 찾기 email 인증 버튼 비활성화
 				checkEmail = 1;
 			}
-		};
+		}
+		;
 
 		$('#emailCheck').blur(function() {
 			emailCheck();
@@ -111,22 +118,29 @@
 		}); // blur
 
 		$('#sendEmail').click(function() {
-			alert('버튼 클릭');
-			
+			alert('이메일이 발송되었습니다.');
+
 			$.ajax({
-	               type : 'get',
-	               url : '',
-	               data : { 'rental' : $('#emailCheck').val() },
-	               dataType : 'json',
-	               success : function(result){
-	            	   console.log(result);
-	               },
-	               error : function(err){
-	                   alert('error');
-	                   console.log(err);
-	               }
-	           });
+				type : 'get',
+				url : 'sendEmail',
+				data : {
+					'email' : $('#emailCheck').val()
+				},
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+				},
+				error : function(err) {
+					alert('error');
+					console.log(err);
+				}
+			});
 		});
+
+		$('.findIdBtn').click(function() {
+
+		});
+
 	});
 </script>
 
@@ -142,47 +156,47 @@
 
 		<div class="info d-flex align-items-center">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">아이디 찾기</h2>
-						<div class="row gy-4" id='emailsearch'>
+				<form action="findIdFinal">
+					<div class="row justify-content-center">
+						<div class="col-lg-6 text-center">
+							<h2 data-aos="fade-down">아이디 찾기</h2>
+							<div class="row gy-4" id='emailsearch'>
 
-							<div class="col-md-4">
-								<p>이메일</p>
-							</div>
-							<div class="col-md-6">
-								<input type="email" name="emailsearch" id="emailCheck" class="form-control" placeholder="abc@naver.com" required />
-							</div>
-							<div class="col-md-2">
-								<button id="sendEmail" class="findIdBtn">이메일인증</button>
-							</div>
-							<div class="row">
-								<div class="col-4"></div>
-								<div class="col-6 email-message"></div>
-							</div>
+								<div class="col-md-4">
+									<p>이메일</p>
+								</div>
+								<div class="col-md-6">
+									<input type="email" name="email" id="emailCheck" class="form-control"
+										placeholder="abc@naver.com" required />
+								</div>
+								<div class="col-md-2">
+									<button id="sendEmail" class="findIdBtn">이메일인증</button>
+								</div>
+								<div class="row">
+									<div class="col-4"></div>
+									<div class="col-6 email-message"></div>
+								</div>
 
-							<!-- <div class="col-md-4" id="authEmail" style="display:none"> -->
-							<div class="col-md-4" id="authEmail">
-								<p>인증번호</p>
-							</div>
-							<div class="col-md-6" id="authEmail">
-								<input type="email" name="emailsearch" id="EmailAuth"
-									class="form-control" placeholder="숫자6자리" required />
-							</div>
-
-
-							<div class="findId">
-								<button type="submit" class="findIdBtn">확인</button>
-							</div>
-
-							<div id='emailinsertment'>
-								<p>- 회원가입시 등록한 이메일 주소로 인증하시면 아이디 확인이 가능합니다.</p>
-							</div>
+								<div class="col-md-4" id="authEmail">
+									<p>인증번호</p>
+								</div>
+								<div class="col-md-6" id="authEmail">
+									<input type="text" name="emailsearchCode" id="EmailAuth"
+										class="form-control" placeholder="영어+숫자6자리" required />
+								</div>
 
 
+								<div class="findId">
+									<button type="submit" class="findIdBtn">확인</button>
+								</div>
+
+								<div id='emailinsertment'>
+									<p>- 회원가입시 등록한 이메일 주소로 인증하시면 아이디 확인이 가능합니다.</p>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 
@@ -204,10 +218,12 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->

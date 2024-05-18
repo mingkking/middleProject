@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import service.member.MemberService;
 import service.product.ProductService;
 import service.reservation.ReservationService;
 import useful.popup.PopUp;
@@ -30,10 +31,17 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	// 예약 첫 페이지 이동
 	@RequestMapping("/reservation")
-	public String reservation(HttpServletResponse response, String id, MemberVO vo, Model model, Integer pageNum) {
-		if(id.equals("") || id == null) {
+	public String reservation(HttpServletResponse response, HttpSession session, MemberVO vo, Model model, Integer pageNum) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
@@ -44,7 +52,7 @@ public class ReservationController {
 		
 		PagingVO pVO = null;
 		try {
-			pVO = new PagingVO(pageNum, productService.selectProductCount());
+			pVO = new PagingVO(pageNum, productService.selectProductCount(), 6);
 			model.addAttribute("pVO", pVO);
 		} catch (Exception e1) {
 			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때
@@ -54,6 +62,7 @@ public class ReservationController {
 		try {
 			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
 			model.addAttribute("productList", list);
+			model.addAttribute("id", id);
 			/* model.addAttribute("pNo", pNo); */
 		} catch (Exception e) {
 			System.out.println("예약 구장 전체 목록: " + e.getMessage()); // 에러났을 때
@@ -80,17 +89,37 @@ public class ReservationController {
 	
 	// 예약등록
 	@RequestMapping("/payForm")
-	public String reservationList(ReservationVO rVO, String time, String id, Model model) {
+	public String reservationList(ReservationVO reservationVO, ProductVO productVO, HttpServletResponse response, HttpSession session, String time, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
+		
 		// 예약 시작 시간
-		rVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+		reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
 		// 예약 끝나는 시간
-		rVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
-		// 아이디 임시
-		rVO.setId("jumki12");
-
+		reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+		// 아이디
+		reservationVO.setId(id);
+		// 멤버 정보 1개 검색 객체 생성
+		MemberVO memberVO = new MemberVO();
+		// 멤버 id vo에 지정
+		memberVO.setId(id); 
+		
 		try {
+			// 멤버 정보 1개 검색 
+			memberVO = memberService.selectMypage(memberVO);
 			// 예약 등록 서비스
-			reservationService.insertReservation(rVO);
+			//reservationService.insertReservation(rVO);
+			
+			model.addAttribute("time", time);
+			model.addAttribute("reservationVO", reservationVO);
+			model.addAttribute("productVO", productVO);
+			model.addAttribute("memberVO", memberVO);
 		} catch (Exception e) {
 			System.out.println("예약 등록 : " + e.getMessage()); // 에러났을 때
 		}
@@ -112,6 +141,108 @@ public class ReservationController {
 		
 		return list;
 	}
+	
+	// 결제 무통장 입금
+	@RequestMapping("/insertAccountReservation")
+	@ResponseBody
+	public String insertAccountReservation(ReservationVO reservationVO, String time, HttpServletResponse response, HttpSession session, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
+		// 아이디
+		reservationVO.setId(id);
+		// 예약 시작 시간
+		reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+		// 예약 끝나는 시간
+		reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+		// 예약 상태
+		reservationVO.setrStatus("예약완료");
+		// 결제 상태
+		reservationVO.setrPayStatus("결제완료");
+		
+		
+		int result = 0;
+		try {
+			result = reservationService.insertReservation(reservationVO);
+		} catch (Exception e) {
+			System.out.println("결제 무통장 입금 : " + e.getMessage()); // 에러났을 때
+		}
+		
+		return String.valueOf(result);
+	}
+	
+	
+	// 카카오페이 입금
+	@RequestMapping("/insertKakaoPayReservation")
+	@ResponseBody
+	public String insertKakaoPayReservation(ReservationVO reservationVO, String time, HttpServletResponse response, HttpSession session, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
+		// 아이디
+		reservationVO.setId(id);
+		// 예약 시작 시간
+		reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+		// 예약 끝나는 시간
+		reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+		// 예약 상태
+		reservationVO.setrStatus("예약완료");
+		// 결제 상태
+		reservationVO.setrPayStatus("결제완료");
+		
+		
+		int result = 0;
+		try {
+			result = reservationService.insertReservation(reservationVO);
+		} catch (Exception e) {
+			System.out.println("결제 카카오페이 입금 : " + e.getMessage()); // 에러났을 때
+		}
+		
+		return String.valueOf(result);
+	}
+	
+	// 핸드폰 입금
+		@RequestMapping("/insertPhoneReservation")
+		@ResponseBody
+		public String insertPhoneReservation(ReservationVO reservationVO, String time, HttpServletResponse response, HttpSession session, Model model) {
+			String id = (String)session.getAttribute("logid");
+			if(id == null) {
+				id = "noLogin";
+			}
+			if(id.equals("noLogin")) {
+				PopUp.popUp(response, "로그인 후 이용가능합니다.");
+				return "login/login";
+			}
+			// 아이디
+			reservationVO.setId(id);
+			// 예약 시작 시간
+			reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+			// 예약 끝나는 시간
+			reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+			// 예약 상태
+			reservationVO.setrStatus("예약완료");
+			// 결제 상태
+			reservationVO.setrPayStatus("결제완료");
+			
+			int result = 0;
+			try {
+				result = reservationService.insertReservation(reservationVO);
+			} catch (Exception e) {
+				System.out.println("결제 핸드폰 입금 : " + e.getMessage()); // 에러났을 때
+			}
+			
+			return String.valueOf(result);
+		}
 	
 	
 }

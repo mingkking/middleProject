@@ -17,7 +17,7 @@ public class ProductVO {
 	
 	private String pInfo;
 	private String p_fname;		// 파일명
-	private String p_realfname; // 저장된 파일이름
+	private String p_frealname; // 저장된 파일이름
 	private long p_fsize; // 파일크기 
 	
 	
@@ -57,11 +57,11 @@ public class ProductVO {
 	public void setp_fname(String p_fname) {
 		this.p_fname = p_fname;
 	}
-	public String getp_realfname() {
-		return p_realfname;
+	public String getp_frealname() {
+		return p_frealname;
 	}
-	public void setp_realfname(String p_realfname) {
-		this.p_realfname = p_realfname;
+	public void setp_frealname(String p_frealname) {
+		this.p_frealname = p_frealname;
 	}
 	public long getp_fsize() {
 		return p_fsize;
@@ -84,11 +84,11 @@ public class ProductVO {
 			
 			// 실제 저장된 파일명 만들기
 			UUID uuid = UUID.randomUUID();
-			this.p_realfname = uuid.toString() + "_" + p_fname;
+			this.p_frealname = uuid.toString() + "_" + p_fname;
 			
 			// 실제파일 저장
 			// 추후에 웹서버 경로를 찾아서 수정
-			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + p_realfname);
+			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + p_frealname);
 			
 			try {
 				pPicture.transferTo(f);
@@ -105,7 +105,7 @@ public class ProductVO {
 	@Override
 	public String toString() {
 		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pLocation=" + pLocation + ", pPicture=" + pPicture + ", pPrice=" + pPrice
-				+ ", pInfo=" + pInfo + ", p_fname=" + p_fname + ", p_realfname=" + p_realfname + ", p_fsize=" + p_fsize
+				+ ", pInfo=" + pInfo + ", p_fname=" + p_fname + ", p_frealname=" + p_frealname + ", p_fsize=" + p_fsize
 				+ "]";
 	}
 	

@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -49,6 +48,156 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+	$(function() {
+		let accountCheck = 0; // 무통장 입금 확인
+		
+		$('input[type=radio]').change(function() {
+			let check = $("input[type=radio]:checked").val();
+			if(check == '핸드폰'){
+				$('#account').text('');
+			}
+			
+			if(check == '카카오페이'){
+				$('#account').text('');
+			}
+			
+			if(check == '무통장입금'){
+				$('#account').text('입금주:홍길동 / 신한은행 / 계좌번호:110110123456 으로 입금해주세요.');
+				
+				// 시간 지연 함수
+				setTimeout(function() {
+					accountCheck = 1; // 무통장 입금 완료 확인
+				}, 10000); // 15초 뒤에 완료
+			}
+		});
+		
+		$('.loginBtn').click(function() {
+			let check = $("input[type=radio]:checked").val();
+			
+			if(check == '핸드폰'){
+				iamport2();
+			}
+			
+			if(check == '카카오페이'){
+				iamport();
+			}
+			
+			if(check == '무통장입금'){
+				let param = $('#insertFrm').serialize();
+				if(accountCheck == 1){
+					$.ajax({
+						type : 'post',
+						url : 'insertAccountReservation',
+						data : param,
+						dataType : 'json', // 응답 데이타 종류 (text/html/xml/json.....)
+						success : function(result) {
+							if(result == '1'){
+								alert('무통장입금으로 예약되었습니다.');
+								location.href="index";
+							}
+						},
+						error : function(err) {
+							alert('무통장입금으로 예약이 실패하였습니다.');
+							console.log(err);
+						}
+					});
+				}else{
+					alert('적혀있는 계좌로 입금을 해주세요.');
+				}
+				
+			}
+			
+		});
+		
+		function iamport(){
+			//가맹점 식별코드
+			IMP.init('imp01534004');
+			IMP.request_pay({
+			    pg : 'kakaopay',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : $('#pName').val(), //결제창에서 보여질 이름
+			    amount : 1, //실제 결제되는 가격
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : $('#name').val(),
+			    buyer_tel : $('#tel').val(),
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	let param = $('#insertFrm').serialize();
+			    	
+					$.ajax({
+						type : 'post',
+						url : 'insertKakaoPayReservation',
+						data : param,
+						dataType : 'json', // 응답 데이타 종류 (text/html/xml/json.....)
+						success : function(result) {
+							if(result == '1'){
+								alert('카카오페이 결제성공 구장예약이 완료되었습니다.');
+								location.href="index";
+							}
+						},
+						error : function(err) {
+							alert('카카오페이 결제성공 구장예약이 실패하였습니다.');
+							console.log(err);
+						}
+					});
+					
+			    } else {
+			    	alert('결제에 실패하였습니다.');
+			    }
+			    
+			});
+		}
+		
+		function iamport2(){
+			//가맹점 식별코드
+			IMP.init('imp01534004');
+			IMP.request_pay({
+			    pg : 'kicc',
+			    pay_method : 'phone',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : $('#pName').val(), //결제창에서 보여질 이름
+			    amount : 10000, //실제 결제되는 가격
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : $('#name').val(),
+			    buyer_tel : $('#tel').val(),
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+					let param = $('#insertFrm').serialize();
+			    	
+					$.ajax({
+						type : 'post',
+						url : 'insertPhoneReservation',
+						data : param,
+						dataType : 'json', // 응답 데이타 종류 (text/html/xml/json.....)
+						success : function(result) {
+							if(result == '1'){
+								alert('핸드폰 결제성공 구장예약이 완료되었습니다.');
+								location.href="index";
+							}
+						},
+						error : function(err) {
+							alert('핸드폰 결제성공 구장예약이 실패하였습니다.');
+							console.log(err);
+						}
+					});
+			    	
+			    } else {
+			    	alert('결제에 실패하였습니다.');
+			    }
+			    
+			});
+		}
+		
+	});
+</script>
 </head>
 
 <body>
@@ -70,14 +219,14 @@
 								<p>예약자명</p>
 							</div>
 							<div class="col-md-5">
-								<p><!-- 로그인 한 사람 이름 출력 --></p>
+								<input type="text" name="name" id="name" class="form-control" value="${memberVO.name}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-4">
 								<p>전화번호</p>
 							</div>
 							<div class="col-md-5">
-								<p><!-- 로그인 한 사람 전화번호 출력 --></p>
+								<input type="text" name="tel" id="tel" class="form-control" value="${memberVO.tel}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-12">
@@ -88,32 +237,28 @@
 								<p>구장명</p>
 							</div>
 							<div class="col-md-5">
-								<p>${vo.pName }</p>
+								<input type="text" name="pName" id="pName" class="form-control" value="${productVO.pName}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>구장위치</p>
 							</div>
 							<div class="col-md-5">
-								<p>${vo.pLocation }</p>
+								<input type="text" name="pLocation" class="form-control" value="${productVO.pLocation}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>날짜</p>
 							</div>
 							<div class="col-md-5">
-								<p>
-									<!-- 날짜값 -->
-								</p>
+								<input type="text" name="rental" class="form-control" value="${reservationVO.rental}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>시간대</p>
 							</div>
 							<div class="col-md-5">
-								<p>
-									<!-- 시간대값 -->
-								</p>
+								<input type="text" name="time" class="form-control" value="${time}" readonly="readonly">
 							</div>
 
 							<div class="col-md-12">
@@ -132,23 +277,20 @@
 							<div class="row">
 							<!-- <div class="col-md-3 form-check form-check-inline"></div> -->
 							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="카드" checked="checked" required>
-								<p>카드</p>
+								<input class="form-check-input" type="radio" name="rPayMethod" value="핸드폰" checked="checked" required>
+								<p>핸드폰</p>
 							</div>
 							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="카카오페이">
+								<input class="form-check-input" type="radio" name="rPayMethod" value="카카오페이">
 								<p>카카오페이</p>
 							</div>
 							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="pay"
-									value="무통장입금">
+								<input class="form-check-input" type="radio" name="rPayMethod" value="무통장입금">
 								<p>무통장입금</p>
 							</div>
 							</div>
 							<div class="col-md-12">
-							<p></p>
+							<p id="account"></p>
 							</div>
 							
 							<div class="col-md-12">
@@ -159,9 +301,7 @@
 								<p>결제 금액</p>
 							</div>
 							<div class="col-md-5">
-								<p>
-									<!-- 결제금액값 출력 -->
-								</p>
+								<input type="text" name="totalMoney" id="totalMoney" class="form-control" value="${reservationVO.totalMoney}" readonly="readonly">
 							</div>
 							
 							
@@ -169,7 +309,8 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 text-center">
                            <div class="error-message"></div>
-                           <button type="submit" class="loginBtn">결제</button>
+                           <input type="hidden" name="pNo" value="${reservationVO.pNo }">
+                           <button type="button" class="loginBtn">결제</button>
                         </div>
                         
                         <div class="col-md-4"></div>
@@ -181,6 +322,7 @@
 
 
 		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
 

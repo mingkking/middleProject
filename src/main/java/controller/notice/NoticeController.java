@@ -22,7 +22,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	// 사용자 공지 검색 및 출력
-	@RequestMapping("notice")
+	@RequestMapping("notice") 
 	public String notice(HttpServletResponse response,
 					   Model m,
 					   String searchCondition,
@@ -61,8 +61,10 @@ public class NoticeController {
 	
 	// 사용자 공지글 상세 보기 화면 이동
 	@RequestMapping("getNotice")
-	public String getNotice(NoticeVO vo, Model m) {
+	public String getNotice(NoticeVO vo, Model m, HttpSession session) {
 		NoticeVO result = noticeService.getNotice(vo);
+		String id = (String)session.getAttribute("logid");
+		m.addAttribute("id" ,id);
 		m.addAttribute("notice", result);
 		
 		return "notice/getNotice";

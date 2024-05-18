@@ -1,5 +1,6 @@
 package service.product;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,16 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDAO pDAO;
 
-	// 상품 전체 목록 조회
+	// 상품 전체 목록 페이징 조회
 	@Override
 	public List<ProductVO> selectProductAll(int startBoard, int endBoard) throws Exception {
 		return pDAO.selectProductAll(startBoard, endBoard);
+	}
+	
+	// 상품 전체 목록
+	@Override
+	public List<ProductVO> selectProductAllReview() throws Exception {
+		return pDAO.selectProductAllReview();
 	}
 
 	// 상품 상세 조회
@@ -31,10 +38,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	// 관리자 상품관리 화면 상품 조회
-	public List<ProductVO> managerproduct(ProductVO vo) {
-		return pDAO.managerproduct(vo);
+	public List<ProductVO> managerproduct(HashMap<String,Object>map) {
+		return pDAO.managerproduct(map);
 	}
-
+	// 관리자 상품관리 페이징
+	public int getProductCount(HashMap<String,Object>map) {
+		return pDAO.getProductCount(map);
+	}
+	
 	// 관리자 해당 상품관리
 	public ProductVO managerproductmanaging(ProductVO vo) {
 		return pDAO.managerproductmanaging(vo);
@@ -47,7 +58,6 @@ public class ProductServiceImpl implements ProductService {
 
 	// 관리자 상품 수정
 	public void updateProduct(ProductVO vo) {
-
 		pDAO.updateProduct(vo);
 	}
 
@@ -55,5 +65,6 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProduct(ProductVO vo) {
 		pDAO.deleteProduct(vo);
 	}
+
 
 }

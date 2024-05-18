@@ -20,7 +20,7 @@
 /* Colors */
 :root {
   --color-default: #364d59;
-  --color-primary: #00ad34; 
+  --color-primary: #00ad34;  
   --color-secondary: #52565e;
 }
 
@@ -1869,6 +1869,15 @@ section {
 }
 
 .hero .info h2 {
+  color: #000000;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  font-size: 30px;
+  font-weight: 700;
+  position: relative;
+}
+
+.hero .info h3 {
   color: #000000;
   margin-bottom: 30px;
   padding-bottom: 30px;

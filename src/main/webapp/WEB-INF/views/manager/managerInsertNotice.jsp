@@ -17,7 +17,7 @@
 <link href="resources/assets/img/favicon.png" rel="icon">
 <link href="resources/assets/img/apple-touch-icon.png"
    rel="apple-touch-icon">
-
+ 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,7 @@
                            <p>작성일시</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
+                           <input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonly>
 
                         </div>
                         
@@ -77,7 +77,7 @@
                            <p>제목</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="text" class="form-control" name="nTitle" placeholder="제목을 입력해주세요." required />
+                           <input type="text" name="nTitle" class="form-control"  placeholder="제목을 입력해주세요." required />
                         </div>
                         <div class="col-md-4">
                                 <p>공지 내용</p>

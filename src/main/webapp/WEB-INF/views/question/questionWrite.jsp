@@ -70,7 +70,7 @@
 									<p>작성일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="nRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
+									<input type="date" name="qRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
 								</div>
 								
 								<div class="col-md-4">
@@ -93,11 +93,31 @@
 								<div class="col-md-8">
 									<input type="password" class="form-control" name="qPassword"	placeholder="비밀번호를 입력해주세요." required />
 								</div>
-								
+
+								<div class="col-md-4">
+									<p>비밀글 여부</p>
+								</div>
+								<div class="col-md-8">
+									<input type="checkbox" id="secretCheckbox" name="secret"
+										value="true"> <label for="secretCheckbox">비밀글로
+										설정하기</label>
+								</div>
+
+								<%-- 비밀글 내용 입력란 --%>
+								<div id="secretContentRow" class="row" style="display: none;">
+									<div class="col-md-4">
+										<p>비밀글 비밀번호</p>
+									</div>
+									<div class="col-md-8">
+										<input type="password" name="qSecret" class="form-control"
+											placeholder="비밀글에 대한 비밀번호를 남겨주세요.">
+									</div>
+								</div>
+
 								<div class="col-md-4 text-center"></div>
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
-                                <a href='question'><input type='button' id='questionWriteExit' class="findIdBtn"  value='닫기'></a>
+                                <a href='question?id=${id}'><input type='button' id='questionWriteExit' class="findIdBtn"  value='닫기'></a>
                                 <input type='submit' id='questionBtn' class="findIdBtn" value='글쓰기'>
                             </div>
                             <div class="col-md-4 text-center"></div>
@@ -107,8 +127,27 @@
             </div>
         </div>
     </div>
-    
-<div id="hero-carousel" class="carousel slide"></div>
+
+		<script>
+			// 비밀글로 설정하기 체크박스의 상태 변화를 감지하여 비밀글 내용 입력란 표시/숨김
+			document.getElementById("secretCheckbox").addEventListener(
+					"change",
+					function() {
+						var secretContentRow = document
+								.getElementById("secretContentRow");
+
+						// 비밀글로 설정하기 체크박스가 체크되었는지 확인
+						if (this.checked) {
+							// 비밀글로 설정하기 체크박스가 체크되었을 때 비밀글 내용 입력란 표시
+							secretContentRow.style.display = "flex";
+						} else {
+							// 비밀글로 설정하기 체크박스가 체크 해제되었을 때 비밀글 내용 입력란 숨김
+							secretContentRow.style.display = "none";
+						}
+					});
+		</script>
+
+		<div id="hero-carousel" class="carousel slide"></div>
 	</section>
 	<!-- End Hero Section -->
 

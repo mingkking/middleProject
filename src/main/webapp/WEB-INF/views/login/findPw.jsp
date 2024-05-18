@@ -27,16 +27,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -49,6 +55,96 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+<!-- 이메일 인증 -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    function sendNumber(){
+        $("#authEmail").css("display","block");
+        $.ajax({
+            url:"/mail",
+            type:"post",
+            dataType:"json",
+            data:{"mail" : $("#mail").val()},
+            success: function(data){
+                alert("인증번호 발송");
+                $("#Confirm").attr("value",data);
+            },
+        });
+    }
+
+    function confirmNumber(){
+        var number1 = $("#number").val();
+        var number2 = $("#Confirm").val();
+
+        if(number1 == number2){
+            alert("인증되었습니다.");
+        }else{
+            alert("번호가 다릅니다.");
+        }
+    }
+</script> -->
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		let checkEmail = 0; // email 유효성
+		// email
+		function emailCheck() {
+			var email = $('#emailCheck').val();
+			var emailResult = $('.email-message');
+
+			var emailP = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"; // email
+
+			if (!email.match(emailP)) {
+				emailResult.text("@를 포함한 이메일주소를 작성");
+				$('#sendEmail').attr('disabled', true); // 아이디 찾기 email 인증 버튼 활성화
+				checkEmail = 0;
+			} else {
+				emailResult.text('');
+				$('#sendEmail').attr('disabled', false); // 아이디 찾기 email 인증 버튼 비활성화
+				checkEmail = 1;
+			}
+		}
+		;
+
+		$('#emailCheck').blur(function() {
+			emailCheck();
+			if ($('#emailCheck').val() == '') {
+				$('.email-message').text('');
+				$('#emailCheck').val('');
+			}
+		}); // blur
+
+		$('#sendEmail').click(function() {
+			alert('이메일이 발송되었습니다.');
+
+			$.ajax({
+				type : 'get',
+				url : 'sendEmail',
+				data : {
+					'email' : $('#emailCheck').val()
+				},
+				dataType : 'json',
+				success : function(result) {
+					console.log(result);
+				},
+				error : function(err) {
+					alert('error');
+					console.log(err);
+				}
+			});
+		});
+
+		$('.findIdBtn').click(function() {
+
+		});
+
+	});
+</script>
+
+
 </head>
 
 <body>
@@ -60,41 +156,59 @@
 
 		<div class="info d-flex align-items-center">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down" >비밀번호 찾기</h2>
-							<div class="row gy-4" id = 'emailsearch'>
+				<form action="findPwFinal" method="post">
+					<div class="row justify-content-center">
+						<div class="col-lg-6 text-center">
+							<h2 data-aos="fade-down">비밀번호 찾기</h2>
+							<div class="row gy-4" id='emailsearch'>
 								<div class="col-md-4">
 									<p>아이디</p>
 								</div>
 								<div class="col-md-6">
-									<input type="text" name="idsearch" class="form-control" required />
+									<input type="text" name="id" class="form-control" required />
 								</div>
-								
 								<div class="col-md-4">
 									<p>이메일</p>
 								</div>
 								<div class="col-md-6">
-									<input type="email" name="email" class="form-control" placeholder="abc@naver.com" required />
+									<input type="email" name="email" id="emailCheck" class="form-control" placeholder="abc@naver.com" required />
+								</div>
+								<div class="col-md-2">
+									<button id="sendEmail" class="findIdBtn">이메일인증</button>
+								</div>
+								<div class="row">
+									<div class="col-4"></div>
+									<div class="col-6 email-message"></div>
 								</div>
 
-								
+								<!-- <div class="col-md-4" id="authEmail" style="display:none"> -->
+								<div class="col-md-4" id="authEmail">
+									<p>인증번호</p>
+								</div>
+								<div class="col-md-6" id="authEmail">
+									<input type="text" name="emailsearchCode" id="EmailAuth"
+										class="form-control" placeholder="영어+숫자6자리" required />
+								</div>
+
+
 								<div class="findId">
 									<button type="submit" class="findIdBtn">확인</button>
 								</div>
-								
-								<div id = 'emailinsertment'>
-								    <p> - 회원가입시 등록한 이메일 주소로 인증하시면 아이디 확인이 가능합니다.</p>
+
+								<div id='emailinsertment'>
+									<p>회원가입시 작성한 아이디, 이메일주소로 인증시 비밀번호 확인이 가능합니다.</p>
 								</div>
-								
-								
+
+
 							</div>
+						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
+
 	</section>
 	<!-- End Hero Section -->
 
@@ -111,10 +225,12 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->

@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -80,7 +79,7 @@
 								</c:if>
 								<div class="col-md-12" id="pageNum">
 									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-										<a href="${path}/reservation?pageNum=${i }">${i }</a>
+										<a href="${path}/reservation?pageNum=${i}">${i }</a>
 									</c:forEach>
 								</div>
 
@@ -92,6 +91,7 @@
 		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
 

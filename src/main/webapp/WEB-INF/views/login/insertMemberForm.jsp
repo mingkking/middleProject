@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -27,16 +26,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -87,116 +92,33 @@
 	 */
 
 	$(function() {
-		let checkId = 0; // id 유효성
-		let checkName = 0; // 이름 유효성
-		let checkEmail = 0; // email 유효성
-		let checkPassword = 0; // password 유효성
-		let checkPasswordDupl = 0; // password password확인 비교
+		// 달력 오늘 날짜 이후 꺼는 선택 금지
+		let now_utc = Date.now() // 지금 날짜를 밀리초로
+		// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+		let timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+		// new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
+		let today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+		$("#birth").attr("max", today);
+		// 달력 오늘 날짜 이후 꺼는 선택 금지
 
-		// ID
-		function idCheck() {
-			var id = $('#id').val();
-			var idResult = $('.id-message');
-
-			var idP = "^[a-z0-9]{5,10}$" // 아이디 유효성 패턴
-
-			if (!id.match(idP)) {
-				idResult.text("영어 소문자, 숫자를 포함하여 5~10자 이내 작성");
-				$('#idCheck').attr('disabled', true); // 중복검사
-				checkId = 0;
-			} else {
-				idResult.text('');
-				$('#idCheck').attr('disabled', false);
-				checkId = 1;
-			}
-		} // idCheck()
-
-		$('#id').blur(function() {
-			idCheck();
-			if ($('#id').val() == '') {
-				$('.id-message').text('');
-				$('#id').val('');
-			}
-		}); // id blur
-
-		// 이름
-		function nameCheck() {
-			var name = $('#name').val();
-			var nameResult = $('.name-message')
-
-			var nameP = "^[가-힣]{2,5}$"; // 이름
-
-			if (!name.match(nameP)) {
-				nameResult.text("2~5 한글만 가능합니다.");
-				checkName = 0;
-			} else {
-				nameResult.text('');
-				checkName = 1;
-			}
-		}
-		; // nameCheck()
-
-		$('#name').blur(function() {
-			nameCheck();
-			if ($('#name').val() == '') {
-				$('.name-message').text('');
-				$('#name').val('');
-			}
-		}); // blur
-
-		// pw
-		function pwCheck() {
-			var pw = $('#pw').val();
-			var pwResult = $('.pw-message');
-
-			var pwP = "^[a-z0-9]{7,15}$" // 비밀번호 유효성 패턴
-
-			if (!pw.match(pwP)) {
-				pwResult.text('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
-				checkPassword = 0;
-			} else {
-				pwResult.text('');
-				checkPassword = 1;
-			}
-		}
-		; // pwCheck()
-
-		$('#pw').blur(function() {
-			pwCheck();
-			if ($('#pw').val() == '') {
-				$('.pwcheck-message').text('');
-				$('#pw').val('');
-			}
-		}); // blur
-
-		// pw 일치확인
-		function checkPw() {
-			var pw = $('#pw').val();
-			var pw1 = $('#pw1').val();
-
-			if (pw != pw1) {
-				$('.pwcheck-message').text('비밀번호가 일치하지 않습니다');
-				checkPasswordDupl = 0;
-			} else {
-				$('.pwcheck-message').text('');
-				checkPasswordDupl = 1;
-			}
-		}
-
-		$('#pw1').change(function() {
-			checkPw();
-		}); // change
-
+		// 아이디 유효성 검사 및 중복검사
 		$('#idCheck').click(function() {
-			if ($('#id').val() == "") {
-				$('.id-message').text('제대로 된 아이디를 입력해주세요.');
+			let id = $('#id').val();
+			
+			if (id == "") {
+				$('.id-message').text('아이디를 입력해주세요.');
+				return;
+			}
+			
+			if(!id.match(/^[a-zA-Z0-9_]{6,16}$/)){
+				$('.id-message').text('아이디 형식이 맞지 않습니다.');
 				return;
 			}
 
 			$.ajax({
 				type : 'get',
 				data : {
-					id : $('#id').val()
+					'id' : id
 				},
 				url : 'selectCheckID',
 				success : function(result) {
@@ -205,6 +127,8 @@
 						$('#id').focus();
 					} else {
 						$('#id').attr('readonly', true);
+						$('#idCheck').attr('disabled', true);
+						$('.id-message').text("");
 						alert("사용 가능한 아이디입니다.");
 					}
 				},
@@ -213,129 +137,154 @@
 				}
 			}); // ajax
 		}); // idCheckclick
-		
+
 		$('#telCheck').click(function() {
 			let tel1 = $('#tel1').val();
 			let tel2 = $('#tel2').val();
 			let tel3 = $('#tel3').val();
 			let tel = tel1 + tel2 + tel3;
-			console.log(tel);
-			
-			if(tel != null && tel != ""){
-				if (!tel.match("^[0-9]{9,11}$")) {
-					$('.tel-message').text('알맞은 번호를 입력해주세요');
-					return;
-				}else{
-					$.ajax({
-						type : 'get',
-						data : {
-							'tel' : tel
-						},
-						url : 'selectCheckTel',
-						success : function(result) {
-							if (result == '1') {
-								$('.tel-message').text("이미 등록된 번호입니다.");
-								$('#tel1').focus();
-							} else {
-								$('#tel1').attr('readonly', true);
-								$('#tel2').attr('readonly', true);
-								$('#tel3').attr('readonly', true);
-								alert("사용 가능한 번호입니다.");
-								$('.tel-message').text("");
-							}
-						},
-						error : function(err) {
-							console.log(err);
-						}
-					}); // ajax
-				}
-			}else{
+
+			if (tel == "") {
 				$('.tel-message').text("번호를 입력해주세요.");
+				return;
 			}
-			
+		    if (!tel.match(/^01[016789][ -]?\d{3,4}[ -]?\d{4}$/)) {
+		        $('.tel-message').text('번호 형식이 맞지 않습니다.');
+		        return;
+		    } 
+		    
+			$.ajax({
+				type : 'get',
+				data : {
+					'tel' : tel
+				},
+				url : 'selectCheckTel',
+				success : function(result) {
+					if (result == '1') {
+						$('.tel-message').text("이미 등록된 번호입니다.");
+						$('#tel1').focus();
+					} else {
+						$('#tel1').attr('readonly', true);
+						$('#tel2').attr('readonly', true);
+						$('#tel3').attr('readonly', true);
+						$('#telCheck').attr('disabled', true);
+						$('.tel-message').text("");
+						alert("사용 가능한 번호입니다.");
+					}
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			}); // ajax
+
 		}); // idCheckclick
-		
+
 		$('#emailCheck').click(function() {
 			let email = $('#email').val();
-			
+
 			console.log(email);
-			
-			if(email != null && email != ""){
-				if (!email.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")) {
-					console.log('no');
-					$('.email-message').text('알맞은 메일을 입력해주세요');
-					return;
-				}else{
-					$.ajax({
-						type : 'get',
-						data : {
-							'email' : email
-						},
-						url : 'selectCheckEmail',
-						success : function(result) {
-							if (result == '1') {
-								$('.email-message').text("이미 등록된 메일입니다.");
-								$('#email').focus();
-							} else {
-								$('#email').attr('readonly', true);
-								alert("사용 가능한 메일입니다.");
-								$('.email-message').text("");
-							}
-						},
-						error : function(err) {
-							console.log(err);
-						}
-					}); // ajax
-				}
-			}else{
+
+			if (email == "") {
 				$('.email-message').text("메일을 입력해주세요.");
+				return;
+			}
+			if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+				console.log('no');
+				$('.email-message').text('메일 형식이 맞지 않습니다.');
+				return;
+			} 
+					
+			$.ajax({
+				type : 'get',
+				data : {
+					'email' : email
+				},
+				url : 'selectCheckEmail',
+				success : function(result) {
+					if (result == '1') {
+						$('.email-message').text(
+								"이미 등록된 메일입니다.");
+						$('#email').focus();
+					} else {
+						$('#email').attr('readonly',
+								true);
+						alert("사용 가능한 메일입니다.");
+						$('.email-message').text("");
+					}
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			}); // ajax
+
+		}); // idCheckclick
+
+		$('.loginBtn').click(function(e) {
+			// submit 의 이벤트를 막기
+			e.preventDefault();
+			e.stopPropagation();
+
+			// 아이디 중복검사를 아직 안 한 경우
+			if ($('#id').attr('readonly') != 'readonly') {
+				alert("아이디 중복검사를 완료해주세요.");
+				return;
+			}
+
+			// 전화번호 중복검사를 아직 안 한 경우
+			if ($('#tel1').attr('readonly') != 'readonly') {
+				alert("전화번호 중복검사를 완료해주세요.");
+				return;
 			}
 			
-		}); // idCheckclick
-		
+			let name = $('#name').val();
+			if(!name.match(/^[가-힣]{2,5}$/)){
+				$('.name-message').text('이름 형식이 맞지 않습니다.');
+				return;
+			}
+			$('.name-message').text('');
+			
+			if($('#birth').val() == ""){
+				$('.birth-message').text('생년 월일을 선택해주세요.');
+				return;
+			}
+			$('.birth-message').text('');
 
-		$('.loginBtn').click(
-				function(e) {
-					// submit 의 이벤트를 막기
-					e.preventDefault();
-					e.stopPropagation();
+			// 이메일 중복검사를 아직 안 한 경우
+			if ($('#email').attr('readonly') != 'readonly') {
+				alert("email 중복검사를 완료해주세요.");
+				return;
+			}
+			
+			// 비밀번호 체크
+			let pw = $('#pw').val();
+			let pw1 = $('#pw1').val();
+			if(pw == "" || pw1 == ""){
+				$('.pwcheck-message').text('비밀번호를 입력해주세요.');
+				return;
+			}
+			if(pw != pw1){
+				$('.pwcheck-message').text('비밀번호가 같아야 합니다.');
+				return;
+			}
+			if(!pw.match(/^(?=.*[a-z])(?=.*\d)[a-z\d]{8,}$/)){
+				$('.pwcheck-message').text('비밀번호 형식이 맞지 않습니다.');
+				return;
+			}
+			$('.pwcheck-message').text('');
+			
+			// 약관 동의 안한 경우
+			let agree = $('input[id="memberAgree"]:checked').val();
+			console.log(agree);
+			if (agree != 'agree') {
+				alert("약관에 동의해주세요");
+				return;
+			}
+			
+			// 여기까지 왔으면 회원가입 해야지
+			insertFrm.submit();
+			
 
-					// 아이디 중복검사를 아직 안 한 경우
-					if ($('#id').attr('readonly') != 'readonly') {
-						alert("아이디 중복검사를 완료해주세요.");
-						return;
-					}
-					
-					// 전화번호 중복검사를 아직 안 한 경우
-					if ($('#tel1').attr('readonly') != 'readonly') {
-						alert("전화번호 중복검사를 완료해주세요.");
-						return;
-					}
-					
-					// 전화번호 중복검사를 아직 안 한 경우
-					if ($('#email').attr('readonly') != 'readonly') {
-						alert("email 중복검사를 완료해주세요.");
-						return;
-					}
-					
-					// 약관 동의 안한 경우
-					let agree = $('#memberAgree').val();
-					console.log(agree);
-					if (agree != 'on') {
-						alert("약관에 동의해주세요");
-						return;
-					}
-					
-					console.log(checkId + " " + checkEmail + " " + checkPassword + " " + checkPasswordDupl + " " + checkName);
-					
-					// 모든 유효성 검사가 완료 된 경우
-					if (checkId == 1 && checkPassword == 1 && checkPasswordDupl == 1	&& checkName == 1) {
-						alert("회원가입이 완료되었습니다.");
-						insertFrm.submit();
-					} else { // 그렇지 않은 경우
-						alert("형식에 맞게 입력해주세요.");
-					}
-				});
+		});
 
 	}); // function
 </script>
@@ -356,17 +305,17 @@
 				<div class="row justify-content-center" id='insertMemberForm'>
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down" id='insertMemberForm'>회원가입</h2>
-						<form action="insertMember.do" id='insertFrm' method="post">
+						<form action="insertMember" id='insertFrm' method="post">
 							<div class="row gy-4">
 
 								<div class="col-md-4">
 									<p>아이디</p>
 								</div>
 								<div class="col-md-6">
-									<input type="text" name="id" id="id" class="form-control" required />
+									<input type="text" name="id" id="id" class="form-control" />
 								</div>
 								<div class="col-md-2">
-									<button id="idCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="idCheck" class="form-control btn btn-primary">중복검사</button>
 								</div>
 
 								<div class="row">
@@ -379,18 +328,18 @@
 								</div>
 								<div class="col-md-2">
 									<input type="text" name="tel1" id="tel1" class="form-control"
-										placeholder="010" required />
+										placeholder="010" />
 								</div>
 								<div class="col-md-2">
 									<input type="text" name="tel2" id="tel2" class="form-control"
-										placeholder="1234" required />
+										placeholder="1234" />
 								</div>
 								<div class="col-md-2">
 									<input type="text" name="tel3" id="tel3" class="form-control"
-										placeholder="5678" required />
+										placeholder="5678" />
 								</div>
 								<div class="col-md-2">
-									<button id="telCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="telCheck" class="form-control btn btn-primary">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -405,8 +354,7 @@
 									<p>이름</p>
 								</div>
 								<div class="col-md-4">
-									<input type="text" name="name" id="name" class="form-control"
-										required />
+									<input type="text" name="name" id="name" class="form-control" />
 								</div>
 								<div class="col-md-4"></div>
 								<div class="row">
@@ -433,8 +381,12 @@
 									<p>생년월일</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="birth" class="form-control"
-										placeholder="19000101" required />
+									<input type="date" name="birth" id="birth" class="form-control" />
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="birth-message"></div>
+									</div>
 								</div>
 
 								<div class="col-md-4">
@@ -442,10 +394,10 @@
 								</div>
 								<div class="col-md-6">
 									<input type="text" class="form-control" id="email" name="email"
-										placeholder="abc@naver.com" required />
+										placeholder="abc@naver.com" />
 								</div>
 								<div class="col-md-2">
-									<button id="emailCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="emailCheck" class="form-control btn btn-primary">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -458,7 +410,7 @@
 								</div>
 								<div class="col-md-8">
 									<input type="password" class="form-control" id="pw"
-										name="password" placeholder="소문자, 숫자, 7~14자리" required />
+										name="password" placeholder="소문자, 숫자, 7~14자리" />
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -471,7 +423,7 @@
 								</div>
 								<div class="col-md-8">
 									<input type="password" class="form-control" name="password1"
-										id="pw1" placeholder="소문자, 숫자, 7~14자리" required />
+										id="pw1" placeholder="소문자, 숫자, 7~14자리" />
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -485,7 +437,7 @@
 									</p>
 								</div>
 								<div class="col-md-3 form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="memberAgree" required />
+									<input class="form-check-input" type="radio" id="memberAgree" value="agree"/>
 									<p>동의</p>
 								</div>
 								<div class="col-md-4"></div>
@@ -521,10 +473,12 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->

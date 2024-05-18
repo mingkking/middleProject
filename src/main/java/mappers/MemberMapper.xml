@@ -10,7 +10,7 @@
 		INSERT INTO member(id, tel, name, gender, birth, password, email, regDate)
 		VALUES(	#{id}, #{tel}, #{name},	#{gender}, #{birth}, #{password}, #{email}, sysdate())
 	</insert>
-	
+	 
 	<!-- 중복확인 -->
 	<select id="selectCheckID" parameterType="vo.member.MemberVO" resultType="int">
 	    SELECT count(*) FROM member
@@ -45,16 +45,30 @@
 	
 	
 	<!--  관리자 : 회원리스트에 회원 불러오기 -->
-	<select id="getmemberList" parameterType="hashmap" resultType="vo.member.MemberVO" >
+	<select id="getmemberList" parameterType="map" resultType="vo.member.MemberVO" >
 		SELECT id,name,tel,gender,email,regDate
 		FROM member
 		<where>
-			<if test='searchCondition != null'>
+			<if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
 				${searchCondition} Like '%${searchKeyword}%'
 			</if>
 		</where>
 		ORDER BY regDate
+		LIMIT #{startBoard},#{cnt}
 	</select>
+	
+	<!-- 관리자 : 회원수 불러오기 -->
+	<select id="getMemberCount" parameterType="map" resultType="int">
+	SELECT count(*)
+	FROM member
+	<where>
+        <if test="searchCondition != null and searchKeyword != null 
+        	and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+	</select>
+	
 	
 	<!-- 관리자 : 회원 상세보기 -->
 	<select id="getmember" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
@@ -76,6 +90,11 @@
 	    WHERE id = #{id}
 	</select>
 	
+	<select id="selectMypagePw" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    WHERE id = #{id} AND password = #{password}
+	</select>
+	
 	<delete id="deleteMypage" parameterType="vo.member.MemberVO">
 	     DELETE FROM member
 	     WHERE id = #{id} AND password = #{password}
@@ -84,25 +103,31 @@
 	<update id="updateMypageInfo" parameterType="vo.member.MemberVO">
 	    UPDATE member
 	    SET name = #{name},
-	        tel  = #{tel},
-	        birth = #{birth}
-	    WHERE id = #{id} AND password = #{password}
+	        gender = #{gender},
+	        birth = #{birth},
+	        password = #{password}
+	    WHERE id = #{id}
 	</update>
 	
-	<update id="updateMypage" parameterType="hashmap">
+	<!-- 아이디 찾기 -->
+	<select id="emailCodeId" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT *
+	    FROM member
+	    WHERE email = #{email}	
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPw" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT *
+	    FROM member
+	    WHERE id = #{id} AND email = #{email}
+	</select>
+	
+	<!-- 비밀번호 찾기 후 변경 -->
+	<update id="updateNewPw" parameterType="vo.member.MemberVO">
 	    UPDATE member
-	    SET password = #{password2}
-	    WHERE id = #{id} AND password = #{password}
+	    SET password = #{password}
+	    WHERE id = #{id}
 	</update>
-	
-	
-	<!-- 이메일 인증 -->
-<!-- 	<insert id="createAuthKey">
-	    INSERT INTO mp_member_auth VALUES (#{memberEmail}, #{authKey})
-	</insert>
-	
-	<update id="memberAuth">
-	    <![CDATA[UPDATE member SET memberAuth=1 WHERE (SELECT count(*) FROM mp_member_auth WHERE memberemail=#{memberEmail}) > 0]]>
-	</update> -->
 		
 </mapper>

@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
+
+<%
+	// 오늘날짜
+	// 년도
+	int year = 2024;
+%>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -27,16 +34,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -49,9 +62,85 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<!-- Google Charts 라이브러리 로드 -->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<!-- google charts -->
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    // Google Charts 라이브러리 로드 완료 후 실행
+    
+   
+    function prepareChartData(data) {
+        var chartData = [];
+        chartData.push([ '구장', '예약 건수']);
+
+        // 데이터가 있으면 chartData에 추가
+        data.forEach(function(item) {
+        	var month = parseInt(item.month);// 월 데이터를 숫자를 변환
+        	var pNo = item.pNo+'구장'; // 
+        	var reservationCount = parseInt(item.reservationCount); //예약 건수 데이터를 숫자로 변환
+            chartData.push([ pNo, reservationCount]);
+        });
+
+        return chartData;
+    }
+
+     
+    function drawChart(year,month) {
+    	 
+        $.ajax({
+            url: '${path}/ajaxTest',
+            type: 'POST',
+            dataType: 'json',
+            data: 'year='+year+'&month='+month,
+            success: function(response) {
+            	
+            	console.log("서버로부터 받은 결과 : " + response)
+            	
+            	
+                // Google Charts 로드 완료시 실행
+                google.charts.load('current', { packages: ['corechart'] });
+                google.charts.setOnLoadCallback(function() {
+                    var data = google.visualization.arrayToDataTable(prepareChartData(response));
+                    var options = {
+                        title: '월 구장별 예약 현황',
+                        chartArea: { width: '50%' },
+                        hAxis: { title: '구단' },
+                        vAxis: { title: '예약수' }
+                    };
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    // AJAX 버튼 클릭 이벤트 핸들러
+    $(document).ready(function() {	
+        $('#ajaxButton').click(function() {
+            var selectedYear = $('#yearSelect').val();
+            var selectedMonth = $('#monthSelect').val();
+            drawChart(selectedYear, selectedMonth);
+        });
+    });
+  </script>
+
+
 </head>
 
+
 <body>
+
+
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/manager/managerheader.jsp"></c:import>
 
@@ -62,11 +151,36 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">통계</h2>
-						<form action="loginCheck.do" method="post">
+						<h3 data-aos="fade-down">통계</h3>
+						<div class="pull-right">
+							<button type="button" class="btn btn-sm btn-primary"
+								id="ajaxButton">예약 확인</button>
+						</div>
+						<!-- 그래프를 그릴 요소들 -->
+						<select id="yearSelect">
+							<c:forEach var="year" items="${years}">
+								<option value="${year}" ${year==currentYear? 'selected' : ''}>
+								${year}</option>
+							</c:forEach>
 							
-							</div>
-						</form>
+						</select> <select id="monthSelect">
+							<option value="1">1월</option>
+							<option value="2">2월</option>
+							<option value="3">3월</option>
+							<option value="4">4월</option>
+							<option value="5">5월</option>
+							<option value="6">6월</option>
+							<option value="7">7월</option>
+							<option value="8">8월</option>
+							<option value="9">9월</option>
+							<option value="10">10월</option>
+							<option value="11">11월</option>
+							<option value="12">12월</option>
+						</select>
+
+						
+
+						<div id="chart_div"></div>
 					</div>
 				</div>
 			</div>
@@ -114,16 +228,20 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->
 
 	<!-- Template Main JS File -->
 	<script src="${path}/resources/assets/js/main.js"></script>
+
+
 
 </body>
 

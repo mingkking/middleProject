@@ -1,5 +1,6 @@
 package controller.manager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.member.MemberService;
 import service.product.ProductService;
@@ -34,16 +38,27 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("managermemberList")
-	public String managermemberList(Model m,
+	public String managermemberList(Model m,Integer pageNum,
 								String searchCondition,
 								String searchKeyword) {
-		HashMap map = new HashMap();
+		if(pageNum == null) {
+			pageNum =1;
+		}
+		
+		HashMap<String,Object>map = new HashMap<>();
 		map.put("searchCondition",searchCondition );
 		map.put("searchKeyword", searchKeyword);
 		
-		List<MemberVO> list = memberService.getmemberList(map);
+		int totalRecords = memberService.getMemberCount(map);
+		PagingVO paging = new PagingVO(pageNum,totalRecords,10); //한페이지당 보이는 갯수
+		map.put("startBoard",paging.getStartBoard()-1);
+		map.put("cnt",paging.getCnt());
 		
+		List<MemberVO> list = memberService.getmemberList(map);
 		m.addAttribute("memberList",list);
+		m.addAttribute("paging",paging);
+		m.addAttribute("searchCondition",searchCondition);
+		m.addAttribute("searchKeyword",searchKeyword);
 		
 		return "manager/managermemberList";
 	}
@@ -53,6 +68,7 @@ public class ManagerController {
 		
 		MemberVO result = memberService.getmember(vo);
 		m.addAttribute("member",result);
+		
 		
 		return "manager/managemember";
 	}
@@ -65,9 +81,21 @@ public class ManagerController {
 	
 	
 	@RequestMapping("managerproduct")
-	public String managerproduct(ProductVO vo,Model mo) {
-		List<ProductVO> result = productService.managerproduct(vo);
+	public String managerproduct(ProductVO vo,Model mo,
+									Integer pageNum) {
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
+		HashMap<String,Object> map = new HashMap<>();
+		int totalRecords = productService.getProductCount(map);
+		PagingVO paging = new PagingVO(pageNum,totalRecords,5); //한 페이지당 보이는 갯수
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
+		List<ProductVO> result = productService.managerproduct(map);
 		mo.addAttribute("mproductList",result);
+		mo.addAttribute("paging",paging);
 		
 		return "manager/managerproduct";
 		
@@ -122,30 +150,85 @@ public class ManagerController {
 	public String managerreservation(Model m, Integer pageNum,
 				String searchCondition,
 				String searchKeyword) {
+		if(pageNum == null) {
+			pageNum = 1;
+		}
 		
-		
-		
-		 HashMap map = new HashMap(); 
+		 HashMap<String, Object> map = new HashMap<>(); 
 		 map.put("searchCondition",searchCondition );
-		 map.put("searchCondition", searchCondition);
+		 map.put("searchKeyword", searchKeyword);
+		
+		 int totalRecords = reservationService.getReservationCount(map);
+		 PagingVO paging = new PagingVO(pageNum,totalRecords,10);//한 페이지당 보이는 갯수
+		 map.put("startBoard", paging.getStartBoard()-1);
+		 map.put("cnt", paging.getCnt());
 		 
-		  
-		 List<ReservationVO> list = reservationService.managerreservation(map);
 		 
+		 List<ReservationVO> list = reservationService.managerreservation(map); 
 		 m.addAttribute("mCheckReservation",list);
-		 
+		 m.addAttribute("paging",paging);
+		 m.addAttribute("searchCondition",searchCondition);
+		 m.addAttribute("searchKeyword",searchKeyword);
+		 		 
 	     return "manager/managerreservation"; 
 	}
 	
 	@RequestMapping("selectReservationCount")
-	public String selectReservationCount() {
+	public String selectReservationCount(){
+		
 		return "";
 	}
 
-	@RequestMapping("managergraph")
-	public String managergraph() {
+
+	
+	@RequestMapping(value = "/managergraph", method = RequestMethod.GET)
+	public String managergraph(Model model) {
+		int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+		List<Integer> years = new ArrayList<>();
+		for(int i = currentYear -5; i <= currentYear + 5;i++) {
+			years.add(i);
+		}
+		model.addAttribute("currentYear",currentYear);
+		model.addAttribute("years",years);		
 		return "manager/managergraph";
 	}
+	 
+	// ajax 호출 테스트
+	@RequestMapping(value = "/ajaxTest", method =  RequestMethod.POST )
+	@ResponseBody 
+	public List<ReservationVO> ajaxTest(String year,String month) {
+		ReservationVO rVO = new ReservationVO();
+		System.out.println(year + ',' + month);
+		rVO.setYear(year);
+		rVO.setMonth(month);
+		List<ReservationVO> result =  reservationService.getReservationCountByMonth(rVO);
+		System.out.println("------------------------------");
+		for(ReservationVO resultVO : result) {
+			System.out.println(resultVO.toString());
+		}
+		return result;
+		
+	}
+	
+//	public String managergraph() {
+//		List<ReservationVO> list = reservationService.getReservationCountByMonth(rVO);
+//		HashMap map = new HashMap();
+//		request.setAttribute("list", list);
+//		map.put("list",list);
+//		String json = null;
+//		try {
+//			json = new ObjectMapper().writeValueAsString(map);
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		}
+//					
+//			return json;
+//		
+//		
+//		return "manager/managergraph";
+//	}
+	
+	
 	
 	/*
 	 * @RequestMapping("managermemberList") public ModelAndView

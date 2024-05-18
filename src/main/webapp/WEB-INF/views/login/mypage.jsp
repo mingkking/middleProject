@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -18,7 +17,7 @@
 <link href="${path}/resources/assets/img/favicon.png" rel="icon">
 <link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
-
+ 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +53,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
+
 	$(function() {
+		
+		// 탈퇴하기
 		$('#cancelMember').click(function(){
 			// alert($('#nowPassword').val());
 			if($('#nowPassword').val() == null || $('#nowPassword').val() == "") {
@@ -65,41 +67,36 @@
 		}); // cancelMember click
 	
 	
-	// pw 유효성검사
-/* 	function pwCheck() {
-		var pw = $('#password1').val();
-		alert($('#password1').val());
-		var pwP = /^[a-z0-9]{7,15}$/; // 비밀번호 유효성 패턴
-
-		if (!pw.match(pwP)) {
-			alert('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
-			return;
-		} else {
-			alert('수정되었습니다.');
-			return;
-		}
-	}; // pwCheck() */
-	
-
-	$('#modifyMember').click(function() {
+    // 정보 수정
+	$('#modifyMember').click(function(e) {
+		e.preventDefault();
+		    var pw  = $('#nowPassword').val();
 			var pw1 = $('#password1').val();
 			var pw2 = $('#password2').val();
-			alert($('#password1').val());
+			// alert($('#password1').val());
+			
 			var pwP = /^[a-z0-9]{7,15}$/; // 비밀번호 유효성 패턴
+            
+			
+			if ( (pw1 != null && pw1 != "") && (pw2 != null && pw2 != "") ) {
+				console.log('ok');
+				// 변경 비밀번호 유효성검사
+				if (!pw1.match(pwP)) {
+					alert('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
+					return; 
+				}
+				
+				// 새 비밀번호 / 새 비밀번호 확인 일치 여부
+				if (pw1 != pw2) {
+					alert('비밀번호가 일치하지 않습니다');
+					return;
+				}
+			
+			} //if null
+		$('#updateMypage').submit();	
 
-			if (!pw1.match(pwP)) {
-				alert('영어 소문자, 숫자를 포함하여 7~15자 이내 작성');
-				return;
-			}
-			if (pw1 != pw2) {
-				alert('비밀번호가 일치하지 않습니다');
-				return;
-			} else {
-				alert('수정되었습니다.');
-			}
-
-		});
 	});
+});
 
 </script>
 
@@ -125,7 +122,7 @@
 				<div class="row justify-content-center" id='insertMemberForm'>
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down" id='mypage'>마이페이지</h2>
-						<form action="updateMypage" method="post">
+						<form action="updateMypage" method="post" id="updateMypage">
 							<div class="row gy-4">
 									<div class="col-md-4">
 										<p>아이디</p>

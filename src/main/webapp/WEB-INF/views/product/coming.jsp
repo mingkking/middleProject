@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -125,27 +124,32 @@
 
 						<!-- ajax 상품 상세 정보 -->
 						<div class="col-md-12">
-							<h4 id="productVOPname">실내구장</h4>
+							<h4 id="productVOPname"></h4>
 							<div class="col-md-12">
 									<div class="col-md-12">
 										<p></p>
 									</div>
 								<div class="row">
-									<div class="col-md-5" >주소 :</div>
+									<div class="col-md-5" ></div>
 									<div class="col-md-7" id="productVOPLocation">
-										<p>서울특별시 마포구 백범로 23, 1층</p>
+										<p></p>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-5" >구장정보 :</div>
+									<div class="col-md-5" ></div>
 									<div class="col-md-7" id="productVOPInfo">
-										<p>쾌적한 실내구장</p>
+										<p></p>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-12" id="pageNum">
 								<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-									<a href="${path}/coming?pageNum=${i }">${i }</a>
+									<c:if test="${sessionScope.logid == null }">
+										<a href="${path}/coming?pageNum=${i}&id=${id}">${i }</a>
+									</c:if>
+									<c:if test="${sessionScope.logid != null }">
+										<a href="${path}/coming?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
+									</c:if>
 								</c:forEach>
 							</div>
 						</div>

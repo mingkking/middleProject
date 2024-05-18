@@ -15,8 +15,8 @@ public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private QuestionDAO questionDAO;
 	
+	@Override
 	public void insertQuestion(QuestionVO vo) {
-		System.out.println("insert Service에서 호출");
 		questionDAO.insertQuestion(vo);
 	}
 	
@@ -35,4 +35,25 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<QuestionVO> question(HashMap map){
 		return questionDAO.question(map);
 	}
+	
+	public void updateQuestionStatus(QuestionVO vo) {
+        vo.setqStatus("Y");
+        questionDAO.updateQuestionStatus(vo);
+    }
+	
+	public void updateQuestionStatusToN(QuestionVO vo) {
+        questionDAO.updateQuestionStatusToN(vo);
+    }
+	
+	public String getSecretPassword(String qNo) {
+	    return questionDAO.getSecretPassword(qNo);
+	}
+	
+	@Override
+	public boolean checkPassword(String userId, String password) {
+	    String storedPassword = questionDAO.getPassword(userId);
+	    return storedPassword.equals(password);
+	}
+	
+	
 }

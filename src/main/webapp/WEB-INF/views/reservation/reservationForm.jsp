@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -137,19 +136,19 @@
 									<div class="row">
 										<div class="col-md-5">구장명 :</div>
 										<div class="col-md-7">
-											<p>${vo.pName }</p>
+											<input type="text" name="pName" class="form-control" value="${vo.pName}" readonly="readonly">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-5">구장위치 :</div>
 										<div class="col-md-7">
-											<p>${vo.pLocation }</p>
+											<input type="text" name="pLocation" class="form-control" value="${vo.pLocation}" readonly="readonly">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-5">구장정보 :</div>
 										<div class="col-md-7">
-											<p>${vo.pInfo }</p>
+											<input type="text" name="pLocation" class="form-control" value="${vo.pInfo}" readonly="readonly">
 										</div>
 									</div>
 
@@ -178,14 +177,12 @@
 									<div class="row">
 										<div class="col-md-5">총 금액 :</div>
 										<div class="col-md-7">
-											<p>${vo.pPrice }</p>
+											<input type="text" name="totalMoney" class="form-control" value="${vo.pPrice}" readonly="readonly">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
-											<input type="hidden" name="id" value="${sessionScope.id }">
 											<input type="hidden" name="pNo" id="pNo" value="${vo.pNo }">
-											<input type="hidden" name="totalMoney" value="${vo.pPrice }">
 											<button type="submit" class="findIdBtn">예약</button>
 										</div>
 									</div>
@@ -200,6 +197,7 @@
 
 
 		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
 

@@ -2,7 +2,6 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -50,7 +49,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
+ 
 <body>
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>

@@ -17,7 +17,7 @@
 <link href="resources/assets/img/favicon.png" rel="icon">
 <link href="resources/assets/img/apple-touch-icon.png"
    rel="apple-touch-icon">
-
+ 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,7 +99,7 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='notice'><input type='button' value='닫기'></a>
+                               <a href='notice?id=${id}'><input type='button' value='닫기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>

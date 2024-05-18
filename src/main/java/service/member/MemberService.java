@@ -8,7 +8,7 @@ import vo.member.MemberVO;
 public interface MemberService {
 	// 회원가입
 	public void insertMember(MemberVO vo) throws Exception;
-	
+	  
 	// 로그인
 	public int loginCheck(MemberVO vo) throws Exception;
 	
@@ -21,13 +21,17 @@ public interface MemberService {
 	// 회원가입 email 중복 검사
 	public int selectCheckEmail(MemberVO vo) throws Exception;
 	
-	//멤버 목록 조회
-	public List<MemberVO> getmemberList(HashMap map);
-		
-	//고객 상세 조회
+	//관리자 멤버 목록 조회
+	//public List<MemberVO> getmemberList(HashMap map);
+	
+	//관리자 멤러 목록,리스트
+	int getMemberCount(HashMap<String,Object>map);
+	List<MemberVO> getmemberList(HashMap<String,Object>map);
+	
+	//관리자 고객 상세 조회
 	public MemberVO getmember(MemberVO vo);
 		
-	//고객 삭제
+	//관리자 고객 삭제
 	public void deletemember(MemberVO vo);
 	
 	// 마이페이지 정보 조회
@@ -37,9 +41,21 @@ public interface MemberService {
 	public int deleteMypage(MemberVO vo);
 	
 	// 회원 정보 수정
-	public void updateMypageInfo(MemberVO vo);
+	public int updateMypageInfo(MemberVO vo);
 		
 	// 회원 정보 수정
 	public void updateMypage(HashMap<String, Object> map);
+	
+	// 마이페이지 현재 비번 확인
+	public int selectMypagePw(MemberVO vo);
+	
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo);
+	
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo);
+	
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo);
 }
 

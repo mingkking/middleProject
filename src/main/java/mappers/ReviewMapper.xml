@@ -4,8 +4,71 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ReviewDAO">
-	<select id="selectReviewAll">
+	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewAll" parameterType="hashmap" resultType="vo.review.ReviewVO">
 		SELECT * FROM review
+		ORDER BY rRegDate DESC
+		<if test="startBoard != null">
+			LIMIT #{startBoard}, 12
+		</if>
 	</select>
+	
+	<!-- 리뷰 개수 -->
+	<select id="selectReviewCount" parameterType="vo.review.ReviewVO" resultType="int">
+		SELECT count(*) FROM review
+	</select>
+	
+	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewAllNoPaing" resultType="vo.review.ReviewVO">
+		SELECT * FROM review
+		ORDER BY rRegDate DESC
+	</select>
+	
+	<!-- 리뷰 가져오기 -->
+	<select id="selectReviewAllPaing" parameterType="hashmap" resultType="vo.review.ReviewVO">
+		SELECT * FROM review
+	    WHERE pNo = #{pNo}
+	    ORDER BY rRegDate DESC
+	    <if test="startBoard2 != null">
+	        LIMIT #{startBoard2}, 5
+	    </if>
+	</select>
+	
+	<!-- 리뷰 상품번호 개수 -->
+	<select id="selectReviewAllNoPaingCount" resultType="int">
+		SELECT count(*) FROM review
+		WHERE pNo = #{pNo}
+	</select>
+	
+	<!-- 리뷰 등록 -->
+	<insert id="insertReview" parameterType="vo.review.ReviewVO">
+		INSERT INTO review(id, pNo, rTitle, rContent, rRegDate, r_fname, r_frealname, r_fsize)
+		VALUES(#{id}, #{pNo}, #{rTitle}, #{rContent}, sysdate(), #{r_fname}, #{r_frealname}, #{r_fsize})
+	</insert>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="updateReview" parameterType="vo.review.ReviewVO">
+		UPDATE review
+		SET rTitle = #{rTitle}, rContent = #{rContent}
+		WHERE rNo = #{rNo} AND pNo = #{pNo}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="vo.review.ReviewVO">
+		DELETE FROM review
+		WHERE rNo = #{rNo} AND id = #{id}
+	</delete>
+	
+	<!-- <insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO uploadtemp ( b_name, b_email, b_title , b_content, b_pwd , b_date, b_count
+		<if test="b_fname != null"> 
+			, b_fname, b_fsize, b_realfname 
+		</if>
+		) VALUES ( #{ b_name }, #{ b_email }, #{ b_title} , #{ b_content}, #{ b_pwd} , now(), 0
+		<if test="b_fname != null"> 
+			, #{ b_fname}, #{b_fsize}, #{b_realfname}
+		</if>
+		)
+	</insert> -->
 	
 </mapper>

@@ -9,9 +9,16 @@
 	<select id="selectProductAll" parameterType="hashmap" resultType="vo.product.ProductVO">
 		SELECT *
 		FROM product
+		ORDER BY pNo DESC
 		<if test="startBoard != null">
-			LIMIT #{startBoard}, #{endBoard}
+			LIMIT #{startBoard}, 6
 		</if>
+	</select>
+	
+	<!-- 상품 전체 목록 조회 -->
+	<select id="selectProductAllReview" resultType="vo.product.ProductVO">
+		SELECT *
+		FROM product
 	</select>
 	
 	<!-- 상품 상세 조회 -->

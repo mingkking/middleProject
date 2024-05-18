@@ -15,11 +15,11 @@ import vo.reservation.ReservationVO;
 public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationDAO rDAO;
-
+	
 	// 예약 등록
 	@Override
-	public void insertReservation(ReservationVO rVO) throws Exception {
-		rDAO.insertReservation(rVO);
+	public int insertReservation(ReservationVO rVO) throws Exception {
+		return rDAO.insertReservation(rVO);
 	}
 
 	// 날짜에 따른 시작 시간 가져오기
@@ -30,12 +30,24 @@ public class ReservationServiceImpl implements ReservationService {
 
 	// 관리자 예약 확인
 	@Override
-	public List<ReservationVO> managerreservation(HashMap map) {
+	public List<ReservationVO> managerreservation(HashMap<String,Object> map) {
 		return rDAO.managerreservation(map);
 	}
-
-	// 예약갯수
-	public int selectReservationCount() throws Exception {
-		return rDAO.selectReservationCount();
+	
+	//관리자 예약 확인 리스트
+	public int getReservationCount(HashMap<String,Object> map) {
+		return rDAO.getReservationCount(map);
 	}
+	
+	
+	//관리자 통계
+	public List<ReservationVO> getReservationCountByMonth(ReservationVO rVO){
+		return rDAO.getReservationCountByMonth(rVO);
+	}
+
+
+
+	
+	
+	 
 }

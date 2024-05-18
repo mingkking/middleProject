@@ -83,11 +83,12 @@ tr {
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">상품 관리</h2>
-						<form action="updateProduct" method="get">
+						<form action="updateProduct" method="post" id="updateProduct">
 							<table border="1" cellpadding="0" cellspacing="0">
 								<tr>
 									<td bgcolor="#ooad34" width="70">구장번호</td>
-									<td align="left">${mproduct.pNo}</td>
+									<td align="left"><input name='pNo' type='text'
+									 value="${mproduct.pNo }" ></input></td>
 								</tr>
 								<tr>
 									<td bgcolor="#ooad34" width="70">구장이름</td>
@@ -106,12 +107,12 @@ tr {
 								</tr>
 								<tr>
 									<td bgcolor="#ooad34">가격</td>
-									<td align="left"><input name='pMoney' type='text'
-										value="${mproduct.pMoney}"></input></td>
+									<td align="left"><input name='pPrice' type='text'
+										value="${mproduct.pPrice}"></input></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="center">
-										<input type="submit" value="수정" />
+										<button type="submit" >수정하기</button>
 									</td>
 								</tr>
 
