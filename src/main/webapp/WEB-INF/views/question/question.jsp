@@ -75,17 +75,21 @@
 									<tr>
 										<th>No.</th>
 										<th>Title</th>
-										<th>Id</th>
 										<th>Status</th>
 									</tr>
 								</thead>
-								<c:forEach items="${question }" var="question">
+								<c:forEach items="${question}" var="question">
 									<tr>
-										<td>${ question.qNo}</td>
-										<td align="center"><a
-											href="getQuestion?qNo=${question.qNo}"> ${question.qTitle }</a></td>
-										<td>${question.id }</td>
-										<td>${question.qStatus }</td>
+										<td>${question.qNo}</td>
+										<td align="center"><c:choose>
+												<c:when test="${not empty question.qSecret}">
+													<a href="checkQSecret?qNo=${question.qNo}">비밀글입니다.</a>
+												</c:when>
+												<c:otherwise>
+													<a href="getQuestion?qNo=${question.qNo}">${question.qTitle}</a>
+												</c:otherwise>
+											</c:choose></td>
+										<td>${question.qStatus}</td>
 									</tr>
 								</c:forEach>
 							</table>

@@ -42,9 +42,23 @@ public class QuestionDAOImpl implements QuestionDAO{
 		return list;
 	}
 	
+	public void updateQuestionStatus(QuestionVO vo) {
+	    System.out.println("===> Mybatis updateQuestionStatus() 호출");
+	    mybatis.update("QuestionDAO.updateQuestionStatus", vo);
+	}
+	
+	public void updateQuestionStatusToN(QuestionVO vo) {
+        mybatis.update("QuestionDAO.updateQuestionStatusToN", vo);
+    }
+	
+	public String getSecretPassword(String qNo) {
+        System.out.println("===> Mybatis getSecretPassword() 호출");
+        return mybatis.selectOne("QuestionDAO.getSecretPassword", qNo);
+    }
+	
 	 @Override
 	    public String getPassword(String userId) {
-	        // 여기서는 예시로 하드코딩된 값 사용, 실제로는 DB 등에서 비밀번호를 가져와야 함
-	        return "1234"; // 예시로 사용자의 비밀번호를 반환
-	 } 
+	    return "1234"; // 예시로 사용자의 비밀번호를 반환
+	 }
+
 }

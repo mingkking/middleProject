@@ -3,12 +3,34 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="qAnswerDAO">
+<mapper namespace="QAnswerDAO">
 
-<!-- sql 문의글 insert문 -->
+	<!-- sql 문의글 답변 insert문 -->
 	<insert id="managerInsertQuestion" parameterType="vo.question.QAnswerVO">
-		INSERT INTO QAnswer (qATitle, qAContent, qARegdate)
-		VALUES ( #{qATitle}, #{qAContent}, sysdate())
+		INSERT INTO qAnswer (id, qATitle, qAContent, qARegdate, qNo)
+		VALUES ( #{id}, #{qATitle}, #{qAContent}, sysdate(), #{qNo})
 	</insert>
- 
+
+	<!-- sql 문의글 목록보기-->
+	<select id="managerGetQuestion" parameterType="vo.question.QAnswerVO" resultType="vo.question.QAnswerVO">
+		SELECT *
+		FROM qAnswer
+		WHERE qNo = #{qNo}
+	</select>
+	
+	<!-- sql 문의글 update문 -->
+	<update id="managerUpdateQuestion" parameterType="vo.question.QAnswerVO">
+		UPDATE qAnswer SET
+		qATitle = #{qATitle},
+		qAContent = #{qAContent}
+		WHERE qNo = #{qNo}
+	</update>
+	
+	<!-- sql 문의글 delete문 -->
+	<delete id="managerDeleteQuestion" parameterType="vo.question.QAnswerVO">
+    	DELETE FROM qAnswer 
+    	WHERE qNo = #{qNo}
+	</delete>
+	
+	
 </mapper>

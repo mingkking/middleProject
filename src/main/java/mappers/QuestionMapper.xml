@@ -7,24 +7,35 @@
 
 	<!-- sql 문의글 insert문 -->
 	<insert id="insertQuestion" parameterType="vo.question.QuestionVO">
-		INSERT INTO QUESTION (id, qTitle, qContent, qPassword, qRegdate, qStatus)
-		VALUES ( #{id}, #{qTitle}, #{qContent}, #{qPassword}, now(), "N")
+		INSERT INTO QUESTION (id, qTitle, qContent, qPassword, qRegdate, qStatus, qSecret)
+		VALUES ( #{id}, #{qTitle}, #{qContent}, #{qPassword}, now(), "N", #{qSecret})
 	</insert>
-	 
+	
 	<!-- sql 문의글 update문 -->
 	<update id="updateQuestion" parameterType="vo.question.QuestionVO">
 		UPDATE QUESTION SET
 		qTitle = #{qTitle},
-		qContent = #{qContent},
-		qPassword = #{qPassword}
+		qContent = #{qContent}
 		WHERE qNo = #{qNo}
 	</update>
 	
 	<!-- sql 문의글 delete문 -->
 	<delete id="deleteQuestion" parameterType="vo.question.QuestionVO">
-		DELETE FROM QUESTION
-		WHERE qNo = #{qNo}
+    	DELETE FROM Question 
+    	WHERE qNo = #{qNo}
 	</delete>
+	
+	<update id="updateQuestionStatus" parameterType="vo.question.QuestionVO">
+    	UPDATE QUESTION
+    	SET qStatus = 'Y'
+    	WHERE qNo = #{qNo}
+	</update>
+
+	<update id="updateQuestionStatusToN" parameterType="vo.question.QuestionVO">
+        UPDATE Question 
+        SET qStatus = 'N'
+        WHERE qNo = #{qNo}
+    </update>
 	
 	<!-- sql 공지글 목록보기 -->
 	<select id="getQuestion" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
@@ -43,5 +54,12 @@
 		</if> 
 	</where>
 	ORDER BY qNo DESC
+	</select>
+	
+	
+	<select id="getqSecret" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
+		SELECT *
+		FROM QUESTION
+		WHERE qSecret = #{qSecret}
 	</select>
 </mapper>
