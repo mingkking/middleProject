@@ -56,7 +56,7 @@
 		
 		$('input[type=radio]').change(function() {
 			let check = $("input[type=radio]:checked").val();
-			if(check == '카드'){
+			if(check == '핸드폰'){
 				$('#account').text('');
 			}
 			
@@ -77,12 +77,12 @@
 		$('.loginBtn').click(function() {
 			let check = $("input[type=radio]:checked").val();
 			
-			if(check == '카드'){
-				$('#account').text('');
+			if(check == '핸드폰'){
+				iamport2();
 			}
 			
 			if(check == '카카오페이'){
-				//iamport();
+				iamport();
 			}
 			
 			if(check == '무통장입금'){
@@ -112,7 +112,7 @@
 			
 		});
 		
-		/* function iamport(){
+		function iamport(){
 			//가맹점 식별코드
 			IMP.init('imp01534004');
 			IMP.request_pay({
@@ -122,19 +122,79 @@
 			    name : $('#pName').val(), //결제창에서 보여질 이름
 			    amount : 1, //실제 결제되는 가격
 			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
+			    buyer_name : $('#name').val(),
+			    buyer_tel : $('#tel').val(),
 			    buyer_addr : '서울 강남구 도곡동',
 			    buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
-			    	alert('결제성공 구장예약이 완료되었습니다.');
+			    	let param = $('#insertFrm').serialize();
+			    	
+					$.ajax({
+						type : 'post',
+						url : 'insertKakaoPayReservation',
+						data : param,
+						dataType : 'json', // 응답 데이타 종류 (text/html/xml/json.....)
+						success : function(result) {
+							if(result == '1'){
+								alert('카카오페이 결제성공 구장예약이 완료되었습니다.');
+								location.href="index";
+							}
+						},
+						error : function(err) {
+							alert('카카오페이 결제성공 구장예약이 실패하였습니다.');
+							console.log(err);
+						}
+					});
+					
 			    } else {
 			    	alert('결제에 실패하였습니다.');
 			    }
 			    
 			});
-		} */
+		}
+		
+		function iamport2(){
+			//가맹점 식별코드
+			IMP.init('imp01534004');
+			IMP.request_pay({
+			    pg : 'kicc',
+			    pay_method : 'phone',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : $('#pName').val(), //결제창에서 보여질 이름
+			    amount : 10000, //실제 결제되는 가격
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : $('#name').val(),
+			    buyer_tel : $('#tel').val(),
+			    buyer_addr : '서울 강남구 도곡동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+					let param = $('#insertFrm').serialize();
+			    	
+					$.ajax({
+						type : 'post',
+						url : 'insertPhoneReservation',
+						data : param,
+						dataType : 'json', // 응답 데이타 종류 (text/html/xml/json.....)
+						success : function(result) {
+							if(result == '1'){
+								alert('핸드폰 결제성공 구장예약이 완료되었습니다.');
+								location.href="index";
+							}
+						},
+						error : function(err) {
+							alert('핸드폰 결제성공 구장예약이 실패하였습니다.');
+							console.log(err);
+						}
+					});
+			    	
+			    } else {
+			    	alert('결제에 실패하였습니다.');
+			    }
+			    
+			});
+		}
 		
 	});
 </script>
@@ -159,14 +219,14 @@
 								<p>예약자명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="name" class="form-control" value="${memberVO.name}" readonly="readonly">
+								<input type="text" name="name" id="name" class="form-control" value="${memberVO.name}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-4">
 								<p>전화번호</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="tel" class="form-control" value="${memberVO.tel}" readonly="readonly">
+								<input type="text" name="tel" id="tel" class="form-control" value="${memberVO.tel}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-12">
@@ -217,8 +277,8 @@
 							<div class="row">
 							<!-- <div class="col-md-3 form-check form-check-inline"></div> -->
 							<div class="col-md-4 form-check ">
-								<input class="form-check-input" type="radio" name="rPayMethod" value="카드" checked="checked" required>
-								<p>카드</p>
+								<input class="form-check-input" type="radio" name="rPayMethod" value="핸드폰" checked="checked" required>
+								<p>핸드폰</p>
 							</div>
 							<div class="col-md-4 form-check ">
 								<input class="form-check-input" type="radio" name="rPayMethod" value="카카오페이">
