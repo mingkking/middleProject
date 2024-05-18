@@ -21,13 +21,17 @@ public interface MemberService {
 	// 회원가입 email 중복 검사
 	public int selectCheckEmail(MemberVO vo) throws Exception;
 	
-	//멤버 목록 조회
-	public List<MemberVO> getmemberList(HashMap map);
-		
-	//고객 상세 조회
+	//관리자 멤버 목록 조회
+	//public List<MemberVO> getmemberList(HashMap map);
+	
+	//관리자 멤러 목록,리스트
+	int getMemberCount(HashMap<String,Object>map);
+	List<MemberVO> getmemberList(HashMap<String,Object>map);
+	
+	//관리자 고객 상세 조회
 	public MemberVO getmember(MemberVO vo);
 		
-	//고객 삭제
+	//관리자 고객 삭제
 	public void deletemember(MemberVO vo);
 	
 	// 마이페이지 정보 조회

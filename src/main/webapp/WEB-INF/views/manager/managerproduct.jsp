@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
 <!DOCTYPE html>
@@ -27,16 +27,22 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -104,13 +110,33 @@ tr {
 									<td>${mproduct.pLocation }</td>
 									<td>${mproduct.pPrice }</td>
 									<td>${mproduct.pInfo }</td>
-
-									<!-- 추가 -->
-
-
 								</tr>
 							</c:forEach>
 						</table>
+						<!-- 페이징 -->
+						<div id="pagination" class="col-md-12">
+							<c:if test="${paging.startPage > 1}">
+								<a
+									href="${path}/managerproduct?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+							</c:if>
+							<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
+								step="1" varStatus="loop">
+								<c:choose>
+									<c:when test="${loop.index == paging.pageNum}">
+										<span class="current">${loop.index}</span>
+									</c:when>
+									<c:otherwise>
+										<a
+											href="${path}/managerproduct?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${paging.endPage < paging.totalPage}">
+								<a
+									href="${path}/managerproduct?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+							</c:if>
+						</div>
+
 						<br> <a href="${path}/managerproductInsert.do">상품 등록</a>
 						</form>
 					</div>
@@ -160,10 +186,12 @@ tr {
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
 	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->

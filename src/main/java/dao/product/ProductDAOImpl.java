@@ -42,10 +42,17 @@ public class ProductDAOImpl implements ProductDAO{
 		return mybatis.selectOne("ProductDAO.selectProductCount");
 	}
 	
-	public List<ProductVO> managerproduct(ProductVO vo){
-		return mybatis.selectList("ProductDAO.managerproduct",vo);
+	//관리자 상품리스트 불러오기
+	public List<ProductVO> managerproduct(HashMap<String,Object>map){
+		return mybatis.selectList("ProductDAO.managerproduct",map);
 	}
 	
+	//관리자 상품리스트 페이징
+	public int getProductCount(HashMap<String,Object>map) {
+		return mybatis.selectOne("ProductDAO.getProductCount",map);
+	}
+	
+	//관리자 상품상세관리
 	public ProductVO managerproductmanaging(ProductVO vo) {
 		return mybatis.selectOne("ProductDAO.managerproductmanaging",vo);
 	}
@@ -63,6 +70,8 @@ public class ProductDAOImpl implements ProductDAO{
 	public void deleteProduct(ProductVO vo) {
 		mybatis.delete("ProductDAO.deleteProduct",vo);
 	}
+
+	
 	
 
 	

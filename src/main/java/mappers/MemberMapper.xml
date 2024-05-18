@@ -45,16 +45,30 @@
 	
 	
 	<!--  관리자 : 회원리스트에 회원 불러오기 -->
-	<select id="getmemberList" parameterType="hashmap" resultType="vo.member.MemberVO" >
+	<select id="getmemberList" parameterType="map" resultType="vo.member.MemberVO" >
 		SELECT id,name,tel,gender,email,regDate
 		FROM member
 		<where>
-			<if test='searchCondition != null'>
+			<if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
 				${searchCondition} Like '%${searchKeyword}%'
 			</if>
 		</where>
 		ORDER BY regDate
+		LIMIT #{startBoard},#{cnt}
 	</select>
+	
+	<!-- 관리자 : 회원수 불러오기 -->
+	<select id="getMemberCount" parameterType="map" resultType="int">
+	SELECT count(*)
+	FROM member
+	<where>
+        <if test="searchCondition != null and searchKeyword != null 
+        	and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+	</select>
+	
 	
 	<!-- 관리자 : 회원 상세보기 -->
 	<select id="getmember" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
