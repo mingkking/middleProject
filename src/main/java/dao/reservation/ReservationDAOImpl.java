@@ -17,8 +17,8 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	// 예약 등록
-	public void insertReservation(ReservationVO rVO) throws Exception {
-		mybatis.insert("ReservationDAO.insertReservation", rVO);
+	public int insertReservation(ReservationVO rVO) throws Exception {
+		return mybatis.insert("ReservationDAO.insertReservation", rVO);
 	}
 
 	// 날짜에 따른 시작 시간 가져오기

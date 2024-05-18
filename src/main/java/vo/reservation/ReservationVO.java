@@ -122,6 +122,15 @@ public class ReservationVO {
 		this.rPayRegDate = rPayRegDate;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "ReservationVO [rNo=" + rNo + ", id=" + id + ", pNo=" + pNo + ", rental=" + rental + ", start_time="
+				+ start_time + ", end_time=" + end_time + ", totalMoney=" + totalMoney + ", rStatus=" + rStatus
+				+ ", rRegDate=" + rRegDate + ", rPayStatus=" + rPayStatus + ", rPayMethod=" + rPayMethod
+				+ ", rPayRegDate=" + rPayRegDate + ", year=" + year + ", month=" + month + ", reservationCount="
+				+ reservationCount + "]";
+	}
 
 
 }

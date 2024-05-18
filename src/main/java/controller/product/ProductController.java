@@ -3,6 +3,7 @@ package controller.product;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping("/coming")
-	public String coming(HttpServletResponse response, String id, Model model, Integer pNo, Integer pageNum) {
-		if(id.equals("") || id == null) {
-			PopUp.popUp(response, "로그인 후 이용가능합니다.");
-			return "login/login";
-		}
-		
+	public String coming(HttpServletResponse response, Model model, Integer pNo, Integer pageNum) {
 		List<ProductVO> list = null;
 		
 		if(pNo == null) {
@@ -52,10 +48,6 @@ public class ProductController {
 			list = productService.selectProductAll(pVO.getStartBoard(), pVO.getEndBoard()); // 구장 전체 목록
 			model.addAttribute("productList", list);
 			model.addAttribute("pNo", pNo);
-			model.addAttribute("id", id);
-			for (int i = 0; i < list.size(); i++) {
-				System.out.println(list.get(i).toString());
-			}
 		} catch (Exception e) {
 			System.out.println("구장 전체 목록: " + e.getMessage()); // 에러났을 때
 		}
@@ -72,7 +64,6 @@ public class ProductController {
 		
 		try {
 			vo = productService.selectProduct(pNo);
-			System.out.println(vo.toString());
 		} catch (Exception e) {
 			System.out.println("상품 상세 조회: " + e.getMessage()); // 에러났을 때
 		}
