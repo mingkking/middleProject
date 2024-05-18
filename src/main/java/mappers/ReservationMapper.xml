@@ -7,8 +7,8 @@
 
 	<!-- 예약등록 -->
 	<insert id="insertReservation" parameterType="vo.reservation.ReservationVO">
-		INSERT INTO reservation(id, pNo, rental, start_time, end_time, totalMoney, rStatus, rRegDate)
-		VALUES(#{id}, #{pNo}, #{rental}, #{start_time}, #{end_time}, #{totalMoney}, 'N', sysdate());
+		INSERT INTO reservation(id, pNo, rental, start_time, end_time, totalMoney, rStatus, rRegDate, rPayStatus, rPayMethod, rPayRegDate)
+		VALUES(#{id}, #{pNo}, #{rental}, #{start_time}, #{end_time}, #{totalMoney}, #{rStatus}, sysdate(), #{rPayStatus}, #{rPayMethod}, sysdate());
 	</insert>
 	
 	<select id="selectReservationTime" parameterType="vo.reservation.ReservationVO" resultType="vo.reservation.ReservationVO">

@@ -16,11 +16,10 @@ public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	private ReservationDAO rDAO;
 	
-	
 	// 예약 등록
 	@Override
-	public void insertReservation(ReservationVO rVO) throws Exception {
-		rDAO.insertReservation(rVO);
+	public int insertReservation(ReservationVO rVO) throws Exception {
+		return rDAO.insertReservation(rVO);
 	}
 
 	// 날짜에 따른 시작 시간 가져오기
