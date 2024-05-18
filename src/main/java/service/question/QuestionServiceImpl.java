@@ -30,15 +30,30 @@ public class QuestionServiceImpl implements QuestionService{
 	
 	public QuestionVO getQuestion(QuestionVO vo) {
 		return questionDAO.getQuestion(vo);
-	} 
+	}
 	
 	public List<QuestionVO> question(HashMap map){
 		return questionDAO.question(map);
 	}
 	
+	public void updateQuestionStatus(QuestionVO vo) {
+        vo.setqStatus("Y");
+        questionDAO.updateQuestionStatus(vo);
+    }
+	
+	public void updateQuestionStatusToN(QuestionVO vo) {
+        questionDAO.updateQuestionStatusToN(vo);
+    }
+	
+	public String getSecretPassword(String qNo) {
+	    return questionDAO.getSecretPassword(qNo);
+	}
+	
 	@Override
 	public boolean checkPassword(String userId, String password) {
-	    String storedPassword = questionDAO.getPassword(userId); // questionDAO를 통해 getPassword 메소드 호출
+	    String storedPassword = questionDAO.getPassword(userId);
 	    return storedPassword.equals(password);
 	}
+	
+	
 }

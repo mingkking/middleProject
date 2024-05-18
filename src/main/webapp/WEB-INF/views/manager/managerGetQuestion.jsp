@@ -105,7 +105,8 @@
 									<p>답변일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="qARegdate" class="form-control" value="${managerQuestion.qARegdate }>" readonly>
+									<c:set var="formattedDate" value="${empty managerQuestion.qARegdate ? '답변을 작성해주세요.' : managerQuestion.qARegdate}" />
+									<input type="text" name="qARegdate" class="form-control" value="${formattedDate}" readonly>
 								</div>
 								
                              <div class="col-md-4">

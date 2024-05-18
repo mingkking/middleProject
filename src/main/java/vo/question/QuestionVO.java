@@ -9,6 +9,8 @@ public class QuestionVO {
 	private String qPassword;
 	private String qRegdate;
 	private String qStatus;
+	private String qSecret;
+	
 	
 	public Integer getqNo() {
 		return qNo;
@@ -52,12 +54,20 @@ public class QuestionVO {
 	public void setqStatus(String qStatus) {
 		this.qStatus = qStatus;
 	}
+	public String getqSecret() {
+		return qSecret;
+	}
+	public void setqSecret(String qSecret) {
+		this.qSecret = qSecret;
+	}
 	
 	@Override
 	public String toString() {
 		return "QuestionVO [qNo=" + qNo + ", id=" + id + ", qTitle=" + qTitle + ", qContent=" + qContent
-				+ ", qPassword=" + qPassword + ", qRegdate=" + qRegdate + ", qStatus=" + qStatus + "]";
+				+ ", qPassword=" + qPassword + ", qRegdate=" + qRegdate + ", qStatus=" + qStatus + ", qSecret="
+				+ qSecret + "]";
 	}
+	
 	
 	
 }

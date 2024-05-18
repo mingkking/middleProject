@@ -2,16 +2,31 @@ package vo.question;
 
 public class QAnswerVO {
 	
+	private Integer qANo;
 	private Integer qNo;
+	private String id;
 	private String qATitle;
 	private String qAContent;
 	private String qARegdate;
 	
+	
+	public Integer getqANo() {
+		return qANo;
+	}
+	public void setqANo(Integer qANo) {
+		this.qANo = qANo;
+	}
 	public Integer getqNo() {
 		return qNo;
 	}
 	public void setqNo(Integer qNo) {
 		this.qNo = qNo;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getqATitle() {
 		return qATitle;
@@ -34,9 +49,9 @@ public class QAnswerVO {
 	
 	@Override
 	public String toString() {
-		return "QAnswerVO [qNo=" + qNo + ", qATitle=" + qATitle + ", qAContent=" + qAContent + ", qARegdate="
-				+ qARegdate + "]";
+		return "QAnswerVO [qANo=" + qANo + ", qNo=" + qNo + ", id=" + id + ", qATitle=" + qATitle + ", qAContent="
+				+ qAContent + ", qARegdate=" + qARegdate + "]";
 	}
 	
-	 
+	
 }

@@ -50,7 +50,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
- 
+
 <body>
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>
@@ -63,7 +63,7 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">문의 상세</h2>
-						<form method="post">
+						<form method="post" action="updateQuestion">
 							<div class="row gy-4">
 
 								<div class="col-md-4">
@@ -92,35 +92,36 @@
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="qTitle" value='${question.qTitle }' required readonly/>
+									<input type="text" class="form-control" name="qTitle" value='${question.qTitle }' required />
 								</div>
 								
 								<div class="col-md-4">
                                 <p>문의 내용</p>
                             </div>
                             <div class="col-md-8">
-                                <textarea name="qContent" class="form-control" rows="5" required readonly>${question.qContent }</textarea>
+                                <textarea name="qContent" class="form-control" rows="5" required >${question.qContent }</textarea>
                             </div>
                             
                             <div class="col-md-4">
-                           		<p>작성일시</p>
+                           		<p>답변일시</p>
                         	</div>
                         		<div class="col-md-8">
-                           			<input type="date" name="nRegdate" class="form-control" value='${question.qRegdate }' readonly>
+                           			<c:set var="formattedDate" value="${empty managerQuestion.qARegdate ? '답변을 작성해주세요.' : managerQuestion.qARegdate}" />
+									<input type="text" name="qARegdate" class="form-control" value="${formattedDate}" readonly>
                         		</div>
                         
                             <div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="qTitle" class="form-control" placeholder="제목을 입력해주세요." value='${question.qTitle }' readonly>
+									<input type="text" name="qATitle" class="form-control" placeholder="답변이 작성되지 않았습니다." value='${managerQuestion.qATitle }' readonly>
 								</div>
 								
 								<div class="col-md-4">
 									<p>답변 내용</p>
 								</div>
 								<div class="col-md-8">
-									<textarea name="nContent" class="form-control" rows="5" placeholder="답변내용을 입력해주세요." required readonly>${question.qContent }</textarea>
+									<textarea name="qAContent" class="form-control" rows="5" placeholder="답변이 작성되지 않았습니다." required readonly>${managerQuestion.qAContent }</textarea>
 								</div>
 
 								
@@ -130,7 +131,8 @@
                                 <div class="error-message"></div>
                                 
                                <a href='question?id=${id} '><input type='button' value='닫기'></a>
-                               <%-- <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a> --%>
+                               <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
+                               <a href='updateQuestion'><input type='submit' value='수정하기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
