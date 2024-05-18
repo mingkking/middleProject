@@ -92,7 +92,7 @@
 					return;
 				}
 			
-			}; //if null
+			} //if null
 		$('#updateMypage').submit();	
 
 	});

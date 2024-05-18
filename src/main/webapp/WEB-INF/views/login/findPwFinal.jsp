@@ -55,96 +55,38 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+  <link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+$(function() {
 
-<!-- 이메일 인증 -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    function sendNumber(){
-        $("#authEmail").css("display","block");
-        $.ajax({
-            url:"/mail",
-            type:"post",
-            dataType:"json",
-            data:{"mail" : $("#mail").val()},
-            success: function(data){
-                alert("인증번호 발송");
-                $("#Confirm").attr("value",data);
-            },
-        });
-    }
-
-    function confirmNumber(){
-        var number1 = $("#number").val();
-        var number2 = $("#Confirm").val();
-
-        if(number1 == number2){
-            alert("인증되었습니다.");
-        }else{
-            alert("번호가 다릅니다.");
-        }
-    }
-</script> -->
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		let checkEmail = 0; // email 유효성
-		// email
-		function emailCheck() {
-			var email = $('#emailCheck').val();
-			var emailResult = $('.email-message');
-
-			var emailP = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"; // email
-
-			if (!email.match(emailP)) {
-				emailResult.text("@를 포함한 이메일주소를 작성");
-				$('#sendEmail').attr('disabled', true); // 아이디 찾기 email 인증 버튼 활성화
-				checkEmail = 0;
-			} else {
-				emailResult.text('');
-				$('#sendEmail').attr('disabled', false); // 아이디 찾기 email 인증 버튼 비활성화
-				checkEmail = 1;
-			}
-		}
-		;
-
-		$('#emailCheck').blur(function() {
-			emailCheck();
-			if ($('#emailCheck').val() == '') {
-				$('.email-message').text('');
-				$('#emailCheck').val('');
-			}
-		}); // blur
-
-		$('#sendEmail').click(function() {
-			alert('이메일이 발송되었습니다.');
-
-			$.ajax({
-				type : 'get',
-				url : 'sendEmail',
-				data : {
-					'email' : $('#emailCheck').val()
-				},
-				dataType : 'json',
-				success : function(result) {
-					console.log(result);
-				},
-				error : function(err) {
-					alert('error');
-					console.log(err);
-				}
-			});
-		});
-
-		$('.findIdBtn').click(function() {
-
-		});
-
+	$('#updatePwFinal').click(function(e){
+		e.preventDefault();
+		var password = $('#newPassword').val();
+		var passwordCheck = $('#newPasswordCheck').val();
+		
+		var pwP = /^[a-z0-9]{7,15}$/;
+		
+	if(!password.match(pwP)) {
+		alert("영어 소문자, 숫자를 포함하여 7~15자 이내 작성");
+		return;
+	}
+	
+	if (password != passwordCheck) {
+		alert("비밀번호가 일치하지 않습니다.");
+		return;
+	}
+	
+	location.href="login";
+	
+	$('#updateNewPw').submit();
+	
 	});
+}); // function
 </script>
-
-
 </head>
 
 <body>
@@ -156,47 +98,28 @@
 
 		<div class="info d-flex align-items-center">
 			<div class="container">
-				<form action="findPwFinal" method="post">
+				<form action="updateNewPw" method="post" id="updateNewPw">
 					<div class="row justify-content-center">
 						<div class="col-lg-6 text-center">
-							<h2 data-aos="fade-down">비밀번호 찾기</h2>
+							<h2 data-aos="fade-down">비밀번호 변경</h2>
 							<div class="row gy-4" id='emailsearch'>
+
 								<div class="col-md-4">
-									<p>아이디</p>
+									<p>새 비밀번호</p>
 								</div>
 								<div class="col-md-6">
-									<input type="text" name="id" class="form-control" required />
+									<input type="password" name="newPassword" class="form-control" id="newPassword" required />
 								</div>
 								<div class="col-md-4">
-									<p>이메일</p>
+									<p>새 비밀번호 확인</p>
 								</div>
 								<div class="col-md-6">
-									<input type="email" name="email" id="emailCheck" class="form-control" placeholder="abc@naver.com" required />
-								</div>
-								<div class="col-md-2">
-									<button id="sendEmail" class="findIdBtn">이메일인증</button>
-								</div>
-								<div class="row">
-									<div class="col-4"></div>
-									<div class="col-6 email-message"></div>
+									<input type="password" name="newPasswordCheck" id="newPasswordCheck" class="form-control" required />
 								</div>
 
-								<!-- <div class="col-md-4" id="authEmail" style="display:none"> -->
-								<div class="col-md-4" id="authEmail">
-									<p>인증번호</p>
-								</div>
-								<div class="col-md-6" id="authEmail">
-									<input type="text" name="emailsearchCode" id="EmailAuth"
-										class="form-control" placeholder="영어+숫자6자리" required />
-								</div>
-
-
-								<div class="findId">
-									<button type="submit" class="findIdBtn">확인</button>
-								</div>
-
-								<div id='emailinsertment'>
-									<p>회원가입시 작성한 아이디, 이메일주소로 인증시 비밀번호 확인이 가능합니다.</p>
+								<div class="findPw">
+									<input type="hidden" name="id" value="${id }">
+									<button type="submit" id="updatePwFinal" class="findIdBtn">확인</button>
 								</div>
 
 

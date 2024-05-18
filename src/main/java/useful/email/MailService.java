@@ -14,8 +14,8 @@ import javax.mail.internet.MimeMessage;
 
 public class MailService {
 
-	public void sendMail(String emailAddr) {
- 
+	public String sendMail(String emailAddr) {
+
 		Properties p = System.getProperties();
 		p.put("mail.smtp.starttls.enable", "true");     // gmail,naver은 true 고정
 		p.put("mail.smtp.host", "smtp.naver.com");      // smtp 서버 주소
@@ -26,6 +26,7 @@ public class MailService {
 		//session 생성 및  MimeMessage생성
 		Session session = Session.getDefaultInstance(p, auth);
 		MimeMessage msg = new MimeMessage(session);
+		String str = "";
 
 		try{
 			//편지보낸시간
@@ -41,6 +42,7 @@ public class MailService {
 			// 이메일 내용
 			String message = "당신의 인증번호입니다    ";
 			message += getTempPassword();
+			str = message;
 			
 			msg.setText(message, "UTF-8");
 			// 이메일 헤더
@@ -55,6 +57,7 @@ public class MailService {
 		}catch (Exception msg_e) {
 			msg_e.printStackTrace();
 		}
+		return str;
 	}
 
 

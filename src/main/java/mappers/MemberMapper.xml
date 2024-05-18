@@ -109,20 +109,25 @@
 	    WHERE id = #{id}
 	</update>
 	
-<!-- 	<update id="updateMypage" parameterType="hashmap">
+	<!-- 아이디 찾기 -->
+	<select id="emailCodeId" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT *
+	    FROM member
+	    WHERE email = #{email}	
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPw" parameterType="vo.member.MemberVO" resultType="vo.member.MemberVO">
+	    SELECT *
+	    FROM member
+	    WHERE id = #{id} AND email = #{email}
+	</select>
+	
+	<!-- 비밀번호 찾기 후 변경 -->
+	<update id="updateNewPw" parameterType="vo.member.MemberVO">
 	    UPDATE member
-	    SET password = #{password2}
-	    WHERE id = #{id} AND password = #{password}
-	</update> -->
-	
-	
-	<!-- 이메일 인증 -->
-<!-- 	<insert id="createAuthKey">
-	    INSERT INTO mp_member_auth VALUES (#{memberEmail}, #{authKey})
-	</insert>
-	
-	<update id="memberAuth">
-	    <![CDATA[UPDATE member SET memberAuth=1 WHERE (SELECT count(*) FROM mp_member_auth WHERE memberemail=#{memberEmail}) > 0]]>
-	</update> -->
+	    SET password = #{password}
+	    WHERE id = #{id}
+	</update>
 		
 </mapper>
