@@ -6,7 +6,7 @@ import javax.mail.PasswordAuthentication;
 public class MyAuthentication extends Authenticator {
 	PasswordAuthentication pa;
 	public MyAuthentication(){
- 
+
 		String id = "jumki@naver.com";       //네이버 이메일 아이디 ( 위에 발신자 이메일 )
 		String pw = "Wjdalsrl2@";        //네이버 비밀번호
 

@@ -23,7 +23,7 @@ import useful.popup.PopUp;
 import vo.member.MemberVO;
 
 @Controller
-@RequiredArgsConstructor 
+@RequiredArgsConstructor
 public class LoginController {
 	// 서비스 객체 생성
 	@Autowired
