@@ -121,14 +121,32 @@
 					<td>${mvo.tel }</td>
 					<td>${mvo.email }</td>
 					<td>${mvo.gender }</td>
-					<td><fmt:formatDate value="${mvo.regDate }" pattern="yyyy-MM-dd"/>${mvo.regDate }</td>
-					
+					<td><fmt:formatDate value="${mvo.regDate }" pattern="yyyy-MM-dd"/>${mvo.regDate }</td>	
 				</tr>
-			</c:forEach>
-	   		
+			</c:forEach>		
 	</table>
-
 </body>
+	<!-- 페이징 -->
+		<div id="pagination" class="col-md-12">
+    <c:if test="${paging.startPage > 1}">
+        <a href="${path}/managermemberList?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" step="1" varStatus="loop">
+        <c:choose>
+            <c:when test="${loop.index == paging.pageNum}">
+                <span class="current">${loop.index}</span>
+            </c:when>
+            <c:otherwise>
+                <a href="${path}/managermemberList?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    <c:if test="${paging.endPage < paging.totalPage}">
+        <a href="${path}/managermemberList?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+    </c:if>
+</div>
+
+
 					</div>
 				</div>
 			</div>

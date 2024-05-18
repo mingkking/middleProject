@@ -128,7 +128,7 @@ tr {
 		</table>
 	
 		<!-- 페이징 -->
-		<div class="pagination">
+		<div id="pagination" class="col-md-12">
     <c:if test="${paging.startPage > 1}">
         <a href="${path}/managerreservation?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
     </c:if>

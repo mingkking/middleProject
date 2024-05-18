@@ -46,18 +46,23 @@ public class MemberDAOImpl implements MemberDAO{
 		return mybatis.selectOne("MemberDAO.selectCheckEmail", vo);
 	}
 	
-	public List<MemberVO> getmemberList(HashMap map) {
-		
+	//관리자 고객리스트
+	public List<MemberVO> getmemberList(HashMap<String,Object>map) {	
 		List<MemberVO> list = mybatis.selectList("MemberDAO.getmemberList", map);
-		//[확인] 리턴값 확인
 		return list;
 	}
 	
+	//관리자 고객리스트 페이징처리
+	public int getMemberCount(HashMap<String,Object>map) {
+		return mybatis.selectOne("MemberDAO.getMemberCount",map);
+	}
+	
+	//관리자 고객 상세조회
 	public MemberVO getmember(MemberVO vo) {
-		//System.out.println(vo.toString());
 		return mybatis.selectOne("MemberDAO.getmember", vo);
 	}
 	
+	//관리자 고객 탈퇴
 	public void deletemember(MemberVO vo) {
 		mybatis.delete("MemberDAO.deletemember",vo);
 	}

@@ -43,16 +43,27 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.selectCheckEmail(vo);
 	}
 	
-	@Override
-	public List<MemberVO> getmemberList(HashMap map) {
-		
+	//관리자 멤버 목록,리스트
+//	 @Override 
+//	 public List<MemberVO> getmemberList(HashMap map) { 
+//		return mDAO.getmemberList(map); 
+//	}
+	
+	//관리자 고객 확인
+	public List<MemberVO> getmemberList(HashMap<String,Object>map){
 		return mDAO.getmemberList(map);
 	}
-
+	
+	//관리자 고객 확인 페이징
+	public int getMemberCount(HashMap<String,Object>map) {
+		return mDAO.getMemberCount(map);
+	}
+	
+	//관리자 고객 상세 조회
 	public MemberVO getmember(MemberVO vo) {
 		return mDAO.getmember(vo);
 	}
-	
+	//관리자 고객 탈퇴
 	public void deletemember(MemberVO vo) {
 		mDAO.deletemember(vo);
 	}

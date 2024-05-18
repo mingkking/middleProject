@@ -38,15 +38,27 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("managermemberList")
-	public String managermemberList(Model m,
+	public String managermemberList(Model m,Integer pageNum,
 								String searchCondition,
 								String searchKeyword) {
-		HashMap map = new HashMap();
+		if(pageNum == null) {
+			pageNum =1;
+		}
+		
+		HashMap<String,Object>map = new HashMap<>();
 		map.put("searchCondition",searchCondition );
 		map.put("searchKeyword", searchKeyword);
 		
+		int totalRecords = memberService.getMemberCount(map);
+		PagingVO paging = new PagingVO(pageNum,totalRecords,10); //한페이지당 보이는 갯수
+		map.put("startBoard",paging.getStartBoard()-1);
+		map.put("cnt",paging.getCnt());
+		
 		List<MemberVO> list = memberService.getmemberList(map);
 		m.addAttribute("memberList",list);
+		m.addAttribute("paging",paging);
+		m.addAttribute("searchCondition",searchCondition);
+		m.addAttribute("searchKeyword",searchKeyword);
 		
 		return "manager/managermemberList";
 	}
@@ -56,6 +68,7 @@ public class ManagerController {
 		
 		MemberVO result = memberService.getmember(vo);
 		m.addAttribute("member",result);
+		
 		
 		return "manager/managemember";
 	}
@@ -68,9 +81,21 @@ public class ManagerController {
 	
 	
 	@RequestMapping("managerproduct")
-	public String managerproduct(ProductVO vo,Model mo) {
-		List<ProductVO> result = productService.managerproduct(vo);
+	public String managerproduct(ProductVO vo,Model mo,
+									Integer pageNum) {
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
+		HashMap<String,Object> map = new HashMap<>();
+		int totalRecords = productService.getProductCount(map);
+		PagingVO paging = new PagingVO(pageNum,totalRecords,5); //한 페이지당 보이는 갯수
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
+		List<ProductVO> result = productService.managerproduct(map);
 		mo.addAttribute("mproductList",result);
+		mo.addAttribute("paging",paging);
 		
 		return "manager/managerproduct";
 		
@@ -135,7 +160,7 @@ public class ManagerController {
 		
 		 int totalRecords = reservationService.getReservationCount(map);
 		 PagingVO paging = new PagingVO(pageNum,totalRecords,10);//한 페이지당 보이는 갯수
-		 map.put("startBoard", paging.getStartBoard());
+		 map.put("startBoard", paging.getStartBoard()-1);
 		 map.put("cnt", paging.getCnt());
 		 
 		 

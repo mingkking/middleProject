@@ -20,11 +20,18 @@ public interface MemberDAO {
 
 	// 회원가입 email 중복 검사
 	public int selectCheckEmail(MemberVO vo) throws Exception;
-
-	public List<MemberVO> getmemberList(HashMap map);
-
+	
+	//관리자 멤버 조회
+	//public List<MemberVO> getmemberList(HashMap map);
+	
+	//관리자 멤버 조회 , 페이징화
+	List<MemberVO> getmemberList(HashMap<String,Object>map);
+	int getMemberCount(HashMap<String,Object>map);
+	
+	//관리자 멤버 상세조회
 	public MemberVO getmember(MemberVO vo);
-
+	
+	//관리자 멤버 탈퇴
 	public void deletemember(MemberVO vo);
 	
 	// 마이페이지 정보 조회
