@@ -92,6 +92,21 @@ public class MemberDAOImpl implements MemberDAO{
 		return mybatis.selectOne("MemberDAO.selectMypagePw", vo);
 	}
 
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.emailCodeId", vo);
+	}
+
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.selectPw", vo);
+	}
+
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo) {
+		return mybatis.update("MemberDAO.updateNewPw", vo);
+	}
+
 	
 	
 }

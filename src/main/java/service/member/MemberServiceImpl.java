@@ -82,5 +82,20 @@ public class MemberServiceImpl implements MemberService{
 	public int selectMypagePw(MemberVO vo) {
 		return mDAO.selectMypagePw(vo);
 	}
+
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo) {
+		return mDAO.emailCodeId(vo);
+	}
+
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo) {
+		return mDAO.selectPw(vo);
+	}
+
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo) {
+		return mDAO.updateNewPw(vo);
+	}
 	
 }

@@ -41,4 +41,13 @@ public interface MemberDAO {
 	
 	// 마이페이지 현재 비번 확인
 	public int selectMypagePw(MemberVO vo);
+	
+	// 아이디 찾기
+	public MemberVO emailCodeId(MemberVO vo);
+	
+	// 비밀번호 찾기
+	public MemberVO selectPw(MemberVO vo);
+	
+	// 비밀번호 찾기 후 수정
+	public int updateNewPw(MemberVO vo);
 }
