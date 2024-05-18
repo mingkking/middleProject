@@ -177,6 +177,72 @@ public class ReservationController {
 	}
 	
 	
+	// 카카오페이 입금
+	@RequestMapping("/insertKakaoPayReservation")
+	@ResponseBody
+	public String insertKakaoPayReservation(ReservationVO reservationVO, String time, HttpServletResponse response, HttpSession session, Model model) {
+		String id = (String)session.getAttribute("logid");
+		if(id == null) {
+			id = "noLogin";
+		}
+		if(id.equals("noLogin")) {
+			PopUp.popUp(response, "로그인 후 이용가능합니다.");
+			return "login/login";
+		}
+		// 아이디
+		reservationVO.setId(id);
+		// 예약 시작 시간
+		reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+		// 예약 끝나는 시간
+		reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+		// 예약 상태
+		reservationVO.setrStatus("예약완료");
+		// 결제 상태
+		reservationVO.setrPayStatus("결제완료");
+		
+		
+		int result = 0;
+		try {
+			result = reservationService.insertReservation(reservationVO);
+		} catch (Exception e) {
+			System.out.println("결제 카카오페이 입금 : " + e.getMessage()); // 에러났을 때
+		}
+		
+		return String.valueOf(result);
+	}
+	
+	// 핸드폰 입금
+		@RequestMapping("/insertPhoneReservation")
+		@ResponseBody
+		public String insertPhoneReservation(ReservationVO reservationVO, String time, HttpServletResponse response, HttpSession session, Model model) {
+			String id = (String)session.getAttribute("logid");
+			if(id == null) {
+				id = "noLogin";
+			}
+			if(id.equals("noLogin")) {
+				PopUp.popUp(response, "로그인 후 이용가능합니다.");
+				return "login/login";
+			}
+			// 아이디
+			reservationVO.setId(id);
+			// 예약 시작 시간
+			reservationVO.setStart_time(String.valueOf(time.charAt(0))+String.valueOf(time.charAt(1)));
+			// 예약 끝나는 시간
+			reservationVO.setEnd_time(String.valueOf(time.charAt(8))+String.valueOf(time.charAt(9)));
+			// 예약 상태
+			reservationVO.setrStatus("예약완료");
+			// 결제 상태
+			reservationVO.setrPayStatus("결제완료");
+			
+			int result = 0;
+			try {
+				result = reservationService.insertReservation(reservationVO);
+			} catch (Exception e) {
+				System.out.println("결제 핸드폰 입금 : " + e.getMessage()); // 에러났을 때
+			}
+			
+			return String.valueOf(result);
+		}
 	
 	
 }
