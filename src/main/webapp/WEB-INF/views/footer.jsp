@@ -12,7 +12,7 @@
 				<div class="col-lg-4 col-md-4">
 					<div class="footer-info">
 						<h3>Thunder Arena</h3>
-						<p>사업자번호:010-3046-660</p>
+						<p>사업자번호:111-1004-8282</p>
 					</div>
 				</div>
 
