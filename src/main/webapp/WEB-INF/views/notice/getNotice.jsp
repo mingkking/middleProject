@@ -78,7 +78,7 @@
 								</div>
 								<div class="col-md-8">
 									<input type="text" name="nRegdate" class="form-control"
-										value='${notice.nRegdate }' readonly="readonly">
+										value='${notice.nRegdate }' readonly>
 								</div>
 								<c:if test="${sessionScope.logid == 'admin'}">
 									<div class="col-md-4">

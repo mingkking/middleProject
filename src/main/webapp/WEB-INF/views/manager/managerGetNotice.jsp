@@ -76,8 +76,9 @@
                            <p>작성일시</p>
                         </div>
                         <div class="col-md-8">
-                          <input type="date" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
-                        </div>
+									<input type="text" name="nRegdate" class="form-control"
+										value='${notice.nRegdate }' readonly>
+								</div> 
                         
                         <div class="col-md-4">
                            <p>제목</p>

@@ -70,7 +70,7 @@
 									<p>작성일시</p>
 								</div>
 								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>">
+									<input type="text" name="qRegdate" class="form-control" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()) %>" readonlys>
 								</div>
 								
 								<div class="col-md-4">
