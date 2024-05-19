@@ -57,8 +57,10 @@
 	
 	<!-- 관리자 : 상품 등록 -->
 	<insert id="insertProduct" parameterType="vo.product.ProductVO">
-		INSERT INTO product(pName,pLocation,pPrice,pInfo)
-		VALUES  (#{pName},#{pLocation},#{pPrice},#{pInfo})
+		INSERT INTO product
+		(pName,pLocation,pPrice,pInfo,p_fname,p_frealname,p_fsize)
+		VALUES  
+		(#{pName},#{pLocation},#{pPrice},#{pInfo},#{p_fname},#{p_frealname},#{p_fsize})
 	</insert>
 	
 	<!-- 관리자 : 상품 수정 -->
