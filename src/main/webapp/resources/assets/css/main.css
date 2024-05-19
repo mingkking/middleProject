@@ -2637,17 +2637,13 @@ section {
 	margin-top: 200px;
 }
 
-#idCheck {
+#checkInfo {
 	background: #00ad34;
     border-radius: 20px;
     border: none;
+    color: #fff;
 }
 
-#telCheck{
-	background: #00ad34;
-    border-radius: 20px;
-    border: none;
-}
 
 #insertBtn {
 	background: #00ad34;
@@ -2672,6 +2668,11 @@ section {
 
 #welcome {
 	font-size: 56px;
+	color: #fff;
+}
+
+#indexExp {
+	color: #fff;
 }
 
 .findIdBtn {

@@ -59,37 +59,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
-	/* $(function() {
-	 let idP = "^[a-z0-9]{5,10}$" // 아이디 유효성 패턴
-	 let nameP = "^[가-힣]{2,5}$"; // 한글이름 유효성 패턴
-	 let emailP = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"; // email
-	 let pwP = "^[a-z0-9]{7,15}$" // 비밀번호 유효성 패턴
-	
-	 $('.loginBtn').click(function(e) {
-	 e.preventDefault();
-	 e.stopPropagation();
-	
-	 let id = $('#id').val();
-	 let email = $('').val();
-	
-	 if(!id.match(idP)){
-	 alert("아이디를 형식에 맞게 입력해주세요");
-	 // $('.id-message').text("틀렸어");
-	 return;
-	 }
-	
-	 if(!email.match(emailP)){
-	 alert("이메일을 형식에 맞게 입력해주세요");
-	 // $('.id-message').text("틀렸어");
-	 return;
-	 }
-
-	 $('#insertFrm').submit();
-	 alert("회원가입이 완료되었습니다!");
-	
-	 });
-	 });
-	 */
 
 	$(function() {
 		// 달력 오늘 날짜 이후 꺼는 선택 금지
@@ -280,7 +249,8 @@
 				return;
 			}
 			
-			// 여기까지 왔으면 회원가입 해야지
+			// 여기까지 왔으면 회원가입 가능하게
+			alert("회원가입이 완료되었습니다.");
 			insertFrm.submit();
 			
 
@@ -312,10 +282,10 @@
 									<p>아이디</p>
 								</div>
 								<div class="col-md-6">
-									<input type="text" name="id" id="id" class="form-control" />
+									<input type="text" name="id" id="id" class="form-control" placeholder="영어+숫자, 6~16자리"/>
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="idCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
 								</div>
 
 								<div class="row">
@@ -327,29 +297,23 @@
 									<p>휴대폰번호</p>
 								</div>
 								<div class="col-md-2">
-									<input type="text" name="tel1" id="tel1" class="form-control"
-										placeholder="010" />
+									<input type="text" name="tel1" id="tel1" class="form-control" placeholder="010" />
 								</div>
 								<div class="col-md-2">
-									<input type="text" name="tel2" id="tel2" class="form-control"
-										placeholder="1234" />
+									<input type="text" name="tel2" id="tel2" class="form-control" placeholder="1234" />
 								</div>
 								<div class="col-md-2">
-									<input type="text" name="tel3" id="tel3" class="form-control"
-										placeholder="5678" />
+									<input type="text" name="tel3" id="tel3" class="form-control" placeholder="5678" />
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="telCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="tel-message"></div>
 									</div>
 								</div>
-								<!-- 								<div class="col-md-2">
-									<button id="telCheck" class="form-control btn btn-primary">인증</button>
-								</div> -->
-
+								
 								<div class="col-md-4">
 									<p>이름</p>
 								</div>
@@ -367,13 +331,11 @@
 									<p>성별</p>
 								</div>
 								<div class="col-md-4 form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender"
-										value="남자" checked="checked">
+									<input class="form-check-input" type="radio" name="gender" value="남자" checked="checked">
 									<p>남자</p>
 								</div>
 								<div class="col-md-3 form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender"
-										value="여자">
+									<input class="form-check-input" type="radio" name="gender" value="여자">
 									<p>여자</p>
 								</div>
 
@@ -397,7 +359,7 @@
 										placeholder="abc@naver.com" />
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="emailCheck" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -409,8 +371,7 @@
 									<p>비밀번호</p>
 								</div>
 								<div class="col-md-8">
-									<input type="password" class="form-control" id="pw"
-										name="password" placeholder="소문자, 숫자, 7~14자리" />
+									<input type="password" class="form-control" id="pw" name="password" placeholder="소문자+숫자, 7~14자리" />
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -422,8 +383,7 @@
 									<p>비밀번호확인</p>
 								</div>
 								<div class="col-md-8">
-									<input type="password" class="form-control" name="password1"
-										id="pw1" placeholder="소문자, 숫자, 7~14자리" />
+									<input type="password" class="form-control" name="password1" id="pw1" placeholder="소문자+숫자, 7~14자리" />
 								</div>
 								<div class="row">
 									<div class="col-md-12">
