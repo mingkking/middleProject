@@ -135,7 +135,7 @@
 
 									<div class="row">
 										<div class="col-md-5">구장명 :</div>
-										<div class="col-md-7">
+										<div class="col-md-7">     
 											<input type="text" name="pName" class="form-control" value="${vo.pName}" readonly="readonly">
 										</div>
 									</div>

@@ -42,8 +42,14 @@
 					<li class="nav-item active"><a href="">소개</a></li>
 					<li class="nav-item"><a href="${path}/reservation">예약</a></li>
 					<li class="nav-item"><a href="${path}/coming">오시는 길</a></li>
-					<li class="nav-item"><a href="${path}/question">문의</a></li>
-					<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
+					<c:if test="${sessionScope.logid != 'admin'}">
+						<li class="nav-item"><a href="${path}/question">문의</a></li>
+						<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
+					</c:if>
+					<c:if test="${sessionScope.logid == 'admin'}">
+						<li class="nav-item"><a href="${path}/managerQuestion">문의</a></li>
+						<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
+					</c:if>
 					<li class="nav-item"><a href="${path}/#">예약확인/취소</a></li>
 					<li class="nav-item"><a href="${path}/review">리뷰</a></li>
 					<li class="nav-item"><a href="${path}/mypage">마이페이지</a></li>
