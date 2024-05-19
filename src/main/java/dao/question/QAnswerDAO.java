@@ -18,3 +18,4 @@ public interface QAnswerDAO {
 	
 //	public List<QuestionVO> managerQuestion(HashMap map);
 }
+ 

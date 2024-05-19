@@ -56,6 +56,15 @@
 	ORDER BY qNo DESC
 	</select>
 	
+	<select id="questionCount" resultType="int">
+        SELECT COUNT(*)
+        from question
+    </select>
+     
+     <select id="pagingList" parameterType="int" resultType="vo.question.QuestionVO">
+        select * from (select rownum num , B.* from board_table B) where num between #{pageStart} and #{pageStart} +2
+    </select>
+	
 	
 	<select id="getqSecret" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
 		SELECT *
