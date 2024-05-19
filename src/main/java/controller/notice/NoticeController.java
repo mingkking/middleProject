@@ -66,7 +66,7 @@ public class NoticeController {
 	@RequestMapping("managerUpdateNotice")
 	public String updateNotice(NoticeVO vo) {
 		noticeService.updateNotice(vo);
-		return "redirect:getNotice";
+		return "forward:getNotice";
 	}
 
 	// 관리자 공지글 삭제
