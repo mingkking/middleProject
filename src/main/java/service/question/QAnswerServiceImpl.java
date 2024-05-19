@@ -32,7 +32,7 @@ public class QAnswerServiceImpl implements QAnswerService{
 	public QAnswerVO managerGetQuestion(QAnswerVO vo) {
 		return qAnswerDAO.managerGetQuestion(vo);
 	}
-	
+	 
 //	public List<QAnswerVO> managerQuestion(HashMap map){
 //		return qAnswerDAO.managerQuestion(map);
 //	}

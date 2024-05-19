@@ -20,3 +20,4 @@ public interface QAnswerService {
 	
 //	List<QAnswerVO> managerQuestion(HashMap map);
 }
+ 

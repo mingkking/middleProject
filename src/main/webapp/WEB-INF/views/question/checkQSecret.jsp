@@ -26,7 +26,7 @@
 <link
    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
    rel="stylesheet">
-
+ 
 <!-- Vendor CSS Files -->
 <link href="resources/assets/vendor/bootstrap/css/bootstrap.min.css"
    rel="stylesheet">
@@ -64,75 +64,38 @@
             <div class="row justify-content-center">
                <div class="col-lg-6 text-center">
                   <h2 data-aos="fade-down">문의 게시판</h2>
-                     <legend>비밀글보기</legend>
-                   <h6>이 글은 비밀글입니다. 비밀번호를 입력하여 주세요.</h6>
-	
+					<legend>비밀글보기</legend>
+                   		<h6>이 글은 비밀글입니다. 비밀번호를 입력하여 주세요.</h6>
 
-	<%
-    // 데이터베이스에서 비밀번호를 가져오는 로직
-    String dbSecret = "저장된 비밀번호";
-    String enteredSecret = request.getParameter("qSecret");
+		<form id="passwordForm" method="post" action="getQuestion">
+    		<c:choose>
+        		<c:when test="${empty param.qSecret}">
+            		<input type="hidden" name="qNo" value="${param.qNo}">
+            		<input type="password" name="qSecret" id="qSecret" required>
+            		<input type="button" value="확인" onclick="checkPassword()">
+        		</c:when>
+        		
+        		<c:when test="${param.qSecret eq question.qSecret}">
+           			<input type="hidden" name="qNo" value="${param.qNo}">
+           			<input type="hidden" name="qSecret" value="${param.qSecret}">
+            		<input type="submit" value="확인">
+        		</c:when>
+    		</c:choose>
+		</form>
+		<a href='question'><input type='button' value='닫기'></a>
+		<script>
+    		function checkPassword() {
+        		var qSecret = document.getElementById("qSecret").value;
+        		var questionSecret = "${question.qSecret}";
 
-    // 입력한 비밀번호가 데이터베이스의 비밀번호와 일치하는지 확인
-    if (enteredSecret != null && enteredSecret.equals(dbSecret)) {
-        // 비밀번호가 일치하는 경우 getQuestion.jsp로 이동
-        response.sendRedirect("getQuestion.jsp?qNo=" + request.getParameter("qNo"));
-    } else {
-        // 비밀번호가 일치하지 않는 경우 실패 메시지 표시
-        out.println("<p style='color:red;'>비밀번호가 틀렸습니다. 다시 시도해주세요.</p>");
-
-        // 비밀번호 입력 폼 (입력값 유지)
-%>
-        <form method="post" action="checkQSecret.jsp">
-            <input type="hidden" name="qNo" value="<%= request.getParameter("qNo") %>">
-            <p>비밀글 비밀번호를 입력해주세요:</p>
-            <input type="password" name="qSecret" required>
-            <input type="submit" value="확인">
-        </form>
-<%
-    }
-%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        		if (qSecret === questionSecret) {
+            		document.getElementById("passwordForm").submit();
+        		} else {
+            		alert("비밀번호가 틀렸습니다.");
+            		document.getElementById("qSecret").value = ""; // 입력한 비밀번호 지우기
+        		}
+    		}
+		</script>
 
 				</div>
             </div>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.question.QuestionDAO;
+import vo.paging.PagingVO;
 import vo.question.QuestionVO;
 
 @Service("questionService")
@@ -31,7 +32,7 @@ public class QuestionServiceImpl implements QuestionService{
 	public QuestionVO getQuestion(QuestionVO vo) {
 		return questionDAO.getQuestion(vo);
 	}
-	
+	 
 	public List<QuestionVO> question(HashMap map){
 		return questionDAO.question(map);
 	}

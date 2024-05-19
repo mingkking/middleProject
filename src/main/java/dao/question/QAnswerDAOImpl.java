@@ -36,7 +36,7 @@ public class QAnswerDAOImpl implements QAnswerDAO{
 		System.out.println("result=" + result);
 		return result;
 	}
-	
+	 
 //	public List<QAnswerVO> managerQuestion(HashMap map){
 //		System.out.println("===>Mybatis managerQuestion() 호출");
 //		List<QAnswerVO> list = mybatis.selectList("QAnswerDAO.managerQuestion", map);

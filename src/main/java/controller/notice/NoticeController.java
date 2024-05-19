@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.notice.NoticeService;
 import useful.popup.PopUp;
 import vo.notice.NoticeVO;
+import vo.question.QuestionVO;
 
 @Controller
 public class NoticeController {
@@ -22,26 +23,27 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	// 사용자 공지 검색 및 출력
-	@RequestMapping("notice") 
+	@RequestMapping("notice")
 	public String notice(HttpServletResponse response,
-					   Model m,
-					   String searchCondition,
-					   String searchKeyword,
-					   String id) {
-		
-		if(id.equals("") || id == null) {
+			Model m,
+			String searchCondition,
+			String searchKeyword,
+			String id,
+			HttpSession session) {
+
+		if(session.getAttribute("logid") == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
-		
+
 		HashMap map = new HashMap();
 		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
-		
+
 		List<NoticeVO> list = noticeService.notice(map);
-		
+
 		m.addAttribute("notice", list);
-		
+
 		return "notice/notice";
 	}
 	

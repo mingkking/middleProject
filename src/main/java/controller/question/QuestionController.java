@@ -1,13 +1,9 @@
 package controller.question;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import service.question.QAnswerService;
 import service.question.QuestionService;
 import useful.popup.PopUp;
+import vo.paging.PagingVO;
 import vo.question.QAnswerVO;
 import vo.question.QuestionVO;
 
@@ -98,14 +96,16 @@ public class QuestionController {
    // 문의글 작성 후 저장
    @RequestMapping("saveQuestion")
    public String saveQuestion(HttpServletRequest request,HttpSession session,
-                        QuestionVO vo, String qPassword,
+                        QuestionVO vo, String qPassword,Model m,
                         HttpServletResponse response)throws Exception{
       
       String id = (String) session.getAttribute("logid");
-        boolean isPasswordCorrect = questionService.checkPassword(id, qPassword);
-        
+      String qSecret = request.getParameter("qSecret"); // 사용자가 입력한 비밀번호 가져오기
+      boolean isPasswordCorrect = questionService.checkPassword(id, qPassword);
+      m.addAttribute("question", qSecret);
         if (isPasswordCorrect) {
             vo.setId(id);
+            vo.setqSecret(qSecret); // 사용자가 입력한 비밀번호 설정
             questionService.insertQuestion(vo);
             return "redirect:question?id=" + id;
         } else {
@@ -203,11 +203,25 @@ public class QuestionController {
       }
       
       @RequestMapping("checkQSecret")
-      public String checkQSecret(QuestionVO vo, QAnswerVO qAnswerVO) {
+      public String checkQSecret(QuestionVO vo, QAnswerVO qAnswerVO, Model m, HttpSession session) {
+    	  QuestionVO result = questionService.getQuestion(vo);
+          QAnswerVO result2 = qAnswerService.managerGetQuestion(qAnswerVO);
+          String id = (String)session.getAttribute("logid");
+          m.addAttribute("id" ,id);
+          m.addAttribute("question", result);
+          m.addAttribute("managerQuestion", result2);
           return "question/checkQSecret";
       }
       
-      
+      @RequestMapping("paging")
+      	public String paging(Model model, @RequestParam(value="pageNum", required = false, defaultValue ="1") int pageNum) {
+    	  List<QuestionVO> pagingList = questService.pageList(pageNum);
+    	  PagingVO PagingVO = questionService.pagingParam(pageNum);
+    	  model.addAttribute("questionList", pagingList);
+    	  model.addAttribute("paging", PagingVO);
+    	   
+    	  return "paging";
+      }
       
       
       
