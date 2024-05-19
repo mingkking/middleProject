@@ -18,8 +18,6 @@
 					<!-- <li><a href="${path}/#">관리자</a></li> -->
 					<li><a href="${path}/managermemberList">회원관리</a></li>
 					<li><a href="${path}/managerproduct">상품</a></li>
-					<li><a href="${path}/managerQuestion">문의사항</a></li>
-					<li><a href="${path}/managerNotice">공지사항</a></li>
 					<li><a href="${path}/managerreservation">예약현황</a></li>
 					<li><a href="${path}/managergraph">통계</a></li>					
 				</ul>

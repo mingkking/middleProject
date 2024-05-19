@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -76,7 +76,7 @@
                            <p>작성일시</p>
                         </div>
                         <div class="col-md-8">
-                           <input type="date" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
+                           <input type="text" name="nRegdate" class="form-control" value='${notice.nRegdate }' readonly>
                         </div>
                         
                         <div class="col-md-4">
@@ -93,13 +93,12 @@
                                 <textarea name="nContent" class="form-control" rows="5" placeholder="공지내용을 입력해주세요." required readonly>${notice.nContent }</textarea>
                             </div>
 
-                        
-                        
                         <div class="col-md-4 text-center"></div>
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
-                                
-                               <a href='notice?id=${id}'><input type='button' value='닫기'></a>
+                               <a href='${path}/managerUpdateNotice'><input type='button' value='수정'></a>
+                               <a href='${path}/managerDeleteNotice'><input type='button' value='삭제'></a> 
+                               <a href='${path}notice'><input type='button' value='닫기'></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>

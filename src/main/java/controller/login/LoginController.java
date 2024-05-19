@@ -101,7 +101,7 @@ public class LoginController {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
-
+		vo.setId(id);
 		vo = memberService.selectMypage(vo);
 		m.addAttribute("vo", vo);
 
