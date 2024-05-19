@@ -5,9 +5,9 @@ public class PagingVO {
 	private int startPage = 1; // 첫 페이지 	1 ~ 
 	private int endPage = startPage + 9; // 끝 페이지    ~ 10
 	private int totalPage = 1; // 총 페이지 수
-	private int cnt = 6; // 데이터 목록 개수
+	private int cnt = 1; // 데이터 목록 개수
 	private int startBoard = 1; 
-	private int endBoard = startBoard + cnt - 1;
+	private int endBoard = 1;
 	
 	
 	public PagingVO() {
@@ -36,7 +36,7 @@ public class PagingVO {
 		this.startPage = startPage;
 		this.endPage = endPage;
 		this.startBoard = 1 + ((pageNum-1)*cnt);
-		this.endBoard = startBoard + cnt - 1;
+		this.endBoard = cnt; 
 	}
 	
 
