@@ -83,7 +83,7 @@ tr {
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">상품 등록</h2>
-						<form action="saveProduct" method='post'>
+						<form action="saveProduct" method='post' enctype="multipart/form-data">
 							<table border="1" cellpadding="0" cellspacing="0">
 								<!-- 2. 각 항목에  name 맞추기 -->
 								<tr>
@@ -101,12 +101,12 @@ tr {
 								<!-- 추가항목 시작 -->
 								<tr>
 									<td bgcolor="#ooad34">가격</td>
-									<td align="left"><input type="text" name='pMoney' /></td>
+									<td align="left"><input type="text" name='pPrice' /></td>
 								</tr>
 
 								<tr>
 									<td bgcolor="#ooad34" width="70">파일추가</td>
-									<td align="left"><input type="file" name='file'
+									<td align="left"><input type="file" name='pPicture' accept="image/*"
 										maxlength="60" size="40"></td>
 								</tr>
 								<!-- 추가항목 끝 -->
