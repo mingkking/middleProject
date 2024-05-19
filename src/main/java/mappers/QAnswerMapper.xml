@@ -22,7 +22,8 @@
 	<update id="managerUpdateQuestion" parameterType="vo.question.QAnswerVO">
 		UPDATE qAnswer SET
 		qATitle = #{qATitle},
-		qAContent = #{qAContent}
+		qAContent = #{qAContent},
+		qARegdate = now()
 		WHERE qNo = #{qNo}
 	</update>
 	

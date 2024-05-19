@@ -15,7 +15,8 @@
 	<update id="updateNotice" parameterType='vo.notice.NoticeVO'>
 		UPDATE NOTICE SET
 		nTitle = #{nTitle},
-		nContent = #{nContent}
+		nContent = #{nContent},
+		nRegdate = now()
 		WHERE nNo = #{nNo}
 	</update>
 	

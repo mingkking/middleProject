@@ -15,7 +15,8 @@
 	<update id="updateQuestion" parameterType="vo.question.QuestionVO">
 		UPDATE QUESTION SET
 		qTitle = #{qTitle},
-		qContent = #{qContent}
+		qContent = #{qContent},
+		qARegdate = now()
 		WHERE qNo = #{qNo}
 	</update>
 	

@@ -76,8 +76,9 @@
 								<div class="col-md-4">
 									<p>작성일시</p>
 								</div>
-								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
+								 <div class="col-md-8">
+									<input type="text" name="qRegdate" class="form-control"
+										value='${question.qRegdate }' readonly>
 								</div>
 								
 								<div class="col-md-4">
