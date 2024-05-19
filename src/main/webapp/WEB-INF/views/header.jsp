@@ -58,7 +58,7 @@
 					<li class="dropdown">
 						<c:if test="${sessionScope.logid.equals('admin') }">
 								<li class="dropdown">
-									<a href="${path}/manager"><span>관리자페이지</span>
+									<a href="${path}/managermemberList"><span>관리자페이지</span>
 										<i class="bi bi-chevron-down dropdown-indicator"></i>
 									</a>
 									<ul>
