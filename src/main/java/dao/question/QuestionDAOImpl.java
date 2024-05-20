@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vo.paging.PagingVO;
+import vo.member.MemberVO;
 import vo.question.QuestionVO;
 
 @Repository
@@ -63,8 +63,9 @@ public class QuestionDAOImpl implements QuestionDAO{
         return mybatis.selectOne("QuestionDAO.getSecretPassword", qNo);
     }
 	
-	public String getPassword(String userId) {
-		return "1234"; // 예시로 사용자의 비밀번호를 반환
-	 }
+	@Override
+	public int checkPassword(MemberVO memberVO) {
+		return mybatis.selectOne("QuestionDAO.getPassword", memberVO);   
+	}
 
 }

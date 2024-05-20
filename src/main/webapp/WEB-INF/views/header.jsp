@@ -48,7 +48,7 @@
 					</c:if>
 					<c:if test="${sessionScope.logid == 'admin'}">
 						<li class="nav-item"><a href="${path}/managerQuestion">문의</a></li>
-						<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
+						<li class="nav-item"><a href="${path}/managerNotice">공지사항</a></li>
 					</c:if>
 					<li class="nav-item"><a href="${path}/reservationList">예약확인/취소</a></li>
 					<li class="nav-item"><a href="${path}/review">리뷰</a></li>

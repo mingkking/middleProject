@@ -3,8 +3,7 @@ package service.question;
 import java.util.HashMap;
 import java.util.List;
 
-import dao.question.QuestionDAOImpl;
-import vo.paging.PagingVO;
+import vo.member.MemberVO;
 import vo.question.QuestionVO;
 
 public interface QuestionService {
@@ -33,7 +32,7 @@ public interface QuestionService {
 	// 문의사항 페이징
 	int getQuestionCount(HashMap<String, Object> map);
 	
-	// 문의사항 비밀글 비밀번호
-	boolean checkPassword(String userId, String password);
+	// 사용자 비밀번호   
+	int checkPassword(MemberVO memberVO);
 	 
 }

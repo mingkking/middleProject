@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.question.QuestionDAO;
+import vo.member.MemberVO;
 import vo.paging.PagingVO;
 import vo.question.QuestionVO;
 
@@ -64,10 +65,9 @@ public class QuestionServiceImpl implements QuestionService{
 	} 
 	
 	// 문의글 비밀글 비밀번호 확인
-	@Override
-	public boolean checkPassword(String userId, String password) {
-	    String storedPassword = questionDAO.getPassword(userId);
-	    return storedPassword.equals(password);
+	@Override    
+	public int checkPassword(MemberVO memberVO) {
+	    return questionDAO.checkPassword(memberVO);
 	}
 	
 	
