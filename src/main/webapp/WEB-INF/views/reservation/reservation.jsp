@@ -58,7 +58,6 @@
 	<section id="insertMemberFormHero" class="hero">
 
 		<div class="info align-items-center">
-
 			<div class="row justify-content-center" id='insertMemberForm'>
 				<div class="col-lg-6 text-center">
 					<h2 data-aos="fade-down" id='insertMemberForm'>예약</h2>

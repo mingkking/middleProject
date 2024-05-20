@@ -2581,6 +2581,7 @@ section {
 
 .footer .footer-content .footer-info {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .footer .footer-content .footer-info h3 {
@@ -2725,8 +2726,8 @@ section {
     border-radius: 20px;
     border: none;
 	color: #fff;
-	width: 80px; /* 버튼의 너비 */
-    height: 30px; /* 버튼의 높이 */
+	width: 80px;
+    height: 30px;
     margin-top: 5px;
 }
 
@@ -2755,7 +2756,7 @@ section {
 }
 
 .container{
-	margin-top: 100px;
+	margin-top: 40px;
 }
 
 #reservationBorder {
@@ -2788,6 +2789,53 @@ section {
 
 .paging_color{
 	color: black;
+}
+
+#reservationFormPadding {
+	padding-top: 200px;
+}
+
+#pagination {
+	margin-top: 20px;
+}
+
+#memberListMargin {
+	margin-top: 100px;
+}
+
+.unsubscriptionBtn {
+	background: #00ad34;
+    border-radius: 20px;
+    border: none;
+	color: #fff;
+	width: 80px; /* 버튼의 너비 */
+    height: 30px; /* 버튼의 높이 */
+    margin-top: 5px;
+    
+}
+
+#managerReservationMg {
+	margin-top: 100px;
+}
+
+#graphBtn {
+	background: #00ad34;
+    width: 110px;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.getQuestion {
+	background: #00ad34;
+    border-radius: 20px;
+    border: none;
+	color: #fff;
+	width: 80px;
+    height: 30px;
+    margin-top: 5px;
 }
 
 }
