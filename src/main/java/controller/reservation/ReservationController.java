@@ -260,7 +260,7 @@ public class ReservationController {
 	
 	@RequestMapping("/reservationListAll")
 	@ResponseBody
-    public ArrayList<ReservationVO> reservationList(ReservationVO reservationVO, HttpSession session, Integer pageNum, Model model) {
+    public HashMap<String,Object> reservationList(ReservationVO reservationVO, HttpSession session, Integer pageNum, Model model) {
 		String id = (String)session.getAttribute("logid");
 		
 		if(pageNum == null) {
@@ -278,9 +278,15 @@ public class ReservationController {
 			map = new HashMap<String,Object>();
 			map.put("startBoard", pagingVO.getStartBoard()-1);
 			map.put("endBoard", pagingVO.getEndBoard());
-			map.put("id", id); 
+			map.put("startPage", pagingVO.getStartPage());
+			map.put("endPage", pagingVO.getEndPage());
+			map.put("pageNum", pageNum);
+			map.put("id", id);
+			
 			list = new ArrayList<ReservationVO>();
 			list = (ArrayList<ReservationVO>) reservationService.selectReservationAll(map);
+			map.put("reservationList", list);
+			
 			for (int i = 0; i < list.size(); i++) {
 				System.out.println(list.toString());
 			}
@@ -288,7 +294,7 @@ public class ReservationController {
 			System.out.println("예약확인/취소 : " + e.getMessage()); // 에러났을 때
 		}
 		
-		return list;
+		return map;
     }
     
     @RequestMapping("/deleteReservation")

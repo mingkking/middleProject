@@ -51,7 +51,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		var pageNum = 2;
+		let pageNum = 1;
+		
 		reservationListAll(pageNum);
 		function reservationListAll(pageNum) {
 			$.ajax({
@@ -62,9 +63,18 @@
 	            },
 	            dataType : 'json',
 	            success : function(result){
+	            	console.log(result);
+	            	var pageNum = result.pageNum;
+	                var startPage = result.startPage;
+	                var endPage = result.endPage;
+	                var reservationList = result.reservationList;
+	            	
 	                let reservationListAll = $('#reservationListAll'); // 시간 select 태그 아이디를 가져오기
+	                let ajaxPagingReservation = $('#ajaxPagingReservation');
 	                reservationListAll.empty(); // 기존 옵션 삭제
+	                ajaxPagingReservation.empty();
 	                
+	             	// ajax 테이블리스트
 					var tr = $('<tr/>'); 
                 	var th = $('<td/>').text('예약번호'); 
  					tr.append(th);
@@ -86,7 +96,7 @@
  					tr.append(th8);
  					reservationListAll.append(tr);
 	 					
-	                for(var row of result){ 
+	                for(var row of reservationList){ 
 	                	var tr1 = $('<tr/>'); 
 	                	var rNo = $('<td/>').text(row['rNo']); 
 	 					tr1.append(rNo);
@@ -108,13 +118,25 @@
 	 					tr1.append(deleteBtn);
 	 					reservationListAll.append(tr1);
 	 				}
+	                // ajax 페이징
+	                var a;
+	                for(var i = startPage; i <= endPage; i++){
+	                	a = $('<a class="page-btn">' + i + '</a>');
+	                	ajaxPagingReservation.append(a);
+	                }
 	            },
 	            error : function(err){
 	                alert('error');
 	                console.log(err);
 	            }
 	        });
+			
 		}
+		
+		$('#ajaxPagingReservation').on('click', '.page-btn', function(){
+			console.log($(this).text());
+			reservationListAll($(this).text());
+		});
 		
 		// '삭제' 버튼이 눌렸을 때
 	 	$('#reservationListAll').on('click', '.delete', function(){
@@ -186,6 +208,9 @@
 							</c:forEach>
 						</c:if> --%>
 					</table>
+					<div class="row">
+						<div class="col-md-10" id="ajaxPagingReservation"></div>
+					</div>
 				</div>
 			</div>
 		</div>
