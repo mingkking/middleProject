@@ -2838,4 +2838,15 @@ section {
     margin-top: 5px;
 }
 
+.finalBtn {
+	background: #00ad34;
+    border-radius: 20px;
+    border: none;
+	color: #fff;
+	width: 90px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+
 }

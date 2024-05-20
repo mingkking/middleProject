@@ -119,10 +119,10 @@
 								<div class="col-md-4 text-center">
 									<div class="error-message"></div>
 									<c:if test="${sessionScope.logid == 'admin'}">
-										<input type="submit" value='수정'>
-										<a href='${path}/managerDeleteNotice?nNo=${notice.nNo}'><input type="button" value='삭제'></a>
+										<input type="submit" class="finalBtn" value='수정'>
+										<a href='${path}/managerDeleteNotice?nNo=${notice.nNo}'><input type="button" class="finalBtn" value='삭제'></a>
 									</c:if>
-									<a href='${path}/notice'><input type='button' value='닫기'></a>
+									<a href='${path}/notice'><input type='button' class="finalBtn" value='닫기'></a>
 								</div>
 								<div class="col-md-4 text-center"></div>
 							</div>
