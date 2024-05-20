@@ -15,6 +15,7 @@ public class NoticeServiceImpl implements NoticeService{
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
+	@Override
 	public void insertNotice(NoticeVO vo) {
 		noticeDAO.insertNotice(vo);
 	}
@@ -30,8 +31,13 @@ public class NoticeServiceImpl implements NoticeService{
 	public NoticeVO getNotice(NoticeVO vo) {
 		return noticeDAO.getNotice(vo);
 	}
-	
-	public List<NoticeVO> notice(HashMap map){
+	@Override
+	public List<NoticeVO> notice(HashMap<String, Object> map){
 		return noticeDAO.notice(map);
+	}
+	
+	@Override
+	public int getNoticeCount(HashMap<String, Object> map) {
+		return noticeDAO.getNoticeCount(map);
 	}
 }

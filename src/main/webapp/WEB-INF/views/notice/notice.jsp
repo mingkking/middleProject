@@ -102,6 +102,26 @@
 									type='submit' class="searchQuestionBtn" value='검색'>
 							</form>
 						</div>
+						
+					<!-- 페이징 -->
+		<div id="pagination" class="col-md-12">
+    <c:if test="${paging.startPage > 1}">
+        <a href="${path}/notice?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" step="1" varStatus="loop">
+        <c:choose>
+            <c:when test="${loop.index == paging.pageNum}">
+                <span class="current">${loop.index}</span>
+            </c:when>
+            <c:otherwise>
+                <a href="${path}/notice?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    <c:if test="${paging.endPage < paging.totalPage}">
+        <a href="${path}/notice?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+    </c:if>
+</div>
 					</div>
 				</div>
 			</div>

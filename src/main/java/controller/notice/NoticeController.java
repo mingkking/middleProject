@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.notice.NoticeService;
 import useful.popup.PopUp;
 import vo.notice.NoticeVO;
+import vo.paging.PagingVO;
 import vo.question.QuestionVO;
 
 @Controller
@@ -24,15 +25,27 @@ public class NoticeController {
 
 	// 사용자 공지 검색 및 출력
 	@RequestMapping("notice")
-	public String notice(HttpServletResponse response, Model m, String searchCondition, String searchKeyword) {
-
-		HashMap map = new HashMap();
+	public String notice(Model m, String searchCondition, String searchKeyword,
+						 Integer pageNum) {
+		
+		if(pageNum == null) {
+			pageNum =1;
+		}
+		
+		HashMap<String, Object> map = new HashMap();
 		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
-
+		
+		int totalRecords = noticeService.getNoticeCount(map);
+		PagingVO paging = new PagingVO(pageNum, totalRecords,5);
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
 		List<NoticeVO> list = noticeService.notice(map);
-
 		m.addAttribute("notice", list);
+		m.addAttribute("paging", paging);
+		m.addAttribute("searchCondition",searchCondition);
+		m.addAttribute("searchKeyword",searchKeyword);
 
 		return "notice/notice";
 	}
@@ -64,15 +77,26 @@ public class NoticeController {
 
 	// 관리자 검색 및 목록 출력
 	@RequestMapping("managerNotice")
-	public String managerNotice(Model m, String searchCondition, String searchKeyword) {
+	public String managerNotice(Model m, String searchCondition, String searchKeyword, Integer pageNum) {
 
-		HashMap map = new HashMap();
+		if(pageNum == null) {
+			pageNum =1;
+		}
+		
+		HashMap<String, Object> map = new HashMap();
 		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
-
+		
+		int totalRecords = noticeService.getNoticeCount(map);
+		PagingVO paging = new PagingVO(pageNum, totalRecords,5);
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
 		List<NoticeVO> list = noticeService.notice(map);
-
 		m.addAttribute("notice", list);
+		m.addAttribute("paging", paging);
+		m.addAttribute("searchCondition",searchCondition);
+		m.addAttribute("searchKeyword",searchKeyword);
 
 		return "manager/managerNotice";
 	}

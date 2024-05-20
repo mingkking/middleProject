@@ -34,15 +34,26 @@
 	</select>
 	
 	<!-- sql 공지글 검색 -->
-	<select id="notice" parameterType='hashmap' resultType='vo.notice.NoticeVO'>
-		
-		SELECT *
-		FROM NOTICE
-		<where>
-			<if test="searchCondition !=null">
-				${searchCondition} LIKE '%${searchKeyword}%'
-			</if>
-		</where>
-		ORDER BY nNo DESC
-	</select>
+	<select id="notice" parameterType="map" resultType="vo.notice.NoticeVO">
+    SELECT *
+    FROM NOTICE
+    <where>
+         <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+    ORDER BY nNo DESC
+    LIMIT #{startBoard}, ${cnt}
+</select>
+
+<select id="getNoticeCount" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM NOTICE
+    <where>
+        <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+</select>
+
 </mapper>

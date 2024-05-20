@@ -54,7 +54,7 @@
             ${searchCondition} LIKE '%${searchKeyword}%'
         </if>
     </where>
-    ORDER BY qNo
+    ORDER BY qNo DESC
     LIMIT #{startBoard}, ${cnt}
 </select>
 
