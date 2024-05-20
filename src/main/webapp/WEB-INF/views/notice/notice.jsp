@@ -93,7 +93,7 @@
 									</a>
 								</c:if>
 							
-							<form method='get'>
+							<form method='get' id="noticeMargin">
 								<select name='searchCondition'>
 									<option value='nTitle'>제목</option>
 									<option value='nContent'>내용</option>

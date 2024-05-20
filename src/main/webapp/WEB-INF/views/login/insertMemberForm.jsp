@@ -332,11 +332,11 @@
 								</div>
 								<div class="col-md-4 form-check form-check-inline">
 									<input class="form-check-input" type="radio" name="gender" value="남자" checked="checked">
-									<p>남자</p>
+									<div>남자</div>
 								</div>
 								<div class="col-md-3 form-check form-check-inline">
 									<input class="form-check-input" type="radio" name="gender" value="여자">
-									<p>여자</p>
+									<div>여자</div>
 								</div>
 
 								<div class="col-md-4">

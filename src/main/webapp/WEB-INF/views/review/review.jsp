@@ -139,7 +139,7 @@
 		<div class="info align-items-center">
 
 			<div class="row justify-content-center" id='insertMemberForm'>
-				<div class="col-lg-6 text-center" id="blackbackground">
+				<div class="col-lg-6 text-center">
 
 					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
 
@@ -174,9 +174,10 @@
 								<table class="table table-default table-hover">
 									<tbody>
 										<tr class="table-dark">
-											<td colspan="6"><img
+										<td colspan="6">구장내용</td>
+ 											<%-- <td colspan="6"><img
 												src="${path}/resources/reviewUpload/${productVO.p_frealname}"
-												alt="" width="300px" height="" class="img-fluid"></td>
+												alt="" width="300px" height="" class="img-fluid"></td> --%>
 										</tr>
 										<tr>
 											<td>구장명</td>
@@ -195,8 +196,8 @@
 
 							</div>
 						</c:if>
-						<div class="row gy-4">
-							<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
+						<div class="row gy-4" id="">
+							<%-- <h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2> --%>
 							<table class="table table-default table-hover">
 								<thead>
 									<tr class="table-dark">
@@ -205,7 +206,7 @@
 										<th>리뷰내용</th>
 										<th></th>
 										<th>작성일</th>
-										<th>파일</th>
+										<th>사진</th>
 										<th></th>
 									</tr>
 								</thead>

@@ -114,7 +114,7 @@
 								</c:forEach>
 							</c:if>
 
-							<div class="content">
+							<div class="content" id="commingMargin">
 								<p>
 									<img src="${path}/resources/assets/img/stadium.png" alt=""
 										class="stadiumAdd">

@@ -61,7 +61,7 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-  padding: 80px 0;
+ /*  padding: 80px 0; */
   overflow: hidden;
 }
 
@@ -254,6 +254,7 @@ section {
   left: 0;
   right: 0;
   background-color: #fff;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .header .logo img {
@@ -1860,6 +1861,7 @@ section {
   position: absolute;
   inset: 0;
   z-index: 2;
+ /*  padding-top : 100px; */
 }
 
 @media (max-width: 768px) {
@@ -1886,6 +1888,12 @@ section {
   position: relative;
 }
 
+.hero .info h4 {
+  color: #000000;
+  font-weight: 700;
+  position: relative;
+}
+
 .hero .info h2:after {
   content: "";
   position: absolute;
@@ -1906,8 +1914,9 @@ section {
 }
 
 .hero .info p {
-  color: #000000;
-  font-size: 18px;
+    color: #000000;
+    font-size: 19px;
+    font-weight: 550;
 }
 
 .hero .info .btn-get-started {
@@ -2559,8 +2568,9 @@ section {
   color: #000000;
   background-size: cover;
   font-size: 14px;
-  padding: 40px 0 20px 0;
+  padding: 0 0 40px 0;
   position: relative;
+  border-top: 1px solid #dbdbdb;
 }
 
 .footer:before {
@@ -2625,10 +2635,6 @@ section {
 	overflow-y: auto;
 }
 
-#mypage {
-	margin-top: 100px;
-}
-
 #modifyunregisterBtn {
 	display: inline;
 }
@@ -2639,6 +2645,15 @@ section {
 
 #checkInfo {
 	background: #00ad34;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+}
+
+#ajaxButton {
+	background: #00ad34;
+    width: 110px; /* 버튼의 너비 */
+    height: 30px; /* 버튼의 높이 */
     border-radius: 20px;
     border: none;
     color: #fff;
@@ -2736,7 +2751,36 @@ section {
 }
 
 #comming_grid {
-	padding-top: 200px;
+	padding-top: 100px;
 }
+
+.container{
+	margin-top: 100px;
+}
+
+#reservationBorder {
+	border: none;
+}
+
+#reservationPadding{
+	padding-top: 10px;
+}
+
+#noticeMargin {
+	margin-top: 30px;
+}
+
+#reviewMargin {
+	margin-top: 80px;
+}
+
+#commingMargin {
+	margin-top: 80px;
+}
+
+#mypageBorder {
+	border: none;
+}
+
 
 }

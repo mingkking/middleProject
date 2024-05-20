@@ -133,26 +133,26 @@
 								</div>
 								<div class="col-md-6">
 
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">구장명 :</div>
 										<div class="col-md-7">     
-											<input type="text" name="pName" class="form-control" value="${vo.pName}" readonly="readonly">
+											<input type="text" id="reservationBorder" name="pName" class="form-control" value="${vo.pName}" readonly="readonly">
 										</div>
 									</div>
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">구장위치 :</div>
 										<div class="col-md-7">
-											<input type="text" name="pLocation" class="form-control" value="${vo.pLocation}" readonly="readonly">
+											<input type="text" id="reservationBorder" name="pLocation" class="form-control" value="${vo.pLocation}" readonly="readonly">
 										</div>
 									</div>
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">구장정보 :</div>
 										<div class="col-md-7">
-											<input type="text" name="pLocation" class="form-control" value="${vo.pInfo}" readonly="readonly">
+											<input type="text" id="reservationBorder" name="pLocation" class="form-control" value="${vo.pInfo}" readonly="readonly">
 										</div>
 									</div>
 
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">날짜 선택 :</div>
 										<div class="col-md-7">
 											<input type="date" name="rental" id="rental"
@@ -160,7 +160,7 @@
 										</div>
 									</div>
 
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">시간대 선택 :</div>
 										<div class="col-md-7">
 											<select name="time" id="time" class="form-control">
@@ -174,14 +174,14 @@
 										</div>
 									</div>
 
-									<div class="row">
+									<div class="row" id="reservationPadding">
 										<div class="col-md-5">총 금액 :</div>
 										<div class="col-md-7">
-											<input type="text" name="totalMoney" class="form-control" value="${vo.pPrice}" readonly="readonly">
+											<input type="text" id="reservationBorder" name="totalMoney" class="form-control" value="${vo.pPrice}" readonly="readonly">
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-12" id="reservationPadding">
 											<input type="hidden" name="pNo" id="pNo" value="${vo.pNo }">
 											<button type="submit" class="findIdBtn">예약</button>
 										</div>
@@ -197,7 +197,7 @@
 
 
 		<div id="hero-carousel" class="carousel slide"></div>
-		<div id="paddingSection"></div>
+		<!-- <div id="paddingSection"></div> -->
 	</section>
 	<!-- End Hero Section -->
 

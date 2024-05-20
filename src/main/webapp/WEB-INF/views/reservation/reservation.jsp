@@ -60,7 +60,7 @@
 		<div class="info align-items-center">
 
 			<div class="row justify-content-center" id='insertMemberForm'>
-				<div class="col-lg-6 text-center" id="blackbackground">
+				<div class="col-lg-6 text-center">
 					<h2 data-aos="fade-down" id='insertMemberForm'>예약</h2>
 					<form action="payForm.do" id='insertFrm' method="post">
 						<div class="row gy-4">
@@ -88,10 +88,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
-		<div id="paddingSection"></div>
+		<!-- <div id="paddingSection"></div> -->
 	</section>
 	<!-- End Hero Section -->
 
