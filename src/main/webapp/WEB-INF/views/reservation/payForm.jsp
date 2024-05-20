@@ -219,14 +219,14 @@
 								<p>예약자명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="name" id="reservationBorder" class="form-control" value="${memberVO.name}" readonly="readonly">
+								<input type="text" name="name" class="form-control reservationBorder" value="${memberVO.name}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-4">
 								<p>전화번호</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="tel" id="reservationBorder" class="form-control" value="${memberVO.tel}" readonly="readonly">
+								<input type="text" name="tel" class="form-control reservationBorder" value="${memberVO.tel}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-12">
@@ -237,28 +237,28 @@
 								<p>구장명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="pName" id="reservationBorder" class="form-control" value="${productVO.pName}" readonly="readonly">
+								<input type="text" name="pName" class="form-control reservationBorder" value="${productVO.pName}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>구장위치</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="pLocation" id="reservationBorder" class="form-control" value="${productVO.pLocation}" readonly="readonly">
+								<input type="text" name="pLocation" class="form-control reservationBorder" value="${productVO.pLocation}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>날짜</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="rental" id="reservationBorder" class="form-control" value="${reservationVO.rental}" readonly="readonly">
+								<input type="text" name="rental" class="form-control reservationBorder" value="${reservationVO.rental}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>시간대</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="time" id="reservationBorder" class="form-control" value="${time}" readonly="readonly">
+								<input type="text" name="time" class="form-control reservationBorder" value="${time}" readonly="readonly">
 							</div>
 
 							<div class="col-md-12">

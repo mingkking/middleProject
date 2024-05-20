@@ -52,6 +52,12 @@
 <script type="text/javascript">
 	$(function() {
 		let pageNum = 1;
+		let pageNum2 = 1;
+		let startPage = 1;
+		let endPage = 1;
+		let prePageNum = 1;
+		let endPageNum = 1;
+		let totalPage = 1;
 		
 		reservationListAll(pageNum);
 		function reservationListAll(pageNum) {
@@ -64,9 +70,10 @@
 	            dataType : 'json',
 	            success : function(result){
 	            	console.log(result);
-	            	var pageNum = result.pageNum;
-	                var startPage = result.startPage;
-	                var endPage = result.endPage;
+	            	pageNum = result.pageNum;
+	            	startPage = result.startPage;
+	            	endPage = result.endPage;
+	            	totalPage = result.totalPage;
 	                var reservationList = result.reservationList;
 	            	
 	                let reservationListAll = $('#reservationListAll'); // 시간 select 태그 아이디를 가져오기
@@ -119,10 +126,42 @@
 	 					reservationListAll.append(tr1);
 	 				}
 	                // ajax 페이징
+	                console.log(pageNum-10);
+	                console.log(pageNum+10);
+	                pageNum2 = pageNum;
+	                if(pageNum-10 <= 1){
+	                	prePageNum = 1;
+	                }
+	                if(pageNum-10 > 1){
+	                	prePageNum = pageNum-10;
+	                }
+	                if(pageNum+10 >= totalPage){
+	                	endPageNum = totalPage;
+	                }
+	                if(pageNum+10 < totalPage){
+	                	endPageNum = pageNum+10;
+	                }
 	                var a;
+	                var pre = $('<a class="pre_btn">이전</a>');
+	                ajaxPagingReservation.append(pre);
 	                for(var i = startPage; i <= endPage; i++){
-	                	a = $('<a class="page-btn">' + i + '</a>');
-	                	ajaxPagingReservation.append(a);
+	                	if(pageNum == i){
+	                		a = $('<a class="page-btn paging_color">' + i + '</a>');
+		                	ajaxPagingReservation.append(a);	
+	                	}
+	                	if(pageNum != i){
+	                		a = $('<a class="page-btn">' + i + '</a>');
+		                	ajaxPagingReservation.append(a);	
+	                	}
+	                	
+	                }
+	                if(pageNum + 10 >= endPage){
+	                	var next = $('<a class="next_btn">다음</a>');
+		                ajaxPagingReservation.append(next);	                	
+	                }
+	                if(pageNum + 10 < endPage){
+	                	var next = $('<a class="next_btn">다음</a>');
+		                ajaxPagingReservation.append(next);	                	
 	                }
 	            },
 	            error : function(err){
@@ -133,32 +172,43 @@
 			
 		}
 		
-		$('#ajaxPagingReservation').on('click', '.page-btn', function(){
-			console.log($(this).text());
-			reservationListAll($(this).text());
-		});
+		$('#ajaxPagingReservation').on('click', '.pre_btn', function(){
+	        // 현재 활성화된 페이지 버튼의 active 클래스 제거
+	        reservationListAll(prePageNum);
+	    });
 		
+	    $('#ajaxPagingReservation').on('click', '.page-btn', function(){
+	        // 현재 활성화된 페이지 버튼의 active 클래스 제거
+	        reservationListAll($(this).text());
+	    });
+	    
+	    $('#ajaxPagingReservation').on('click', '.next_btn', function(){
+	        // 현재 활성화된 페이지 버튼의 active 클래스 제거
+	        reservationListAll(endPageNum);
+	    });
+	    
 		// '삭제' 버튼이 눌렸을 때
 	 	$('#reservationListAll').on('click', '.delete', function(){
 	 		// 각 버튼을 클릭했을 때 tr부모까지 가서 자식들 중 0번째
 	 		let rNo = $(this).parents('tr').children().eq(0).text();
+	 		if(confirm('삭제하시겠습니까?')){
+	 			$.ajax({
+					type : 'get',
+					url : 'deleteReservation',
+					data : {
+						'rNo' : rNo
+					},
+					dataType : 'json',
+					success : function(result){
+						reservationListAll(pageNum2);
+					},
+					error : function(err){
+						alert('error');
+						console.log(err);
+					}
+				});
+	 		}
 	 		
-	 		$.ajax({
-				type : 'get',
-				url : 'deleteReservation',
-				data : {
-					'rNo' : rNo
-				},
-				dataType : 'json',
-				success : function(result){
-					reservationListAll();
-				},
-				error : function(err){
-					alert('error');
-					console.log(err);
-				}
-			});
-			
 	 	});
 	 	
 	});
