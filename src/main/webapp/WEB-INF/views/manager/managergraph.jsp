@@ -110,7 +110,7 @@
                     var data = google.visualization.arrayToDataTable(prepareChartData(response));
                     var options = {
                         title: '월 구장별 예약 현황',
-                        chartArea: { width: '50%' },
+                        chartArea: { width: '80%' },
                         hAxis: { title: '구단' },
                         vAxis: { title: '예약수' }
                     };
