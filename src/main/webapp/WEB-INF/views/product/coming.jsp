@@ -70,6 +70,12 @@
 					$('#productVOPname').text(result.pName);
 					$('#productVOPLocation').text(result.pLocation);
 					$('#productVOPInfo').text(result.pInfo);
+					console.log(result.p_frealname);
+					var img = $('<img/>');
+					$('#productVOPPicture').empty();
+					img.attr('src','/resources/productUpload/' + result.p_frealname);
+					img.attr('width',300);
+					$('#productVOPPicture').append(img); 
 				},
 				error : function(err) {
 					alert('에러발생');
@@ -116,8 +122,6 @@
 
 							<div class="content" id="commingMargin">
 								<p>
-									<img src="${path}/resources/assets/img/stadium.png" alt=""
-										class="stadiumAdd">
 								</p>
 							</div>
 						</div>
@@ -126,18 +130,18 @@
 						<div class="col-md-12">
 							<h4 id="productVOPname"></h4>
 							<div class="col-md-12">
-									<div class="col-md-12">
-										<p></p>
-									</div>
 								<div class="row">
-									<div class="col-md-5" ></div>
-									<div class="col-md-7" id="productVOPLocation">
+									<div class="col-md-12" id="productVOPPicture">
 										<p></p>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-5" ></div>
-									<div class="col-md-7" id="productVOPInfo">
+									<div class="col-md-12" id="productVOPLocation">
+										<p></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12" id="productVOPInfo">
 										<p></p>
 									</div>
 								</div>

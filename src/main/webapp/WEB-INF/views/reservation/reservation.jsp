@@ -68,7 +68,7 @@
 									<c:forEach var="i" begin="0" end="${productList.size()-1 }">
 										<div class="col-md-4">
 											<a href="${path}/reservationForm?pNo=${productList.get(i).pNo}">${productList.get(i).pName }<br />
-												<img src="${path}/resources/assets/img/stadium.png" alt=""
+												<img src="${path}/resources/productUpload/${productList.get(i).p_frealname}" alt=""
 												width="300px" height="" class="img-fluid"></a>
 										</div>
 

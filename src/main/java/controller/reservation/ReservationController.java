@@ -263,8 +263,8 @@ public class ReservationController {
 	@ResponseBody
     public HashMap<String,Object> reservationList(ReservationVO reservationVO, HttpSession session, Integer pageNum, Model model) {
 		String id = (String)session.getAttribute("logid");
-		
-		if(pageNum == null) {
+		System.out.println("==================================================================" + pageNum);
+		if(pageNum == null || pageNum < 1) {
 			pageNum = 1;
 		}
 		
@@ -281,8 +281,10 @@ public class ReservationController {
 			map.put("endBoard", pagingVO.getEndBoard());
 			map.put("startPage", pagingVO.getStartPage());
 			map.put("endPage", pagingVO.getEndPage());
+			map.put("totalPage", pagingVO.getTotalPage());
 			map.put("pageNum", pageNum);
 			map.put("id", id);
+			System.out.println("=========================================" + pagingVO.toString());
 			
 			list = new ArrayList<ReservationVO>();
 			list = (ArrayList<ReservationVO>) reservationService.selectReservationAll(map);
