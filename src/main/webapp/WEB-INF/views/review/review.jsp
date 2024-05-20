@@ -160,11 +160,21 @@
 						</c:if>
 						<!-- 리뷰 사진들 페이징 -->
 						<div class="col-md-12" id="pageNum">
-							<c:forEach var="i" begin="${pVO.startPage }"
-								end="${pVO.endPage }">
-								<a
-									href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}">${i }</a>
+							<a href="${path}/review?pageNum=${i-10}&pageNum2=${pageNum2}&pNo=${pNo}">이전</a>
+							<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
+								<c:if test="${pageNum == i}">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}" class="paging_color">${i }</a>
+								</c:if>
+								<c:if test="${pageNum != i}">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}">${i }</a>
+								</c:if>
 							</c:forEach>
+							<c:if test="${pageNum+10 >= pVO.endPage}">
+								<a href="${path}/review?pageNum=${pVO.endPage}&pageNum2=${pageNum2}&pNo=${pNo}">다음</a>
+							</c:if>
+							<c:if test="${pageNum+10 < pVO.endPage}">
+								<a href="${path}/review?pageNum=${pageNum+10}&pageNum2=${pageNum2}&pNo=${pNo}">다음</a>
+							</c:if>
 						</div>
 
 						<c:if test="${pNo > 0 }">
@@ -266,9 +276,21 @@
 
 							<!-- 리뷰 사진들 페이징 -->
 							<div class="col-md-12" id="pageNum2">
+								<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.pageNum-10}&pNo=${pNo}">이전</a>
 								<c:forEach var="i" begin="${pVO2.startPage }" end="${pVO2.endPage }">
-									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}">${i }</a>
+									<c:if test="${pVO2.pageNum == i }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}" class="paging_color">${i }</a>
+									</c:if>
+									<c:if test="${pVO2.pageNum != i }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}">${i }</a>
+									</c:if>
 								</c:forEach>
+								<c:if test="${pageNum2+10 >= pVO2.endPage}">
+									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.endPage}&pNo=${pNo}">다음</a>
+								</c:if>
+								<c:if test="${pageNum2+10 < pVO2.endPage}">
+									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.pageNum+10}&pNo=${pNo}">다음</a>
+								</c:if>
 							</div>
 
 						</div>

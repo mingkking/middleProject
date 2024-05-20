@@ -47,13 +47,14 @@ public class ReservationController {
 			return "login/login";
 		}
 		
-		if(pageNum == null) {
+		if(pageNum == null || pageNum < 1) {
 			pageNum = 1;
 		}
 		
 		PagingVO pVO = null;
 		try {
 			pVO = new PagingVO(pageNum, productService.selectProductCount(), 6);
+			System.out.println("pVO      " + pVO.toString());
 			model.addAttribute("pVO", pVO);
 		} catch (Exception e1) {
 			System.out.println("상품 페이징: " + e1.getMessage()); // 에러났을 때

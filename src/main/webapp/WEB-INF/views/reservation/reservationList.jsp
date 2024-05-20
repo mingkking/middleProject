@@ -209,7 +209,7 @@
 						</c:if> --%>
 					</table>
 					<div class="row">
-						<div class="col-md-10" id="ajaxPagingReservation"></div>
+						<div class="col-md-12" id="ajaxPagingReservation"></div>
 					</div>
 				</div>
 			</div>

@@ -78,9 +78,21 @@
 									</c:forEach>
 								</c:if>
 								<div class="col-md-12" id="pageNum">
+									<a href="${path}/reservation?pageNum=${pVO.pageNum-10}">이전</a>
 									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-										<a href="${path}/reservation?pageNum=${i}">${i }</a>
+										<c:if test="${pVO.pageNum == i }">
+											<a href="${path}/reservation?pageNum=${i}" class="paging_color">${i }</a>
+										</c:if>
+										<c:if test="${pVO.pageNum != i }">
+											<a href="${path}/reservation?pageNum=${i}">${i }</a>
+										</c:if>
 									</c:forEach>
+									<c:if test="${pageNum+10 >= pVO.endPage}">
+										<a href="${path}/reservation?pageNum=${pVO.endPage}">다음</a>
+									</c:if>
+									<c:if test="${pageNum+10 < pVO.endPage}">
+										<a href="${path}/reservation?pageNum=${pVO.pageNum+10}">다음</a>
+									</c:if>
 								</div>
 
 							</div>
