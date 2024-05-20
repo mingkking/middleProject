@@ -89,7 +89,7 @@
 <h2 data-aos="fade-down" id="memberListMargin">회원 리스트</h2>	
 	<table class="table table-default table-hover">
 	    <thead>
-	        <tr>
+	        <tr class="table-dark">
 	            <th>id</th>
 	            <th>이름</th>
 	            <th>전화번호</th>
