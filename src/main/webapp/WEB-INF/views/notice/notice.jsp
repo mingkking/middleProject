@@ -87,23 +87,8 @@
 									</tr>
 								</c:forEach>
 							</table>
-								<c:if test="${sessionScope.logid == 'admin'}">
-									<a href='${path}/insertNotice'>
-										<input type='button' id='questionwriteBtn' class="findIdBtn" value='글쓰기'>
-									</a>
-								</c:if>
 							
-							<form method='get' id="noticeMargin">
-								<select name='searchCondition'>
-									<option value='nTitle'>제목</option>
-									<option value='nContent'>내용</option>
-									<option value='nWriter'>작성자</option>
-								</select> <input type='text' name='searchKeyword'> <input
-									type='submit' class="searchQuestionBtn" value='검색'>
-							</form>
-						</div>
-						
-		<!-- 페이징 -->
+									<!-- 페이징 -->
 		<div id="pagination" class="col-md-12">
     		<c:if test="${paging.startPage > 1}">
         	<a href="${path}/notice?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
@@ -122,6 +107,23 @@
         			<a href="${path}/notice?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
     			</c:if>
 			</div>
+								<c:if test="${sessionScope.logid == 'admin'}">
+									<a href='${path}/insertNotice'>
+										<input type='button' id='questionwriteBtn' class="findIdBtn" value='글쓰기'>
+									</a>
+								</c:if>
+							
+							<form method='get' id="noticeMargin">
+								<select name='searchCondition'>
+									<option value='nTitle'>제목</option>
+									<option value='nContent'>내용</option>
+									<option value='nWriter'>작성자</option>
+								</select> <input type='text' name='searchKeyword'> <input
+									type='submit' class="searchQuestionBtn" value='검색'>
+							</form>
+						</div>
+						
+
 		</div>
 	</div>
 </div>

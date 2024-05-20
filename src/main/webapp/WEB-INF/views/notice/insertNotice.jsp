@@ -92,8 +92,8 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='notice'><input type='button' value='닫기'></a>
-                                 <input type='submit' value='저장하기'>
+                               <a href='notice'><input type='button' class="finalBtn" value='닫기'></a>
+                                 <input type='submit' class="finalBtn" value='저장하기'>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
