@@ -175,10 +175,11 @@
 								"이미 등록된 메일입니다.");
 						$('#email').focus();
 					} else {
-						$('#email').attr('readonly',
-								true);
-						alert("사용 가능한 메일입니다.");
+						$('#email').attr('readonly', true);
+						$('#emailCheck').attr('disabled', true);
 						$('.email-message').text("");
+						alert("사용 가능한 메일입니다.");
+						
 					}
 				},
 				error : function(err) {
