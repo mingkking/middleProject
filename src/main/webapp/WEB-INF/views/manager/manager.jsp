@@ -75,31 +75,7 @@
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
-
-			<div class="carousel-item active"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/o5.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/o1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/o2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/o3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/o4.jpg)"></div>
-
-			<a class="carousel-control-prev" href="#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
+		<div id="hero-carousel" class="carousel slide"></div>
 
 	</section>
 	<!-- End Hero Section -->

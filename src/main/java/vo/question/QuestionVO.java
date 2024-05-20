@@ -2,14 +2,14 @@ package vo.question;
 
 public class QuestionVO {
 	
-	private Integer qNo;
-	private String id;
-	private String qTitle;
-	private String qContent;
-	private String qPassword;
-	private String qRegdate;
-	private String qStatus;
-	private String qSecret;
+	private Integer qNo;		// 문의글 번호
+	private String id;			// 현재 사용자 아이디
+	private String qTitle;		// 문의글 제목
+	private String qContent;	// 문의글 내용
+	private String qPassword;	// 사용자 비밀번호
+	private String qRegdate;	// 날짜
+	private String qStatus;		// 답변 여부
+	private String qSecret;		// 비밀글 비밀번호
 	
 	
 	public Integer getqNo() {
@@ -25,7 +25,7 @@ public class QuestionVO {
 		this.id = id;
 	}
 	public String getqTitle() {
-		return qTitle;
+		return qTitle; 
 	}
 	public void setqTitle(String qTitle) {
 		this.qTitle = qTitle;

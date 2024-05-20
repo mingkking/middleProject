@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <%@ page session="false"%>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%
+    HttpSession session = request.getSession();
+    String id = (String) session.getAttribute("logid");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -18,7 +23,7 @@
 <link href="${path}/resources/assets/img/favicon.png" rel="icon">
 <link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
-
+ 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,25 +75,32 @@
 									<p></p>
 								</div>
 								<div class="col-md-8">
-									<input type="hidden" name="qNo" class="form-control" value='${question.qNo }'>
+									<input type="hidden" name="qNo" class="form-control"
+										value='${question.qNo }'>
 								</div>
-								
+
 								<div class="col-md-4">
 									<p>작성일시</p>
 								</div>
-								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
-
+								 <div class="col-md-8">
+									<input type="text" name="qRegdate" class="form-control"
+										value='${question.qRegdate }' readonly>
 								</div>
-								
+
 								<div class="col-md-4">
 									<p>아이디</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" class="form-control" name="qWriter" value='${question.id }' required readonly/>
+									<input type="text" class="form-control" name="qWriter"
+										value='${question.id }' required readonly />
 								</div>
-								
-								<div class="col-md-4">
+
+								<c:choose>
+									<c:when test="${id eq question.id}">
+										<!-- 현재 사용자와 DB에서 가져온 질문의 작성자가 일치할 때 -->
+										
+											
+										<div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
@@ -101,40 +113,96 @@
                             <div class="col-md-8">
                                 <textarea name="qContent" class="form-control" rows="5" required >${question.qContent }</textarea>
                             </div>
-                            
-                            <div class="col-md-4">
-                           		<p>답변일시</p>
-                        	</div>
-                        		<div class="col-md-8">
-                           			<c:set var="formattedDate" value="${empty managerQuestion.qARegdate ? '답변을 작성해주세요.' : managerQuestion.qARegdate}" />
-									<input type="text" name="qARegdate" class="form-control" value="${formattedDate}" readonly>
-                        		</div>
-                        
-                            <div class="col-md-4">
+									</c:when>
+									<c:otherwise>
+										<!-- 현재 사용자와 DB에서 가져온 질문의 작성자가 일치하지 않을 때 -->
+										<div class="col-md-4">
 									<p>제목</p>
 								</div>
 								<div class="col-md-8">
-									<input type="text" name="qATitle" class="form-control" placeholder="답변이 작성되지 않았습니다." value='${managerQuestion.qATitle }' readonly>
+									<input type="text" class="form-control" name="qTitle" value='${question.qTitle }' required readonly/>
 								</div>
 								
+								<div class="col-md-4">
+                                <p>문의 내용</p>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea name="qContent" class="form-control" rows="5" required readonly>${question.qContent }</textarea>
+                            </div>
+									</c:otherwise>
+								</c:choose>
+
+								<div class="col-md-4">
+									<p>답변일시</p>
+								</div>
+								<div class="col-md-8">
+									<c:set var="formattedDate" value="${empty managerQuestion.qARegdate ? '답변이 작성되지 않았습니다.' : managerQuestion.qARegdate}" />
+									<input type="text" name="qARegdate" class="form-control" value="${formattedDate}" readonly>
+								</div>
+
+								<div class="col-md-4">
+									<p>제목</p>
+								</div>
+								<div class="col-md-8">
+									<input type="text" name="qATitle" class="form-control"
+										placeholder="답변이 작성되지 않았습니다."
+										value='${managerQuestion.qATitle }' readonly>
+								</div>
+
 								<div class="col-md-4">
 									<p>답변 내용</p>
 								</div>
 								<div class="col-md-8">
-									<textarea name="qAContent" class="form-control" rows="5" placeholder="답변이 작성되지 않았습니다." required readonly>${managerQuestion.qAContent }</textarea>
+									<textarea name="qAContent" class="form-control" rows="5"
+										placeholder="답변이 작성되지 않았습니다." required readonly>${managerQuestion.qAContent }</textarea>
 								</div>
 
-								
-								
 								<div class="col-md-4 text-center"></div>
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
-                                
-                               <a href='question?id=${id} '><input type='button' value='닫기'></a>
-                               <a href='deleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
-                               <a href='updateQuestion'><input type='submit' value='수정하기'></a>
+
+									<script>
+    function confirmDelete() {
+        var result = confirm("삭제하시겠습니까?");
+        if (result) {
+            // 확인 버튼이 눌렸을 때 실행할 코드
+            location.href = 'deleteQuestion.do?qNo=${question.qNo}';
+        } else {
+            // 취소 버튼이 눌렸을 때 실행할 코드	
+            location.href = 'question'; // 취소했을 때 question.jsp 페이지로 이동하는 코드
+            return false; // 기능 중단
+        }
+    }
+
+    function confirmUpdate() {
+        var result = confirm("수정하시겠습니까?");
+        if (result) {
+            // 확인 버튼이 눌렸을 때 실행할 코드
+            // 수정하는 페이지로 이동하는 코드
+            location.href = 'updateQuestion';
+            return true; // 수정 페이지로 이동하기 위해 true를 반환
+        } else {
+            // 취소 버튼이 눌렸을 때 실행할 코드
+            location.href = 'question'; // 취소했을 때 question.jsp 페이지로 이동하는 코드
+            return false; // 기능 중단 및 원래 페이지에 머무르기 위해 false를 반환
+        }
+    }
+
+</script>
+
+
+									<c:if test="${id eq question.id}">
+                               		<a href='question?id=${id} '><input type='button' value='닫기'></a>
+                               		<a href='deleteQuestion.do?qNo=${ question.qNo}' onclick="return confirmDelete()"><input type='button' value='삭제하기'></a>
+                               		<a href='updateQuestion' onclick="return confirmUpdate()"><input type='submit' value='수정하기'></a>
+                               </c:if>
+                               
+                               <c:if test="${id ne question.id}">
+                               		<a href='question?id=${id} '><input type='button' value='닫기'></a>
+                               </c:if>
                             </div>
                             <div class="col-md-4 text-center"></div>
+							
                         </div>
                     </form>
                 </div>

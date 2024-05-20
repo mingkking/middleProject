@@ -2,12 +2,12 @@ package vo.question;
 
 public class QAnswerVO {
 	
-	private Integer qANo;
-	private Integer qNo;
-	private String id;
-	private String qATitle;
-	private String qAContent;
-	private String qARegdate;
+	private Integer qANo;		// 답변글 번호
+	private Integer qNo;		// 문의글 번호
+	private String id;			// 현재 사용자 아이디
+	private String qATitle;		// 답변글 제목
+	private String qAContent;	// 답변글 내용
+	private String qARegdate;	// 날짜
 	
 	
 	public Integer getqANo() {
@@ -52,6 +52,6 @@ public class QAnswerVO {
 		return "QAnswerVO [qANo=" + qANo + ", qNo=" + qNo + ", id=" + id + ", qATitle=" + qATitle + ", qAContent="
 				+ qAContent + ", qARegdate=" + qARegdate + "]";
 	}
-	
+	 
 	
 }

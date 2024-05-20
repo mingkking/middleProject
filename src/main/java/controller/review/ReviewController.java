@@ -90,8 +90,8 @@ public class ReviewController {
 			map2.put("pNo", reviewVO.getpNo());				 // 맵에 상품번호 저장
 			
 			System.out.println();
-			System.out.println("상품번호 : " + reviewVO.getpNo()); // 상품번호 확인
 			System.out.println("pVO2 : " + pVO2.toString()); // 페이지 확인
+			System.out.println();
 			System.out.println("pVO2 게시물 수 : " + reviewService.selectReviewAllNoPaingCount(reviewVO)); // 페이지 확인
 			System.out.println(map2.get("startBoard2"));
 			System.out.println(map2.get("endBoard2"));

@@ -91,6 +91,26 @@
 							</table>
 						</div>
 						
+							<!-- 페이징 -->
+	<div id="pagination" class="col-md-12">
+    	<c:if test="${paging.startPage > 1}">
+        	<a href="${path}/managerQuestion?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+    	</c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" step="1" varStatus="loop">
+        <c:choose>
+            <c:when test="${loop.index == paging.pageNum}">
+                <span class="current">${loop.index}</span>
+            </c:when>
+        <c:otherwise>
+        	<a href="${path}/managerQuestion?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+        </c:otherwise>
+        </c:choose>
+    </c:forEach>
+    	<c:if test="${paging.endPage < paging.totalPage}">
+        	<a href="${path}/managerQuestion?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+    	</c:if>
+	</div>
+						
 							<form method='get' id="searchQuestionFrm">
 							<select name='searchCondition'>
 								<option value='qTitle'>제목</option>
@@ -98,8 +118,8 @@
 								<option value='id'>작성자</option>
 							</select> <input type='text' name='searchKeyword'> <input
 								type='submit' class="searchQuestionBtn" value='검색'>
+							</form>
 
-						</form>
 					</div>
 				</div>
 			</div>

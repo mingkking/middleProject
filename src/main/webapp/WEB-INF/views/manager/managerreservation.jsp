@@ -88,22 +88,13 @@ tr {
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">예약현황</h2>
+						<h2 data-aos="fade-down" id="managerReservationMg">예약현황</h2>
 			
-			<form method='get' action='managerreservation'>
-			<select name='searchCondition' >
-				<option value='id'>예약자</option>
-				<option value='r.pNo'>구장</option>
-				<option value='rRegDate'>날짜</option>
-				
-			</select>
-			<input type='text' name='searchKeyword' id='searchBtn'>
-			<input type='submit' value='검색'>
-			</form>
+
 			
 			
 			
-			<table border="1" class="reservationBoard">
+			<table class="table table-default table-hover">
 			<tr>
 				<th bgcolor="#ooad34" width="100">예약자 ID</th>
 				<th bgcolor="#ooad34" width="200">구장</th>
@@ -126,6 +117,17 @@ tr {
 				</tr>
 			</c:forEach>
 		</table>
+		
+					<form method='get' action='managerreservation'>
+			<select name='searchCondition' >
+				<option value='id'>예약자</option>
+				<option value='r.pNo'>구장</option>
+				<option value='rRegDate'>날짜</option>
+				
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색' class="searchQuestionBtn">
+			</form>
 	
 		<!-- 페이징 -->
 		<div id="pagination" class="col-md-12">
@@ -152,31 +154,7 @@ tr {
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
-
-			<div class="carousel-item active"
-				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-			<a class="carousel-control-prev" href="#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
+		<div id="hero-carousel" class="carousel slide"></div>
 
 	</section>
 	<!-- End Hero Section -->

@@ -139,7 +139,7 @@
 		<div class="info align-items-center">
 
 			<div class="row justify-content-center" id='insertMemberForm'>
-				<div class="col-lg-6 text-center" id="blackbackground">
+				<div class="col-lg-6 text-center">
 
 					<h2 data-aos="fade-down" id='insertMemberForm'>리뷰</h2>
 
@@ -160,11 +160,21 @@
 						</c:if>
 						<!-- 리뷰 사진들 페이징 -->
 						<div class="col-md-12" id="pageNum">
-							<c:forEach var="i" begin="${pVO.startPage }"
-								end="${pVO.endPage }">
-								<a
-									href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}">${i }</a>
+							<a href="${path}/review?pageNum=${i-10}&pageNum2=${pageNum2}&pNo=${pNo}">이전</a>
+							<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
+								<c:if test="${pageNum == i}">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}" class="paging_color">${i }</a>
+								</c:if>
+								<c:if test="${pageNum != i}">
+									<a href="${path}/review?pageNum=${i}&pageNum2=${pageNum2}&pNo=${pNo}">${i }</a>
+								</c:if>
 							</c:forEach>
+							<c:if test="${pageNum+10 >= pVO.endPage}">
+								<a href="${path}/review?pageNum=${pVO.endPage}&pageNum2=${pageNum2}&pNo=${pNo}">다음</a>
+							</c:if>
+							<c:if test="${pageNum+10 < pVO.endPage}">
+								<a href="${path}/review?pageNum=${pageNum+10}&pageNum2=${pageNum2}&pNo=${pNo}">다음</a>
+							</c:if>
 						</div>
 
 						<c:if test="${pNo > 0 }">
@@ -174,9 +184,10 @@
 								<table class="table table-default table-hover">
 									<tbody>
 										<tr class="table-dark">
-											<td colspan="6"><img
+										<td colspan="6">구장내용</td>
+ 											<%-- <td colspan="6"><img
 												src="${path}/resources/reviewUpload/${productVO.p_frealname}"
-												alt="" width="300px" height="" class="img-fluid"></td>
+												alt="" width="300px" height="" class="img-fluid"></td> --%>
 										</tr>
 										<tr>
 											<td>구장명</td>
@@ -195,8 +206,8 @@
 
 							</div>
 						</c:if>
-						<div class="row gy-4">
-							<h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2>
+						<div class="row gy-4" id="">
+							<%-- <h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2> --%>
 							<table class="table table-default table-hover">
 								<thead>
 									<tr class="table-dark">
@@ -205,7 +216,7 @@
 										<th>리뷰내용</th>
 										<th></th>
 										<th>작성일</th>
-										<th>파일</th>
+										<th>사진</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -227,8 +238,10 @@
 													<td>
 														<input type="hidden" class="rNo_${reviewListPaging.get(i).rNo}" value="${reviewListPaging.get(i).rNo}">
 														<input type="hidden" class="pNo" value="${pNo}">
-														<input type="button" value="리뷰수정" class="findIdBtn updateReview">
-														<input type="button" value="리뷰삭제" class="findIdBtn deleteReview">
+														<c:if test="${sessionScope.logid == reviewListPaging.get(i).id}">
+															<input type="button" value="리뷰수정" class="findIdBtn updateReview">
+															<input type="button" value="리뷰삭제" class="findIdBtn deleteReview">
+														</c:if>
 													</td>
 												</tr>
 											</c:if>
@@ -265,9 +278,21 @@
 
 							<!-- 리뷰 사진들 페이징 -->
 							<div class="col-md-12" id="pageNum2">
+								<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.pageNum-10}&pNo=${pNo}">이전</a>
 								<c:forEach var="i" begin="${pVO2.startPage }" end="${pVO2.endPage }">
-									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}">${i }</a>
+									<c:if test="${pVO2.pageNum == i }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}" class="paging_color">${i }</a>
+									</c:if>
+									<c:if test="${pVO2.pageNum != i }">
+										<a href="${path}/review?pageNum=${pageNum}&pageNum2=${i}&pNo=${pNo}">${i }</a>
+									</c:if>
 								</c:forEach>
+								<c:if test="${pageNum2+10 >= pVO2.endPage}">
+									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.endPage}&pNo=${pNo}">다음</a>
+								</c:if>
+								<c:if test="${pageNum2+10 < pVO2.endPage}">
+									<a href="${path}/review?pageNum=${pageNum}&pageNum2=${pVO2.pageNum+10}&pNo=${pNo}">다음</a>
+								</c:if>
 							</div>
 
 						</div>

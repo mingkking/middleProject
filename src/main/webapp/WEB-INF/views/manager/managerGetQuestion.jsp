@@ -76,8 +76,9 @@
 								<div class="col-md-4">
 									<p>작성일시</p>
 								</div>
-								<div class="col-md-8">
-									<input type="date" name="qRegdate" class="form-control" value="${question.qRegdate.substring(0, 10)}" readonly>
+								 <div class="col-md-8">
+									<input type="text" name="qRegdate" class="form-control"
+										value='${question.qRegdate }' readonly>
 								</div>
 								
 								<div class="col-md-4">
@@ -124,15 +125,13 @@
 								</div>
 
 								
-								
-								<div class="col-md-4 text-center"></div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-12 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='managerQuestion'><input type='button' value='닫기'></a>
-                               <a href='managerDeleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기'></a>
-                               <input type="submit" value="답변하기" name="action" onclick="this.form.action='managerSaveQuestion'">
-    						   <input type="submit" value="수정하기" name="action" onclick="this.form.action='managerUpdateQuestion'">
+                               <a href='managerQuestion'><input type='button' value='닫기' class="getQuestion"></a>
+                               <a href='managerDeleteQuestion.do?qNo=${ question.qNo}'><input type='button' value='삭제하기' class="getQuestion"></a>
+                               <input type="submit" value="답변하기" name="action" onclick="this.form.action='managerSaveQuestion'" class="getQuestion">
+    						   <input type="submit" value="수정하기" name="action" onclick="this.form.action='managerUpdateQuestion'" class="getQuestion">
                             </div>
                             <div class="col-md-4 text-center">
                             

@@ -5,11 +5,11 @@ import lombok.Data;
 //@Data // Setter, Getter, toString
 public class NoticeVO {
 	
-	private Integer nNo;		// 번호	
-	private String 	nTitle;		// 제목
-	private String 	nContent;	// 내용
+	private Integer nNo;		// 공지글 번호	
+	private String 	nTitle;		// 공지 제목
+	private String 	nContent;	// 공지 내용
 	private String 	nRegdate;	// 날짜
-	private String  nWriter;	// 작성자
+	private String  nWriter;	// 공지 작성자
 	
 	
 	public Integer getnNo() {
@@ -48,7 +48,7 @@ public class NoticeVO {
 		return "NoticeVO [nNo=" + nNo + ", nTitle=" + nTitle + ", nContent=" + nContent + ", nRegdate=" + nRegdate
 				+ ", nWriter=" + nWriter + "]";
 	}
-	
+	 
 	
 	
 }

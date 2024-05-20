@@ -86,23 +86,8 @@
 </head>
 <body>
 
-<h2 data-aos="fade-down">회원 리스트</h2>	
-
-
-		<form method='get' action='managermemberList'>
-			<select name='searchCondition' >
-				<option value='ID'>ID</option>
-				<option value='name'>이름</option>
-				
-			</select>
-			<input type='text' name='searchKeyword' id='searchBtn'>
-			<input type='submit' value='검색'>
-		</form>
-
-
-
-
-	<table border="1">
+<h2 data-aos="fade-down" id="memberListMargin">회원 리스트</h2>	
+	<table class="table table-default table-hover">
 	    <thead>
 	        <tr>
 	            <th>id</th>
@@ -125,6 +110,16 @@
 				</tr>
 			</c:forEach>		
 	</table>
+	
+			<form method='get' action='managermemberList'>
+			<select name='searchCondition' >
+				<option value='ID'>ID</option>
+				<option value='name'>이름</option>
+				
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색' class="searchQuestionBtn">
+		</form>
 </body>
 	<!-- 페이징 -->
 		<div id="pagination" class="col-md-12">
@@ -152,31 +147,7 @@
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
-
-			<div class="carousel-item active"
-				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-			<a class="carousel-control-prev" href="#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
+		<div id="hero-carousel" class="carousel slide"></div>
 
 	</section>
 	<!-- End Hero Section -->

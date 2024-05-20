@@ -70,7 +70,7 @@
 				// 시간 지연 함수
 				setTimeout(function() {
 					accountCheck = 1; // 무통장 입금 완료 확인
-				}, 10000); // 15초 뒤에 완료
+				}, 1); // 초 뒤에 완료
 			}
 		});
 		
@@ -219,14 +219,14 @@
 								<p>예약자명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="name" id="name" class="form-control" value="${memberVO.name}" readonly="readonly">
+								<input type="text" name="name" id="name" class="form-control reservationBorder" value="${memberVO.name}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-4">
 								<p>전화번호</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="tel" id="tel" class="form-control" value="${memberVO.tel}" readonly="readonly">
+								<input type="text" name="tel" id="tel" class="form-control reservationBorder" value="${memberVO.tel}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-12">
@@ -237,28 +237,28 @@
 								<p>구장명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="pName" id="pName" class="form-control" value="${productVO.pName}" readonly="readonly">
+								<input type="text" name="pName" id="pName" class="form-control reservationBorder" value="${productVO.pName}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>구장위치</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="pLocation" class="form-control" value="${productVO.pLocation}" readonly="readonly">
+								<input type="text" name="pLocation" class="form-control reservationBorder" value="${productVO.pLocation}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>날짜</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="rental" class="form-control" value="${reservationVO.rental}" readonly="readonly">
+								<input type="text" name="rental" class="form-control reservationBorder" value="${reservationVO.rental}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
 								<p>시간대</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="time" class="form-control" value="${time}" readonly="readonly">
+								<input type="text" name="time" class="form-control reservationBorder" value="${time}" readonly="readonly">
 							</div>
 
 							<div class="col-md-12">
@@ -266,7 +266,7 @@
 							</div>
 
 							<div class="col-md-12">
-								<p>결제수단</p>
+								<h4>결제수단</h4>
 							</div>
 							
 							<div class="col-md-12">
@@ -278,30 +278,40 @@
 							<!-- <div class="col-md-3 form-check form-check-inline"></div> -->
 							<div class="col-md-4 form-check ">
 								<input class="form-check-input" type="radio" name="rPayMethod" value="핸드폰" checked="checked" required>
-								<p>핸드폰</p>
+								<div>핸드폰</div>
 							</div>
 							<div class="col-md-4 form-check ">
 								<input class="form-check-input" type="radio" name="rPayMethod" value="카카오페이">
-								<p>카카오페이</p>
+								<div>카카오페이</div>
 							</div>
 							<div class="col-md-4 form-check ">
 								<input class="form-check-input" type="radio" name="rPayMethod" value="무통장입금">
-								<p>무통장입금</p>
+								<div>무통장입금</div>
 							</div>
+							</div>
+							
+							<div class="col-md-12">
+							<p id="account"></p>
 							</div>
 							<div class="col-md-12">
 							<p id="account"></p>
 							</div>
-							
+
 							<div class="col-md-12">
-								<p>결제상세</p>
+								<h4>결제상세</h4>
 							</div>
 							
 							<div class="col-md-4">
 								<p>결제 금액</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="totalMoney" id="totalMoney" class="form-control" value="${reservationVO.totalMoney}" readonly="readonly">
+								<input type="text" name="totalMoney" id="tatalMoney" class="form-control reservationBorder" value="${reservationVO.totalMoney}" readonly="readonly">
+							</div>
+							<div class="col-md-12">
+							<p id="account"></p>
+							</div>
+							<div class="col-md-12">
+							<p id="account"></p>
 							</div>
 							
 							

@@ -70,6 +70,12 @@
 					$('#productVOPname').text(result.pName);
 					$('#productVOPLocation').text(result.pLocation);
 					$('#productVOPInfo').text(result.pInfo);
+					console.log(result.p_frealname);
+					var img = $('<img/>');
+					$('#productVOPPicture').empty();
+					img.attr('src','/resources/productUpload/' + result.p_frealname);
+					img.attr('width',300);
+					$('#productVOPPicture').append(img); 
 				},
 				error : function(err) {
 					alert('에러발생');
@@ -114,10 +120,8 @@
 								</c:forEach>
 							</c:if>
 
-							<div class="content">
+							<div class="content" id="commingMargin">
 								<p>
-									<img src="${path}/resources/assets/img/stadium.png" alt=""
-										class="stadiumAdd">
 								</p>
 							</div>
 						</div>
@@ -126,31 +130,38 @@
 						<div class="col-md-12">
 							<h4 id="productVOPname"></h4>
 							<div class="col-md-12">
-									<div class="col-md-12">
-										<p></p>
-									</div>
 								<div class="row">
-									<div class="col-md-5" ></div>
-									<div class="col-md-7" id="productVOPLocation">
+									<div class="col-md-12" id="productVOPPicture">
 										<p></p>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-5" ></div>
-									<div class="col-md-7" id="productVOPInfo">
+									<div class="col-md-12" id="productVOPLocation">
+										<p></p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12" id="productVOPInfo">
 										<p></p>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-12" id="pageNum">
+								<a href="${path}/coming?pageNum=${pVO.pageNum-10}">이전</a>
 								<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-									<c:if test="${sessionScope.logid == null }">
-										<a href="${path}/coming?pageNum=${i}&id=${id}">${i }</a>
+									<c:if test="${pVO.pageNum == i }">
+										<a href="${path}/coming?pageNum=${i}" class="paging_color">${i }</a>
 									</c:if>
-									<c:if test="${sessionScope.logid != null }">
-										<a href="${path}/coming?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
+									<c:if test="${pVO.pageNum != i }">
+										<a href="${path}/coming?pageNum=${i}">${i }</a>
 									</c:if>
 								</c:forEach>
+								<c:if test="${pageNum+10 >= pVO.endPage}">
+									<a href="${path}/coming?pageNum=${pVO.endPage}">다음</a>
+								</c:if>
+								<c:if test="${pageNum+10 < pVO.endPage}">
+									<a href="${path}/coming?pageNum=${pVO.pageNum+10}">다음</a>
+								</c:if>
 							</div>
 						</div>
 

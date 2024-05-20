@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductVO {
+	
 	private Integer pNo;
 	private String pName;
 	private String pLocation;
@@ -88,8 +89,7 @@ public class ProductVO {
 			
 			// 실제파일 저장
 			// 추후에 웹서버 경로를 찾아서 수정
-			File f = new File("C:\\springweb\\hFileBoard\\src\\main\\webapp\\resources\\upload\\" + p_frealname);
-			
+			File f = new File("C:\\Users\\ict03_029\\git\\middleProject\\src\\main\\webapp\\resources\\productUpload\\" + p_frealname);
 			try {
 				pPicture.transferTo(f);
 			} catch (IllegalStateException e) {				

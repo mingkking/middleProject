@@ -15,30 +15,34 @@ public class NoticeDAOImpl implements NoticeDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	// 공지사항 작성
 	public void insertNotice(NoticeVO vo) {
-		System.out.println("===> Mybatis insertNotice() 호출");
 		mybatis.insert("NoticeDAO.insertNotice", vo);
 	}
 	
+	// 공지사항 수정
 	public void updateNotice(NoticeVO vo) {
-		System.out.println("===> Mybatis updateNotice() 호출");
 		mybatis.update("NoticeDAO.updateNotice", vo);
 	}
 	
+	// 공지사항 삭제
 	public void deleteNotice(NoticeVO vo) {
-		System.out.println("===> Mybatis deleteNotice() 호출");
 		mybatis.delete("NoticeDAO.deleteNotice", vo);
 	}
 	
+	// 공지사항 목록보기 
 	public NoticeVO getNotice(NoticeVO vo) {
-		System.out.println("===> Mybatis getNotice() 호출 ");
 		return mybatis.selectOne("NoticeDAO.getNotice", vo);
 	}
 	
-	public List<NoticeVO> notice(HashMap map){
-		System.out.println("===> Mybatis notice() 호출");
+	// 공지사항 목록 출력
+	public List<NoticeVO> notice(HashMap<String, Object> map){
 		List<NoticeVO> list = mybatis.selectList("NoticeDAO.notice", map);
-		
 		return list;
+	}
+	
+	// 공지사항 페이징
+	public int getNoticeCount(HashMap<String, Object> map) {
+		return mybatis.selectOne("NoticeDAO.getNoticeCount", map);
 	}
 }

@@ -60,22 +60,18 @@
    <!-- ======= Hero Section ======= -->
    <section id="hero" class="hero">
 
-      <div class="info d-flex align-items-center">
-         <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-lg-6 text-center">
-                  <h2 data-aos="fade-down">
-                      <span>
-                     회원정보</span>
-                  </h2>
-                 <body>
+		<div class="info d-flex align-items-center">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 text-center">
+						<h2 data-aos="fade-down">회원정보</h2>
+                 
 		
-		<hr>
 		<form action="deletemember?id=${member.id }" method="post">
 			<input name="sid" type="hidden" value="${member.id}" /> 
-			<table border="1" cellpadding="0" cellspacing="0">
+			<table class="table table-default table-hover">
 				<tr>
-					<td bgcolor="#ooad34" width="70">id</td>
+					<td>id</td>
 					<td align="left">
 						${member.id }</td>
 				</tr>
@@ -103,45 +99,19 @@
 				</tr>
 				
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="탈퇴" /></td>
+					<td colspan="2"><input type="submit"
+						value="탈퇴" class="unsubscriptionBtn"/></td>
 				</tr>
 			</table>
 		</form>
-		<hr>
 		
-</body>
                  
                </div>
             </div>
          </div>
       </div>
 
-      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-         data-bs-interval="5000">
-
-         <div class="carousel-item active"
-            style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-         <div class="carousel-item"
-            style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-         <div class="carousel-item"
-            style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-         <div class="carousel-item"
-            style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-         <div class="carousel-item"
-            style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-         <a class="carousel-control-prev" href="#hero-carousel" role="button"
-            data-bs-slide="prev"> <span
-            class="carousel-control-prev-icon bi bi-chevron-left"
-            aria-hidden="true"></span>
-         </a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-            data-bs-slide="next"> <span
-            class="carousel-control-next-icon bi bi-chevron-right"
-            aria-hidden="true"></span>
-         </a>
-
-      </div>
+		<div id="hero-carousel" class="carousel slide"></div>
 
    </section>
    
@@ -164,6 +134,10 @@
 
         tr{
             background-color: #f2f2f2;
+        }
+        
+        td{
+            text-align: center;
         }
     </style>
 

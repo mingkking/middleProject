@@ -58,9 +58,8 @@
 	<section id="insertMemberFormHero" class="hero">
 
 		<div class="info align-items-center">
-
 			<div class="row justify-content-center" id='insertMemberForm'>
-				<div class="col-lg-6 text-center" id="blackbackground">
+				<div class="col-lg-6 text-center">
 					<h2 data-aos="fade-down" id='insertMemberForm'>예약</h2>
 					<form action="payForm.do" id='insertFrm' method="post">
 						<div class="row gy-4">
@@ -68,7 +67,7 @@
 									<c:forEach var="i" begin="0" end="${productList.size()-1 }">
 										<div class="col-md-4">
 											<a href="${path}/reservationForm?pNo=${productList.get(i).pNo}">${productList.get(i).pName }<br />
-												<img src="${path}/resources/assets/img/stadium.png" alt=""
+												<img src="${path}/resources/productUpload/${productList.get(i).p_frealname}" alt=""
 												width="300px" height="" class="img-fluid"></a>
 										</div>
 
@@ -78,9 +77,21 @@
 									</c:forEach>
 								</c:if>
 								<div class="col-md-12" id="pageNum">
+									<a href="${path}/reservation?pageNum=${pVO.pageNum-10}">이전</a>
 									<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-										<a href="${path}/reservation?pageNum=${i}">${i }</a>
+										<c:if test="${pVO.pageNum == i }">
+											<a href="${path}/reservation?pageNum=${i}" class="paging_color">${i }</a>
+										</c:if>
+										<c:if test="${pVO.pageNum != i }">
+											<a href="${path}/reservation?pageNum=${i}">${i }</a>
+										</c:if>
 									</c:forEach>
+									<c:if test="${pageNum+10 >= pVO.endPage}">
+										<a href="${path}/reservation?pageNum=${pVO.endPage}">다음</a>
+									</c:if>
+									<c:if test="${pageNum+10 < pVO.endPage}">
+										<a href="${path}/reservation?pageNum=${pVO.pageNum+10}">다음</a>
+									</c:if>
 								</div>
 
 							</div>
@@ -88,10 +99,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
-		<div id="paddingSection"></div>
+		<!-- <div id="paddingSection"></div> -->
 	</section>
 	<!-- End Hero Section -->
 

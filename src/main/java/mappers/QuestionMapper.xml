@@ -15,7 +15,8 @@
 	<update id="updateQuestion" parameterType="vo.question.QuestionVO">
 		UPDATE QUESTION SET
 		qTitle = #{qTitle},
-		qContent = #{qContent}
+		qContent = #{qContent},
+		qRegdate = now()
 		WHERE qNo = #{qNo}
 	</update>
 	
@@ -25,12 +26,14 @@
     	WHERE qNo = #{qNo}
 	</delete>
 	
+	<!-- 문의글에 답변 시 Y -->
 	<update id="updateQuestionStatus" parameterType="vo.question.QuestionVO">
     	UPDATE QUESTION
     	SET qStatus = 'Y'
     	WHERE qNo = #{qNo}
 	</update>
 
+	<!-- 답변 삭제 시 N -->
 	<update id="updateQuestionStatusToN" parameterType="vo.question.QuestionVO">
         UPDATE Question 
         SET qStatus = 'N'
@@ -45,21 +48,40 @@
 	</select>
 	
 	<!-- sql 문의글 검색 -->
-	<select id="question" parameterType="hashmap" resultType="vo.question.QuestionVO">
-	SELECT *
-	FROM QUESTION
-	<where>
-		<if test="searchCondition !=null">
-			${searchCondition} LIKE '%${searchKeyword}%'
-		</if> 
-	</where>
-	ORDER BY qNo DESC
+	<select id="question" parameterType="map" resultType="vo.question.QuestionVO">
+    SELECT *
+    FROM QUESTION
+    <where>
+         <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+    	ORDER BY qNo DESC
+    	LIMIT #{startBoard}, ${cnt}
 	</select>
-	
-	
+
+	<!-- 문의사항 페이징 -->
+	<select id="getQuestionCount" parameterType="map" resultType="int">
+    	SELECT COUNT(*)
+    	FROM QUESTION
+    <where>
+        <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+	</select>
+ 
+	<!-- 문의사항 비밀글 비밀번호 -->
 	<select id="getqSecret" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
 		SELECT *
 		FROM QUESTION
 		WHERE qSecret = #{qSecret}
+	</select>
+	    
+	<select id="getPassword" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	    	id= #{id} AND password=#{password}
+	    </where>
 	</select>
 </mapper>

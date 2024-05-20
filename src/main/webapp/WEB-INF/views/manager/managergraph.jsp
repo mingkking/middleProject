@@ -110,7 +110,7 @@
                     var data = google.visualization.arrayToDataTable(prepareChartData(response));
                     var options = {
                         title: '월 구장별 예약 현황',
-                        chartArea: { width: '50%' },
+                        chartArea: { width: '80%' },
                         hAxis: { title: '구단' },
                         vAxis: { title: '예약수' }
                     };
@@ -186,31 +186,7 @@
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
-
-			<div class="carousel-item active"
-				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-			<a class="carousel-control-prev" href="#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
+		<div id="hero-carousel" class="carousel slide"></div>
 
 	</section>
 	<!-- End Hero Section -->
