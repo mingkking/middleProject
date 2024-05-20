@@ -46,27 +46,29 @@
 	</select>
 	
 	<!-- sql 문의글 검색 -->
-	<select id="question" parameterType="hashmap" resultType="vo.question.QuestionVO">
-	SELECT *
-	FROM QUESTION
-	<where>
-		<if test="searchCondition !=null">
-			${searchCondition} LIKE '%${searchKeyword}%'
-		</if> 
-	</where>
-	ORDER BY qNo DESC
-	</select>
-	
-	<select id="questionCount" resultType="int">
-        SELECT COUNT(*)
-        from question
-    </select>
-     
-     <select id="pagingList" parameterType="int" resultType="vo.question.QuestionVO">
-        select * from (select rownum num , B.* from board_table B) where num between #{pageStart} and #{pageStart} +2
-    </select>
-	
-	
+	<select id="question" parameterType="map" resultType="vo.question.QuestionVO">
+    SELECT *
+    FROM QUESTION
+    <where>
+         <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+    ORDER BY qNo
+    LIMIT #{startBoard}, ${cnt}
+</select>
+
+<select id="getQuestionCount" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM QUESTION
+    <where>
+        <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
+            ${searchCondition} LIKE '%${searchKeyword}%'
+        </if>
+    </where>
+</select>
+
+
 	<select id="getqSecret" parameterType="vo.question.QuestionVO" resultType="vo.question.QuestionVO">
 		SELECT *
 		FROM QUESTION

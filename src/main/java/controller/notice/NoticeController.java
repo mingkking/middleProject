@@ -37,20 +37,6 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
-	// 관리자 공지글 작성 화면 이동
-	@RequestMapping("insertNotice")
-	public String insertNotice() {
-		return "notice/insertNotice";
-	}
-
-	// 관리자 공지글 작성 후 저장
-	@RequestMapping("managerSaveNotice")
-	public String saveNotice(NoticeVO vo) {
-		noticeService.insertNotice(vo);
-
-		return "redirect:notice";
-	}
-
 	// 사용자 공지글 상세 보기 화면 이동
 	@RequestMapping("getNotice")
 	public String getNotice(NoticeVO vo, Model m, HttpSession session) {
@@ -66,14 +52,14 @@ public class NoticeController {
 	@RequestMapping("managerUpdateNotice")
 	public String updateNotice(NoticeVO vo) {
 		noticeService.updateNotice(vo);
-		return "forward:getNotice";
+		return "forward:managerGetNotice";
 	}
 
 	// 관리자 공지글 삭제
 	@RequestMapping("managerDeleteNotice")
 	public String deleteNotice(NoticeVO vo) {
 		noticeService.deleteNotice(vo);
-		return "redirect:notice";
+		return "redirect:managerNotice";
 	}
 
 	// 관리자 검색 및 목록 출력
@@ -99,4 +85,18 @@ public class NoticeController {
 
 		return "manager/managerGetNotice";
 	}
+	
+	// 관리자 공지글 작성 화면 이동
+		@RequestMapping("insertNotice")
+		public String insertNotice() {
+			return "notice/insertNotice";
+		}
+
+		// 관리자 공지글 작성 후 저장
+		@RequestMapping("managerSaveNotice")
+		public String saveNotice(NoticeVO vo) {
+			noticeService.insertNotice(vo);
+
+			return "redirect:managerNotice";
+		}
 }

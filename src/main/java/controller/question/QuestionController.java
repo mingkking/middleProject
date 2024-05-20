@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import service.question.QAnswerService;
 import service.question.QuestionService;
@@ -32,7 +31,8 @@ public class QuestionController {
 
 	// 문의글 검색 및 출력
 	@RequestMapping("question")
-	public String question(HttpServletResponse response, Model m, String searchCondition, String searchKeyword, HttpSession session) {
+	public String question(HttpServletResponse response, Model m, String searchCondition, String searchKeyword,
+						   HttpSession session,Integer pageNum) {
 		String id = (String) session.getAttribute("logid");
 		if (id == null) {
 			id = "noLogin";
@@ -41,14 +41,27 @@ public class QuestionController {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
+		
+		if(pageNum == null) {
+			pageNum =1;
+		}
 
-		HashMap map = new HashMap();
+		HashMap<String, Object>map = new HashMap<>();
 		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
-
+		
+		int totalRecords = questionService.getQuestionCount(map);
+		PagingVO paging = new PagingVO(pageNum, totalRecords,5);
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
 		List<QuestionVO> list = questionService.question(map);
-
 		m.addAttribute("question", list);
+		m.addAttribute("paging",paging);
+		m.addAttribute("searchCondition",searchCondition);
+		m.addAttribute("searchKeyword",searchKeyword);
+
+		
 
 		return "question/question";
 	}

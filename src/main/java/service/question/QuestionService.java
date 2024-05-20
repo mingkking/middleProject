@@ -26,7 +26,8 @@ public interface QuestionService {
 	void updateQuestionStatusToN(QuestionVO vo);
 	
 	// 글 목록 조회
-	List<QuestionVO> question(HashMap map);
+	List<QuestionVO> question(HashMap<String, Object> map);
+	int getQuestionCount(HashMap<String, Object> map);
 	
 	boolean checkPassword(String userId, String password);
 	

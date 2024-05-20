@@ -21,7 +21,8 @@ public interface QuestionDAO {
 	public QuestionVO getQuestion (QuestionVO vo);
 	
 	// 사용자 문의사항 목록보기
-	public List<QuestionVO> question(HashMap map);
+	public List<QuestionVO> question(HashMap<String, Object> map);
+	int getQuestionCount(HashMap<String, Object> map);
 	
 	// 답변 시 qStatus 변환
 	public void updateQuestionStatus(QuestionVO vo);

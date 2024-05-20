@@ -32,12 +32,16 @@ public class QuestionDAOImpl implements QuestionDAO{
 		return mybatis.selectOne("QuestionDAO.getQuestion", vo);
 	}
 	
-	public List<QuestionVO> question(HashMap map){
+	public List<QuestionVO> question(HashMap<String, Object> map){
 		List<QuestionVO> list = mybatis.selectList("QuestionDAO.question", map);
 		
 		return list;
 	}
 	 
+	public int getQuestionCount(HashMap<String, Object> map) {
+		return mybatis.selectOne("QuestionDAO.getQuestionCount", map);
+	}
+	
 	public void updateQuestionStatus(QuestionVO vo) {
 	    mybatis.update("QuestionDAO.updateQuestionStatus", vo);
 	}
