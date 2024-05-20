@@ -40,7 +40,7 @@ public class LoginController {
 
 	// 로그인
 	@RequestMapping("/loginCheck")
-	public String login(MemberVO vo, HttpSession session) {
+	public String login(MemberVO vo, HttpSession session, HttpServletResponse response) {
 		int result = 0;
 		try {
 			result = memberService.loginCheck(vo);
@@ -48,6 +48,7 @@ public class LoginController {
 			System.out.println("로그인에러: " + e.getMessage());
 		}
 		if (result == 0) {
+			PopUp.popUp(response, "아이디 혹은 비밀번호가 틀렸습니다.");
 			return "login/login";
 		} else {
 			session.setAttribute("logid", vo.getId());
@@ -213,10 +214,20 @@ public class LoginController {
 	// 비밀번호 찾기 - 인증코드 확인
 	@RequestMapping("/findPwFinal")
 	public String findPwFinal(HttpServletResponse response, String emailsearchCode, MemberVO vo, Model m) {
-		System.out.println(emailsearchCode);
-		System.out.println(this.mail);
+		// System.out.println(emailsearchCode);
+		// System.out.println(this.mail);
+		// System.out.println("입력한 아이디값" + vo.getId());
+		// System.out.println("입력한 이메일값" + vo.getEmail());
 		String emailsearchCode1 = emailsearchCode.trim();
 
+		// 가입된 정보가 없을 때
+		MemberVO vo2 = memberService.selectPw(vo);
+		if(vo2 == null) {
+			PopUp.popUp(response, "가입된 정보가 없습니다.");
+			return "login/findPw";
+		}
+		
+		// 발송된 코드와 입력 코드가 다를 때
 		if (emailsearchCode1.equals(this.mail)) {
 			vo = memberService.selectPw(vo);
 			// m.addAttribute("password", vo.getPassword());
