@@ -33,8 +33,12 @@ public class QuestionServiceImpl implements QuestionService{
 		return questionDAO.getQuestion(vo);
 	}
 	 
-	public List<QuestionVO> question(HashMap map){
+	public List<QuestionVO> question(HashMap <String, Object> map){
 		return questionDAO.question(map);
+	}
+	
+	public int getQuestionCount(HashMap<String, Object> map) {
+		return questionDAO.getQuestionCount(map);
 	}
 	
 	public void updateQuestionStatus(QuestionVO vo) {
