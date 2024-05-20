@@ -154,7 +154,7 @@
 						<h3 data-aos="fade-down">통계</h3>
 						<div class="pull-right">
 							<button type="button" class="btn btn-sm btn-primary"
-								id="graphBtn">예약 확인</button>
+								id="ajaxButton">예약 확인</button>
 						</div>
 						<!-- 그래프를 그릴 요소들 -->
 						<select id="yearSelect">

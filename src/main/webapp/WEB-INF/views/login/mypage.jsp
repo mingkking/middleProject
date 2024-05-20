@@ -131,8 +131,8 @@
 									<p>아이디</p>
 								</div>
 								<div class="col-md-5">
-									<input type="text" id="mypageBorder" name="id"
-										class="form-control" value="${vo.id }" readonly="readonly" />
+									<input type="text" id="nowId" name="id"
+										class="form-control mypageBorder" value="${vo.id }" readonly="readonly" />
 								</div>
 
 								<div class="col-md-4">
@@ -147,8 +147,8 @@
 									<p>이메일</p>
 								</div>
 								<div class="col-md-5">
-									<input type="email" id="mypageBorder" name="email"
-										class="form-control" placeholder="abc@naver.com"
+									<input type="email" id="nowEmail" name="email"
+										class="form-control mypageBorder" placeholder="abc@naver.com"
 										value="${vo.email }" readonly />
 								</div>
 
@@ -170,8 +170,8 @@
 									<p>휴대폰번호</p>
 								</div>
 								<div class="col-md-6">
-									<input type="text" id="mypageBorder" name="tel"
-										class="form-control" value="${vo.tel }" readonly />
+									<input type="text" id="nowTel" name="tel"
+										class="form-control mypageBorder" value="${vo.tel }" readonly />
 								</div>
 
 								<div class="col-md-4">
