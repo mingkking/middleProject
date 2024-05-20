@@ -38,7 +38,7 @@ public class MailService {
 			InternetAddress to = new InternetAddress(emailAddr);
 			msg.setRecipient(Message.RecipientType.TO, to);
 			// 이메일 제목
-			msg.setSubject("메일 전송 테스트", "UTF-8");
+			msg.setSubject("이메일 인증 코드입니다.", "UTF-8");
 			// 이메일 내용
 			String message = "당신의 인증번호입니다    ";
 			message += getTempPassword();
