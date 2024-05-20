@@ -49,7 +49,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-<style>
+<!-- <style>
 table {
 	border-collapse: collapse;
 	width: 100%;
@@ -68,7 +68,7 @@ th {
 tr {
 	background-color: #f2f2f2;
 }
-</style>
+</style> -->
 </head>
 
 <body>
@@ -84,41 +84,39 @@ tr {
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">상품 관리</h2>
 						<form action="updateProduct" method="post" id="updateProduct">
-							<table border="1" cellpadding="0" cellspacing="0">
+							<table class="table table-default table-hover">
 								<tr>
-									<td bgcolor="#ooad34" width="70">구장번호</td>
+									<td>구장번호</td>
 									<td align="left"><input name='pNo' type='text'
-									 value="${mproduct.pNo }" ></input></td>
+									 value="${mproduct.pNo }" class="form-control"></input></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34" width="70">구장이름</td>
+									<td>구장이름</td>
 									<td align="left"><input name='pName' type='text'
-										value="${mproduct.pName}"></input></td>
+										value="${mproduct.pName}" class="form-control"></input></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34">정보</td>
+									<td>정보</td>
 									<td align="left"><input name='pInfo' type='text'
-										value="${ mproduct.pInfo}"></input></td>
+										value="${ mproduct.pInfo}" class="form-control"></input></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34">위치</td>
-									<td align="left"><textarea name='pLocation'>
-									${mproduct.pLocation}</textarea></td>
+									<td>위치</td>
+									<td align="left"><textarea name='pLocation' class="form-control">${mproduct.pLocation}</textarea></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34">가격</td>
+									<td>가격</td>
 									<td align="left"><input name='pPrice' type='text'
-										value="${mproduct.pPrice}"></input></td>
+										value="${mproduct.pPrice}" class="form-control"></input></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="center">
-										<button type="submit" >수정하기</button>
+										<button type="submit" class="searchQuestionBtn" >수정하기</button>
 									</td>
 								</tr>
 
 							</table>
 						</form>
-						<hr>
 						<a href="${path}/deleteProduct.do?pNo=${mproduct.pNo }">상품 삭제</a>&nbsp;&nbsp;&nbsp;
 						<a href="${path}/managerproduct">상품 목록</a>
 					</div>

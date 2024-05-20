@@ -86,23 +86,8 @@
 </head>
 <body>
 
-<h2 data-aos="fade-down">회원 리스트</h2>	
-
-
-		<form method='get' action='managermemberList'>
-			<select name='searchCondition' >
-				<option value='ID'>ID</option>
-				<option value='name'>이름</option>
-				
-			</select>
-			<input type='text' name='searchKeyword' id='searchBtn'>
-			<input type='submit' value='검색'>
-		</form>
-
-
-
-
-	<table border="1">
+<h2 data-aos="fade-down" id="memberListMargin">회원 리스트</h2>	
+	<table class="table table-default table-hover">
 	    <thead>
 	        <tr>
 	            <th>id</th>
@@ -125,6 +110,16 @@
 				</tr>
 			</c:forEach>		
 	</table>
+	
+			<form method='get' action='managermemberList'>
+			<select name='searchCondition' >
+				<option value='ID'>ID</option>
+				<option value='name'>이름</option>
+				
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색' class="searchQuestionBtn">
+		</form>
 </body>
 	<!-- 페이징 -->
 		<div id="pagination" class="col-md-12">

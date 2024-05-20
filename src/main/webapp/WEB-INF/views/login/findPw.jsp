@@ -55,36 +55,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
-<!-- 이메일 인증 -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    function sendNumber(){
-        $("#authEmail").css("display","block");
-        $.ajax({
-            url:"/mail",
-            type:"post",
-            dataType:"json",
-            data:{"mail" : $("#mail").val()},
-            success: function(data){
-                alert("인증번호 발송");
-                $("#Confirm").attr("value",data);
-            },
-        });
-    }
-
-    function confirmNumber(){
-        var number1 = $("#number").val();
-        var number2 = $("#Confirm").val();
-
-        if(number1 == number2){
-            alert("인증되었습니다.");
-        }else{
-            alert("번호가 다릅니다.");
-        }
-    }
-</script> -->
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -196,7 +166,7 @@
 								</div>
 
 								<div id='emailinsertment'>
-									<p>회원가입시 작성한 아이디, 이메일주소로 인증시 비밀번호 확인이 가능합니다.</p>
+									<p>회원가입시 작성한 아이디, 이메일주소로 인증시 비밀번호 변경이 가능합니다.</p>
 								</div>
 
 

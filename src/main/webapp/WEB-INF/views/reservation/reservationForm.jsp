@@ -119,11 +119,11 @@
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero">
 
-		<div class="info d-flex align-items-center">
+		<div class="info align-items-center">
 			<div class="container">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center" id='reservationFormPadding'>
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">구장상세보기</h2>
+						<h2 data-aos="fade-down">구장 상세보기</h2>
 						<form action="payForm" method="post">
 							<div class="row gy-4">
 

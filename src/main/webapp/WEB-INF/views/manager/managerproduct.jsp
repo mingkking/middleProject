@@ -90,7 +90,7 @@ tr {
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">상품 목록</h2>
 
-						<table border="1">
+						<table class="table table-default table-hover">
 							<tr>
 								<th bgcolor="#ooad34" width="100">구장번호</th>
 								<th bgcolor="#ooad34" width="200">이름</th>

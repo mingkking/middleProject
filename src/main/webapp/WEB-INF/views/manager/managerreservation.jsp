@@ -88,22 +88,13 @@ tr {
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">예약현황</h2>
+						<h2 data-aos="fade-down" id="managerReservationMg">예약현황</h2>
 			
-			<form method='get' action='managerreservation'>
-			<select name='searchCondition' >
-				<option value='id'>예약자</option>
-				<option value='r.pNo'>구장</option>
-				<option value='rRegDate'>날짜</option>
-				
-			</select>
-			<input type='text' name='searchKeyword' id='searchBtn'>
-			<input type='submit' value='검색'>
-			</form>
+
 			
 			
 			
-			<table border="1" class="reservationBoard">
+			<table class="table table-default table-hover">
 			<tr>
 				<th bgcolor="#ooad34" width="100">예약자 ID</th>
 				<th bgcolor="#ooad34" width="200">구장</th>
@@ -126,6 +117,17 @@ tr {
 				</tr>
 			</c:forEach>
 		</table>
+		
+					<form method='get' action='managerreservation'>
+			<select name='searchCondition' >
+				<option value='id'>예약자</option>
+				<option value='r.pNo'>구장</option>
+				<option value='rRegDate'>날짜</option>
+				
+			</select>
+			<input type='text' name='searchKeyword' id='searchBtn'>
+			<input type='submit' value='검색' class="searchQuestionBtn">
+			</form>
 	
 		<!-- 페이징 -->
 		<div id="pagination" class="col-md-12">
