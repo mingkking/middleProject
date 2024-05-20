@@ -18,7 +18,7 @@
 		WHERE qNo = #{qNo}
 	</select>
 	
-	<!-- sql 문의글 update문 -->
+	<!-- sql 문의글 답변 update문 -->
 	<update id="managerUpdateQuestion" parameterType="vo.question.QAnswerVO">
 		UPDATE qAnswer SET
 		qATitle = #{qATitle},
@@ -26,8 +26,8 @@
 		qARegdate = now()
 		WHERE qNo = #{qNo}
 	</update>
-	
-	<!-- sql 문의글 delete문 -->
+	 
+	<!-- sql 답변글 delete문 -->
 	<delete id="managerDeleteQuestion" parameterType="vo.question.QAnswerVO">
     	DELETE FROM qAnswer 
     	WHERE qNo = #{qNo}

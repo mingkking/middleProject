@@ -8,16 +8,16 @@ import vo.question.QuestionVO;
 
 public interface QAnswerService {
 	
+	// 답변글 작성
 	void managerInsertQuestion(QAnswerVO vo);
 	
-	// 글 수정
+	// 답변글 수정
 	void managerUpdateQuestion(QAnswerVO vo);
 		
-	// 글 삭제
+	// 답변글 삭제
 	void managerDeleteQuestion(QAnswerVO vo);
 	
+	// 문의글 상세보기
 	QAnswerVO managerGetQuestion(QAnswerVO vo);
-	
-//	List<QAnswerVO> managerQuestion(HashMap map);
 }
- 
+  

@@ -29,7 +29,7 @@ public class QuestionController {
 	@Autowired
 	private QAnswerService qAnswerService;
 
-	// 문의글 검색 및 출력
+	// 사용자 문의글 검색 및 출력, 페이징
 	@RequestMapping("question")
 	public String question(HttpServletResponse response, Model m, String searchCondition, String searchKeyword,
 						   HttpSession session,Integer pageNum) {
@@ -66,7 +66,7 @@ public class QuestionController {
 		return "question/question";
 	}
 
-	// 문의글 작성 페이지로 화면 이동
+	// 사용자 문의글 작성 페이지로 화면 이동
 	@RequestMapping("questionWrite")
 	public String insertQuestion(Model m, HttpSession session) {
 		String id = (String) session.getAttribute("logid");
@@ -74,7 +74,7 @@ public class QuestionController {
 		return "question/questionWrite";
 	}
 
-	// 문의글 상세 보기 화면 이동
+	// 사용자 문의글 상세 보기 화면 이동
 	@RequestMapping("getQuestion")
 	public String getQuestion(QAnswerVO qAnswerVO, QuestionVO vo, Model m, HttpSession session) {
 		QuestionVO result = questionService.getQuestion(vo);
@@ -87,14 +87,14 @@ public class QuestionController {
 		return "question/getQuestion";
 	}
 
-	// 문의글 수정
+	// 사용자 문의글 수정
 	@RequestMapping("updateQuestion")
 	public String updateQuestion(QuestionVO vo) {
 		questionService.updateQuestion(vo);
 		return "redirect:question";
 	}
 
-	// 문의글 삭제
+	// 사용자 문의글 삭제
 	@RequestMapping("deleteQuestion")
 	public String deleteQuestion(QuestionVO vo, Model m, HttpSession session) {
 		questionService.deleteQuestion(vo);
@@ -103,7 +103,7 @@ public class QuestionController {
 		return "redirect:question";
 	}
 
-	// 문의글 작성 후 저장
+	// 사용자 문의글 작성 후 저장
 	@RequestMapping("saveQuestion")
 	public String saveQuestion(HttpServletRequest request, HttpSession session, QuestionVO vo, String qPassword,
 			Model m, HttpServletResponse response) throws Exception {
@@ -112,7 +112,7 @@ public class QuestionController {
 		String qSecret = request.getParameter("qSecret"); // 사용자가 입력한 비밀번호 가져오기
 		boolean isPasswordCorrect = questionService.checkPassword(id, qPassword);
 		m.addAttribute("question", qSecret);
-		if (isPasswordCorrect) {
+		if (isPasswordCorrect) { 
 			vo.setId(id);
 			vo.setqSecret(qSecret); // 사용자가 입력한 비밀번호 설정
 			questionService.insertQuestion(vo);
@@ -127,7 +127,7 @@ public class QuestionController {
 		}
 	}
 
-	// 관리자 문의글 검색 및 출력
+	// 관리자 문의글 검색 및 출력, 페이징
 	@RequestMapping("managerQuestion")
 	public String managerQuestion(HttpServletResponse response, Model m, String searchCondition, String searchKeyword,
 			String id, HttpSession session, Integer pageNum) {
@@ -187,7 +187,7 @@ public class QuestionController {
 		return "redirect:managerQuestion";
 	}
 
-	// 관리자 문의글 수정
+	// 관리자 답변글 수정
 	@RequestMapping("managerUpdateQuestion")
 	public String managerUpdateQuestion(QAnswerVO vo) {
 		qAnswerService.managerUpdateQuestion(vo);
@@ -215,6 +215,7 @@ public class QuestionController {
 		questionService.updateQuestionStatus(vo); // DAO에서 updateQuestionStatus 메서드 호출
 	}
 
+	// 사용자의 문의글 비밀글 여부
 	@RequestMapping("checkQSecret")
 	public String checkQSecret(QuestionVO vo, QAnswerVO qAnswerVO, Model m, HttpSession session) {
 		QuestionVO result = questionService.getQuestion(vo);

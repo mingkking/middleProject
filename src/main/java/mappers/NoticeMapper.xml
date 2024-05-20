@@ -42,18 +42,19 @@
             ${searchCondition} LIKE '%${searchKeyword}%'
         </if>
     </where>
-    ORDER BY nNo DESC
-    LIMIT #{startBoard}, ${cnt}
-</select>
-
-<select id="getNoticeCount" parameterType="map" resultType="int">
-    SELECT COUNT(*)
-    FROM NOTICE
-    <where>
+   	 	ORDER BY nNo DESC
+    	LIMIT #{startBoard}, ${cnt}
+	</select>
+	
+	<!-- 공지사항 페이징 -->
+	<select id="getNoticeCount" parameterType="map" resultType="int">
+    	SELECT COUNT(*)
+    	FROM NOTICE
+    <where> 
         <if test="searchCondition != null and searchKeyword != null and searchCondition != '' and searchKeyword != ''">
             ${searchCondition} LIKE '%${searchKeyword}%'
         </if>
     </where>
-</select>
+	</select>
 
 </mapper>

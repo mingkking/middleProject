@@ -23,7 +23,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
-	// 사용자 공지 검색 및 출력
+	// 사용자 공지 검색 및 출력, 페이징 
 	@RequestMapping("notice")
 	public String notice(Model m, String searchCondition, String searchKeyword,
 						 Integer pageNum) {
@@ -75,7 +75,7 @@ public class NoticeController {
 		return "redirect:managerNotice";
 	}
 
-	// 관리자 검색 및 목록 출력
+	// 관리자 검색 및 목록 출력, 페이징
 	@RequestMapping("managerNotice")
 	public String managerNotice(Model m, String searchCondition, String searchKeyword, Integer pageNum) {
 

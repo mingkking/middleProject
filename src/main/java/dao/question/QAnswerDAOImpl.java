@@ -15,32 +15,25 @@ public class QAnswerDAOImpl implements QAnswerDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	// 관리자 답변글 작성
 	public void managerInsertQuestion(QAnswerVO vo) {
-		System.out.println("===> Mybatis managerInsertQuestion() 호출");
 		mybatis.insert("QAnswerDAO.managerInsertQuestion", vo);
 	}
 	
+	// 관리자 답변글 수정
 	public void managerUpdateQuestion(QAnswerVO vo) {
-		System.out.println("===> Mybatis managerUpdateQuestion() 호출");
 		mybatis.update("QAnswerDAO.managerUpdateQuestion", vo);
 	}
-	
+	 
+	// 관리자 답변글 삭제
 	public void managerDeleteQuestion(QAnswerVO vo) {
-		System.out.println("===> Mybatis managerDeleteQuestion() 호출");
 		mybatis.delete("QAnswerDAO.managerDeleteQuestion", vo);
 	}
 	
+	// 관리자 상세보기
 	public QAnswerVO managerGetQuestion(QAnswerVO vo) {
-		System.out.println("===> Mybatis managerGetQuestion() 호출");
 		QAnswerVO result = mybatis.selectOne("QAnswerDAO.managerGetQuestion", vo);
-		System.out.println("result=" + result);
 		return result;
-	}
-	 
-//	public List<QAnswerVO> managerQuestion(HashMap map){
-//		System.out.println("===>Mybatis managerQuestion() 호출");
-//		List<QAnswerVO> list = mybatis.selectList("QAnswerDAO.managerQuestion", map);
-//		
-//		return list;
-//	}
+	} 
 }
+ 
