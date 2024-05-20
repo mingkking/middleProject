@@ -219,14 +219,14 @@
 								<p>예약자명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="name" class="form-control reservationBorder" value="${memberVO.name}" readonly="readonly">
+								<input type="text" name="name" id="name" class="form-control reservationBorder" value="${memberVO.name}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-4">
 								<p>전화번호</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="tel" class="form-control reservationBorder" value="${memberVO.tel}" readonly="readonly">
+								<input type="text" name="tel" id="tel" class="form-control reservationBorder" value="${memberVO.tel}" readonly="readonly">
 							</div>
 							
 							<div class="col-md-12">
@@ -237,7 +237,7 @@
 								<p>구장명</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="pName" class="form-control reservationBorder" value="${productVO.pName}" readonly="readonly">
+								<input type="text" name="pName" id="pName" class="form-control reservationBorder" value="${productVO.pName}" readonly="readonly">
 							</div>
 
 							<div class="col-md-4">
@@ -305,7 +305,7 @@
 								<p>결제 금액</p>
 							</div>
 							<div class="col-md-5">
-								<input type="text" name="totalMoney" id="reservationBorder" class="form-control" value="${reservationVO.totalMoney}" readonly="readonly">
+								<input type="text" name="totalMoney" id="tatalMoney" class="form-control reservationBorder" value="${reservationVO.totalMoney}" readonly="readonly">
 							</div>
 							<div class="col-md-12">
 							<p id="account"></p>

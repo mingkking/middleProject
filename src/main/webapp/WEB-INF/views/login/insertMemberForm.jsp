@@ -285,7 +285,7 @@
 									<input type="text" name="id" id="id" class="form-control" placeholder="영어+숫자, 6~16자리"/>
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="idCheck" class="form-control btn btn-primary checkInfo">중복검사</button>
 								</div>
 
 								<div class="row">
@@ -306,7 +306,7 @@
 									<input type="text" name="tel3" id="tel3" class="form-control" placeholder="5678" />
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="telCheck" class="form-control btn btn-primary checkInfo">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">
@@ -359,7 +359,7 @@
 										placeholder="abc@naver.com" />
 								</div>
 								<div class="col-md-2">
-									<button type="button" id="checkInfo" class="form-control btn btn-primary">중복검사</button>
+									<button type="button" id="emailCheck" class="form-control btn btn-primary checkInfo">중복검사</button>
 								</div>
 								<div class="row">
 									<div class="col-md-12">

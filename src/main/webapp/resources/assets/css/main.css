@@ -2643,8 +2643,7 @@ section {
 #get-started {
 	margin-top: 200px;
 }
-
-#checkInfo {
+.checkInfo {
 	background: #00ad34;
     border-radius: 20px;
     border: none;
@@ -2653,11 +2652,12 @@ section {
 
 #ajaxButton {
 	background: #00ad34;
-    width: 110px; /* 버튼의 너비 */
-    height: 30px; /* 버튼의 높이 */
+    width: 110px;
+    height: 30px;
     border-radius: 20px;
     border: none;
     color: #fff;
+    margin-bottom: 20px;
 }
 
 
@@ -2759,7 +2759,7 @@ section {
 	margin-top: 40px;
 }
 
-#reservationBorder {
+.reservationBorder {
 	border: none;
 }
 
@@ -2779,7 +2779,7 @@ section {
 	margin-top: 80px;
 }
 
-#mypageBorder {
+.mypageBorder {
 	border: none;
 }
 
