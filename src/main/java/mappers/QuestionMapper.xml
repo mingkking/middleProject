@@ -16,7 +16,7 @@
 		UPDATE QUESTION SET
 		qTitle = #{qTitle},
 		qContent = #{qContent},
-		qARegdate = now()
+		qRegdate = now()
 		WHERE qNo = #{qNo}
 	</update>
 	
@@ -76,5 +76,12 @@
 		SELECT *
 		FROM QUESTION
 		WHERE qSecret = #{qSecret}
+	</select>
+	    
+	<select id="getPassword" parameterType="vo.member.MemberVO" resultType="int">
+	    SELECT count(*) FROM member
+	    <where>
+	    	id= #{id} AND password=#{password}
+	    </where>
 	</select>
 </mapper>

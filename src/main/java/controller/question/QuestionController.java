@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.question.QAnswerService;
 import service.question.QuestionService;
 import useful.popup.PopUp;
+import vo.member.MemberVO;
 import vo.paging.PagingVO;
 import vo.question.QAnswerVO;
 import vo.question.QuestionVO;
@@ -107,14 +108,20 @@ public class QuestionController {
 	@RequestMapping("saveQuestion")
 	public String saveQuestion(HttpServletRequest request, HttpSession session, QuestionVO vo, String qPassword,
 			Model m, HttpServletResponse response) throws Exception {
-
+		
 		String id = (String) session.getAttribute("logid");
 		String qSecret = request.getParameter("qSecret"); // 사용자가 입력한 비밀번호 가져오기
-		boolean isPasswordCorrect = questionService.checkPassword(id, qPassword);
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId(id);
+		memberVO.setPassword(qPassword);
+		
+		int result = questionService.checkPassword(memberVO);
 		m.addAttribute("question", qSecret);
-		if (isPasswordCorrect) { 
+		
+		if (result == 1 ) {   
 			vo.setId(id);
 			vo.setqSecret(qSecret); // 사용자가 입력한 비밀번호 설정
+			vo.setqPassword(qPassword); // 사용자의 비밀번호
 			questionService.insertQuestion(vo);
 			return "redirect:question?id=" + id;
 		} else {
@@ -123,7 +130,7 @@ public class QuestionController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 틀렸습니다.');" + " window.location.href='question?id=" + id + "';</script>");
 			out.flush();
-			return null; // 리다이렉트 후에는 더 이상의 처리가 필요하지 않으므로 null을 반환
+			return "quesiton/question"; // 리다이렉트 후에는 더 이상의 처리가 필요하지 않으므로 null을 반환
 		}
 	}
 

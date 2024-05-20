@@ -3,7 +3,7 @@ package dao.question;
 import java.util.HashMap;
 import java.util.List;
 
-import vo.paging.PagingVO;
+import vo.member.MemberVO;
 import vo.question.QuestionVO;
 
 public interface QuestionDAO {
@@ -36,6 +36,6 @@ public interface QuestionDAO {
 	String getSecretPassword(String qNo);
 	 
 	// 사용자 비밀번호
-	String getPassword(String userId);
+	int checkPassword(MemberVO memberVO);   
 	
 }
