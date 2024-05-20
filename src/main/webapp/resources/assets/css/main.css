@@ -2782,5 +2782,12 @@ section {
 	border: none;
 }
 
+.page-btn{
+	margin: 3px;
+}
+
+.paging_color{
+	color: black;
+}
 
 }

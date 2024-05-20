@@ -50,7 +50,7 @@
 						<li class="nav-item"><a href="${path}/managerQuestion">문의</a></li>
 						<li class="nav-item"><a href="${path}/notice">공지사항</a></li>
 					</c:if>
-					<li class="nav-item"><a href="${path}/#">예약확인/취소</a></li>
+					<li class="nav-item"><a href="${path}/reservationList">예약확인/취소</a></li>
 					<li class="nav-item"><a href="${path}/review">리뷰</a></li>
 					<li class="nav-item"><a href="${path}/mypage">마이페이지</a></li>
 					

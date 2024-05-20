@@ -143,14 +143,21 @@
 								</div>
 							</div>
 							<div class="col-md-12" id="pageNum">
+								<a href="${path}/coming?pageNum=${pVO.pageNum-10}">이전</a>
 								<c:forEach var="i" begin="${pVO.startPage }" end="${pVO.endPage }">
-									<c:if test="${sessionScope.logid == null }">
-										<a href="${path}/coming?pageNum=${i}&id=${id}">${i }</a>
+									<c:if test="${pVO.pageNum == i }">
+										<a href="${path}/coming?pageNum=${i}" class="paging_color">${i }</a>
 									</c:if>
-									<c:if test="${sessionScope.logid != null }">
-										<a href="${path}/coming?pageNum=${i}&id=${sessionScope.logid}">${i }</a>
+									<c:if test="${pVO.pageNum != i }">
+										<a href="${path}/coming?pageNum=${i}">${i }</a>
 									</c:if>
 								</c:forEach>
+								<c:if test="${pageNum+10 >= pVO.endPage}">
+									<a href="${path}/coming?pageNum=${pVO.endPage}">다음</a>
+								</c:if>
+								<c:if test="${pageNum+10 < pVO.endPage}">
+									<a href="${path}/coming?pageNum=${pVO.pageNum+10}">다음</a>
+								</c:if>
 							</div>
 						</div>
 
