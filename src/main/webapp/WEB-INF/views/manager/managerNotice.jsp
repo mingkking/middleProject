@@ -22,9 +22,7 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
  
 <!-- Vendor CSS Files -->
 <link href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
@@ -64,53 +62,65 @@
 						<h2 data-aos="fade-down">공지사항</h2>
 							<div class="row gy-10">
 							
-	<form method='get'>
-		<select name='searchCondition'>
-			<option value='nTitle'>제목</option>
-			<option value='nContent'>내용</option>
-			<option value='nWriter'>작성자</option>
-		</select>
-		<input type='text' name='searchKeyword'>
-		<input type='submit' class="searchQuestionBtn" value='검색'>
-	</form>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                        <div class="col-md-4 text-center"></div>
-                            <div class="col-md-4 text-center">
+					<form method='get'>
+						<select name='searchCondition'>
+							<option value='nTitle'>제목</option>
+							<option value='nContent'>내용</option>
+							<option value='nWriter'>작성자</option>
+						</select>
+						<input type='text' name='searchKeyword'>
+						<input type='submit' class="searchQuestionBtn" value='검색'>
+					</form>
+                    		</div>
+                    	<div class="card-body">
+                        	<table class="table">
+                        		<div class="col-md-4 text-center"></div>
+                            	<div class="col-md-4 text-center">
                                 <div class="error-message"></div>
-                            </div>
+                            	</div>
                             <div class="col-md-4 text-center"></div>
-                            
-                        </div>
-                    </form>
-                </div>
-            </div>
+    					<thead>
+        					<tr>
+        						<th>No.</th>
+            					<th>Title</th>
+            					<th>Writer</th>
+        					</tr>
+    					</thead>
+    				<c:forEach items="${notice }" var="notice">
+    					<tr>
+    						<td>${notice.nNo }</td>
+    						<td align="notice"><a href="${path}/managerGetNotice?nNo=${notice.nNo }">
+    							${notice.nTitle }</a></td>
+    						<td>${notice.nWriter }</td>
+    					</tr>
+    				</c:forEach>
+        					</table>
+    				<a href='insertNotice'><input type='button' class="findIdBtn" value='공지작성'></a>  	
+            			</div>
+            	
+            		<!-- 페이징 -->
+						<div id="pagination" class="col-md-12">
+    						<c:if test="${paging.startPage > 1}">
+        					<a href="${path}/managerNotice?pageNum=1&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&laquo;</a>
+    						</c:if>
+    					<c:forEach begin="${paging.startPage}" end="${paging.endPage}" step="1" varStatus="loop">
+        				<c:choose>
+            				<c:when test="${loop.index == paging.pageNum}">
+                				<span class="current">${loop.index}</span>
+            				</c:when>
+        				<c:otherwise>
+        					<a href="${path}/managerNotice?pageNum=${loop.index}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">${loop.index}</a>
+        				</c:otherwise>
+        				</c:choose>
+    					</c:forEach>
+    						<c:if test="${paging.endPage < paging.totalPage}">
+        						<a href="${path}/managerNotice?pageNum=${paging.totalPage}&searchCondition=${searchCondition}&searchKeyword=${searchKeyword}">&raquo;</a>
+    						</c:if>
+					</div>
+            	</div>
+           	</div>
         </div>
-    </div>
-    <thead>
-        <tr>
-        	<th>No.</th>
-            <th>Title</th>
-            <th>Writer</th>
-        </tr>
-    </thead>
-    <c:forEach items="${notice }" var="notice">
-    	<tr>
-    		<td>${notice.nNo }</td>
-    		<td align="notice"><a href="${path}/managerGetNotice?nNo=${notice.nNo }">
-    		${notice.nTitle }</a></td>
-    		<td>${notice.nWriter }
-    		</td>
-    	</tr>
-    </c:forEach>
-        	</table>
-    <a href='insertNotice'><input type='button' class="findIdBtn" value='공지작성'></a>  	
-            	</div> 
-            		</div>
-           		 		</div>
-        					</div>
-   								</div>
+   	</div>
     
 	<div id="hero-carousel" class="carousel slide"></div>
 

@@ -20,5 +20,6 @@ public interface NoticeService {
 	NoticeVO getNotice(NoticeVO vo);
 	
 	// 글 목록 조회
-	List<NoticeVO> notice(HashMap map);
+	List<NoticeVO> notice(HashMap<String, Object> map);
+	int getNoticeCount(HashMap<String, Object> map);
 }

@@ -130,20 +130,31 @@ public class QuestionController {
 	// 관리자 문의글 검색 및 출력
 	@RequestMapping("managerQuestion")
 	public String managerQuestion(HttpServletResponse response, Model m, String searchCondition, String searchKeyword,
-			String id, HttpSession session) {
+			String id, HttpSession session, Integer pageNum) {
 
 		if (session.getAttribute("logid") == null) {
 			PopUp.popUp(response, "로그인 후 이용가능합니다.");
 			return "login/login";
 		}
-
-		HashMap map = new HashMap();
+		
+		if(pageNum == null) {
+			pageNum =1;
+		}
+		
+		HashMap<String, Object> map = new HashMap();
 		map.put("searchCondition", searchCondition);
 		map.put("searchKeyword", searchKeyword);
-
+		
+		int totalRecords = questionService.getQuestionCount(map);
+		PagingVO paging = new PagingVO(pageNum, totalRecords, 5);
+		map.put("startBoard", paging.getStartBoard()-1);
+		map.put("cnt", paging.getCnt());
+		
 		List<QuestionVO> list = questionService.question(map);
-
 		m.addAttribute("question", list);
+		m.addAttribute("paging", paging);
+		m.addAttribute("searchCondition", searchCondition);
+		m.addAttribute("searchKeyword", searchKeyword);
 
 		return "manager/managerQuestion";
 	}

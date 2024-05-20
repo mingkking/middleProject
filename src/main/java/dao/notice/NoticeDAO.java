@@ -15,5 +15,6 @@ public interface NoticeDAO {
 	
 	public NoticeVO getNotice(NoticeVO vo);
 	
-	public List<NoticeVO> notice(HashMap map);
+	public List<NoticeVO> notice(HashMap<String, Object> map);
+	int getNoticeCount(HashMap<String, Object> map);
 }

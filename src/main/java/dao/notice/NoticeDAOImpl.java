@@ -31,9 +31,12 @@ public class NoticeDAOImpl implements NoticeDAO{
 		return mybatis.selectOne("NoticeDAO.getNotice", vo);
 	}
 	
-	public List<NoticeVO> notice(HashMap map){
+	public List<NoticeVO> notice(HashMap<String, Object> map){
 		List<NoticeVO> list = mybatis.selectList("NoticeDAO.notice", map);
-		
 		return list;
+	}
+	
+	public int getNoticeCount(HashMap<String, Object> map) {
+		return mybatis.selectOne("NoticeDAO.getNoticeCount", map);
 	}
 }
