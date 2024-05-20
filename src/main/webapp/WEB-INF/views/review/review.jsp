@@ -238,8 +238,10 @@
 													<td>
 														<input type="hidden" class="rNo_${reviewListPaging.get(i).rNo}" value="${reviewListPaging.get(i).rNo}">
 														<input type="hidden" class="pNo" value="${pNo}">
-														<input type="button" value="리뷰수정" class="findIdBtn updateReview">
-														<input type="button" value="리뷰삭제" class="findIdBtn deleteReview">
+														<c:if test="${sessionScope.logid == reviewListPaging.get(i).id}">
+															<input type="button" value="리뷰수정" class="findIdBtn updateReview">
+															<input type="button" value="리뷰삭제" class="findIdBtn deleteReview">
+														</c:if>
 													</td>
 												</tr>
 											</c:if>
