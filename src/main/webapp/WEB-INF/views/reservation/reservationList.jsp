@@ -122,7 +122,7 @@
 	 					tr1.append(rPayMethod);
 	 					var rPayStatus = $('<td/>').text(row['rPayStatus']); 
 	 					tr1.append(rPayStatus);
-	 					var deleteBtn = $('<td/>').html('<button class="delete">삭제</button>');
+	 					var deleteBtn = $('<td/>').html('<button class="delete">예약취소</button>');
 	 					tr1.append(deleteBtn);
 	 					reservationListAll.append(tr1);
 	 				}

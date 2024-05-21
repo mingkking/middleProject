@@ -10,6 +10,7 @@
 		SELECT *
 		FROM reservation
 		WHERE id = #{id}
+		ORDER BY rRegDate DESC
 		LIMIT #{startBoard}, #{endBoard}
 	</select>
 
