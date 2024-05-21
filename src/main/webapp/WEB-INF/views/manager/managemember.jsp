@@ -51,7 +51,30 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr{
+            background-color: #f2f2f2;
+        }
+        
+        td{
+            text-align: center;
+        }
+</style>
 <body>
 
    <!-- 헤더 영역 불러오기 -->
@@ -115,37 +138,6 @@
 
    </section>
    
-    
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr{
-            background-color: #f2f2f2;
-        }
-        
-        td{
-            text-align: center;
-        }
-    </style>
-
-
-
-
-      
-
    <!-- 푸터 영역 불러오기 -->
    <c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
 

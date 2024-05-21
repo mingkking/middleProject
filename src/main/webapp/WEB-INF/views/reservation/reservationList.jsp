@@ -77,6 +77,7 @@
 	                var reservationList = result.reservationList;
 	            	
 	                let reservationListAll = $('#reservationListAll'); // 시간 select 태그 아이디를 가져오기
+	                reservationListAll.attr('border','1px');
 	                let ajaxPagingReservation = $('#ajaxPagingReservation');
 	                reservationListAll.empty(); // 기존 옵션 삭제
 	                ajaxPagingReservation.empty();
@@ -121,7 +122,7 @@
 	 					tr1.append(rPayMethod);
 	 					var rPayStatus = $('<td/>').text(row['rPayStatus']); 
 	 					tr1.append(rPayStatus);
-	 					var deleteBtn = $('<td/>').html('<button class="delete">삭제</button>');
+	 					var deleteBtn = $('<td/>').html('<button class="delete">예약취소</button>');
 	 					tr1.append(deleteBtn);
 	 					reservationListAll.append(tr1);
 	 				}

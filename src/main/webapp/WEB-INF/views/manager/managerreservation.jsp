@@ -95,7 +95,7 @@ tr {
 			
 			
 			<table class="table table-default table-hover">
-			<tr>
+			<tr class="table-dark">
 				<th bgcolor="#ooad34" width="100">예약자 ID</th>
 				<th bgcolor="#ooad34" width="200">구장</th>
 				<th bgcolor="#ooad34" width="150">예약날짜</th>

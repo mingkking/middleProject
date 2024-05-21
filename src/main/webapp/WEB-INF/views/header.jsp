@@ -39,7 +39,7 @@
 				<ul>
 					
 					<!-- <li><a href="${path}/#">관리자</a></li> -->
-					<li class="nav-item active"><a href="">소개</a></li>
+					<li class="nav-item active"><a href="${path}/about">소개</a></li>
 					<li class="nav-item"><a href="${path}/reservation">예약</a></li>
 					<li class="nav-item"><a href="${path}/coming">오시는 길</a></li>
 					<c:if test="${sessionScope.logid != 'admin'}">
