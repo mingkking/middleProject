@@ -100,9 +100,9 @@
                             <div class="col-md-4 text-center">
                                 <div class="error-message"></div>
                                 
-                               <a href='managerNotice'><input type='button' value='닫기'></a>
-                               <input type='submit' value='수정하기'>
-                               <a href='managerDeleteNotice.do?nNo=${ notice.nNo} '><input type='button' value='삭제하기'></a>
+                               <a href='managerNotice'><input type='button' value='닫기' class="finalBtn"></a>
+                               <input type='submit' value='수정하기' class="finalBtn">
+                               <a href='managerDeleteNotice.do?nNo=${ notice.nNo} '><input type='button' value='삭제하기' class="finalBtn"></a>
                             </div>
                             <div class="col-md-4 text-center"></div>
                         </div>
@@ -111,12 +111,6 @@
             </div>
         </div>
     </div>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
 
 		<div id="hero-carousel" class="carousel slide"></div>
 

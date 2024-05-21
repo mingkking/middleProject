@@ -74,7 +74,8 @@
 					var img = $('<img/>');
 					$('#productVOPPicture').empty();
 					img.attr('src','/resources/productUpload/' + result.p_frealname);
-					img.attr('width',300);
+					img.attr('width',500);
+					img.attr('height',300);
 					$('#productVOPPicture').append(img); 
 				},
 				error : function(err) {

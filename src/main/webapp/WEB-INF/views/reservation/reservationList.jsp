@@ -77,6 +77,7 @@
 	                var reservationList = result.reservationList;
 	            	
 	                let reservationListAll = $('#reservationListAll'); // 시간 select 태그 아이디를 가져오기
+	                reservationListAll.attr('border','1px');
 	                let ajaxPagingReservation = $('#ajaxPagingReservation');
 	                reservationListAll.empty(); // 기존 옵션 삭제
 	                ajaxPagingReservation.empty();

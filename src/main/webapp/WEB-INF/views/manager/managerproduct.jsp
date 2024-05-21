@@ -91,7 +91,7 @@ tr {
 						<h2 data-aos="fade-down">상품 목록</h2>
 
 						<table class="table table-default table-hover">
-							<tr>
+							<tr class="table-dark">
 								<th bgcolor="#ooad34" width="100">구장번호</th>
 								<th bgcolor="#ooad34" width="200">이름</th>
 								<th bgcolor="#ooad34" width="150">위치</th>
