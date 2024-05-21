@@ -84,35 +84,34 @@ tr {
 					<div class="col-lg-6 text-center">
 						<h2 data-aos="fade-down">상품 등록</h2>
 						<form action="saveProduct" method='post' enctype="multipart/form-data">
-							<table border="1" cellpadding="0" cellspacing="0">
+							<table class="table table-default table-hover">
 								<!-- 2. 각 항목에  name 맞추기 -->
 								<tr>
-									<td bgcolor="#ooad34" width="70">구장 이름</td>
-									<td align="left"><input type="text" name='pName' /></td>
+									<td>구장 이름</td>
+									<td align="left"><input type="text" name='pName' class="form-control"/></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34">구장정보</td>
-									<td align="left"><input type="text" name='pInfo' /></td>
+									<td>구장정보</td>
+									<td align="left"><input type="text" name='pInfo' class="form-control"/></td>
 								</tr>
 								<tr>
-									<td bgcolor="#ooad34">위치</td>
-									<td align="left"><textarea cols="40" name='pLocation'></textarea></td>
+									<td>위치</td>
+									<td align="left"><textarea cols="40" name='pLocation' class="form-control"></textarea></td>
 								</tr>
 								<!-- 추가항목 시작 -->
 								<tr>
-									<td bgcolor="#ooad34">가격</td>
-									<td align="left"><input type="text" name='pPrice' /></td>
+									<td>가격</td>
+									<td align="left"><input type="text" name='pPrice' class="form-control"/></td>
 								</tr>
 
 								<tr>
-									<td bgcolor="#ooad34" width="70">파일추가</td>
+									<td>파일추가</td>
 									<td align="left"><input type="file" name='pPicture' accept="image/*"
-										maxlength="60" size="40"></td>
+										maxlength="60" size="40" class="form-control"></td>
 								</tr>
 								<!-- 추가항목 끝 -->
 								<tr>
-									<td colspan="2" align="center"><input type="submit"
-										value=" 등록 " /></td>
+									<td colspan="2"><input type="submit" value=" 등록 " class="btn btn-primary finalBtn"/></td>
 								</tr>
 							</table>
 						</form>

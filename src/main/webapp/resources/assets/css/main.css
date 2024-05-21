@@ -2848,5 +2848,20 @@ section {
     margin-top: 5px;
 }
 
+#mypage{
+	margin-top: 20px;	
+}
+
+.aboutInfoTd{
+	text-align: left;
+}
+
+.aboutInfoTdTitle{
+	text-align: center;
+}
+
+.aboutSpan1{
+	color: red;
+}
 
 }

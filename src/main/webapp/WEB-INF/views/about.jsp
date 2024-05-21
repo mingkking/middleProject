@@ -2,12 +2,12 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<%@ page session="false"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <title>UpConstruction Bootstrap Template - Index</title>
@@ -15,32 +15,38 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="${path}/${path}/resources/assets/img/favicon.png" rel="icon">
-<link href="${path}/${path}/resources/assets/img/apple-touch-icon.png"
+<link href="${path}/resources/assets/img/favicon.png" rel="icon">
+<link href="${path}/resources/assets/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
-<link rel="preconnect" href="${path}/https://fonts.googleapis.com">
-<link rel="preconnect" href="${path}/https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="${path}/https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="${path}/${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${path}/${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+<link
+	href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="${path}/${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${path}/resources/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
-<link href="${path}/${path}/resources/assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="${path}/${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+<link href="${path}/resources/assets/vendor/aos/aos.css"
 	rel="stylesheet">
-<link href="${path}/${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
+<link
+	href="${path}/resources/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link
+	href="${path}/resources/assets/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="${path}/${path}/resources/assets/css/main.css" rel="stylesheet">
+<link href="${path}/resources/assets/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: UpConstruction
@@ -49,1054 +55,101 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+</script>
 </head>
 
 <body>
-
 	<!-- 헤더 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/header.jsp"></c:import>
 
 	<!-- ======= Hero Section ======= -->
-	<section id="hero" class="hero">
+	<section id="insertMemberFormHero" class="hero">
 
-		<div class="info d-flex align-items-center">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down">
-							Welcome to <span>UpConstruction</span>
-						</h2>
-						<p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-							exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-						<a data-aos="fade-up" data-aos-delay="200" href="${path}/#get-started"
-							class="btn-get-started">Get Started</a>
+		<div class="info align-items-center">
+
+			<div class="row justify-content-center" id='insertMemberForm'>
+				<div class="col-lg-6 text-center">
+
+					<h2 data-aos="fade-down" id='insertMemberForm'>소개</h2>
+
+					<div class="row gy-4">
+						<%-- <h2 data-aos="fade-down" id='insertMemberForm'>${productVO.pName}</h2> --%>
+						<table class="table table-default">
+							<thead>
+								<tr class="table-dark">
+									<th>구분</th>
+									<th>1타임</th>
+									<th>2타임</th>
+									<th>3타임</th>
+									<th>4타임</th>
+									<th>5타임</th>
+									<th>6타임</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>시간</td>
+									<td>10~12</td>
+									<td>12~14</td>
+									<td>14~16</td>
+									<td>16~18</td>
+									<td>18~20</td>
+									<td>20~22</td>
+								</tr>
+								<tr>
+									<td colspan="7" class="aboutInfoTd">
+										<h3 class="aboutInfoTdTitle">풋살경기장 예약신청</h3><br/>
+										예약신청 후 예약 승인이 완료 되려면, 예약자명과 입금자명이 동일하게 전용 입금계좌에 입금하셔야 합니다.<br/>
+										입금자명이 다르거나, 다른 경기장 전용 입금계좌에 입금시 취소 처리가 될 수 있으니, 반드시 예약신청 후 자동으로 발송되는 안내문자의 전용입금계좌에 입금해 주시기 바랍니다.<br/>
+										<span class="aboutSpan1">※입금자명 예시 : [예약자명 : 홍길동], [입금자명 : 홍길동] (O)</span><br/>
+										<span class="aboutSpan1">※입금자명 예시 : [예약자명 : 홍길동], [입금자명 : 7/15홍길동] (X)</span><br/>
+										예약대기 상태로 2시간 내에 입금이 완료되지 않을 경우에는 예약신청은 자동취소 처리 됩니다.<br/>
+										<span class="aboutSpan1">※입금 예시 : [예약신청일 사용금액 : 115,000], [입금 금액 : 115,000](O)</span><br/>
+										<span class="aboutSpan1">※입금 예시 : [예약신청일 사용금액 : 115,000], [입금 금액 : 10,500](X)</span><br/>
+										<span class="aboutSpan1">※입금 예시 : [예약신청일 사용금액 : 115,000], [입금 금액 : 100,000+5,000 분산입금](X)</span><br/>
+										예약신청은 익일부터 다음달 말까지 예약신청이 가능합니다. (당일예약 불가)<br/>
+										모든 경기장 신규예약 신청일은 매월 1일 00:00시에 시작됩니다.<br/>
+										※신규예약 신청 예시 : 05월 01일 00:00시 예약 개시 : 05월 02일 ~ 06월 30일 예약 가능<br/>
+										매월 1일 신규예약 오픈시 과도한 트래픽으로 인하여 중복예약 오류가 발생하여 예약신청후 정상적인 금액(입금안내) 문자가 발송되지 않을시, 예약신청페이지의 해당날짜의 ＂대관상태 및 정보＂를 반드시 확인해 주시기 바라며, 본인의 예약정보가 아닌 다른 예약정보가 표시되어있는 경우 중복예약 오류가 발생되어 해당일은 사용이 불가능 하여 다른 날짜를 신청해 주시기 바랍니다.<br/>
+										ID당 일일 경기장별 예약신청 횟수는 1회만 가능하며, 전체 경기장에 한하여 총 5회 까지만 예약신청이 제한 됩니다.<br/>
+										※예약신청 제한예시 : ID당 일일 1~5구장 각 1건씩 총 5건 까지만 예약신청 가능 합니다.<br/>
+										문의사항 : 02-2012-3810<br/>
+										(근무시간 평일 09:00~18:00, 이외의 시간은 전화 확인이 불가합니다.)<br/>
+										<h3 class="aboutInfoTdTitle">풋살경기장 환불규정</h3><br/>
+										예약완료 후 대관일정 및 시간변경은 불가능하며, 취소신청 및 환불규정에 의거해 환불 후, 신규대관을 신청하셔야 합니다.<br/>
+										대관 당일에는 취소가 불가능합니다.<br/>
+										예약이 완료된 시점으로 환불규정에 정해진 날짜에 따라 금액이 환불됩니다.<br/>
+										취소신청은 일일 단위로만 가능합니다.<br/>
+										<span class="aboutSpan1">~21일 전 : 100% / 20~16일전 : 90% / 15~11일전 : 80% / 10~6일전 : 70% / 5~2일전 : 60% / 1일전 : 50% / 대관당일 : 취소 불가</span><br/>
+										천재지변으로 인해 당일 이용이 불가능할 경우 100% 환불적용(실내구장 제외)<br/>
+										※천재지변으로 인한 환불은 당일 이용시간 2시간전 기상청 날씨누리 기상특보 발표기준으로 합니다. (용산구 한강로 기준) 취소번복 불가. 일부 시간이라도 사용 확인시 환불이 불가합니다.<br/>
+										호우주의보 : 3시간 강우량이 60mm 이상 예상되거나, 12시간 강우량이 110mm 이상이 예상될 때<br/>
+										강풍주의보 : 육상에서 풍속 14m/s 이상 또는 순간풍속 20m/s 이상이 예상될 때<br/>
+										대설주의보 : 24시간 신적설이 5cm이상 예상될 때<br/>
+										한파주의보 : 아침 최저기온이 -12°C 이하가 2일 이상 지속 될 것이 예상될 때 (10월~4월 사이)<br/>
+										황사주의보 : 400㎍/㎥ 이상일 때<br/>
+										폭염주의보 : 일 최고기온이 33°C 이상인 상태가 2일 이상 지속될 것으로 예상될 때<br/>
+										환불은 주말 제외, 4~5일 정도 소요됩니다.<br/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
 					</div>
 				</div>
+
 			</div>
 		</div>
 
-		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel"
-			data-bs-interval="5000">
 
-			<div class="carousel-item active"
-				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
-			<div class="carousel-item"
-				style="background-image: url(${path}/resources/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
-
-			<a class="carousel-control-prev" href="${path}/#hero-carousel" role="button"
-				data-bs-slide="prev"> <span
-				class="carousel-control-prev-icon bi bi-chevron-left"
-				aria-hidden="true"></span>
-			</a> <a class="carousel-control-next" href="${path}/#hero-carousel" role="button"
-				data-bs-slide="next"> <span
-				class="carousel-control-next-icon bi bi-chevron-right"
-				aria-hidden="true"></span>
-			</a>
-
-		</div>
-
+		<div id="hero-carousel" class="carousel slide"></div>
+		<div id="paddingSection"></div>
 	</section>
 	<!-- End Hero Section -->
-
-	<main id="main">
-
-		<!-- ======= Get Started Section ======= -->
-		<section id="get-started" class="get-started section-bg">
-			<div class="container">
-
-				<div class="row justify-content-between gy-4">
-
-					<div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
-						<div class="content">
-							<h3>Minus hic non reiciendis ea possimus at quia.</h3>
-							<p>Rem id rerum. Debitis deserunt quidem delectus expedita
-								ducimus dolor. Aut iusto ipsa. Eos ipsum nobis ipsa soluta
-								itaque perspiciatis fuga ipsum perspiciatis. Eum amet fugiat
-								totam nisi possimus ut delectus dicta.
-							<p>Aliquam velit deserunt autem. Inventore et saepe. Tenetur
-								suscipit eligendi labore culpa eos. Deserunt porro magni qui
-								necessitatibus dolorem at animi cupiditate.</p>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Get Started Section -->
-
-		<!-- ======= Constructions Section ======= -->
-		<section id="constructions" class="constructions">
-			<div class="container" data-aos="fade-up">
-
-				<div class="section-header">
-					<h2>Constructions</h2>
-					<p>Nulla dolorum nulla nesciunt rerum facere sed ut inventore
-						quam porro nihil id ratione ea sunt quis dolorem dolore earum</p>
-				</div>
-
-				<div class="row gy-4">
-
-					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-						<div class="card-item">
-							<div class="row">
-								<div class="col-xl-5">
-									<div class="card-bg"
-										style="background-image: url(${path}/resources/assets/img/constructions-1.jpg);"></div>
-								</div>
-								<div class="col-xl-7 d-flex align-items-center">
-									<div class="card-body">
-										<h4 class="card-title">Eligendi omnis sunt veritatis.</h4>
-										<p>Fuga in dolorum et iste et culpa. Commodi possimus
-											nesciunt modi voluptatem placeat deleniti adipisci. Cum
-											delectus doloribus non veritatis. Officia temporibus illo
-											magnam. Dolor eos et.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Card Item -->
-
-					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-						<div class="card-item">
-							<div class="row">
-								<div class="col-xl-5">
-									<div class="card-bg"
-										style="background-image: url(${path}/resources/assets/img/constructions-2.jpg);"></div>
-								</div>
-								<div class="col-xl-7 d-flex align-items-center">
-									<div class="card-body">
-										<h4 class="card-title">Possimus ut sed velit assumenda</h4>
-										<p>Sunt deserunt maiores voluptatem autem est rerum
-											perferendis rerum blanditiis. Est laboriosam qui iste numquam
-											laboriosam voluptatem architecto. Est laudantium sunt at quas
-											aut hic. Eum dignissimos.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Card Item -->
-
-					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-						<div class="card-item">
-							<div class="row">
-								<div class="col-xl-5">
-									<div class="card-bg"
-										style="background-image: url(${path}/resources/assets/img/constructions-3.jpg);"></div>
-								</div>
-								<div class="col-xl-7 d-flex align-items-center">
-									<div class="card-body">
-										<h4 class="card-title">Error beatae dolor inventore aut</h4>
-										<p>Dicta porro nobis. Velit cum in. Nesciunt dignissimos
-											enim molestiae facilis numquam quae quaerat ipsam omnis.
-											Neque debitis ipsum at architecto officia laboriosam odit. Ut
-											sunt temporibus nulla culpa.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Card Item -->
-
-					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-						<div class="card-item">
-							<div class="row">
-								<div class="col-xl-5">
-									<div class="card-bg"
-										style="background-image: url(${path}/resources/assets/img/constructions-4.jpg);"></div>
-								</div>
-								<div class="col-xl-7 d-flex align-items-center">
-									<div class="card-body">
-										<h4 class="card-title">Expedita voluptas ut ut nesciunt</h4>
-										<p>Aut est quidem doloremque voluptatem magnam quis
-											excepturi vero quia. Eum eos doloremque architecto illo at
-											beatae dolore. Fugiat suscipit et sint ratione dolores. Aut
-											aliquid ea dolores libero nobis.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Card Item -->
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Constructions Section -->
-
-		<!-- ======= Services Section ======= -->
-		<section id="services" class="services section-bg">
-			<div class="container" data-aos="fade-up">
-
-				<div class="section-header">
-					<h2>Services</h2>
-					<p>Voluptatem quibusdam ut ullam perferendis repellat non ut
-						consequuntur est eveniet deleniti fignissimos eos quam</p>
-				</div>
-
-				<div class="row gy-4">
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="100">
-						<div class="service-item  position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-mountain-city"></i>
-							</div>
-							<h3>Nesciunt Mete</h3>
-							<p>Provident nihil minus qui consequatur non omnis maiores.
-								Eos accusantium minus dolores iure perferendis tempore et
-								consequatur.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="200">
-						<div class="service-item position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-arrow-up-from-ground-water"></i>
-							</div>
-							<h3>Eosle Commodi</h3>
-							<p>Ut autem aut autem non a. Sint sint sit facilis nam iusto
-								sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="300">
-						<div class="service-item position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-compass-drafting"></i>
-							</div>
-							<h3>Ledo Markt</h3>
-							<p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur.
-								Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="400">
-						<div class="service-item position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-trowel-bricks"></i>
-							</div>
-							<h3>Asperiores Commodit</h3>
-							<p>Non et temporibus minus omnis sed dolor esse consequatur.
-								Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="500">
-						<div class="service-item position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-helmet-safety"></i>
-							</div>
-							<h3>Velit Doloremque</h3>
-							<p>Cumque et suscipit saepe. Est maiores autem enim facilis
-								ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-					<div class="col-lg-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="600">
-						<div class="service-item position-relative">
-							<div class="icon">
-								<i class="fa-solid fa-arrow-up-from-ground-water"></i>
-							</div>
-							<h3>Dolori Architecto</h3>
-							<p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut
-								neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-							<a href="${path}/service-details.html" class="readmore stretched-link">Learn
-								more <i class="bi bi-arrow-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- End Service Item -->
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Services Section -->
-
-		<!-- ======= Alt Services Section ======= -->
-		<section id="alt-services" class="alt-services">
-			<div class="container" data-aos="fade-up">
-
-				<div class="row justify-content-around gy-4">
-					<div class="col-lg-6 img-bg"
-						style="background-image: url(${path}/resources/assets/img/alt-services.jpg);"
-						data-aos="zoom-in" data-aos-delay="100"></div>
-
-					<div class="col-lg-5 d-flex flex-column justify-content-center">
-						<h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-						<p>Esse voluptas cumque vel exercitationem. Reiciendis est hic
-							accusamus. Non ipsam et sed minima temporibus laudantium. Soluta
-							voluptate sed facere corporis dolores excepturi</p>
-
-						<div class="icon-box d-flex position-relative" data-aos="fade-up"
-							data-aos-delay="100">
-							<i class="bi bi-easel flex-shrink-0"></i>
-							<div>
-								<h4>
-									<a href="${path}/" class="stretched-link">Lorem Ipsum</a>
-								</h4>
-								<p>Voluptatum deleniti atque corrupti quos dolores et quas
-									molestias excepturi sint occaecati cupiditate non provident</p>
-							</div>
-						</div>
-						<!-- End Icon Box -->
-
-						<div class="icon-box d-flex position-relative" data-aos="fade-up"
-							data-aos-delay="200">
-							<i class="bi bi-patch-check flex-shrink-0"></i>
-							<div>
-								<h4>
-									<a href="${path}/" class="stretched-link">Nemo Enim</a>
-								</h4>
-								<p>At vero eos et accusamus et iusto odio dignissimos
-									ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-							</div>
-						</div>
-						<!-- End Icon Box -->
-
-						<div class="icon-box d-flex position-relative" data-aos="fade-up"
-							data-aos-delay="300">
-							<i class="bi bi-brightness-high flex-shrink-0"></i>
-							<div>
-								<h4>
-									<a href="${path}/" class="stretched-link">Dine Pad</a>
-								</h4>
-								<p>Explicabo est voluptatum asperiores consequatur magnam.
-									Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
-							</div>
-						</div>
-						<!-- End Icon Box -->
-
-						<div class="icon-box d-flex position-relative" data-aos="fade-up"
-							data-aos-delay="400">
-							<i class="bi bi-brightness-high flex-shrink-0"></i>
-							<div>
-								<h4>
-									<a href="${path}/" class="stretched-link">Tride clov</a>
-								</h4>
-								<p>Est voluptatem labore deleniti quis a delectus et. Saepe
-									dolorem libero sit non aspernatur odit amet. Et eligendi</p>
-							</div>
-						</div>
-						<!-- End Icon Box -->
-
-					</div>
-				</div>
-
-			</div>
-		</section>
-		<!-- End Alt Services Section -->
-
-		<!-- ======= Features Section ======= -->
-		<section id="features" class="features section-bg">
-			<div class="container" data-aos="fade-up">
-
-				<ul class="nav nav-tabs row  g-2 d-flex">
-
-					<li class="nav-item col-3"><a class="nav-link active show"
-						data-bs-toggle="tab" data-bs-target="#tab-1">
-							<h4>Modisit</h4>
-					</a></li>
-					<!-- End tab nav item -->
-
-					<li class="nav-item col-3"><a class="nav-link"
-						data-bs-toggle="tab" data-bs-target="#tab-2">
-							<h4>Praesenti</h4>
-					</a> <!-- End tab nav item -->
-					<li class="nav-item col-3"><a class="nav-link"
-						data-bs-toggle="tab" data-bs-target="#tab-3">
-							<h4>Explica</h4>
-					</a></li>
-					<!-- End tab nav item -->
-
-					<li class="nav-item col-3"><a class="nav-link"
-						data-bs-toggle="tab" data-bs-target="#tab-4">
-							<h4>Nostrum</h4>
-					</a></li>
-					<!-- End tab nav item -->
-
-				</ul>
-
-				<div class="tab-content">
-
-					<div class="tab-pane active show" id="tab-1">
-						<div class="row">
-							<div
-								class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
-								data-aos="fade-up" data-aos-delay="100">
-								<h3>Voluptatem dignissimos provident</h3>
-								<p class="fst-italic">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit, sed do eiusmod tempor incididunt
-									ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat.</li>
-									<li><i class="bi bi-check2-all"></i> Duis aute irure dolor
-										in reprehenderit in voluptate velit.</li>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-										reprehenderit in voluptate trideta storacalaperda mastiro
-										dolore eu fugiat nulla pariatur.</li>
-								</ul>
-							</div>
-							<div class="col-lg-6 order-1 order-lg-2 text-center"
-								data-aos="fade-up" data-aos-delay="200">
-								<img src="${path}/resources/assets/img/features-1.jpg" alt=""
-									class="img-fluid">
-							</div>
-						</div>
-					</div>
-					<!-- End tab content item -->
-
-					<div class="tab-pane" id="tab-2">
-						<div class="row">
-							<div
-								class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-								<h3>Neque exercitationem debitis</h3>
-								<p class="fst-italic">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit, sed do eiusmod tempor incididunt
-									ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat.</li>
-									<li><i class="bi bi-check2-all"></i> Duis aute irure dolor
-										in reprehenderit in voluptate velit.</li>
-									<li><i class="bi bi-check2-all"></i> Provident mollitia
-										neque rerum asperiores dolores quos qui a. Ipsum neque dolor
-										voluptate nisi sed.</li>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-										reprehenderit in voluptate trideta storacalaperda mastiro
-										dolore eu fugiat nulla pariatur.</li>
-								</ul>
-							</div>
-							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="${path}/resources/assets/img/features-2.jpg" alt=""
-									class="img-fluid">
-							</div>
-						</div>
-					</div>
-					<!-- End tab content item -->
-
-					<div class="tab-pane" id="tab-3">
-						<div class="row">
-							<div
-								class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-								<h3>Voluptatibus commodi accusamu</h3>
-								<ul>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat.</li>
-									<li><i class="bi bi-check2-all"></i> Duis aute irure dolor
-										in reprehenderit in voluptate velit.</li>
-									<li><i class="bi bi-check2-all"></i> Provident mollitia
-										neque rerum asperiores dolores quos qui a. Ipsum neque dolor
-										voluptate nisi sed.</li>
-								</ul>
-								<p class="fst-italic">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit, sed do eiusmod tempor incididunt
-									ut labore et dolore magna aliqua.</p>
-							</div>
-							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="${path}/resources/assets/img/features-3.jpg" alt=""
-									class="img-fluid">
-							</div>
-						</div>
-					</div>
-					<!-- End tab content item -->
-
-					<div class="tab-pane" id="tab-4">
-						<div class="row">
-							<div
-								class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-								<h3>Omnis fugiat ea explicabo sunt</h3>
-								<p class="fst-italic">Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit, sed do eiusmod tempor incididunt
-									ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat.</li>
-									<li><i class="bi bi-check2-all"></i> Duis aute irure dolor
-										in reprehenderit in voluptate velit.</li>
-									<li><i class="bi bi-check2-all"></i> Ullamco laboris nisi
-										ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-										reprehenderit in voluptate trideta storacalaperda mastiro
-										dolore eu fugiat nulla pariatur.</li>
-								</ul>
-							</div>
-							<div class="col-lg-6 order-1 order-lg-2 text-center">
-								<img src="${path}/resources/assets/img/features-4.jpg" alt=""
-									class="img-fluid">
-							</div>
-						</div>
-					</div>
-					<!-- End tab content item -->
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Features Section -->
-
-		<!-- ======= Our Projects Section ======= -->
-		<section id="projects" class="projects">
-			<div class="container" data-aos="fade-up">
-
-				<div class="section-header">
-					<h2>Our Projects</h2>
-					<p>Consequatur libero assumenda est voluptatem est quidem illum
-						et officia imilique qui vel architecto accusamus fugit aut qui
-						distinctio</p>
-				</div>
-
-				<div class="portfolio-isotope" data-portfolio-filter="*"
-					data-portfolio-layout="masonry"
-					data-portfolio-sort="original-order">
-
-					<ul class="portfolio-flters" data-aos="fade-up"
-						data-aos-delay="100">
-						<li data-filter="*" class="filter-active">All</li>
-						<li data-filter=".filter-remodeling">Remodeling</li>
-						<li data-filter=".filter-construction">Construction</li>
-						<li data-filter=".filter-repairs">Repairs</li>
-						<li data-filter=".filter-design">Design</li>
-					</ul>
-					<!-- End Projects Filters -->
-
-					<div class="row gy-4 portfolio-container" data-aos="fade-up"
-						data-aos-delay="200">
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/remodeling-1.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Remodeling 1</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/remodeling-1.jpg"
-										title="Remodeling 1"
-										data-gallery="portfolio-gallery-remodeling"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/construction-1.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Construction 1</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/construction-1.jpg"
-										title="Construction 1"
-										data-gallery="portfolio-gallery-construction"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/repairs-1.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Repairs 1</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/repairs-1.jpg"
-										title="Repairs 1" data-gallery="portfolio-gallery-repairs"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/design-1.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Design 1</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/design-1.jpg"
-										title="Repairs 1" data-gallery="portfolio-gallery-book"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/remodeling-2.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Remodeling 2</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/remodeling-2.jpg"
-										title="Remodeling 2"
-										data-gallery="portfolio-gallery-remodeling"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/construction-2.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Construction 2</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/construction-2.jpg"
-										title="Construction 2"
-										data-gallery="portfolio-gallery-construction"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/repairs-2.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Repairs 2</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/repairs-2.jpg"
-										title="Repairs 2" data-gallery="portfolio-gallery-repairs"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/design-2.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Design 2</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/design-2.jpg"
-										title="Repairs 2" data-gallery="portfolio-gallery-book"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/remodeling-3.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Remodeling 3</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/remodeling-3.jpg"
-										title="Remodeling 3"
-										data-gallery="portfolio-gallery-remodeling"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/construction-3.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Construction 3</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/construction-3.jpg"
-										title="Construction 3"
-										data-gallery="portfolio-gallery-construction"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/repairs-3.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Repairs 3</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/repairs-3.jpg"
-										title="Repairs 2" data-gallery="portfolio-gallery-repairs"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
-							<div class="portfolio-content h-100">
-								<img src="${path}/resources/assets/img/projects/design-3.jpg"
-									class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>Design 3</h4>
-									<p>Lorem ipsum, dolor sit amet consectetur</p>
-									<a href="${path}/${path}/resources/assets/img/projects/design-3.jpg"
-										title="Repairs 3" data-gallery="portfolio-gallery-book"
-										class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-									<a href="${path}/project-details.html" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div>
-						<!-- End Projects Item -->
-
-					</div>
-					<!-- End Projects Container -->
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Our Projects Section -->
-
-		<!-- ======= Testimonials Section ======= -->
-		<section id="testimonials" class="testimonials section-bg">
-			<div class="container" data-aos="fade-up">
-
-				<div class="section-header">
-					<h2>Testimonials</h2>
-					<p>Quam sed id excepturi ccusantium dolorem ut quis dolores
-						nisi llum nostrum enim velit qui ut et autem uia reprehenderit
-						sunt deleniti</p>
-				</div>
-
-				<div class="slides-2 swiper">
-					<div class="swiper-wrapper">
-
-						<div class="swiper-slide">
-							<div class="testimonial-wrap">
-								<div class="testimonial-item">
-									<img src="${path}/resources/assets/img/testimonials/testimonials-1.jpg"
-										class="testimonial-img" alt="">
-									<h3>Saul Goodman</h3>
-									<h4>Ceo &amp; Founder</h4>
-									<div class="stars">
-										<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i>
-									</div>
-									<p>
-										<i class="bi bi-quote quote-icon-left"></i> Proin iaculis
-										purus consequat sem cure digni ssim donec porttitora entum
-										suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam
-										eget nibh et. Maecen aliquam, risus at semper. <i
-											class="bi bi-quote quote-icon-right"></i>
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- End testimonial item -->
-
-						<div class="swiper-slide">
-							<div class="testimonial-wrap">
-								<div class="testimonial-item">
-									<img src="${path}/resources/assets/img/testimonials/testimonials-2.jpg"
-										class="testimonial-img" alt="">
-									<h3>Sara Wilsson</h3>
-									<h4>Designer</h4>
-									<div class="stars">
-										<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i>
-									</div>
-									<p>
-										<i class="bi bi-quote quote-icon-left"></i> Export tempor
-										illum tamen malis malis eram quae irure esse labore quem
-										cillum quid cillum eram malis quorum velit fore eram velit
-										sunt aliqua noster fugiat irure amet legam anim culpa. <i
-											class="bi bi-quote quote-icon-right"></i>
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- End testimonial item -->
-
-						<div class="swiper-slide">
-							<div class="testimonial-wrap">
-								<div class="testimonial-item">
-									<img src="${path}/resources/assets/img/testimonials/testimonials-3.jpg"
-										class="testimonial-img" alt="">
-									<h3>Jena Karlis</h3>
-									<h4>Store Owner</h4>
-									<div class="stars">
-										<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i>
-									</div>
-									<p>
-										<i class="bi bi-quote quote-icon-left"></i> Enim nisi quem
-										export duis labore cillum quae magna enim sint quorum nulla
-										quem veniam duis minim tempor labore quem eram duis noster
-										aute amet eram fore quis sint minim. <i
-											class="bi bi-quote quote-icon-right"></i>
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- End testimonial item -->
-
-						<div class="swiper-slide">
-							<div class="testimonial-wrap">
-								<div class="testimonial-item">
-									<img src="${path}/resources/assets/img/testimonials/testimonials-4.jpg"
-										class="testimonial-img" alt="">
-									<h3>Matt Brandon</h3>
-									<h4>Freelancer</h4>
-									<div class="stars">
-										<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i>
-									</div>
-									<p>
-										<i class="bi bi-quote quote-icon-left"></i> Fugiat enim eram
-										quae cillum dolore dolor amet nulla culpa multos export minim
-										fugiat minim velit minim dolor enim duis veniam ipsum anim
-										magna sunt elit fore quem dolore labore illum veniam. <i
-											class="bi bi-quote quote-icon-right"></i>
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- End testimonial item -->
-
-						<div class="swiper-slide">
-							<div class="testimonial-wrap">
-								<div class="testimonial-item">
-									<img src="${path}/resources/assets/img/testimonials/testimonials-5.jpg"
-										class="testimonial-img" alt="">
-									<h3>John Larson</h3>
-									<h4>Entrepreneur</h4>
-									<div class="stars">
-										<i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-											class="bi bi-star-fill"></i>
-									</div>
-									<p>
-										<i class="bi bi-quote quote-icon-left"></i> Quis quorum aliqua
-										sint quem legam fore sunt eram irure aliqua veniam tempor
-										noster veniam enim culpa labore duis sunt culpa nulla illum
-										cillum fugiat legam esse veniam culpa fore nisi cillum quid. <i
-											class="bi bi-quote quote-icon-right"></i>
-									</p>
-								</div>
-							</div>
-						</div>
-						<!-- End testimonial item -->
-
-					</div>
-					<div class="swiper-pagination"></div>
-				</div>
-
-			</div>
-		</section>
-		<!-- End Testimonials Section -->
-
-		<!-- ======= Recent Blog Posts Section ======= -->
-		<section id="recent-blog-posts" class="recent-blog-posts">
-			<div class="container" data-aos="fade-up"">
-
-
-
-				<div class=" section-header">
-					<h2>Recent Blog Posts</h2>
-					<p>In commodi voluptatem excepturi quaerat nihil error autem
-						voluptate ut et officia consequuntu</p>
-				</div>
-
-				<div class="row gy-5">
-
-					<div class="col-xl-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="100">
-						<div class="post-item position-relative h-100">
-
-							<div class="post-img position-relative overflow-hidden">
-								<img src="${path}/resources/assets/img/blog/blog-1.jpg"
-									class="img-fluid" alt=""> <span class="post-date">December
-									12</span>
-							</div>
-
-							<div class="post-content d-flex flex-column">
-
-								<h3 class="post-title">Eum ad dolor et. Autem aut fugiat
-									debitis</h3>
-
-								<div class="meta d-flex align-items-center">
-									<div class="d-flex align-items-center">
-										<i class="bi bi-person"></i> <span class="ps-2">Julia
-											Parker</span>
-									</div>
-									<span class="px-3 text-black-50">/</span>
-									<div class="d-flex align-items-center">
-										<i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-									</div>
-								</div>
-
-								<hr>
-
-								<a href="${path}/blog-details.html" class="readmore stretched-link"><span>Read
-										More</span><i class="bi bi-arrow-right"></i></a>
-
-							</div>
-
-						</div>
-					</div>
-					<!-- End post item -->
-
-					<div class="col-xl-4 col-md-6" data-aos="fade-up"
-						data-aos-delay="200">
-						<div class="post-item position-relative h-100">
-
-							<div class="post-img position-relative overflow-hidden">
-								<img src="${path}/resources/assets/img/blog/blog-2.jpg"
-									class="img-fluid" alt=""> <span class="post-date">July
-									17</span>
-							</div>
-
-							<div class="post-content d-flex flex-column">
-
-								<h3 class="post-title">Et repellendus molestiae qui est sed
-									omnis</h3>
-
-								<div class="meta d-flex align-items-center">
-									<div class="d-flex align-items-center">
-										<i class="bi bi-person"></i> <span class="ps-2">Mario
-											Douglas</span>
-									</div>
-									<span class="px-3 text-black-50">/</span>
-									<div class="d-flex align-items-center">
-										<i class="bi bi-folder2"></i> <span class="ps-2">Sports</span>
-									</div>
-								</div>
-
-								<hr>
-
-								<a href="${path}/blog-details.html" class="readmore stretched-link"><span>Read
-										More</span><i class="bi bi-arrow-right"></i></a>
-
-							</div>
-
-						</div>
-					</div>
-					<!-- End post item -->
-
-					<div class="col-xl-4 col-md-6">
-						<div class="post-item position-relative h-100" data-aos="fade-up"
-							data-aos-delay="300">
-
-							<div class="post-img position-relative overflow-hidden">
-								<img src="${path}/resources/assets/img/blog/blog-3.jpg"
-									class="img-fluid" alt=""> <span class="post-date">September
-									05</span>
-							</div>
-
-							<div class="post-content d-flex flex-column">
-
-								<h3 class="post-title">Quia assumenda est et veritati
-									tirana ploder</h3>
-
-								<div class="meta d-flex align-items-center">
-									<div class="d-flex align-items-center">
-										<i class="bi bi-person"></i> <span class="ps-2">Lisa
-											Hunter</span>
-									</div>
-									<span class="px-3 text-black-50">/</span>
-									<div class="d-flex align-items-center">
-										<i class="bi bi-folder2"></i> <span class="ps-2">Economics</span>
-									</div>
-								</div>
-
-								<hr>
-
-								<a href="${path}/blog-details.html" class="readmore stretched-link"><span>Read
-										More</span><i class="bi bi-arrow-right"></i></a>
-
-							</div>
-
-						</div>
-					</div>
-					<!-- End post item -->
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Recent Blog Posts Section -->
-
-	</main>
-	<!-- End #main -->
 
 	<!-- 푸터 영역 불러오기 -->
 	<c:import url="${path}/WEB-INF/views/footer.jsp"></c:import>
@@ -1111,13 +164,15 @@
 	<script
 		src="${path}/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${path}/resources/assets/vendor/aos/aos.js"></script>
-	<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/glightbox/js/glightbox.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="${path}/resources/assets/vendor/swiper/swiper-bundle.min.js"></script>
 	<script
 		src="${path}/resources/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script>
+	<!-- <script src="${path}/resources/assets/vendor/php-email-form/validate.js"></script> -->
 
 	<!-- Template Main JS File -->
 	<script src="${path}/resources/assets/js/main.js"></script>
