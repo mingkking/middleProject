@@ -4,3 +4,5 @@
    - apache tomcat 9.0.88
    - Database : mySql
    - 협업 : gitHub
+### 7조
+   - 정민기 : 소개, 예약결제, 오시는길, 예약확인/취소, 리뷰
