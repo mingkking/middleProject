@@ -10,6 +10,7 @@
 		SELECT *
 		FROM reservation
 		WHERE id = #{id}
+		ORDER BY rRegDate DESC
 		LIMIT #{startBoard}, #{endBoard}
 	</select>
 
@@ -39,7 +40,7 @@
 	
 	<!-- 관리자 예약확인 -->
 	<select id="managerreservation" parameterType="map" resultType="vo.reservation.ReservationVO" >
-		SELECT r.id,r.pNo,r.rRegDate,r.start_time,r.end_time,r.totalMoney
+		SELECT r.id,r.pNo,r.rental,r.start_time,r.end_time,r.totalMoney
 		FROM reservation r inner join product p
 		on r.pNo = p.pNo
 		<where>

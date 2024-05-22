@@ -121,8 +121,31 @@ public class ReservationVO {
 	public void setrPayRegDate(String rPayRegDate) {
 		this.rPayRegDate = rPayRegDate;
 	}
-
 	
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getReservationCount() {
+		return reservationCount;
+	}
+
+	public void setReservationCount(String reservationCount) {
+		this.reservationCount = reservationCount;
+	}
+
 	@Override
 	public String toString() {
 		return "ReservationVO [rNo=" + rNo + ", id=" + id + ", pNo=" + pNo + ", rental=" + rental + ", start_time="
@@ -131,6 +154,7 @@ public class ReservationVO {
 				+ ", rPayRegDate=" + rPayRegDate + ", year=" + year + ", month=" + month + ", reservationCount="
 				+ reservationCount + "]";
 	}
+
 
 
 }
