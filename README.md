@@ -9,3 +9,4 @@
    - 조혜경
    - 정규열
    - 황민택
+![DB설계](https://github.com/mingkking/middleProject/assets/105413571/a29c2253-d0c7-49d6-b996-62b8362fba66)
