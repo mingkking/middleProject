@@ -10,6 +10,8 @@
    - 정규열
    - 황민택
 
+### 기술스택
+   - 기술 스택: Spring MVC, MyBatis, MySQL, jQuery, JSP, AJAX​
 
 ### DB설계
 ![DB설계](https://github.com/mingkking/middleProject/assets/105413571/a29c2253-d0c7-49d6-b996-62b8362fba66)
